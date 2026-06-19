@@ -52,11 +52,11 @@ export default function Services() {
           </h2>
         </div>
 
-        <div className="mt-10 grid overflow-hidden border border-slate-100 bg-white shadow-sm sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid overflow-hidden border border-slate-100 bg-white shadow-sm sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {services.map(({ title, icon: Icon, secondIcon: SecondIcon }) => (
             <div
               key={title}
-              className="group flex min-h-[180px] flex-col items-center justify-center border-b border-r border-slate-100 px-5 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-secondary hover:shadow-xl sm:min-h-[200px]"
+              className="group flex min-h-[180px] flex-col items-center justify-center border-b border-r border-slate-100 px-5 py-8 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-secondary hover:shadow-xl sm:min-h-[200px] xl:border-b-0"
             >
               <div className="relative flex h-16 w-16 items-center justify-center text-primary transition-transform duration-300 group-hover:scale-110">
                 <Icon size={54} strokeWidth={1.8} />

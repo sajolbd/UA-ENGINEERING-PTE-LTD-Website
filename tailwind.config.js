@@ -13,7 +13,8 @@ module.exports = {
     extend: {
       /* ---------- COLORS ---------- */
       colors: {
-        primary: "#E83A15",
+        // primary: "#E83A15",
+        primary: "#641215",
         secondary: "#102039",
       },
 
@@ -49,12 +50,10 @@ module.exports = {
         light: {
           colors: {
             primary: {
-              DEFAULT: "#E83A15",
-
+              DEFAULT: "#641215",
             },
             secondary: {
               DEFAULT: "#102039",
-
             },
             background: "#FFFFFF",
           },
