@@ -33,7 +33,7 @@ export default function WhyRely() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 lg:items-center">
           
           {/* Left Column - Content */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 order-2 lg:order-1">
             {/* Header */}
             <div className="mb-10">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
@@ -87,7 +87,7 @@ export default function WhyRely() {
           </div>
 
           {/* Right Column - Image */}
-          <div className="lg:col-span-5 flex justify-center">
+          <div className="lg:col-span-5 flex justify-center order-1 lg:order-2">
             <div className="relative w-full max-w-[420px] aspect-[519/768] overflow-hidden shadow-2xl rounded-tr-[3.5rem] rounded-bl-[3.5rem] rounded-tl-xl rounded-br-xl border border-slate-100 bg-slate-50">
               <Image
                 src="/images/home/rely/rely-main.png"
