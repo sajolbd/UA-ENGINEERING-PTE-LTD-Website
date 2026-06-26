@@ -16,7 +16,7 @@ export default function BlogNavigation({
   return (
     <div className="w-full border-b border-slate-100 bg-white sticky top-[64px] z-30 shadow-sm">
       <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 overflow-x-auto py-4 scrollbar-none whitespace-nowrap">
+        <div className="flex items-center gap-2 overflow-x-auto py-4 thin-scrollbar whitespace-nowrap">
           {categories.map((category) => {
             const isActive = activeCategory === category;
 

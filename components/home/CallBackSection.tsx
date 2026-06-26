@@ -6,7 +6,7 @@ import Container from "components/shared/Container";
 
 export default function CallBackSection() {
     return (
-        <section className="relative overflow-hidden bg-[#0d121d]">
+        <section className="relative overflow-hidden bg-[#0d121d] lg:h-[178px]">
             {/* Background Image */}
             <Image
                 src="/images/home/call/callback-bg.png"
@@ -20,10 +20,10 @@ export default function CallBackSection() {
             <div className="absolute inset-0 bg-black/60 " />
 
             <Container className="relative z-10">
-                <div className="flex flex-col gap-6 py-6 lg:flex-row lg:items-center lg:justify-between lg:py-10">
+                <div className="flex flex-col gap-6 py-6 lg:flex-row lg:items-center lg:justify-between lg:h-full lg:py-0">
                     {/* Left Side */}
                     <div className="flex items-center gap-6 lg:max-w-xl">
-                        <div className="relative h-[160px] w-[160px] shrink-0 md:h-[190px] md:w-[190px] lg:h-[220px] lg:w-[220px]">
+                        <div className="relative h-[160px] w-[160px] shrink-0 md:h-[190px] md:w-[190px] lg:h-[162px] lg:w-[162px]">
                             <Image
                                 src="/images/home/call/call-support.png"
                                 alt="Call Support"
