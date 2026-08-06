@@ -210,8 +210,18 @@ export default function ServicePlan({ slug, categoryTitle }: ServicePlanProps) {
   return (
     <section id="service-plan" className="bg-white py-8 lg:py-12 border-t border-slate-50">
       <Container className="max-w-5xl lg:max-w-6xl">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+        {/* Section Header */}
+        <div className="mx-auto max-w-3xl text-center mb-10 lg:mb-14">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1.5 rounded-md inline-block mb-3">
+            OUR WORKING PROCESS
+          </span>
+          <h2 className="text-3xl font-extrabold text-secondary tracking-tight sm:text-4xl">
+            Our Working Process
+          </h2>
+          <div className="mx-auto mt-4 h-1 w-20 bg-primary rounded" />
+        </div>
 
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
           {/* Left Column: Descriptive Text & Bold Header */}
           <div className="lg:col-span-5 flex flex-col justify-center text-center lg:text-left max-w-xl mx-auto lg:mx-0 lg:pr-4">
             <p className="text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
