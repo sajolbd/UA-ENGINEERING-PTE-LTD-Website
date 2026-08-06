@@ -9,133 +9,133 @@ const categoryPlans = {
   "renovation-upgrading": [
     {
       number: 1,
-      title: "Design & Planning",
-      description: "Site measurement, layout drawings, 3D renders, and obtaining HDB/BCA renovation permits."
+      title: "One-Site Meeting & Site Visit",
+      description: "We assess your space, understand your needs, and identify the best renovation approach."
     },
     {
       number: 2,
-      title: "Hacking & Masonry",
-      description: "Safe hacking of partition walls, structural leveling, and laying premium floor tiles."
+      title: "Planning & Proposal Making",
+      description: "We create a clear renovation plan with scope, timeline, materials, and pricing."
     },
     {
       number: 3,
-      title: "M&E and Carpentry",
-      description: "Electrical rewiring, sanitary pipe routing, false ceiling, and custom cabinets installation."
+      title: "Start Working & Quality Control",
+      description: "Our team executes the project with strict supervision and consistent quality checks."
     },
     {
       number: 4,
-      title: "QC & Handover",
-      description: "Thorough quality checks, fine cleaning, painting touch-ups, and key handover."
+      title: "Functional Audit & Handover",
+      description: "We inspect every detail, complete final checks, and hand over a ready-to-use space."
     }
   ],
   "structural-exterior-works": [
     {
       number: 1,
-      title: "Engineering & Calc",
-      description: "Site load calculation, structural drafting, and BCA guidelines analysis."
+      title: "Site Assessment & Planning",
+      description: "We inspect your property, understand project requirements, take accurate measurements, and recommend the most suitable structural or exterior solution."
     },
     {
       number: 2,
-      title: "Steel Fabrication",
-      description: "Precision cutting, welding, galvanizing, and anti-rust coating at the workshop."
+      title: "Custom Fabrication",
+      description: "Steel components, gates, grills, roof structures, and awnings are precisely fabricated using premium materials for strength and lasting performance."
     },
     {
       number: 3,
-      title: "On-Site Installation",
-      description: "Structural hoisting, framework anchoring, metal framing, and panel mounting."
+      title: "Professional Installation",
+      description: "Our experienced team installs every structure with precision, ensuring secure fittings, quality workmanship, and minimal disruption to your property."
     },
     {
       number: 4,
-      title: "PE Certification",
-      description: "BCA safety compliance check and Professional Engineer (PE) endorsement."
+      title: "Final Inspection & Handover",
+      description: "We perform comprehensive quality checks, verify structural integrity, and ensure every detail meets our standards before project completion."
     }
   ],
   "painting-waterproofing": [
     {
       number: 1,
-      title: "Site Assessment",
-      description: "Moisture level analysis, leak detection, and structural crack tracing."
+      title: "Site Inspection & Assessment",
+      description: "Inspect surfaces, identify leaks, cracks, and moisture-related issues."
     },
     {
       number: 2,
       title: "Surface Preparation",
-      description: "Wall scraping, skim coating, wall patching, and sealer priming."
+      description: "Clean, repair, patch, and prepare surfaces for lasting adhesion."
     },
     {
       number: 3,
-      title: "Application & Grouting",
-      description: "Applying premium paints, flat roof membrane torching, or PU grout injection."
+      title: "Painting & Waterproofing",
+      description: "Apply premium paints, coatings, membranes, or waterproofing systems professionally."
     },
     {
       number: 4,
-      title: "Ponding & Warranty",
-      description: "Water testing, final QC inspection, and leakage warranty handover."
+      title: "Quality Inspection & Handover",
+      description: "Conduct final checks, site cleaning, and project handover with care."
     }
   ],
   "aluminium-glazing-works": [
     {
       number: 1,
-      title: "Laser Measurement",
-      description: "High-precision laser measurement of windows, doors, or blind systems."
+      title: "Site Assessment",
+      description: "We inspect the installation area, take accurate measurements, and recommend the most suitable aluminium and glazing solution."
     },
     {
       number: 2,
-      title: "Workshop Assembly",
-      description: "Cutting high-grade aluminium profiles and glass assembly under controlled setups."
+      title: "Custom Fabrication",
+      description: "Aluminium frames, glass panels, and accessories are fabricated to precise specifications for a seamless fit."
     },
     {
       number: 3,
-      title: "Installation & Sealing",
-      description: "Frame anchoring, soundproof glass glazing, and structural silicone weatherproofing."
+      title: "Professional Installation",
+      description: "Our experienced technicians install every component with precision, ensuring strength, safety, and a clean finish."
     },
     {
       number: 4,
-      title: "Calibration & Handover",
-      description: "Friction checks, remote control sync (for zip blinds), and safety inspections."
+      title: "Final Inspection",
+      description: "Every installation undergoes quality checks, operational testing, and a thorough site cleanup before project handover."
     }
   ],
   "electrical-plumbing-aircon": [
     {
       number: 1,
-      title: "Diagnostics & Audit",
-      description: "Evaluating circuit loads, checking leaks, and aircon compressor health check."
+      title: "Site Assessment",
+      description: "Inspect existing electrical, plumbing, and aircon systems, identify issues, and confirm the required work scope."
     },
     {
       number: 2,
-      title: "First-Fix Routing",
-      description: "Concealed cable pull, copper/PVC pipe routing, and bracket setup."
+      title: "System Preparation",
+      description: "Prepare wiring routes, pipe connections, and installation areas before commencing repair or installation works."
     },
     {
       number: 3,
-      title: "Fittings Installation",
-      description: "Mounting switches, sockets, DB boards, light fixtures, faucets, and aircon units."
+      title: "Installation & Repairs",
+      description: "Carry out electrical, plumbing, and aircon installations or repairs using quality materials and proven workmanship."
     },
     {
       number: 4,
-      title: "EMA & Pressure Test",
-      description: "PUB/EMA safety audits, pressure leakage check, and aircon cooling tests."
+      title: "Testing & Handover",
+      description: "Perform functional testing, safety inspections, and system checks before completing the project and client handover."
     }
   ],
   "solar-panel-installation": [
     {
       number: 1,
-      title: "Shadow Survey",
-      description: "Rooftop shadow path evaluation and structural weight-bearing checks."
+      title: "Site Assessment",
+      description: "Evaluate roof condition, available installation space, sunlight exposure, and structural suitability for solar panel installation."
     },
     {
       number: 2,
-      title: "Permit Applications",
-      description: "System engineering layout designs and SP Group grid connection submissions."
+      title: "System Planning",
+      description: "Design an efficient panel layout and determine equipment placement based on your property's energy requirements."
     },
     {
       number: 3,
-      title: "Mounting & Wiring",
-      description: "Installing structural mounting rails, Tier-1 solar panels, and inverters."
+      title: "Panel Installation",
+      description: "Install mounting structures, solar panels, and electrical components using safe and professional installation practices."
     },
     {
       number: 4,
-      title: "Grid Activation",
-      description: "SP Group meter integration, system safety test, and app tracking setup."
+      title: "Testing & Handover",
+      description: "Conduct system inspections, verify electrical connections, and complete final testing before project handover."
     }
   ]
 };
@@ -143,27 +143,27 @@ const categoryPlans = {
 const sidebarData: Record<string, { heading: string; text: string }> = {
   "renovation-upgrading": {
     heading: "Your Vision, Your Space, Our Renovation",
-    text: "Our renovation and space-planning process is tailored to bring your vision to life. From layouts and hacking to custom carpentry, we handle all details to keep your project on schedule."
+    text: "Our structured renovation process transforms your Singapore property on time and budget. We manage design, structural permits, and premium built-in cabinetry."
   },
   "structural-exterior-works": {
-    heading: "Safe Design, Solid Steel, PE Approved",
-    text: "Our structural engineering process is focused on load integrity, durability, and building code safety. Our certified engineers manage fabrication and PE endorsements."
+    heading: "Smart Design, Quality Steel, Trusted Installation",
+    text: "Our structural and exterior work process prioritises safety, precision, and long-term durability. From customised steel fabrication to professional installation, every project is completed with quality workmanship and strict attention to detail."
   },
   "painting-waterproofing": {
-    heading: "Leak Proof, Perfect Coat, Lasting Care",
-    text: "Our painting and waterproofing process protects your property from tropical weather and water leaks. We ensure detailed surface preparation and leak-proof tests."
+    heading: "Smooth Finish, Weather Shield, Long-Term Care",
+    text: "Our proven painting and waterproofing process ensures durable finishes, reliable leak protection, and quality workmanship from inspection to completion."
   },
   "aluminium-glazing-works": {
-    heading: "Precise Fit, Tempered Glass, Sleek Design",
-    text: "Our aluminium fabrication and glazing works deliver precise custom fits for windows, glass doors, and motorized blinds, ensuring smooth and weather-resistant operations."
+    heading: "Precision Installation, Premium Aluminium, Lasting Performance",
+    text: "Our aluminium and glazing solutions combine expert craftsmanship with premium materials to deliver durable, functional, and visually appealing installations for residential, commercial, and industrial properties."
   },
   "electrical-plumbing-aircon": {
-    heading: "Certified M&E, EMA Rewire, PUB Plumbing",
-    text: "Our M&E service process ensures your electrical, plumbing, and cooling systems are safe and highly efficient. We coordinate with EMA and PUB licensed experts."
+    heading: "Safe Installations, Reliable Systems, Quality Assured",
+    text: "Our integrated M&E solutions ensure your electrical, plumbing, and air conditioning systems operate safely, efficiently, and reliably. Every project is carefully planned, professionally executed, and thoroughly inspected for lasting performance."
   },
   "solar-panel-installation": {
-    heading: "Green Energy, SP Grid Tie, High Savings",
-    text: "Our solar engineering process covers full rooftop feasibility, design approvals, mounting installation, and grid net-metering setup to minimize your electricity bills."
+    heading: "Clean Energy, Professional Installation, Reliable Performance",
+    text: "Our solar installation process includes site assessment, system planning, secure rooftop mounting, and professional electrical integration to deliver reliable renewable energy performance."
   }
 };
 
