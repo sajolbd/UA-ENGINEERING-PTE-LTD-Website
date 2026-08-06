@@ -191,30 +191,29 @@ export default function ServiceCategoryPage({ params }: PageProps) {
                 {category.slug === "painting-waterproofing"
                   ? "Our Painting & Waterproofing Services"
                   : category.slug === "structural-exterior-works"
-                  ? "What We Offer Under Structural & Exterior Works"
-                  : category.slug === "electrical-plumbing-aircon"
-                  ? "What We Offer Under Electrical, Plumbing & Aircon"
-                  : `What We Offer Under ${category.title}`}
+                    ? "What We Offer Under Structural & Exterior Works"
+                    : category.slug === "electrical-plumbing-aircon"
+                      ? "What We Offer Under Electrical, Plumbing & Aircon"
+                      : `What We Offer Under ${category.title}`}
               </h3>
               <p className="mt-3 text-slate-500 text-sm sm:text-base">
                 {category.slug === "painting-waterproofing"
                   ? "Discover our comprehensive painting and waterproofing solutions designed to protect, enhance, and extend the lifespan of residential and commercial properties in Singapore."
                   : category.slug === "structural-exterior-works"
-                  ? "Explore our expert structural and exterior work services, delivering durable, customised solutions for residential and commercial properties across Singapore."
-                  : category.slug === "electrical-plumbing-aircon"
-                  ? "Discover our comprehensive electrical, plumbing, and aircon solutions, professionally delivered for safe, reliable, and efficient property performance."
-                  : "Discover our specific range of professional contracting services designed to meet Singapore regulatory standards."}
+                    ? "Explore our expert structural and exterior work services, delivering durable, customised solutions for residential and commercial properties across Singapore."
+                    : category.slug === "electrical-plumbing-aircon"
+                      ? "Discover our comprehensive electrical, plumbing, and aircon solutions, professionally delivered for safe, reliable, and efficient property performance."
+                      : "Discover our specific range of professional contracting services designed to meet Singapore regulatory standards."}
               </p>
             </div>
 
             <div
-              className={`grid grid-cols-1 ${
-                category.services.length === 1
+              className={`grid grid-cols-1 ${category.services.length === 1
                   ? "max-w-md mx-auto"
                   : category.services.length === 2
-                  ? "md:grid-cols-2 max-w-4xl mx-auto"
-                  : "md:grid-cols-2 lg:grid-cols-3"
-              } gap-6 lg:gap-8 justify-center`}
+                    ? "md:grid-cols-2 max-w-4xl mx-auto"
+                    : "md:grid-cols-2 lg:grid-cols-3"
+                } gap-6 lg:gap-8 justify-center`}
             >
               {category.services.map((service, index) => (
                 <Link
