@@ -14,8 +14,8 @@ import cmsData from "../../data/cmsData.json";
 
 export default function AboutSection() {
     const homeContent = cmsData?.home?.content || {};
-    const aboutHeading = homeContent.aboutHeading || "Your Trusted Partner for High Quality Renovation & Upgrading Services.";
-    const aboutSubheading = homeContent.aboutSubheading || "At UA ENGINEERING PTE. LTD. we deliver reliable Renovation & Upgrading solutions grounded in integrity, expertise, and precision. Our team ensures every project meets high standards of safety, durability, and quality workmanship.";
+    const aboutHeading = homeContent.aboutHeading || "Your Reliable Renovation Partner";
+    const aboutSubheading = homeContent.aboutSubheading || "We help homeowners and property owners achieve beautiful, practical spaces through professional renovation solutions built on trust, precision, and proven expertise.";
     const aboutImage = homeContent.aboutImage || "/images/home/about/about-main.jpg";
     const aboutImageAlt = homeContent.aboutImageAlt || "UA Engineering Upgrading Worksite";
     const experienceYears = parseInt(homeContent.aboutExperience) || 15;
@@ -52,16 +52,6 @@ export default function AboutSection() {
                             </div>
                         </div>
 
-                        {/* Floating Image */}
-                        <div className="absolute -bottom-10 right-5 hidden bg-white p-3 shadow-2xl md:block">
-                            <Image
-                                src="/images/home/about/about-sub.jpg"
-                                alt="UA Engineering Team"
-                                width={240}
-                                height={160}
-                                className="h-auto w-full object-cover"
-                            />
-                        </div>
 
                         {/* Decoration */}
                         <div className="absolute -bottom-12 -left-12 h-36 w-36 rounded-full border-[12px] border-primary/10" />
@@ -74,7 +64,7 @@ export default function AboutSection() {
                             <Wrench className="h-5 w-5 text-primary" />
 
                             <span className="text-lg font-semibold text-primary">
-                                About UA Engineering
+                                About UA Engineering services
                             </span>
                         </div>
 

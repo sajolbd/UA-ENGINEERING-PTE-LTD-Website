@@ -20,7 +20,7 @@ const highlights = [
 
 export default function Hero() {
   const heroContent = cmsData?.home?.content || {};
-  const heading = heroContent.heroHeading || "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.";
+  const heading = heroContent.heroHeading || " From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.";
   const subheading = heroContent.heroSubheading || "We handle it all with expertise, reliability, and guaranteed quality.";
   const heroImage = heroContent.heroImage || "/images/home/hero/hero-bg.png";
   const heroImageAlt = heroContent.heroImageAlt || "Hero Background Banner";

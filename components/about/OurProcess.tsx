@@ -14,53 +14,57 @@ const steps = [
   {
     id: 1,
     tag: "STEP 01",
-    title: "Scheduling",
+    title: "Consultation & Site Assessment",
     description:
-      "Understand your renovation or upgrading requirements through detailed discussion and a thorough technical evaluation. Our expert team evaluates structural needs, takes precise measurements, and aligns with your preferences.",
+      "We discuss your renovation goals, inspect the property, take accurate measurements, assess technical requirements, and recommend practical solutions to develop a clear and efficient project plan.",
     icon: PhoneCall,
     milestones: [
-      "Easy booking via phone or WhatsApp",
-      "Punctual, uniformed team arrival",
-      "Detailed measurements & technical scoping",
+      "Free consultation and site inspection",
+      "Detailed technical assessment",
+      "Structural and feasibility evaluation",
+      "Accurate measurements",
     ],
   },
   {
     id: 2,
     tag: "STEP 02",
-    title: "Arrival",
+    title: "Proposal & Project Planning",
     description:
-      "We provide a clear, itemized quotation with transparent pricing and no hidden fees. Once approved, we establish a structured project plan, material selection lists, and a realistic progress timeline.",
+      "We prepare a transparent quotation covering scope, materials, pricing, and timeline. After approval, we organise resources, scheduling, and project planning for smooth execution.",
     icon: FileText,
     milestones: [
-      "Detailed estimations & budget scoping",
-      "Itemized pricing sheets with zero surprises",
-      "Milestone timelines & material selection",
+      "Detailed itemised quotation",
+      "Transparent pricing",
+      "Material recommendations",
+      "Project scheduling",
     ],
   },
   {
     id: 3,
     tag: "STEP 03",
-    title: "The Work",
+    title: "Professional Execution & Quality Control",
     description:
-      "Our certified workers execute all works safely and efficiently. Directly supervised by experienced project managers, we adhere to Singapore building codes (BCA & HDB), ensuring quality craftsmanship.",
+      "Our skilled team completes every project safely under experienced supervision, following BCA and HDB standards while maintaining strict quality control throughout every stage.",
     icon: Wrench,
     milestones: [
-      "On-site supervisor and manager control",
-      "BCA & HDB regulation compliance",
-      "Premium, certified materials & safety protocols",
+      "Experienced project supervisors",
+      "Certified skilled workers",
+      "Premium construction materials",
+      "Continuous quality inspections",
     ],
   },
   {
     id: 4,
     tag: "STEP 04",
-    title: "Payment for Completed Work",
+    title: "Completion, Handover & After-Sales Support",
     description:
-      "We conduct a thorough walk-through of the finished project with you, verifying every detail against our quality assurance checklist. We carry out meticulous clean-up of the work site and handover warranties.",
+      "After final inspections and site cleaning, we hand over the completed project with warranty information, maintenance guidance, and responsive after-sales support for your peace of mind.",
     icon: Sparkles,
     milestones: [
-      "Rigorous walk-through checklist verification",
-      "Complete post-project cleanup & debris clearing",
-      "Warranty handover & post-completion support",
+      "Final quality inspection",
+      "Complete project walkthrough",
+      "Site cleaning and finishing",
+      "Warranty documentation",
     ],
   },
 ];
@@ -79,7 +83,7 @@ export default function OurProcess() {
           </h2>
           <div className="mx-auto mt-4 h-1 w-20 rounded bg-primary" />
           <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
-            You deserve to have a beautiful space and a team of professionals you can trust to properly care for it. We strive to deliver high-quality results by following an efficient, straightforward process.
+            Every successful renovation begins with proper planning and professional execution. At UA Engineering, we follow a proven project management process that ensures efficiency, quality, and complete customer confidence from the initial consultation through project completion.
           </p>
         </div>
 

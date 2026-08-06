@@ -9,6 +9,7 @@ import { servicesData } from "../../../../data/servicesData";
 import WhyChoose from "components/home/WhyChoose";
 import PaintingFocus from "components/services/PaintingFocus";
 import ServicePlan from "components/services/ServicePlan";
+import ServiceProcess from "components/services/ServiceProcess";
 import ServiceAreas from "components/services/ServiceAreas";
 
 interface PageProps {
@@ -19,52 +20,52 @@ interface PageProps {
 
 const categorySpecifications: Record<string, string[]> = {
   "renovation-upgrading": [
-    "Full-scale interior layout, hacking, masonry, and partition wall alterations",
-    "Custom high-end kitchen cabinets, wardrobes, and carpentry solutions",
-    "Premium vinyl, homogeneous tile laying, and parquet wood floor refinishing",
-    "Integrated false ceiling, partition wall, and ambient cove lighting design",
-    "Compliance with HDB/BCA structural safety and renovation guidelines",
-    "Professional site supervision and end-to-end turnkey project management"
+    "BCA Certified Workmanship",
+    "Skilled & Experienced Team",
+    "Transparent Project Pricing",
+    "Quality Material Commitment",
+    "On-Time Project Delivery",
+    "Reliable Service Support"
   ],
   "structural-exterior-works": [
-    "Heavy structural steel fabrication, mezzanine frames, and portal columns",
-    "Custom mild steel, wrought iron, and rust-free aluminium main gates",
-    "Premium double-laminated safety glass, polycarbonate, and metal balcony shelters",
-    "Rooftop extension structures, roof truss repairs, and complete tiling services",
-    "Motorized retractable canvas awnings, fixed sunshades, and custom facades",
-    "BCA-approved structural designs with Professional Engineer (PE) endorsement"
+    "BCA-Compliant Workmanship",
+    "Custom Design & Fabrication",
+    "Premium Quality Materials",
+    "Skilled Installation Team",
+    "Weather-Resistant Solutions",
+    "Singapore Quality Standards"
   ],
   "painting-waterproofing": [
-    "Multi-layer interior and exterior painting using premium brands (Nippon, Jotun)",
-    "Advanced surface preparation, skim coating, wall patching, and sealing",
-    "Heavy-duty polyurethane (PU) injection grouting for non-destructive leak repairs",
-    "Torch-applied bitumen membrane and multi-layer liquid waterproofing for flat roofs",
-    "High-durability waterproofing coatings for toilets, balconies, and wet areas",
-    "Strict water ponding tests to verify 100% leak-proof performance and warranty"
+    "15+ Years Skilled Professionals",
+    "Premium Quality Materials",
+    "Expert Surface Preparation",
+    "Moisture & Leak Protection",
+    "Weather-Resistant Coatings",
+    "Free Site Inspection & Quotation"
   ],
   "aluminium-glazing-works": [
-    "Custom-fabricated aluminium casement, sliding, and soundproof windows",
-    "Heavy-duty tempered and laminated safety glass doors and partitions",
-    "High-strength glass skylights and UV-blocking polycarbonate roof domes",
-    "Minimalist magnetic insect screens and retractable mosquito netting systems",
-    "Motorized outdoor windproof zip blinds for balcony weather protection",
-    "Approved window installers certified by HDB and BCA standards"
+    "Premium Grade Materials",
+    "Custom Aluminium Fabrication",
+    "Precision Glass Installation",
+    "Weather Resistant Solutions",
+    "Professional Installation Team",
+    "Long Lasting Performance"
   ],
   "electrical-plumbing-aircon": [
-    "Licensed EMA electrical rewiring, DB upgrades, and smart home lighting installations",
-    "Sanitary plumbing, copper/PVC pipe repairs, and instant/storage water heaters",
-    "Comprehensive aircon servicing, chemical cleaning, and refrigerant top-ups",
-    "Precision troubleshooting of electrical trips, pipe leaks, and aircon compressor faults",
-    "Professional routing and neat casing solutions for all services",
-    "Full compliance with PUB, EMA, and Singapore safety standards"
+    "Professional Technicians",
+    "Energy Efficient Solutions",
+    "Fast Response Service",
+    "Long-Term Performance",
+    "End-to-End Solutions",
+    "Customised Solutions"
   ],
   "solar-panel-installation": [
-    "Premium Tier-1 high-efficiency monocrystalline solar PV panels",
-    "Grid-tied and hybrid smart inverter systems with mobile app performance tracking",
-    "Certified rooftop mounting frames designed to withstand tropical wind loads",
-    "SP Group grid connection coordination and Net-Metering (selling excess power)",
-    "Complete structural roof safety evaluations and BCA submission support",
-    "Significant long-term reduction in monthly commercial and residential energy bills"
+    "Solar PV Installation",
+    "Rooftop Solar Systems",
+    "Secure Roof Mounting",
+    "Weather-Resistant Installation",
+    "Precision Workmanship",
+    "Clean Energy Solutions"
   ]
 };
 
@@ -112,7 +113,9 @@ export default function ServiceCategoryPage({ params }: PageProps) {
                 UA Engineering Pte Ltd
               </span>
               <h2 className="mt-4 text-3xl font-extrabold text-secondary tracking-tight sm:text-4xl lg:text-5xl leading-tight">
-                Professional {category.title}
+                {category.title.toLowerCase().startsWith("professional")
+                  ? category.title
+                  : `Professional ${category.title}`}
               </h2>
               <div className="mt-4 h-1 w-20 bg-primary rounded" />
               <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
@@ -185,10 +188,22 @@ export default function ServiceCategoryPage({ params }: PageProps) {
           <div id="services-list" className="scroll-mt-24">
             <div className="text-center max-w-2xl mx-auto mb-6">
               <h3 className="text-2xl font-extrabold text-secondary sm:text-3xl">
-                What We Offer Under {category.title}
+                {category.slug === "painting-waterproofing"
+                  ? "Our Painting & Waterproofing Services"
+                  : category.slug === "structural-exterior-works"
+                  ? "What We Offer Under Structural & Exterior Works"
+                  : category.slug === "electrical-plumbing-aircon"
+                  ? "What We Offer Under Electrical, Plumbing & Aircon"
+                  : `What We Offer Under ${category.title}`}
               </h3>
               <p className="mt-3 text-slate-500 text-sm sm:text-base">
-                Discover our specific range of professional contracting services designed to meet Singapore regulatory standards.
+                {category.slug === "painting-waterproofing"
+                  ? "Discover our comprehensive painting and waterproofing solutions designed to protect, enhance, and extend the lifespan of residential and commercial properties in Singapore."
+                  : category.slug === "structural-exterior-works"
+                  ? "Explore our expert structural and exterior work services, delivering durable, customised solutions for residential and commercial properties across Singapore."
+                  : category.slug === "electrical-plumbing-aircon"
+                  ? "Discover our comprehensive electrical, plumbing, and aircon solutions, professionally delivered for safe, reliable, and efficient property performance."
+                  : "Discover our specific range of professional contracting services designed to meet Singapore regulatory standards."}
               </p>
             </div>
 
@@ -293,7 +308,178 @@ export default function ServiceCategoryPage({ params }: PageProps) {
         </Container>
       </section>
       <ServicePlan slug={category.slug} categoryTitle={category.title} />
-      <PaintingFocus />
+      {category.slug === "solar-panel-installation" ? (
+        <ServiceProcess
+          introText="Our solar installation process includes site assessment, system planning, secure rooftop mounting, and professional electrical integration to deliver reliable renewable energy performance."
+          heading={
+            <>
+              Clean Energy,<br />
+              Professional Installation,<br />
+              Reliable Performance
+            </>
+          }
+          steps={[
+            {
+              number: 1,
+              title: "Site Assessment",
+              description: "Evaluate roof condition, available installation space, sunlight exposure, and structural suitability for solar panel installation.",
+              color: "text-sky-500",
+              bgColor: "bg-sky-500",
+            },
+            {
+              number: 2,
+              title: "System Planning",
+              description: "Design an efficient panel layout and determine equipment placement based on your property's energy requirements.",
+              color: "text-amber-500",
+              bgColor: "bg-amber-500",
+            },
+            {
+              number: 3,
+              title: "Panel Installation",
+              description: "Install mounting structures, solar panels, and electrical components using safe and professional installation practices.",
+              color: "text-purple-600",
+              bgColor: "bg-purple-600",
+            },
+            {
+              number: 4,
+              title: "Testing & Handover",
+              description: "Conduct system inspections, verify electrical connections, and complete final testing before project handover.",
+              color: "text-green-600",
+              bgColor: "bg-green-600",
+              isLast: true,
+            },
+          ]}
+        />
+      ) : category.slug === "electrical-plumbing-aircon" ? (
+        <ServiceProcess
+          introText="Our integrated M&E solutions ensure your electrical, plumbing, and air conditioning systems operate safely, efficiently, and reliably. Every project is carefully planned, professionally executed, and thoroughly inspected for lasting performance."
+          heading={
+            <>
+              Safe Installations,<br />
+              Reliable Systems,<br />
+              Quality Assured
+            </>
+          }
+          steps={[
+            {
+              number: 1,
+              title: "Site Assessment",
+              description: "Inspect existing electrical, plumbing, and aircon systems, identify issues, and confirm the required work scope.",
+              color: "text-sky-500",
+              bgColor: "bg-sky-500",
+            },
+            {
+              number: 2,
+              title: "System Preparation",
+              description: "Prepare wiring routes, pipe connections, and installation areas before commencing repair or installation works.",
+              color: "text-amber-500",
+              bgColor: "bg-amber-500",
+            },
+            {
+              number: 3,
+              title: "Installation & Repairs",
+              description: "Carry out electrical, plumbing, and aircon installations or repairs using quality materials and proven workmanship.",
+              color: "text-purple-600",
+              bgColor: "bg-purple-600",
+            },
+            {
+              number: 4,
+              title: "Testing & Handover",
+              description: "Perform functional testing, safety inspections, and system checks before completing the project and client handover.",
+              color: "text-green-600",
+              bgColor: "bg-green-600",
+              isLast: true,
+            },
+          ]}
+        />
+      ) : category.slug === "aluminium-glazing-works" ? (
+        <ServiceProcess
+          introText="Our aluminium and glazing solutions combine expert craftsmanship with premium materials to deliver durable, functional, and visually appealing installations for residential, commercial, and industrial properties."
+          heading={
+            <>
+              Precision Installation,<br />
+              Premium Aluminium,<br />
+              Lasting Performance
+            </>
+          }
+          steps={[
+            {
+              number: 1,
+              title: "Site Assessment",
+              description: "We inspect the installation area, take accurate measurements, and recommend the most suitable aluminium and glazing solution.",
+              color: "text-sky-500",
+              bgColor: "bg-sky-500",
+            },
+            {
+              number: 2,
+              title: "Custom Fabrication",
+              description: "Aluminium frames, glass panels, and accessories are fabricated to precise specifications for a seamless fit.",
+              color: "text-amber-500",
+              bgColor: "bg-amber-500",
+            },
+            {
+              number: 3,
+              title: "Professional Installation",
+              description: "Our experienced technicians install every component with precision, ensuring strength, safety, and a clean finish.",
+              color: "text-purple-600",
+              bgColor: "bg-purple-600",
+            },
+            {
+              number: 4,
+              title: "Final Inspection",
+              description: "Every installation undergoes quality checks, operational testing, and a thorough site cleanup before project handover.",
+              color: "text-green-600",
+              bgColor: "bg-green-600",
+              isLast: true,
+            },
+          ]}
+        />
+      ) : category.slug === "painting-waterproofing" ? (
+        <ServiceProcess
+          introText="Our proven painting and waterproofing process ensures durable finishes, reliable leak protection, and quality workmanship from inspection to completion."
+          heading={
+            <>
+              Smooth Finish,<br />
+              Weather Shield,<br />
+              Long-Term Care
+            </>
+          }
+          steps={[
+            {
+              number: 1,
+              title: "Site Inspection & Assessment",
+              description: "Inspect surfaces, identify leaks, cracks, and moisture-related issues.",
+              color: "text-sky-500",
+              bgColor: "bg-sky-500",
+            },
+            {
+              number: 2,
+              title: "Surface Preparation",
+              description: "Clean, repair, patch, and prepare surfaces for lasting adhesion.",
+              color: "text-amber-500",
+              bgColor: "bg-amber-500",
+            },
+            {
+              number: 3,
+              title: "Painting & Waterproofing",
+              description: "Apply premium paints, coatings, membranes, or waterproofing systems professionally.",
+              color: "text-purple-600",
+              bgColor: "bg-purple-600",
+            },
+            {
+              number: 4,
+              title: "Quality Inspection & Handover",
+              description: "Conduct final checks, site cleaning, and project handover with care.",
+              color: "text-green-600",
+              bgColor: "bg-green-600",
+              isLast: true,
+            },
+          ]}
+        />
+      ) : (
+        <ServiceProcess />
+      )}
+      <PaintingFocus slug={category.slug} />
       <WhyChoose />
       <ServiceAreas />
     </div>

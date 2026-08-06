@@ -14,12 +14,14 @@ import Container from "components/shared/Container";
 
 export default function AboutHero() {
   const highlights = [
-    { text: "Skill Worker", icon: Wrench },
-    { text: "15+ Years Experienced Worker", icon: Clock },
-    { text: "Certified Worker", icon: Award },
-    { text: "Affordable Price", icon: DollarSign },
-    { text: "Quality Ensured", icon: ShieldCheck },
-    { text: "100% Client Satisfaction", icon: ThumbsUp },
+    { text: "15+ Years of Industry Experience", icon: Clock },
+    { text: "Highly Skilled & Certified Workers", icon: Wrench },
+    { text: "BCA & HDB Compliant Workmanship", icon: Award },
+    { text: "Transparent & Competitive Pricing", icon: DollarSign },
+    { text: "Premium Quality Materials", icon: ShieldCheck },
+    { text: "Safety-First Construction Practices", icon: ShieldCheck },
+    { text: "On-Time Project Completion", icon: Clock },
+    { text: "100% Commitment to Client Satisfaction", icon: ThumbsUp },
   ];
 
   return (
@@ -74,25 +76,27 @@ export default function AboutHero() {
             {/* Description */}
             <div className="space-y-4 text-base sm:text-lg leading-relaxed text-slate-600 font-medium mb-8">
               <p>
-                Looking for a reliable renovation and upgrading contractor in Singapore? 
-                <strong className="text-secondary"> UA Engineering</strong> provides professional renovation services 
-                for HDB, BTO, Condominiums, Landed properties, and commercial projects.
+                Looking for a dependable renovation and upgrading contractor in Singapore? <strong className="text-secondary">UA ENGINEERING PTE. LTD.</strong> provides renovation, construction, and engineering services for HDB, BTO, condos, landed homes, commercial, and industrial properties.
               </p>
               <p className="text-base font-normal">
-                With a strong dedication to safety, quality craftsmanship, and client satisfaction, we bring over 15 years of industry experience. Our transparent pricing structure and rapid response ensure a seamless, stress-free experience from planning to completion.
+                With 15+ years of experience, we deliver quality workmanship, transparent pricing, and reliable project management. From renovation and waterproofing to MEP, aluminium, and solar works, we complete every project safely, professionally, and on schedule.
               </p>
             </div>
 
-            {/* Grid of Highlights/Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 border-t border-slate-100 pt-6">
+            <h3 className="text-lg font-bold text-secondary mb-4">
+              Why Property Owners Trust UA Engineering
+            </h3>
+
+            {/* Grid of 8 Trust Highlights */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-slate-100 pt-6">
               {highlights.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <div key={index} className="flex items-center gap-3.5 group">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/5 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:scale-110 shadow-sm border border-primary/10">
-                      <Icon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" strokeWidth={2.5} />
+                  <div key={index} className="flex items-center gap-3 group">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/5 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:scale-110 shadow-sm border border-primary/10">
+                      <Icon className="h-4.5 w-4.5 transition-transform duration-300 group-hover:rotate-12" strokeWidth={2.5} />
                     </div>
-                    <span className="text-base font-semibold text-secondary group-hover:text-primary transition-colors duration-200">
+                    <span className="text-sm font-semibold text-secondary group-hover:text-primary transition-colors duration-200">
                       {item.text}
                     </span>
                   </div>

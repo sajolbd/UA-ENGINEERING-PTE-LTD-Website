@@ -1,66 +1,404 @@
 import React from "react";
 import Image from "next/image";
 import Container from "../shared/Container";
+import { CheckCircle2, XCircle, Home, Building2, Store, Landmark, ShieldCheck } from "lucide-react";
 
-const focusServices = [
+const targetSpaces = [
+  { title: "HDB Flats", icon: Home },
+  { title: "Condominiums", icon: Building2 },
+  { title: "Landed Houses", icon: Landmark },
+  { title: "Office Buildings", icon: Building2 },
+  { title: "Retail Shops", icon: Store },
+];
+
+const uaAdvantages = [
   {
-    title: "Paint Factory",
-    image: "/images/services/paint-factory.png",
+    title: "Thorough Site Assessment",
+    desc: "We inspect surface conditions, moisture issues, and coating failures before recommending the most suitable painting or waterproofing solution.",
   },
   {
-    title: "Paint Hospital",
-    image: "/images/services/paint-hospital.png",
+    title: "Quality Materials & Proven Systems",
+    desc: "We use trusted paints, waterproof coatings, and proven application methods designed for Singapore's humid and rainy climate.",
   },
   {
-    title: "Paint School",
-    image: "/images/services/paint-school.png",
+    title: "Skilled & Neat Workmanship",
+    desc: "Every project is completed with careful surface preparation, precise application, and a clean worksite from start to finish.",
   },
   {
-    title: "Paint Shop",
-    image: "/images/services/paint-shop.png",
+    title: "Reliable Project Delivery",
+    desc: "Clear communication, transparent quotations, timely completion, and final quality inspections ensure a smooth customer experience.",
   },
 ];
 
-export default function PaintingFocus() {
-  return (
-    <section className="bg-secondary py-8 lg:py-12 text-white">
-      <Container>
-        {/* Header */}
-        <div className="mx-auto max-w-4xl text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl leading-tight font-serif">
-            Painting Services In Singapore We Focus Too !!
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-300 font-medium font-serif">
-            From HDBs to High-Rises, We Paint It All
-          </p>
-        </div>
+const typicalShortcomings = [
+  {
+    title: "Limited Surface Preparation",
+    desc: "Skipping proper cleaning or repairs may reduce paint adhesion and shorten the lifespan of waterproofing systems.",
+  },
+  {
+    title: "Generic Material Selection",
+    desc: "Using unsuitable materials or application methods may lead to fading, peeling, or recurring water seepage.",
+  },
+  {
+    title: "Inconsistent Workmanship",
+    desc: "Uneven finishes, poor detailing, or inadequate waterproofing can affect both appearance and long-term performance.",
+  },
+  {
+    title: "Higher Long-Term Maintenance",
+    desc: "Poor preparation and application may require frequent repairs, repainting, or additional waterproofing work over time.",
+  },
+];
 
-        {/* Grid of Focus Services */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {focusServices.map((service) => (
-            <div
-              key={service.title}
-              className="group flex flex-col items-center transition-all duration-300 hover:-translate-y-2"
-            >
-              {/* Image Container */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-900 shadow-xl shadow-slate-950/40">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+interface PaintingFocusProps {
+  slug?: string;
+}
+
+const aluminiumSpaces = [
+  { title: "Residential Properties", icon: Home },
+  { title: "Commercial Buildings", icon: Building2 },
+  { title: "Retail & Offices", icon: Store },
+  { title: "Industrial Facilities", icon: Landmark },
+];
+
+const mepSpaces = [
+  { title: "HDB Flats", icon: Home },
+  { title: "Condominiums", icon: Building2 },
+  { title: "Commercial Offices", icon: Building2 },
+  { title: "Retail Shops", icon: Store },
+];
+
+const solarSpaces = [
+  { title: "Landed Homes", icon: Home },
+  { title: "Condominiums", icon: Building2 },
+  { title: "Commercial Buildings", icon: Building2 },
+  { title: "Retail Properties", icon: Store },
+];
+
+const solarAdvantages = [
+  {
+    title: "Professional Site Assessment",
+    desc: "Every installation begins with a detailed roof assessment to determine structural suitability, panel placement, and sunlight exposure for optimal system performance.",
+  },
+  {
+    title: "Quality Installation Standards",
+    desc: "Our team installs solar panels using reliable mounting systems, quality components, and proven installation practices for long-term durability.",
+  },
+  {
+    title: "Tailored System Planning",
+    desc: "Each solar installation is planned according to your property's roof layout, available space, and energy requirements for efficient performance.",
+  },
+  {
+    title: "Thorough System Verification",
+    desc: "We inspect all installed components, electrical connections, and mounting structures to ensure the system is ready for safe operation.",
+  },
+];
+
+const solarShortcomings = [
+  {
+    title: "Unsuitable Roof Planning",
+    desc: "Poor panel placement or inadequate roof assessment can reduce solar energy generation and long-term system efficiency.",
+  },
+  {
+    title: "Substandard Installation",
+    desc: "Improper mounting or electrical connections may affect system reliability, safety, and overall installation quality.",
+  },
+  {
+    title: "Inferior Components",
+    desc: "Low-quality materials and mounting hardware can reduce durability and increase maintenance requirements over time.",
+  },
+  {
+    title: "Limited Project Support",
+    desc: "Poor communication and insufficient project coordination can result in delays and an unsatisfactory installation experience.",
+  },
+];
+
+const mepAdvantages = [
+  {
+    title: "Integrated Building Solutions",
+    desc: "We coordinate electrical, plumbing, and air conditioning works under one team, improving project efficiency and reducing unnecessary scheduling delays.",
+  },
+  {
+    title: "Qualified Technical Team",
+    desc: "Our experienced technicians perform installations, repairs, and maintenance with careful workmanship, practical solutions, and attention to safety.",
+  },
+  {
+    title: "Quality Materials & Components",
+    desc: "We use reliable electrical accessories, plumbing fittings, and air conditioning components selected for durability and dependable long-term performance.",
+  },
+  {
+    title: "Thorough System Testing",
+    desc: "Every completed installation and repair is checked to verify proper operation, safety, and overall system performance before handover.",
+  },
+];
+
+const mepShortcomings = [
+  {
+    title: "Multiple Contractor Coordination",
+    desc: "Managing separate contractors for electrical, plumbing, and aircon works can create scheduling conflicts and communication gaps.",
+  },
+  {
+    title: "Unclear Work Scope",
+    desc: "Poor planning or incomplete quotations may lead to unexpected variations, additional costs, or project delays during execution.",
+  },
+  {
+    title: "Inconsistent Workmanship",
+    desc: "Improper installations or overlooked details can affect system reliability, operational efficiency, and future maintenance requirements.",
+  },
+  {
+    title: "Limited Post-Service Support",
+    desc: "Without dependable after-service assistance, resolving defects or operational issues may become slower and more inconvenient.",
+  },
+];
+
+const aluminiumAdvantages = [
+  {
+    title: "Customised Solutions",
+    desc: "Every project is designed and fabricated to suit your property's exact dimensions and functional requirements.",
+  },
+  {
+    title: "Quality Materials",
+    desc: "We use premium aluminium profiles and quality glazing materials for reliable performance and lasting durability.",
+  },
+  {
+    title: "Precision Workmanship",
+    desc: "Our experienced team ensures accurate measurements, professional installation, and attention to every detail.",
+  },
+  {
+    title: "Timely Project Delivery",
+    desc: "Projects are completed efficiently with careful planning to minimise disruption to your home or business.",
+  },
+  {
+    title: "Transparent Communication",
+    desc: "Clear quotations, project updates, and responsive support from consultation through project completion.",
+  },
+  {
+    title: "Neat & Safe Workmanship",
+    desc: "We maintain an organised worksite and follow safe installation practices throughout every stage of the project.",
+  },
+  {
+    title: "Reliable Project Support",
+    desc: "From consultation to final inspection, we focus on delivering dependable service and customer satisfaction.",
+  },
+  {
+    title: "Versatile Applications",
+    desc: "Providing aluminium and glazing solutions for residential, commercial, and industrial properties across Singapore.",
+  },
+];
+
+export default function PaintingFocus({ slug }: PaintingFocusProps) {
+  const isAluminium = slug === "aluminium-glazing-works";
+  const isMEP = slug === "electrical-plumbing-aircon";
+  const isSolar = slug === "solar-panel-installation";
+
+  const currentSpaces = isAluminium
+    ? aluminiumSpaces
+    : isMEP
+    ? mepSpaces
+    : isSolar
+    ? solarSpaces
+    : targetSpaces;
+
+  const currentAdv = isSolar
+    ? solarAdvantages
+    : isMEP
+    ? mepAdvantages
+    : uaAdvantages;
+
+  const currentShort = isSolar
+    ? solarShortcomings
+    : isMEP
+    ? mepShortcomings
+    : typicalShortcomings;
+
+  return (
+    <div className="flex flex-col gap-12 lg:gap-16 py-12 lg:py-16 bg-slate-50/50 border-t border-slate-100">
+      {/* Section 6: Applications / Target Properties */}
+      <section className="bg-secondary text-white py-12 lg:py-16">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center mb-12">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary-300 bg-white/10 px-3 py-1.5 rounded-full">
+              {isAluminium
+                ? "Specialised Applications"
+                : isMEP
+                ? "Served Properties"
+                : isSolar
+                ? "Property Coverage"
+                : "Target Properties"}
+            </span>
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+              {isAluminium
+                ? "Applications We Specialise In"
+                : isMEP
+                ? "Properties We Proudly Serve"
+                : isSolar
+                ? "Solar Solutions for Every Property"
+                : "Professional Solutions for Every Space"}
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+              {isAluminium
+                ? "Tailored aluminium and glazing solutions for a wide range of residential, commercial, and industrial environments."
+                : isMEP
+                ? "Delivering dependable electrical, plumbing, and air conditioning solutions for every type of property across Singapore."
+                : isSolar
+                ? "Professional rooftop solar panel installations tailored for residential and commercial properties seeking clean, efficient renewable energy across Singapore."
+                : "Enhancing and protecting homes, offices, retail spaces, and industrial facilities with expert workmanship."}
+            </p>
+          </div>
+
+          <div
+            className={`grid grid-cols-2 ${
+              isAluminium || isMEP || isSolar
+                ? "sm:grid-cols-4 lg:grid-cols-4"
+                : "sm:grid-cols-3 lg:grid-cols-5"
+            } gap-4 sm:gap-6 max-w-5xl mx-auto`}
+          >
+            {currentSpaces.map((space) => {
+              const Icon = space.icon;
+              return (
+                <div
+                  key={space.title}
+                  className="group flex flex-col items-center justify-center p-6 bg-white/5 border border-white/10 rounded-2xl text-center transition-all duration-300 hover:bg-primary hover:border-primary hover:-translate-y-1 shadow-lg"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-white mb-4 group-hover:bg-white/20 transition-colors duration-300">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="text-base font-bold text-white tracking-tight">
+                    {space.title}
+                  </h3>
+                </div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* Section 7: Comparison / Why Choose Us */}
+      <section className="bg-white py-4 lg:py-8">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center mb-12">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1.5 rounded-full">
+              Why We Stand Out
+            </span>
+            <h2 className="mt-4 text-3xl font-extrabold text-secondary tracking-tight sm:text-4xl">
+              {isAluminium
+                ? "Why Choose UA Engineering Aluminium & Glazing Works?"
+                : isMEP
+                ? "Our Commitment to Quality Services"
+                : isSolar
+                ? "UA Engineering's Solar Installation Expertise"
+                : "Why Choose UA Engineering's Painting & Waterproofing Services?"}
+            </h2>
+            <div className="mx-auto mt-4 h-1 w-20 bg-primary rounded" />
+          </div>
+
+          {isAluminium ? (
+            /* Grid of 8 Why Choose Cards for Aluminium */
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              {aluminiumAdvantages.map((adv, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary mb-4 shrink-0">
+                    <CheckCircle2 size={22} />
+                  </div>
+                  <h3 className="text-lg font-bold text-secondary mb-2">
+                    {adv.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                    {adv.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            /* Comparison Grid for Painting / MEP / Solar */
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {/* UA Engineering Card (✔) */}
+              <div className="bg-gradient-to-br from-primary/5 via-white to-primary/10 border-2 border-primary/30 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-primary/20">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-md">
+                    <ShieldCheck size={22} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-extrabold text-secondary">
+                      {isSolar
+                        ? "UA Engineering Solar Expertise"
+                        : isMEP
+                        ? "Our Commitment to Quality Services"
+                        : "UA Engineering Standards"}
+                    </h3>
+                    <span className="text-xs font-bold text-primary">
+                      {isSolar
+                        ? "Proven Renewable Standards"
+                        : isMEP
+                        ? "Dependable M&E Solutions"
+                        : "Proven Excellence & Quality Assurance"}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-5">
+                  {currentAdv.map((adv, idx) => (
+                    <div key={idx} className="flex items-start gap-3.5">
+                      <CheckCircle2 size={20} className="text-primary shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="text-base font-bold text-secondary">
+                          {adv.title}
+                        </h4>
+                        <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                          {adv.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              {/* Title */}
-              <h3 className="mt-5 text-lg sm:text-xl font-bold tracking-tight text-white font-serif transition-colors duration-300 group-hover:text-primary-300">
-                {service.title}
-              </h3>
+              {/* Typical Services Card (✖) */}
+              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-200">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-200 text-slate-600">
+                    <XCircle size={22} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-extrabold text-slate-700">
+                      {isSolar
+                        ? "Common Installation Challenges"
+                        : isMEP
+                        ? "Common Service Challenges"
+                        : "Typical Contractors"}
+                    </h3>
+                    <span className="text-xs font-bold text-slate-400">
+                      {isSolar
+                        ? "Installation Risks to Avoid"
+                        : isMEP
+                        ? "Potential Market Risks"
+                        : "Common Market Shortcomings"}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-5">
+                  {currentShort.map((short, idx) => (
+                    <div key={idx} className="flex items-start gap-3.5">
+                      <XCircle size={20} className="text-slate-400 shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="text-base font-bold text-slate-700">
+                          {short.title}
+                        </h4>
+                        <p className="mt-1 text-xs sm:text-sm text-slate-500 leading-relaxed">
+                          {short.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </Container>
-    </section>
+          )}
+        </Container>
+      </section>
+    </div>
   );
 }

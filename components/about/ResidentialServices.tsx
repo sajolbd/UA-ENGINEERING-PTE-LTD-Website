@@ -37,11 +37,11 @@ export default function ResidentialServices() {
             WHAT WE DO
           </span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-secondary sm:text-4xl">
-            Residential Renovation & Handyman Services
+            Complete Renovation, Engineering & Property Improvement Services
           </h2>
           <div className="mx-auto mt-4 h-1 w-20 rounded bg-primary" />
           <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
-            From minor repairs and EMA-certified electrical wiring to full HDB, condo, and landed structural makeovers, we provide professional execution backed by Singapore standards.
+            UA Engineering provides complete renovation, structural, waterproofing, electrical, plumbing, aluminium, and solar panel solutions for residential, commercial, and industrial properties across Singapore.
           </p>
         </div>
 

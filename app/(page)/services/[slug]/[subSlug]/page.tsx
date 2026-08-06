@@ -289,8 +289,17 @@ export default function SubServicePage({ params }: PageProps) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 relative">
                   {service.process.map((step, i) => {
-                    const steps = ["Assessment", "Design", "Approval", "Hacking", "Installation", "Verification"];
-                    const stepTitle = steps[i] || `Phase ${i + 1}`;
+                    const defaultSteps = ["Assessment", "Design", "Approval", "Hacking", "Installation", "Verification"];
+                    let stepTitle = defaultSteps[i] || `Phase ${i + 1}`;
+                    let stepDesc = step;
+
+                    if (typeof step === "string" && (step.includes(":") || step.includes("–") || step.includes(" - "))) {
+                      const parts = step.split(/[:–]|\s-\s/);
+                      if (parts.length > 1) {
+                        stepTitle = parts[0].trim();
+                        stepDesc = parts.slice(1).join(":").trim();
+                      }
+                    }
 
                     // Specific icons matching each stage (premium multi-color SVG style)
                     const icons = [
@@ -329,7 +338,7 @@ export default function SubServicePage({ params }: PageProps) {
                             {stepTitle}
                           </h4>
                           <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                            {step}
+                            {stepDesc}
                           </p>
                         </div>
                       </div>
