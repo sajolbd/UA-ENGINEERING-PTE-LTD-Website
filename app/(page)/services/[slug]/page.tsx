@@ -140,30 +140,21 @@ export default function ServiceCategoryPage({ params }: PageProps) {
                   ))}
                 </div>
 
-                {/* Learn More link in the marked location */}
+                {/* Filled Learn More & Specifications button moved right below Key Specifications */}
                 {category.services.length === 1 && (
-                  <div className="mt-5 pt-2">
+                  <div className="mt-6">
                     <Link
                       href={`/services/${category.slug}/${category.services[0].slug}`}
-                      className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors duration-300 group"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-xl hover:shadow-secondary/20"
                     >
                       <span>Learn More & Specifications</span>
-                      <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      <ArrowRight size={16} />
                     </Link>
                   </div>
                 )}
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-4 items-center">
-                {category.services.length === 1 && (
-                  <Link
-                    href={`/services/${category.slug}/${category.services[0].slug}`}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-xl hover:shadow-secondary/20"
-                  >
-                    <span>Learn More & Specifications</span>
-                    <ArrowRight size={16} />
-                  </Link>
-                )}
+              <div className="mt-6 flex flex-wrap gap-4 items-center">
                 <a
                   href="https://calendly.com/uaengineering"
                   target="_blank"
