@@ -212,9 +212,6 @@ export default function ServicePlan({ slug, categoryTitle }: ServicePlanProps) {
       <Container className="max-w-5xl lg:max-w-6xl">
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center mb-10 lg:mb-14">
-          <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1.5 rounded-md inline-block mb-3">
-            OUR WORKING PROCESS
-          </span>
           <h2 className="text-3xl font-extrabold text-secondary tracking-tight sm:text-4xl">
             Our Working Process
           </h2>

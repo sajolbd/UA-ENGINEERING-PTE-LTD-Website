@@ -9,7 +9,6 @@ import { servicesData } from "../../../../data/servicesData";
 import WhyChoose from "components/home/WhyChoose";
 import PaintingFocus from "components/services/PaintingFocus";
 import ServicePlan from "components/services/ServicePlan";
-import ServiceProcess from "components/services/ServiceProcess";
 import ServiceAreas from "components/services/ServiceAreas";
 
 interface PageProps {
