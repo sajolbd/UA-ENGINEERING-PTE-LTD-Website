@@ -207,7 +207,15 @@ export default function ServiceCategoryPage({ params }: PageProps) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div
+              className={`grid grid-cols-1 ${
+                category.services.length === 1
+                  ? "max-w-md mx-auto"
+                  : category.services.length === 2
+                  ? "md:grid-cols-2 max-w-4xl mx-auto"
+                  : "md:grid-cols-2 lg:grid-cols-3"
+              } gap-6 lg:gap-8 justify-center`}
+            >
               {category.services.map((service, index) => (
                 <Link
                   key={service.title}
