@@ -60,12 +60,14 @@ const categorySpecifications: Record<string, string[]> = {
     "Customised Solutions"
   ],
   "solar-panel-installation": [
-    "Solar PV Installation",
-    "Rooftop Solar Systems",
-    "Secure Roof Mounting",
-    "Weather-Resistant Installation",
-    "Precision Workmanship",
-    "Clean Energy Solutions"
+    "Rooftop Solar Assessment",
+    "Custom Panel Layout Design",
+    "Solar Panel Installation",
+    "Inverter System Installation",
+    "Mounting Structure Assembly",
+    "Electrical System Integration",
+    "Safety & Performance Testing",
+    "Final System Commissioning"
   ]
 };
 
@@ -137,14 +139,36 @@ export default function ServiceCategoryPage({ params }: PageProps) {
                     </div>
                   ))}
                 </div>
+
+                {/* Learn More link in the marked location */}
+                {category.services.length === 1 && (
+                  <div className="mt-5 pt-2">
+                    <Link
+                      href={`/services/${category.slug}/${category.services[0].slug}`}
+                      className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors duration-300 group"
+                    >
+                      <span>Learn More & Specifications</span>
+                      <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+                )}
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-wrap gap-4 items-center">
+                {category.services.length === 1 && (
+                  <Link
+                    href={`/services/${category.slug}/${category.services[0].slug}`}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-xl hover:shadow-secondary/20"
+                  >
+                    <span>Learn More & Specifications</span>
+                    <ArrowRight size={16} />
+                  </Link>
+                )}
                 <a
                   href="https://calendly.com/uaengineering"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-xl hover:shadow-secondary/20"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-secondary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:shadow-xl hover:shadow-primary/20"
                 >
                   <Calendar size={16} />
                   <span>Get Free Quote</span>
