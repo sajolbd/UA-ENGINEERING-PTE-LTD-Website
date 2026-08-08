@@ -5,47 +5,47 @@ import Container from "components/shared/Container";
 
 const uaBenefits = [
   {
-    title: "Stop Water Leaks Professionally",
+    title: "Complete Building Solutions",
     description:
-      "You get high-quality methods based on the place from us to fix leaks like pros. Plus, our quick application and fast-drying solutions tackle stubborn water issues.",
+      "From renovation and structural works to M&E, glazing, waterproofing, and solar, one trusted team handles every project.",
   },
   {
-    title: "No-hack & Smooth Process",
+    title: "Quality Workmanship",
     description:
-      "No need for loud hammering, drilling, or messy work with our services. Besides, we waterproof your roof, bathroom, balcony, ceiling, and so on. And, you can save time or money.",
+      "Every project is completed with skilled workmanship, quality materials, and attention to detail for lasting performance.",
   },
   {
-    title: "Lasts Lifelong",
+    title: "Honest & Transparent Pricing",
     description:
-      "Our waterproofing plans work on various surfaces like tiles, wood, cement, and so on. Thanks to the tools and products, it seals deep into pores and repels water for lifelong protection.",
+      "Clear quotations, fair pricing, and no hidden costs, so you can plan your project with confidence.",
   },
   {
-    title: "Great Skill & Experience",
+    title: "Reliable Project Management",
     description:
-      "As the best waterproofing service in Singapore, we focus on the little details to handle them via specialists. Plus, our team has great skills and experience to take care of your place to seal it.",
+      "We coordinate every stage efficiently, keeping projects organized, on schedule, and completed to high standards.",
   },
 ];
 
 const traditionalIssues = [
   {
-    title: "Lacks Professionalism",
+    title: "Multiple Contractors to Manage",
     description:
-      "Many companies try to deliver a good seal to the home areas using traditional methods. Plus, it takes time and costs more.",
+      "Hiring separate contractors often leads to delays, communication gaps, and inconsistent workmanship across different stages of the project.",
   },
   {
-    title: "Need Hack and Lengthy Process",
+    title: "Poor Workmanship",
     description:
-      "Traditional waterproofing often needs longer drying times and more time to complete the project. It can also lead to lifelong inconvenience and downtime for repairs.",
+      "Low-quality materials and rushed installation can result in recurring repairs, higher maintenance costs, and reduced durability.",
   },
   {
-    title: "Missing Durability",
+    title: "Unclear Pricing",
     description:
-      "Traditional solutions merely coat surfaces with a thin film that is prone to wear and tear. Due to this, it diminishes performance over time. And, this leads to recurring maintenance.",
+      "Unexpected charges and incomplete quotations can increase project costs and create unnecessary stress during construction.",
   },
   {
-    title: "Lacking Skill & Experience",
+    title: "Delays & Poor Communication",
     description:
-      "Traditional waterproofing brands often lack the necessary expertise and tools. It also results in inconsistent outcomes that fail to meet expectations.",
+      "Lack of planning and communication often causes missed deadlines, project disruptions, and uncertainty throughout the construction process.",
   },
 ];
 
@@ -70,7 +70,7 @@ export default function WhyChoose() {
           {/* Left Card - UA Engineering */}
           <div className="rounded-3xl border-2 border-secondary/10 bg-white p-6 shadow-sm transition-all duration-300 hover:border-secondary hover:shadow-xl sm:p-8">
             <h3 className="mb-10 text-center text-2xl font-black text-secondary leading-snug">
-              Why Choose UA Engineering Waterproofing Services?
+              UA ENGINEERING PTE. LTD.
             </h3>
 
             <div className="space-y-8">
@@ -95,10 +95,10 @@ export default function WhyChoose() {
             </div>
           </div>
 
-          {/* Right Card - Traditional Companies */}
+          {/* Right Card - Common Contractor Challenges */}
           <div className="rounded-3xl border-2 border-primary/10 bg-white p-6 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-xl sm:p-8">
             <h3 className="mb-10 text-center text-2xl font-black text-secondary leading-snug">
-              Other Traditional Waterproofing Companies
+              Common Contractor Challenges
             </h3>
 
             <div className="space-y-8">

@@ -2,27 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { HardHat, Calculator, MessagesSquare, ArrowRight } from "lucide-react";
+import { DollarSign, ShieldCheck, Clock3, ArrowRight } from "lucide-react";
 import Container from "components/shared/Container";
 
 const features = [
   {
-    title: "Skilled Workers",
+    num: "01.",
+    title: "Honest & Transparent Pricing",
     description:
-      "Our experienced team delivers high-quality workmanship with attention to detail. We ensure every project is completed efficiently, safely, and to the highest standards.",
-    icon: HardHat,
+      "Receive clear, detailed quotations with fair pricing and no hidden costs, so you know exactly what to expect before work begins.",
+    icon: DollarSign,
   },
   {
-    title: "Transparent Cost",
+    num: "02.",
+    title: "Quality Work That Lasts",
     description:
-      "We provide clear and upfront pricing with no hidden fees. Every cost is explained in detail, so you can plan your budget with full confidence.",
-    icon: Calculator,
+      "We focus on quality materials, skilled workmanship, and proper installation to deliver durable solutions you can depend on for years.",
+    icon: ShieldCheck,
   },
   {
-    title: "Free Consultation",
+    num: "03.",
+    title: "Reliable Service, Every Step",
     description:
-      "We offer a no-obligation consultation to understand your needs and provide expert advice. This helps you make informed decisions before starting your project.",
-    icon: MessagesSquare,
+      "From the first site visit to project handover, we keep you informed, stay on schedule, and ensure a smooth experience.",
+    icon: Clock3,
   },
 ];
 
@@ -58,7 +61,7 @@ export default function WhyRely() {
 
             {/* Features List */}
             <div className="space-y-8 mb-10">
-              {features.map((feature, i) => {
+              {features.map((feature) => {
                 const Icon = feature.icon;
                 return (
                   <div
@@ -72,8 +75,9 @@ export default function WhyRely() {
 
                     {/* Text Details */}
                     <div>
-                      <h3 className="text-xl font-bold tracking-tight text-secondary group-hover:text-primary transition-colors duration-300">
-                        {feature.title}
+                      <h3 className="text-xl font-bold tracking-tight text-secondary group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
+                        <span className="text-primary font-black text-lg">{feature.num}</span>
+                        <span>{feature.title}</span>
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-slate-600">
                         {feature.description}
