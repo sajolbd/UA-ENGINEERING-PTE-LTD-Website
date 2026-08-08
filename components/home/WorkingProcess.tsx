@@ -7,29 +7,29 @@ import Container from "components/shared/Container";
 const steps = [
   {
     step: "01",
-    title: "Consultation & Site Assessment",
-    description: "Understand requirements through discussion and detailed on-site technical evaluation.",
+    title: "Free Consultation & Site Visit",
+    description: "We assess your requirements, inspect the site, discuss solutions, and understand your project goals.",
     icon: MessagesSquare,
     image: "/images/home/process/assessment.png",
   },
   {
     step: "02",
-    title: "Proposal & Planning",
-    description: "Provide clear quotation, define scope, timeline, and plan resources.",
+    title: "Quotation & Project Planning",
+    description: "Provide a detailed quotation, project scope, material recommendations, timeline, and execution plan with transparent pricing.",
     icon: ClipboardList,
     image: "/images/home/process/planning.png",
   },
   {
     step: "03",
-    title: "Execution & Quality Control",
-    description: "Execute works safely with supervision, ensuring quality and regulatory compliance.",
+    title: "Professional Execution",
+    description: "Our skilled team completes every project using quality materials, safe practices, and strict workmanship standards.",
     icon: HardHat,
     image: "/images/home/process/execution.png",
   },
   {
     step: "04",
-    title: "Completion & Handover",
-    description: "Conduct final checks, handover project, and provide necessary documentation.",
+    title: "Final Inspection & Handover",
+    description: "We conduct final quality checks, ensure everything meets expectations, and hand over your completed project with confidence.",
     icon: FileCheck,
     image: "/images/home/process/handover.png",
   },
@@ -45,11 +45,11 @@ export default function WorkingProcess() {
             HOW IT WORKS
           </p>
           <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-secondary sm:text-5xl">
-            Our Standard Working Process
+            Our Simple & Transparent Work Process
           </h2>
           <div className="mx-auto mt-4 h-1 w-20 rounded bg-primary" />
           <p className="mt-6 text-base text-slate-600 lg:text-lg">
-            From initial site consultation to post-completion support, we implement rigorous safety, planning, and verification protocols at every phase of our construction lifecycle.
+            From site inspection and quotation to professional installation and project handover, we ensure quality, transparency, and customer satisfaction at every stage.
           </p>
         </div>
 
