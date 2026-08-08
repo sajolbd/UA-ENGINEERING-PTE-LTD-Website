@@ -112,8 +112,8 @@ export default function Hero() {
               <ChevronRight size={22} />
             </button>
 
-            {/* Overflow Hidden Track Window */}
-            <div className="w-full overflow-hidden px-2 sm:px-12">
+            {/* Strict Overflow Hidden Track Window - 0 peeking */}
+            <div className="w-full overflow-hidden">
               {/* Horizontal Track moving left/right */}
               <div
                 className="flex w-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
@@ -122,7 +122,7 @@ export default function Hero() {
                 {slides.map((slide, idx) => (
                   <div
                     key={idx}
-                    className="w-full shrink-0 flex flex-col items-center justify-center text-center px-4"
+                    className="min-w-full w-full shrink-0 flex flex-col items-center justify-center text-center px-4 sm:px-12 min-h-[170px] sm:min-h-[210px]"
                   >
                     <h1 className="mx-auto max-w-[1240px] text-3xl font-bold leading-[1.05] text-secondary sm:text-5xl">
                       {slide.heading}
@@ -131,39 +131,13 @@ export default function Hero() {
                     <p className="mx-auto mt-4 max-w-[780px] text-center text-base font-medium leading-6 text-slate-950 sm:mt-6 sm:text-lg sm:leading-7">
                       {slide.subheading}
                     </p>
-
-                    {/* Action Buttons inside every slide */}
-                    <div className="mx-auto mt-6 flex flex-wrap w-full max-w-[1160px] justify-center items-center gap-4 sm:mt-8">
-                      <a
-                        href="https://wa.me/6598411786?text=Hello%20UA%20Engineering%2C%20I%20would%20like%20to%20discuss%20a%20project."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/whatsapp relative inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 overflow-hidden rounded-full bg-primary px-3 py-2 text-sm font-bold text-white shadow-sm transition-colors duration-300 sm:min-h-11 sm:min-w-[190px] sm:flex-none sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
-                      >
-                        <span className="absolute inset-0 translate-x-[-101%] rounded-full bg-secondary transition-transform duration-500 ease-in-out group-hover/whatsapp:translate-x-0" />
-                        <span className="relative z-10 flex items-center gap-2 transition-colors duration-300">
-                          <MessageCircle size={20} />
-                          WhatsApp Us
-                        </span>
-                      </a>
-                      <Link
-                        href="/#services"
-                        className="group/learn relative inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 overflow-hidden rounded-full bg-secondary px-3 py-2 text-sm font-bold text-white shadow-sm transition-colors duration-300 sm:min-h-11 sm:min-w-[190px] sm:flex-none sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
-                      >
-                        <span className="absolute inset-0 translate-x-[-101%] rounded-full bg-primary transition-transform duration-500 ease-in-out group-hover/learn:translate-x-0" />
-                        <span className="relative z-10 flex items-center gap-2 transition-colors duration-300">
-                          Learn More
-                          <MoveRight size={18} />
-                        </span>
-                      </Link>
-                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Slide Indicator Dots */}
-            <div className="mt-8 flex items-center justify-center gap-2.5 z-20">
+            <div className="mt-6 flex items-center justify-center gap-2.5 z-20">
               {slides.map((_, idx) => (
                 <button
                   key={idx}
@@ -177,6 +151,32 @@ export default function Hero() {
                 />
               ))}
             </div>
+          </div>
+
+          {/* Action Buttons pinned at fixed, clean positions */}
+          <div className="mx-auto mt-6 flex flex-wrap w-full max-w-[1160px] justify-between items-center gap-4 sm:mt-8 lg:mt-10 px-4 sm:px-0">
+            <a
+              href="https://wa.me/6598411786?text=Hello%20UA%20Engineering%2C%20I%20would%20like%20to%20discuss%20a%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/whatsapp relative inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 overflow-hidden rounded-full bg-primary px-3 py-2 text-sm font-bold text-white shadow-sm transition-colors duration-300 sm:min-h-11 sm:min-w-[190px] sm:flex-none sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
+            >
+              <span className="absolute inset-0 translate-x-[-101%] rounded-full bg-secondary transition-transform duration-500 ease-in-out group-hover/whatsapp:translate-x-0" />
+              <span className="relative z-10 flex items-center gap-2 transition-colors duration-300">
+                <MessageCircle size={20} />
+                WhatsApp Us
+              </span>
+            </a>
+            <Link
+              href="/#services"
+              className="group/learn relative inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 overflow-hidden rounded-full bg-secondary px-3 py-2 text-sm font-bold text-white shadow-sm transition-colors duration-300 sm:min-h-11 sm:min-w-[190px] sm:flex-none sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
+            >
+              <span className="absolute inset-0 translate-x-[-101%] rounded-full bg-primary transition-transform duration-500 ease-in-out group-hover/learn:translate-x-0" />
+              <span className="relative z-10 flex items-center gap-2 transition-colors duration-300">
+                Learn More
+                <MoveRight size={18} />
+              </span>
+            </Link>
           </div>
 
           <div className="relative mx-auto mt-8 sm:mt-12 lg:mt-16 grid w-full max-w-[1160px] grid-cols-2 gap-2 rounded-[22px] bg-white/88 p-2 shadow-[0_18px_55px_rgba(15,23,42,0.18)] backdrop-blur sm:gap-3 sm:rounded-[34px] sm:p-3 lg:grid-cols-4">

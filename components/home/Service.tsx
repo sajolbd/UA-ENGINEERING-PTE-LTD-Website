@@ -10,42 +10,42 @@ const services = [
     title: "Renovation & Upgrading",
     image: "/images/services/renovation.png",
     alt: "Renovation & Upgrading service",
-    description: "Transform your residential, commercial, or industrial spaces with our custom renovation, space-planning, and premium interior upgrading solutions.",
+    description: "Transform homes, offices, and commercial spaces with tailored renovations, interior upgrades, quality finishes, and expert project execution.",
     slug: "renovation-upgrading",
   },
   {
     title: "Structural & Exterior Works",
     image: "/images/services/structural.png",
     alt: "Structural & Exterior Works service",
-    description: "Professional structural steel fabrication, gate and grill work, balcony shelters, roof extensions, and heavy-duty structural solutions in Singapore.",
+    description: "Strengthen and protect your property with structural repairs, roofing, steel works, gate, grill, masonry, and durable exterior improvement solutions.",
     slug: "structural-exterior-works",
   },
   {
     title: "Painting & Waterproofing",
     image: "/images/services/painting.png",
     alt: "Painting & Waterproofing service",
-    description: "Premium interior and exterior painting alongside high-performance liquid membrane waterproofing systems for complete and long-lasting property protection.",
+    description: "Enhance your property's interior and exterior appearance through premium painting, waterproofing, crack repairs, and protective coatings.",
     slug: "painting-waterproofing",
   },
   {
     title: "Aluminium & Glazing Works",
     image: "/images/services/aluminium.png",
     alt: "Aluminium & Glazing Works service",
-    description: "Top-tier fabrication and installation of aluminium frames, window glazing, skylights, mosquito nets, and automated zip blind systems.",
+    description: "Modern aluminium and glass solutions including windows, doors, shopfronts, office partitions, balustrades, and custom glazing installations.",
     slug: "aluminium-glazing-works",
   },
   {
     title: "Electrical, Plumbing & Aircon",
     image: "/images/services/mep.png",
     alt: "Electrical, Plumbing & Aircon service",
-    description: "Certified mechanical, electrical, and plumbing (MEP) solutions, including wiring, sanitary installations, and professional aircon maintenance.",
+    description: "Complete M&E solutions covering electrical systems, plumbing installations, air-conditioning services, repairs, upgrades, and routine maintenance.",
     slug: "electrical-plumbing-aircon",
   },
   {
     title: "Solar Panel Installation",
     image: "/images/services/solar.png",
     alt: "Solar Panel Installation service",
-    description: "High-efficiency solar panel grid integration, mounting, and maintenance services to power your property with sustainable green energy.",
+    description: "Reduce energy costs with professionally installed solar panel systems designed for long-term efficiency, reliability, and sustainable performance.",
     slug: "solar-panel-installation",
   },
 ];
@@ -63,8 +63,8 @@ export default function Service() {
             Our Services
           </h2>
           <div className="mx-auto mt-4 h-1.5 w-16 rounded bg-primary" />
-          <p className="mt-6 text-sm md:text-base text-slate-600 lg:text-lg max-w-2xl mx-auto">
-            UA Engineering provides end-to-end design, construction, and architectural renovation services in Singapore. We turn vision into structural reality.
+          <p className="mt-6 text-sm md:text-base text-slate-600 lg:text-lg max-w-2xl mx-auto font-medium">
+            Get professional renovation, painting, waterproofing, structural works, M&E services, and solar panel installation-all under one roof.
           </p>
         </div>
 

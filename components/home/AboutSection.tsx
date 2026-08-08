@@ -14,8 +14,8 @@ import cmsData from "../../data/cmsData.json";
 
 export default function AboutSection() {
     const homeContent = cmsData?.home?.content || {};
-    const aboutHeading = homeContent.aboutHeading || "Your Reliable Renovation Partner";
-    const aboutSubheading = homeContent.aboutSubheading || "We help homeowners and property owners achieve beautiful, practical spaces through professional renovation solutions built on trust, precision, and proven expertise.";
+    const aboutHeading = homeContent.aboutHeading || "Your Trusted Partner for All Building Needs";
+    const aboutSubheading = homeContent.aboutSubheading || "We provide home renovation, painting, waterproofing, main gate & grill works, balcony shelter installation, roof extensions, aluminium & glass installation, electrical, plumbing, aircon, and solar panel installation for homes and commercial properties across Singapore.";
     const aboutImage = homeContent.aboutImage || "/images/home/about/about-main.jpg";
     const aboutImageAlt = homeContent.aboutImageAlt || "UA Engineering Upgrading Worksite";
     const experienceYears = parseInt(homeContent.aboutExperience) || 15;
@@ -80,42 +80,42 @@ export default function AboutSection() {
 
                         {/* Features */}
                         <div className="mb-10 grid gap-4 md:grid-cols-3">
-                            {/* Reliability */}
+                            {/* Card 1 */}
                             <div className="group border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-2 hover:bg-primary hover:border-primary hover:shadow-xl">
                                 <ShieldCheck className="mb-3 h-10 w-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
 
                                 <h3 className="mb-2 text-lg font-semibold text-secondary transition-colors duration-300 group-hover:text-white">
-                                    Reliability & Trust
+                                    BCA Certified Company
                                 </h3>
 
                                 <p className="text-sm leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-white/80">
-                                    Consistent quality, timely delivery, and service you can rely on.
+                                    Meeting standards with quality workmanship, compliance, and professional practices.
                                 </p>
                             </div>
 
-                            {/* Expertise */}
+                            {/* Card 2 */}
                             <div className="group border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-2 hover:bg-primary hover:border-primary hover:shadow-xl">
                                 <HardHat className="mb-3 h-10 w-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
 
                                 <h3 className="mb-2 text-lg font-semibold text-secondary transition-colors duration-300 group-hover:text-white">
-                                    Technical Expertise
+                                    Skilled & Certified Workforce
                                 </h3>
 
                                 <p className="text-sm leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-white/80">
-                                    Some of our professionals have over 15 years of experience.
+                                    Experienced professionals delivering quality work with precision, reliability, and attention.
                                 </p>
                             </div>
 
-                            {/* Communication */}
+                            {/* Card 3 */}
                             <div className="group border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-2 hover:bg-primary hover:border-primary hover:shadow-xl">
                                 <MessagesSquare className="mb-3 h-10 w-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
 
                                 <h3 className="mb-2 text-lg font-semibold text-secondary transition-colors duration-300 group-hover:text-white">
-                                    Clear Communication
+                                    Competitive & Transparent Pricing
                                 </h3>
 
                                 <p className="text-sm leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-white/80">
-                                    Regular updates and transparent processes from start to finish.
+                                    Fair, upfront pricing with detailed quotations and no hidden costs or unexpected charges.
                                 </p>
                             </div>
                         </div>
