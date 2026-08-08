@@ -100,16 +100,19 @@ export default function Navbar() {
                 if (item.label === "Services") {
                   return (
                     <div key={item.label} className="group relative py-6">
-                      <Link
-                        href={item.href}
+                      {/* Direct /services page navigation commented out for now as requested */}
+                      {/* <Link href={item.href}> */}
+                      <button
+                        type="button"
                         aria-current={isActive ? "page" : undefined}
-                        className={`nav-link font-medium flex items-center gap-1 ${
+                        className={`nav-link font-medium flex items-center gap-1 cursor-pointer ${
                           isActive ? "nav-link-active" : "text-gray-700"
                         }`}
                       >
                         <span>{item.label}</span>
                         <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
-                      </Link>
+                      </button>
+                      {/* </Link> */}
 
                       {/* Dropdown Menu */}
                       <div className="absolute top-[80%] left-1/2 -translate-x-1/2 mt-2 w-64 rounded-2xl bg-white border border-slate-100 p-2 shadow-xl opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50">
@@ -198,17 +201,21 @@ export default function Navbar() {
                 return (
                   <div key={item.label} className="border-b py-1">
                     <div className="flex items-center justify-between py-2">
-                      <Link
-                        href={item.href}
+                      {/* Direct /services page navigation commented out for now as requested */}
+                      {/* <Link href={item.href} onClick={() => setOpen(false)}> */}
+                      <button
+                        type="button"
                         aria-current={isActive ? "page" : undefined}
-                        className={`nav-link font-medium ${
+                        className={`nav-link font-medium text-left flex-1 ${
                           isActive ? "nav-link-active" : "text-gray-700"
                         }`}
-                        onClick={() => setOpen(false)}
+                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                       >
                         {item.label}
-                      </Link>
+                      </button>
+                      {/* </Link> */}
                       <button
+                        type="button"
                         onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                         className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-50 text-gray-500 border border-slate-100"
                       >
