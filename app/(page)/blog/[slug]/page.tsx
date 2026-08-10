@@ -22,19 +22,31 @@ interface PageProps {
   };
 }
 
+import { blogPosts as fallbackBlogs } from "../../../../data/blogData";
+
 async function getAllPosts(): Promise<BlogPost[]> {
   try {
     const res = await fetch(`${API_BASE}/api/blogs`, { cache: "no-store" });
     const data = await res.json();
-    return data.success ? data.data : [];
+    if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+      return data.data;
+    }
   } catch {
-    return [];
+    // ignore network errors
   }
+  return fallbackBlogs;
 }
 
 async function getPost(slug: string): Promise<BlogPost | null> {
   const posts = await getAllPosts();
-  return posts.find((p) => p.slug === slug) || null;
+  const decoded = decodeURIComponent(slug).toLowerCase();
+  return (
+    posts.find((p) => {
+      const pSlug = (p.slug || "").toLowerCase();
+      const pId = (p.id || p._id || "").toString().toLowerCase();
+      return pSlug === decoded || pId === decoded || pSlug === slug.toLowerCase() || pId === slug.toLowerCase();
+    }) || null
+  );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
