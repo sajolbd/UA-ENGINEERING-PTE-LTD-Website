@@ -15,9 +15,9 @@ export interface BlogPost {
   image: string;
   bgColor: string;
   readTime: string;
-  popular: boolean;
+  popular?: boolean;
   content: string;
-  views: number;
+  views?: number;
 }
 
 export function useBlogPosts() {
