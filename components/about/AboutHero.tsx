@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import {
@@ -16,7 +18,7 @@ export default function AboutHero() {
   const aboutContent = (cmsData as any)?.about?.content || {};
   const overviewHeading = aboutContent.overviewHeading || "Why Choose UA Engineering For Renovation & Upgrading Services in Singapore";
   const overviewText = aboutContent.overviewText || "Looking for a dependable renovation and upgrading contractor in Singapore? UA ENGINEERING PTE. LTD. provides renovation, construction, and engineering services for HDB, BTO, condos, landed homes, commercial, and industrial properties.";
-  const heroImage = aboutContent.heroImage || "/images/about/about-hero.png";
+  const heroImage = aboutContent.aboutImage || aboutContent.heroImage || "/images/home/about/about-main.jpg";
   const heroImageAlt = aboutContent.heroImageAlt || "UA Engineering Renovation Specialist";
 
   const highlights = [
@@ -45,6 +47,9 @@ export default function AboutHero() {
               <img
                 src={getImageUrl(heroImage)}
                 alt={heroImageAlt}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/images/home/about/about-main.jpg";
+                }}
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
               
