@@ -206,7 +206,7 @@ export const servicesData: ServiceCategory[] = [
         ]
       }
     ],
-    "breadcrumbTitle": "Professional Renovation & Upgrading"
+    "breadcrumbTitle": "Renovation & Upgrading"
   },
   {
     "slug": "structural-exterior-works",
