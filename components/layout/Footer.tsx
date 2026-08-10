@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 
 import Container from "components/shared/Container";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 import { getImageUrl } from "../../lib/api";
 
 const quickLinks = [
@@ -51,6 +51,7 @@ const services = [
 ];
 
 export default function Footer() {
+  const { cmsData } = useCmsData();
   const site = (cmsData as any)?.site?.content || {};
   const footerLogo = site.footerLogo || "/images/footer-logo.png";
   const footerAbout = site.footerAboutText || "UA Engineering PTE. LTD. provides professional renovation, waterproofing, roofing, steel works, electrical, plumbing, aluminium glazing and maintenance services throughout Singapore.";

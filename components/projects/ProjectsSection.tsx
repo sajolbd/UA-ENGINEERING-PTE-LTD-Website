@@ -15,11 +15,10 @@ const CATEGORIES = [
 ];
 
 // Project list matching company capabilities and user request
-import { projectsData } from "../../data/projectsData";
-
-const PROJECTS = projectsData;
+import { useCmsData } from "../../context/CmsContext";
 
 export default function ProjectsSection() {
+  const { projectsData: PROJECTS } = useCmsData();
   const [activeCategory, setActiveCategory] = useState("All Works");
   const [selectedProject, setSelectedProject] = useState<typeof PROJECTS[number] | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

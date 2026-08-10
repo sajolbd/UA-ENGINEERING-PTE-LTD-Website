@@ -11,6 +11,7 @@ import RootLayoutComponent from "components/layout/RootLayout";
 import Navbar from "components/layout/Navbar";
 import Footer from "components/layout/Footer";
 import WhatsAppFloat from "components/shared/WhatsAppFloat";
+import { CmsProvider } from "../context/CmsContext";
 
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
@@ -125,14 +126,16 @@ export default function RootLayout({
           </style>
         </noscript>
 
-        <RootLayoutComponent>
-          <Navbar />
-          <main className="">
-            <ClientLayout>{children}</ClientLayout>
-          </main>
-          <Footer />
-          <WhatsAppFloat />
-        </RootLayoutComponent>
+        <CmsProvider>
+          <RootLayoutComponent>
+            <Navbar />
+            <main className="">
+              <ClientLayout>{children}</ClientLayout>
+            </main>
+            <Footer />
+            <WhatsAppFloat />
+          </RootLayoutComponent>
+        </CmsProvider>
       </body>
     </html>
   );

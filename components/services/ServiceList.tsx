@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import Container from "../shared/Container";
 import ServiceCategoryCard from "./ServiceCategoryCard";
-import { servicesData } from "../../data/servicesData";
+import { useCmsData } from "../../context/CmsContext";
 
 export default function ServiceList() {
+  const { servicesData } = useCmsData();
   return (
     <section className="bg-slate-50/50 py-8 lg:py-12">
       <Container>

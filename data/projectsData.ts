@@ -11,6 +11,15 @@ export interface ProjectItem {
 
 export const projectsData: ProjectItem[] = [
   {
+    "title": "SHAMIM",
+    "category": "Painting & Waterproofing",
+    "image": "/images/uploads/image-1786333085591-361452311.png",
+    "description": "",
+    "location": "Singapore",
+    "gallery": [],
+    "id": "1786333090036"
+  },
+  {
     "title": "Latest Roof Coating",
     "category": "Painting & Waterproofing",
     "image": "/images/projects/latest-roof-coating.png",

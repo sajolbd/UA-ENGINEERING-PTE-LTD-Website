@@ -6,8 +6,7 @@ import { Menu, Phone, Mail, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import Container from "components/shared/Container";
 import Image from "next/image";
-import { servicesData } from "../../data/servicesData";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 import { getImageUrl } from "../../lib/api";
 
 const navLinks = [
@@ -19,6 +18,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const { cmsData, servicesData } = useCmsData();
   const [open, setOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();

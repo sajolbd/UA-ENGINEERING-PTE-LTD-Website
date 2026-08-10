@@ -10,10 +10,11 @@ import {
 } from "lucide-react";
 
 import Container from "components/shared/Container";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 import { getImageUrl } from "../../lib/api";
 
 export default function AboutSection() {
+    const { cmsData } = useCmsData();
     const homeContent = cmsData?.home?.content || {};
     const aboutHeading = homeContent.aboutHeading || "Your Trusted Partner for All Building Needs";
     const aboutSubheading = homeContent.aboutSubheading || "We provide home renovation, painting, waterproofing, main gate & grill works, balcony shelter installation, roof extensions, aluminium & glass installation, electrical, plumbing, aircon, and solar panel installation for homes and commercial properties across Singapore.";

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { DollarSign, ShieldCheck, Clock3, ArrowRight } from "lucide-react";
 import Container from "components/shared/Container";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 import { getImageUrl } from "../../lib/api";
 
 const features = [
@@ -32,6 +32,7 @@ const features = [
 ];
 
 export default function WhyRely() {
+  const { cmsData } = useCmsData();
   const homeContent = (cmsData as any)?.home?.content || {};
   const relyBadge = homeContent.relyBadge || "RELIABILITY & TRUST";
   const relyHeading = homeContent.relyHeading || "Why Do You Rely On Us?";

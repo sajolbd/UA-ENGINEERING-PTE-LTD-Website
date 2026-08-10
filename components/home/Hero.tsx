@@ -14,7 +14,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Container from "components/shared/Container";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 import { getImageUrl } from "../../lib/api";
 
 const highlights = [
@@ -25,6 +25,7 @@ const highlights = [
 ];
 
 export default function Hero() {
+  const { cmsData } = useCmsData();
   const heroContent = cmsData?.home?.content || {};
   const heroImage = heroContent.heroImage || "/images/home/hero/hero-bg.png";
   const heroImageAlt = heroContent.heroImageAlt || "Hero Background Banner";

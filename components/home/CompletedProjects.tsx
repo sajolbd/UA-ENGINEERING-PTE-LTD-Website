@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Container from "components/shared/Container";
 
-import { projectsData } from "../../data/projectsData";
+import { useCmsData } from "../../context/CmsContext";
 
 export default function CompletedProjects() {
+  const { projectsData } = useCmsData();
   const projects = projectsData.slice(0, 8);
   return (
     <section id="projects" className="bg-white py-8 lg:py-12">

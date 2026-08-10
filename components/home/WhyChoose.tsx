@@ -2,7 +2,7 @@
 
 import { ThumbsUp, ThumbsDown } from "lucide-react";
 import Container from "components/shared/Container";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 
 const uaBenefits = [
   {
@@ -51,6 +51,7 @@ const traditionalIssues = [
 ];
 
 export default function WhyChoose() {
+  const { cmsData } = useCmsData();
   const homeContent = (cmsData as any)?.home?.content || {};
   const whyChooseBadge = homeContent.whyChooseBadge || "UA ADVANTAGE";
   const whyChooseHeading = homeContent.whyChooseHeading || "Why Choose UA Engineering?";
