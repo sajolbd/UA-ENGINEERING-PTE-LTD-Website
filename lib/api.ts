@@ -1,19 +1,13 @@
 /**
  * Centralized API base URL for the Website.
- * Reads from NEXT_PUBLIC_API_URL env var, auto-detects localhost:5000 in local dev,
- * or falls back to Railway production backend.
+ * - If NEXT_PUBLIC_API_URL is configured in environment, use it.
+ * - Otherwise default to http://localhost:5000 for local dev & backend server.
  */
-const getApiBaseUrl = (): string => {
+export const getApiBaseUrl = (): string => {
   if (process.env.NEXT_PUBLIC_API_URL) {
     return process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/?$/, "");
   }
-  if (typeof window !== "undefined") {
-    const hostname = window.location.hostname;
-    if (hostname === "localhost" || hostname === "127.0.0.1") {
-      return "http://localhost:5000";
-    }
-  }
-  return "https://ua-engineering-pte-ltd-backend-production.up.railway.app";
+  return "http://localhost:5000";
 };
 
 export const API_BASE = getApiBaseUrl();
