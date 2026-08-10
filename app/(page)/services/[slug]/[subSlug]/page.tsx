@@ -131,7 +131,8 @@ interface PageProps {
   };
 }
 
-// Generate static params for Next.js build optimization
+import SubServiceCategoryClient from "../../../../../components/services/SubServiceCategoryClient";
+
 export async function generateStaticParams() {
   const params: { slug: string; subSlug: string }[] = [];
 
@@ -154,202 +155,12 @@ export default function SubServicePage({ params }: PageProps) {
   const service = category.services.find((s) => s.slug === params.subSlug);
   if (!service) notFound();
 
-  // Get other services in the same category for the sidebar
-  const otherServices = category.services.filter((s) => s.slug !== params.subSlug);
-
   return (
-    <div className="bg-slate-50/30 min-h-screen">
-      {/* Dynamic Breadcrumb with subService or category background image */}
-      <Breadcrumb
-        title={service.breadcrumbTitle || service.title}
-        description={service.description}
-        bgImage={service.breadcrumbBg || category.bgImage}
-      />
-
-      <section className="py-2 lg:py-4">
-        <Container>
-          {/* Back button and parent link */}
-          <div className="mb-4 flex flex-wrap gap-2 items-center text-xs text-slate-500 font-bold">
-            <Link
-              href="/services"
-              className="hover:text-primary transition-colors duration-300"
-            >
-              Services
-            </Link>
-            <span>/</span>
-            <Link
-              href={`/services/${category.slug}`}
-              className="hover:text-primary transition-colors duration-300"
-            >
-              {category.title}
-            </Link>
-            <span>/</span>
-            <span className="text-secondary">{service.title}</span>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
-            {/* Sidebar Column */}
-            <aside className="lg:col-span-3 order-2 lg:order-1 lg:sticky lg:top-36 lg:self-start flex flex-col gap-4">
-              {/* Other services under the same category */}
-              <div className="bg-white border border-slate-100/80 rounded-2xl p-6 sm:p-8 shadow-[0_4px_25px_rgba(0,0,0,0.03)]">
-                <h3 className="text-lg font-extrabold text-secondary border-b border-slate-100 pb-4 mb-5">
-                  More in {category.title}
-                </h3>
-                <nav className="flex flex-col gap-2.5">
-                  {category.services.map((s) => {
-                    const isActive = s.slug === params.subSlug;
-                    return (
-                      <Link
-                        key={s.slug}
-                        href={`/services/${category.slug}/${s.slug}`}
-                        className={`group flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold transition-all duration-300 border ${isActive
-                          ? "bg-primary border-primary text-white shadow-md shadow-primary/20"
-                          : "bg-white border-slate-100 shadow-sm text-slate-600 hover:-translate-y-0.5 hover:shadow-md hover:border-primary/30 hover:text-primary"
-                          }`}
-                      >
-                        <span>{s.title}</span>
-                        <ArrowRight size={14} className={`transition-all duration-300 ${isActive ? "text-white" : "text-slate-400 group-hover:text-primary group-hover:translate-x-0.5"}`} />
-                      </Link>
-                    );
-                  })}
-                </nav>
-              </div>
-            </aside>
-
-            {/* Main Content Column */}
-            <main className="lg:col-span-9 order-1 lg:order-2">
-              {/* Service Cover Image */}
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-xl shadow-slate-100/50 mb-4">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 60vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              </div>
-
-              {/* Service Title & Long Description */}
-              <div className="bg-white border border-slate-100/80 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_4px_25px_rgba(0,0,0,0.02)] mb-4">
-                <span className="text-[10px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
-                  Contracting & Engineering
-                </span>
-                <h2 className="mt-3 text-2xl sm:text-3xl font-extrabold text-secondary tracking-tight">
-                  {service.title} Overview
-                </h2>
-                <div className="mt-3 h-1 w-20 bg-primary rounded" />
-                <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
-                  {service.longDescription}
-                </p>
-              </div>
-
-              {/* Key Features / Work Scope */}
-              <div className="bg-white border border-slate-100/80 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_4px_25px_rgba(0,0,0,0.02)] mb-4">
-                <h3 className="text-lg font-extrabold text-secondary mb-5 flex items-center gap-2.5">
-                  <Cpu size={18} className="text-primary" />
-                  <span>Work Scope & Inclusions</span>
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {service.features.map((feat) => (
-                    <div key={feat} className="flex items-start gap-3 p-2.5 bg-slate-50/50 border border-slate-100 rounded-xl">
-                      <CheckCircle2 size={16} className="text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm font-semibold text-slate-700 leading-snug">{feat}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Why Choose Us */}
-              <div className="bg-white border border-slate-100/80 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_4px_25px_rgba(0,0,0,0.02)] mb-4">
-                <h3 className="text-lg font-extrabold text-secondary mb-5 flex items-center gap-2.5">
-                  <ShieldCheck size={18} className="text-primary" />
-                  <span>Why Choose UA Engineering?</span>
-                </h3>
-                <div className="flex flex-col gap-3">
-                  {service.benefits.map((benefit, i) => (
-                    <div key={i} className="flex gap-4 items-start">
-                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary/10 text-secondary font-bold text-xs">
-                        {i + 1}
-                      </div>
-                      <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
-                        {benefit}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Execution Process Timeline / Flow Chart */}
-              <div className="bg-white border border-slate-100/80 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_4px_25px_rgba(0,0,0,0.02)]">
-                <h3 className="text-lg font-extrabold text-secondary mb-6">
-                  Our Work Process Flow
-                </h3>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 relative">
-                  {service.process.map((step, i) => {
-                    const defaultSteps = ["Assessment", "Design", "Approval", "Hacking", "Installation", "Verification"];
-                    let stepTitle = defaultSteps[i] || `Phase ${i + 1}`;
-                    let stepDesc = step;
-
-                    if (typeof step === "string" && (step.includes(":") || step.includes("–") || step.includes(" - "))) {
-                      const parts = step.split(/[:–]|\s-\s/);
-                      if (parts.length > 1) {
-                        stepTitle = parts[0].trim();
-                        stepDesc = parts.slice(1).join(":").trim();
-                      }
-                    }
-
-                    // Specific icons matching each stage (premium multi-color SVG style)
-                    const icons = [
-                      <AssessmentIcon key="assess" />,
-                      <DesignIcon key="design" />,
-                      <ApprovalIcon key="app" />,
-                      <HackingIcon key="hack" />,
-                      <InstallationIcon key="inst" />,
-                      <VerificationIcon key="ver" />
-                    ];
-                    const icon = icons[i] || <CheckCircle2 size={22} className="text-primary" />;
-
-                    return (
-                      <div
-                        key={i}
-                        className="group relative flex flex-col justify-between bg-slate-50/50 border border-slate-100/80 rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-primary/20 min-h-[160px]"
-                      >
-                        {/* Connecting visual indicator for flow flow (only on large screen rows) */}
-                        {i < 5 && (
-                          <div className="hidden md:block absolute top-1/2 -right-2.5 -translate-y-1/2 z-10 opacity-60">
-                            <ArrowRight size={14} className="text-slate-300 group-hover:text-primary transition-all duration-300" />
-                          </div>
-                        )}
-
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100/50 border border-slate-150 shadow-sm group-hover:bg-white group-hover:border-primary/20 transition-all duration-300">
-                            {icon}
-                          </div>
-                          <span className="text-[10px] font-extrabold text-slate-400 group-hover:text-primary transition-colors duration-300 uppercase tracking-widest">
-                            Step 0{i + 1}
-                          </span>
-                        </div>
-
-                        <div>
-                          <h4 className="text-sm sm:text-base font-extrabold text-secondary mb-1">
-                            {stepTitle}
-                          </h4>
-                          <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                            {stepDesc}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </main>
-          </div>
-        </Container>
-      </section>
-    </div>
+    <SubServiceCategoryClient
+      slug={params.slug}
+      subSlug={params.subSlug}
+      fallbackCategory={category}
+      fallbackService={service}
+    />
   );
 }
