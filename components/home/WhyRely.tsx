@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { DollarSign, ShieldCheck, Clock3, ArrowRight } from "lucide-react";
 import Container from "components/shared/Container";
+import cmsData from "../../data/cmsData.json";
+import { getImageUrl } from "../../lib/api";
 
 const features = [
   {
@@ -30,16 +32,22 @@ const features = [
 ];
 
 export default function WhyRely() {
+  const homeContent = (cmsData as any)?.home?.content || {};
+  const relyBadge = homeContent.relyBadge || "RELIABILITY & TRUST";
+  const relyHeading = homeContent.relyHeading || "Why Do You Rely On Us?";
+  const relyImage = homeContent.relyImage || "/images/home/rely/rely-main.png";
+  const relyButtonText = homeContent.relyButtonText || "Talk to an Expert";
+
   return (
     <section className="bg-white py-8 lg:py-12">
       <Container>
         {/* Mobile Header (Visible only on mobile/tablet) */}
         <div className="mb-10 block lg:hidden">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            RELIABILITY & TRUST
+            {relyBadge}
           </p>
           <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-secondary sm:text-5xl">
-            Why Do You Rely On Us?
+            {relyHeading}
           </h2>
           <div className="mt-4 h-1 w-20 rounded bg-primary" />
         </div>
@@ -51,10 +59,10 @@ export default function WhyRely() {
             {/* Desktop Header (Visible only on desktop) */}
             <div className="mb-10 hidden lg:block">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-                RELIABILITY & TRUST
+                {relyBadge}
               </p>
               <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-secondary sm:text-5xl">
-                Why Do You Rely On Us?
+                {relyHeading}
               </h2>
               <div className="mt-4 h-1 w-20 rounded bg-primary" />
             </div>
@@ -95,7 +103,7 @@ export default function WhyRely() {
             >
               <span className="absolute inset-0 -translate-x-full bg-primary transition-transform duration-500 ease-in-out group-hover:translate-x-0" />
               <span className="relative z-10 flex items-center gap-1.5">
-                Talk to an Expert
+                {relyButtonText}
                 <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </Link>
@@ -104,12 +112,10 @@ export default function WhyRely() {
           {/* Right Column - Image */}
           <div className="lg:col-span-5 flex justify-center order-1 lg:order-2">
             <div className="relative w-full max-w-[420px] aspect-[519/768] overflow-hidden shadow-2xl rounded-tr-[3.5rem] rounded-bl-[3.5rem] rounded-tl-xl rounded-br-xl border border-slate-100 bg-slate-50">
-              <Image
-                src="/images/home/rely/rely-main.png"
-                alt="UA Engineering woodshop carpentry and fabrication work"
-                fill
-                sizes="(max-width: 1024px) 100vw, 420px"
-                className="object-cover"
+              <img
+                src={getImageUrl(relyImage)}
+                alt="UA Engineering"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>

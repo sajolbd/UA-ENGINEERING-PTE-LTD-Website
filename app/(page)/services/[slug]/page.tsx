@@ -89,7 +89,7 @@ export default function ServiceCategoryPage({ params }: PageProps) {
     <div className="bg-slate-50/30 min-h-screen">
       {/* Dynamic Breadcrumb with category background image */}
       <Breadcrumb
-        title={category.title}
+        title={category.breadcrumbTitle || category.title}
         description={category.shortDescription}
         bgImage={category.bgImage}
       />

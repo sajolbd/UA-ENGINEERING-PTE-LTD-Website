@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Container from "../shared/Container";
 import { ChevronDown, MessageSquare } from "lucide-react";
+import cmsData from "../../data/cmsData.json";
 
 interface FAQItem {
   question: string;
@@ -30,6 +31,9 @@ const FAQ_DATA: FAQItem[] = [
 
 export default function AboutFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0); // Open the first item by default
+  const aboutContent = (cmsData as any)?.about?.content || {};
+  const faqHeading = aboutContent.faqHeading || "FAQ's: Looking for Answers?";
+  const faqSubheading = aboutContent.faqSubheading || "Find expert answers to common questions about our renovation, construction, and handyman services in Singapore.";
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -44,11 +48,11 @@ export default function AboutFAQ() {
             FAQ&apos;S
           </span>
           <h2 className="mt-4 text-3xl font-black tracking-tight text-secondary sm:text-4xl">
-            FAQ&apos;s: Looking for Answers?
+            {faqHeading}
           </h2>
           <div className="mx-auto mt-4 h-1.5 w-16 rounded-full bg-primary" />
           <p className="mt-5 text-sm sm:text-base leading-relaxed text-slate-500 font-semibold max-w-2xl mx-auto">
-            Find expert answers to common questions about our renovation, construction, and handyman services in Singapore.
+            {faqSubheading}
           </p>
         </div>
 

@@ -1,19 +1,24 @@
-"use client";
-
 import Image from "next/image";
 import { User, Phone, Briefcase, ChevronDown, Send } from "lucide-react";
 import Container from "components/shared/Container";
+import cmsData from "../../data/cmsData.json";
+import { getImageUrl } from "../../lib/api";
 
 export default function CallBackSection() {
+    const homeContent = (cmsData as any)?.home?.content || {};
+    const callbackHeading = homeContent.callbackHeading || "Let Us Call You";
+    const callbackSubheading = homeContent.callbackSubheading || "Need help now? Send a few details - we’ll call you shortly.";
+    const callbackBgImage = homeContent.callbackBgImage || "/images/home/call/callback-bg.png";
+    const callbackSupportImage = homeContent.callbackSupportImage || "/images/home/call/call-support.png";
+    const callbackButtonText = homeContent.callbackButtonText || "Submit Now";
+
     return (
         <section className="relative overflow-hidden bg-[#0d121d] lg:h-[178px]">
             {/* Background Image */}
-            <Image
-                src="/images/home/call/callback-bg.png"
+            <img
+                src={getImageUrl(callbackBgImage)}
                 alt="UA Engineering"
-                fill
-                priority
-                className="object-cover opacity-25"
+                className="absolute inset-0 w-full h-full object-cover opacity-25"
             />
 
             {/* Overlay */}
@@ -24,20 +29,19 @@ export default function CallBackSection() {
                     {/* Left Side */}
                     <div className="flex items-center gap-6 lg:max-w-xl">
                         <div className="relative h-[160px] w-[160px] shrink-0 md:h-[190px] md:w-[190px] lg:h-[162px] lg:w-[162px]">
-                            <Image
-                                src="/images/home/call/call-support.png"
+                            <img
+                                src={getImageUrl(callbackSupportImage)}
                                 alt="Call Support"
-                                fill
-                                className="object-contain"
+                                className="w-full h-full object-contain"
                             />
                         </div>
 
                         <div>
                             <h2 className="text-2xl font-extrabold text-white md:text-3xl lg:text-4xl tracking-tight leading-tight">
-                                Let Us Call You
+                                {callbackHeading}
                             </h2>
                             <p className="mt-2 text-sm md:text-base text-white/80 max-w-sm">
-                                Need help now? Send a few details - we’ll call you shortly.
+                                {callbackSubheading}
                             </p>
                         </div>
                     </div>
@@ -92,7 +96,7 @@ export default function CallBackSection() {
                             >
                                 <span className="absolute inset-0 translate-x-[-101%] rounded-md bg-primary transition-transform duration-500 ease-in-out group-hover/submit:translate-x-0" />
                                 <span className="relative z-10 flex items-center justify-center gap-1.5 transition-colors duration-300">
-                                    Submit Now
+                                    {callbackButtonText}
                                     <Send size={12} className="transition-transform duration-300 group-hover/submit:translate-x-1" />
                                 </span>
                             </button>

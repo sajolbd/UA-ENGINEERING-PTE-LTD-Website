@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Container from "components/shared/Container";
+import { getImageUrl } from "../../lib/api";
 
 interface BreadcrumbProps {
   title: string;
@@ -16,13 +17,10 @@ export default function Breadcrumb({
   return (
     <section className="relative w-full h-[220px] sm:h-[280px] lg:h-[320px] flex items-center overflow-hidden bg-slate-900">
       {/* Background Image */}
-      <Image
-        src={bgImage}
+      <img
+        src={getImageUrl(bgImage)}
         alt={`${title} banner`}
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover opacity-60"
+        className="absolute inset-0 w-full h-full object-cover opacity-60"
       />
 
       {/* Dark overlay gradients */}

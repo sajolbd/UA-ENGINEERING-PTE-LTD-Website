@@ -2,6 +2,7 @@
 
 import { ThumbsUp, ThumbsDown } from "lucide-react";
 import Container from "components/shared/Container";
+import cmsData from "../../data/cmsData.json";
 
 const uaBenefits = [
   {
@@ -50,16 +51,20 @@ const traditionalIssues = [
 ];
 
 export default function WhyChoose() {
+  const homeContent = (cmsData as any)?.home?.content || {};
+  const whyChooseBadge = homeContent.whyChooseBadge || "UA ADVANTAGE";
+  const whyChooseHeading = homeContent.whyChooseHeading || "Why Choose UA Engineering?";
+
   return (
     <section className="bg-slate-50 py-8 lg:py-12">
       <Container>
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center mb-16">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            UA ADVANTAGE
+            {whyChooseBadge}
           </p>
           <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-secondary sm:text-5xl">
-            Why Choose UA Engineering?
+            {whyChooseHeading}
           </h2>
           <div className="mx-auto mt-4 h-1 w-20 rounded bg-primary" />
         </div>

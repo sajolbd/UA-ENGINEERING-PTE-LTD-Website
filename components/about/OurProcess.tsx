@@ -9,6 +9,7 @@ import {
   Check,
 } from "lucide-react";
 import Container from "components/shared/Container";
+import cmsData from "../../data/cmsData.json";
 
 const steps = [
   {
@@ -70,6 +71,10 @@ const steps = [
 ];
 
 export default function OurProcess() {
+  const aboutContent = (cmsData as any)?.about?.content || {};
+  const processHeading = aboutContent.processHeading || "Our Process";
+  const processSubheading = aboutContent.processSubheading || "Every successful renovation begins with proper planning and professional execution. At UA Engineering, we follow a proven project management process that ensures efficiency, quality, and complete customer confidence from the initial consultation through project completion.";
+
   return (
     <section className="bg-slate-50 py-8 lg:py-12 border-t border-slate-100 overflow-hidden">
       <Container>
@@ -79,11 +84,11 @@ export default function OurProcess() {
             HOW WE WORK
           </span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-secondary sm:text-4xl">
-            Our Process
+            {processHeading}
           </h2>
           <div className="mx-auto mt-4 h-1 w-20 rounded bg-primary" />
           <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
-            Every successful renovation begins with proper planning and professional execution. At UA Engineering, we follow a proven project management process that ensures efficiency, quality, and complete customer confidence from the initial consultation through project completion.
+            {processSubheading}
           </p>
         </div>
 

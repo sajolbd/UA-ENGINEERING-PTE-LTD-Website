@@ -19,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function AboutPage() {
+  const content = cmsData?.about?.content || {};
   const schemaJson = cmsData?.about?.seo?.schemaJson || "";
 
   return (
@@ -31,9 +32,9 @@ export default function AboutPage() {
         />
       )}
       <Breadcrumb
-        title="About Us"
-        description=""
-        bgImage="/images/layout/about-bg.png"
+        title={content.heroHeading || "About Us"}
+        description={content.heroSubheading || ""}
+        bgImage={content.heroImage || "/images/layout/about-bg.png"}
       />
       <AboutHero />
       <OurProcess />

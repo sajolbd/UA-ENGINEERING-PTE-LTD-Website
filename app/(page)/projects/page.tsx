@@ -16,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function ProjectsPage() {
+  const content = cmsData?.projects?.content || {};
   const schemaJson = cmsData?.projects?.seo?.schemaJson || "";
 
   return (
@@ -28,9 +29,9 @@ export default function ProjectsPage() {
         />
       )}
       <Breadcrumb
-        title="Our Projects"
-        description="A showcase of our successfully delivered engineering and renovation projects across Singapore, reflecting our commitment to structural precision, safety, and architectural elegance."
-        bgImage="/images/layout/projects-bg.png"
+        title={content.heroHeading || "Our Projects"}
+        description={content.heroSubheading || "A showcase of our successfully delivered engineering and renovation projects across Singapore."}
+        bgImage={content.heroImage || "/images/layout/projects-bg.png"}
       />
       <ProjectsSection />
       <CallBackSection />

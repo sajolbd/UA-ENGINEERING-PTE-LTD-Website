@@ -15,6 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function BlogPage() {
+  const content = cmsData?.blog?.content || {};
   const schemaJson = cmsData?.blog?.seo?.schemaJson || "";
 
   return (
@@ -27,9 +28,9 @@ export default function BlogPage() {
         />
       )}
       <Breadcrumb
-        title="Blog & Articles"
-        description="Stay updated with the latest construction insights, renovation guides, and engineering standards in Singapore."
-        bgImage="/images/layout/blog-bg.png"
+        title={content.heroHeading || "Blog & Articles"}
+        description={content.heroSubheading || "Stay updated with the latest construction insights, renovation guides, and engineering standards in Singapore."}
+        bgImage={content.heroImage || "/images/layout/blog-bg.png"}
       />
       <FeaturedBlog />
       <BlogGrid />

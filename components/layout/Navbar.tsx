@@ -7,6 +7,8 @@ import { useState } from "react";
 import Container from "components/shared/Container";
 import Image from "next/image";
 import { servicesData } from "../../data/servicesData";
+import cmsData from "../../data/cmsData.json";
+import { getImageUrl } from "../../lib/api";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -21,6 +23,14 @@ export default function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();
 
+  const site = (cmsData as any)?.site?.content || {};
+  const phone = site.phone || "+65 9841 1786";
+  const email = site.email || "hello.uaengineering@gmail.com";
+  const welcomeMsg = site.welcomeMessage || "Welcome to";
+  const companyName = site.companyName || "UA ENGINEERING PTE. LTD.";
+  const logo = site.siteLogo || "/images/logo.png";
+  const appointmentBtnText = site.appointmentButtonText || "Book An Appointment";
+
   const isActiveLink = (href: string) =>
     href === "/" ? pathname === href : pathname.startsWith(href);
 
@@ -31,9 +41,9 @@ export default function Navbar() {
         {/* Left: dark welcome panel */}
         <div className="relative hidden lg:flex items-center pl-6 pr-10 bg-secondary shrink-0">
           <span className="font-medium tracking-wide">
-            Welcome to{" "}
+            {welcomeMsg}{" "}
             <span className="font-bold tracking-[0.04em] text-white">
-              UA ENGINEERING PTE. LTD.
+              {companyName}
             </span>
           </span>
           {/* angled right edge */}
@@ -46,20 +56,20 @@ export default function Navbar() {
         {/* Right: primary contact panel */}
         <div className="flex flex-1 items-center justify-end gap-0 bg-primary px-4 lg:px-6">
           <a
-            href="tel:+6598411786"
+            href={`tel:${phone.replace(/\s+/g, "")}`}
             className="flex items-center gap-2 px-4 hover:opacity-80 transition-opacity border-r border-white/20"
           >
             <Phone size={13} />
-            <span>+65 9841 1786</span>
+            <span>{phone}</span>
           </a>
 
           <a
-            href="mailto:hello.uaengineering@gmail.com"
+            href={`mailto:${email}`}
             className="flex items-center gap-2 px-4 hover:opacity-80 transition-opacity border-r border-white/20"
           >
             <Mail size={13} />
             <span className="hidden md:inline">
-              hello.uaengineering@gmail.com
+              {email}
             </span>
           </a>
 
@@ -70,7 +80,7 @@ export default function Navbar() {
             >
               <span className="absolute inset-0 translate-x-[-101%] rounded-full bg-secondary transition-transform duration-500 ease-in-out group-hover:translate-x-0" />
               <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                Book An Appointment
+                {appointmentBtnText}
               </span>
             </Link>
           </div>
@@ -83,12 +93,10 @@ export default function Navbar() {
           <div className="relative flex h-20 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex shrink-0 items-center z-10">
-              <Image
-                src="/images/logo.png"
-                alt="UA ENGINEERING PTE. LTD."
-                width={240}
-                height={80}
-                className="h-auto w-[180px] max-w-full object-contain sm:w-[240px]"
+              <img
+                src={getImageUrl(logo)}
+                alt={companyName}
+                className="h-auto w-[180px] max-h-16 max-w-full object-contain sm:w-[240px]"
               />
             </Link>
 

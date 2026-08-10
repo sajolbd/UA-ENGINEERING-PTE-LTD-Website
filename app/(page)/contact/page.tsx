@@ -14,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function ContactPage() {
+  const content = cmsData?.contact?.content || {};
   const schemaJson = cmsData?.contact?.seo?.schemaJson || "";
 
   return (
@@ -26,9 +27,9 @@ export default function ContactPage() {
         />
       )}
       <Breadcrumb
-        title="Contact Us"
-        description="Get in touch with our team today to get a free site assessment and quote."
-        bgImage="/images/layout/contact-bg.png"
+        title={content.heroHeading || "Contact Us"}
+        description={content.heroSubheading || "Get in touch with our team today to get a free site assessment and quote."}
+        bgImage={content.heroImage || "/images/layout/contact-bg.png"}
       />
       <ContactFormSection />
     </div>

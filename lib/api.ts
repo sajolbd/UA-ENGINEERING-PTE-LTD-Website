@@ -7,13 +7,13 @@ export const API_BASE =
   "https://ua-engineering-pte-ltd-backend-production.up.railway.app";
 
 /**
- * Normalizes image paths so uploaded blog images load from the correct active backend API.
+ * Normalizes image paths so uploaded images (Base64 data URLs, uploaded server files, or local assets)
+ * load correctly from the active backend API or database.
  */
-export const getBlogImageUrl = (imagePath: string): string => {
+export const getImageUrl = (imagePath: string): string => {
   if (!imagePath) return "/images/logo.png";
   
-  if (imagePath.startsWith("http") || imagePath.startsWith("data:")) {
-    // If it points to localhost from a local database post, replace it with the live backend URL
+  if (imagePath.startsWith("data:") || imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
     return imagePath.replace("http://localhost:5000", API_BASE);
   }
   
@@ -21,5 +21,7 @@ export const getBlogImageUrl = (imagePath: string): string => {
     return `${API_BASE}${imagePath}`;
   }
   
-  return imagePath; // Falls back to local public assets (like logo, layout images)
+  return imagePath; // Falls back to local static assets
 };
+
+export const getBlogImageUrl = getImageUrl;

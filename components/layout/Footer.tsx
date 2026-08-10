@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +12,8 @@ import {
 } from "react-icons/fa";
 
 import Container from "components/shared/Container";
+import cmsData from "../../data/cmsData.json";
+import { getImageUrl } from "../../lib/api";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -48,30 +50,37 @@ const services = [
   },
 ];
 
-const socialLinks = [
-  {
-    icon: <FaFacebookF size={16} />,
-    href: "https://facebook.com",
-  },
-  {
-    icon: <FaInstagram size={16} />,
-    href: "https://instagram.com",
-  },
-  {
-    icon: <FaLinkedinIn size={16} />,
-    href: "https://linkedin.com",
-  },
-  {
-    icon: <FaYoutube size={16} />,
-    href: "https://youtube.com",
-  },
-  {
-    icon: <FaWhatsapp size={16} />,
-    href: "https://wa.me/6598411786",
-  },
-];
-
 export default function Footer() {
+  const site = (cmsData as any)?.site?.content || {};
+  const footerLogo = site.footerLogo || "/images/footer-logo.png";
+  const footerAbout = site.footerAboutText || "UA Engineering PTE. LTD. provides professional renovation, waterproofing, roofing, steel works, electrical, plumbing, aluminium glazing and maintenance services throughout Singapore.";
+  const address = site.address || "10 Anson Road, Singapore 079903";
+  const phone = site.phone || "+65 9841 1786";
+  const email = site.email || "hello.uaengineering@gmail.com";
+
+  const socialLinks = [
+    {
+      icon: <FaFacebookF size={16} />,
+      href: site.facebook || "https://facebook.com",
+    },
+    {
+      icon: <FaInstagram size={16} />,
+      href: site.instagram || "https://instagram.com",
+    },
+    {
+      icon: <FaLinkedinIn size={16} />,
+      href: site.linkedin || "https://linkedin.com",
+    },
+    {
+      icon: <FaYoutube size={16} />,
+      href: site.youtube || "https://youtube.com",
+    },
+    {
+      icon: <FaWhatsapp size={16} />,
+      href: site.whatsapp || `https://wa.me/${phone.replace(/[^0-9]/g, "")}`,
+    },
+  ];
+
   return (
     <footer className="bg-secondary text-white">
       {/* Newsletter */}
@@ -104,19 +113,15 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <Link href="/" className="mb-5 inline-flex">
-              <Image
-                src="/images/footer-logo.png"
+              <img
+                src={getImageUrl(footerLogo)}
                 alt="UA Engineering"
-                width={210}
-                height={70}
-                className="h-auto w-[160px] max-w-full object-contain sm:w-[210px]"
+                className="h-auto w-[160px] max-h-16 max-w-full object-contain sm:w-[210px]"
               />
             </Link>
 
             <p className="leading-7 text-white/80">
-              UA Engineering PTE. LTD. provides professional renovation,
-              waterproofing, roofing, steel works, electrical, plumbing,
-              aluminium glazing and maintenance services throughout Singapore.
+              {footerAbout}
             </p>
           </div>
 
@@ -164,12 +169,8 @@ export default function Footer() {
               <div>
                 <p className="mb-1 font-medium text-white">Address</p>
 
-                <p className="text-xs leading-6">
-                  38C SEA AVENUE
-                  <br />
-                  MARINE MANSION
-                  <br />
-                  SINGAPORE 424256
+                <p className="text-xs leading-6 whitespace-pre-line">
+                  {address}
                 </p>
               </div>
 
@@ -177,10 +178,10 @@ export default function Footer() {
                 <p className="mb-1 font-medium text-white">Phone</p>
 
                 <a
-                  href="tel:+6598411786"
+                  href={`tel:${phone.replace(/\s+/g, "")}`}
                   className="transition hover:text-primary"
                 >
-                  +65 9841 1786
+                  {phone}
                 </a>
               </div>
 
@@ -188,10 +189,10 @@ export default function Footer() {
                 <p className="mb-1 font-medium text-white">Email</p>
 
                 <a
-                  href="mailto:hello.uaengineering@gmail.com"
+                  href={`mailto:${email}`}
                   className="break-all transition hover:text-primary"
                 >
-                  hello.uaengineering@gmail.com
+                  {email}
                 </a>
               </div>
 

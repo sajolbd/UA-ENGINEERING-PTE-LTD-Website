@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Container from "components/shared/Container";
 import { servicesData } from "../../data/servicesData";
+import cmsData from "../../data/cmsData.json";
 
 const slugIconMap = {
   "renovation-upgrading": Home,
@@ -27,6 +28,9 @@ const slugIconMap = {
 
 export default function ResidentialServices() {
   const [activeCategory, setActiveCategory] = useState<number | null>(0);
+  const aboutContent = (cmsData as any)?.about?.content || {};
+  const residentialHeading = aboutContent.residentialHeading || "Complete Renovation, Engineering & Property Improvement Services";
+  const residentialSubheading = aboutContent.residentialSubheading || "UA Engineering provides complete renovation, structural, waterproofing, electrical, plumbing, aluminium, and solar panel solutions for residential, commercial, and industrial properties across Singapore.";
 
   return (
     <section className="bg-white py-8 lg:py-12 border-t border-slate-100">
@@ -37,11 +41,11 @@ export default function ResidentialServices() {
             WHAT WE DO
           </span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-secondary sm:text-4xl">
-            Complete Renovation, Engineering & Property Improvement Services
+            {residentialHeading}
           </h2>
           <div className="mx-auto mt-4 h-1 w-20 rounded bg-primary" />
           <p className="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
-            UA Engineering provides complete renovation, structural, waterproofing, electrical, plumbing, aluminium, and solar panel solutions for residential, commercial, and industrial properties across Singapore.
+            {residentialSubheading}
           </p>
         </div>
 

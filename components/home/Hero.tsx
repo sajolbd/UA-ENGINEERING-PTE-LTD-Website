@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import Container from "components/shared/Container";
 import cmsData from "../../data/cmsData.json";
+import { getImageUrl } from "../../lib/api";
 
 const highlights = [
   { label: "Certified Workmanship", icon: Award },
@@ -23,38 +24,42 @@ const highlights = [
   { label: "On-Time Delivery", icon: Clock3 },
 ];
 
-const slides = [
-  {
-    heading: "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.",
-    subheading: "We handle it all with expertise, reliability, and guaranteed quality.",
-  },
-  {
-    heading: "Everything Your Property Needs. One Trusted Engineering Team.",
-    subheading: "From renovations and reinstatement to electrical, plumbing, painting, roofing, steel fabrication, waterproofing, and maintenance - we handle every project with precision and professionalism.",
-  },
-  {
-    heading: "Fresh Paint. Lasting Protection. Stunning Results.",
-    subheading: "Interior and exterior painting services that enhance appearance, protect surfaces, and increase the value of your property.",
-  },
-  {
-    heading: "Roof Problems? We Fix Them Before They Cost You More.",
-    subheading: "Professional roof repairs, waterproofing, leak prevention, and complete roofing solutions to keep your property safe in every season.",
-  },
-  {
-    heading: "Safe, Reliable Electrical Solutions for Every Building",
-    subheading: "From new installations and rewiring to troubleshooting and upgrades, we deliver electrical work that keeps your property running safely.",
-  },
-  {
-    heading: "Professional Plumbing Services Without the Hassle",
-    subheading: "Leak repairs, pipe replacement, drainage solutions, sanitary installations, and preventive maintenance-all completed with quality workmanship.",
-  },
-  {
-    heading: "Custom Steel Fabrication Built for Strength & Precision",
-    subheading: "We design, fabricate, and install steel structures, staircases, platforms, railings, and custom metal works for commercial and industrial projects.",
-  },
-];
-
 export default function Hero() {
+  const heroContent = cmsData?.home?.content || {};
+  const heroImage = heroContent.heroImage || "/images/home/hero/hero-bg.png";
+  const heroImageAlt = heroContent.heroImageAlt || "Hero Background Banner";
+  const heroCtaText = heroContent.heroCtaText || "Book An Appointment";
+
+  const slides = [
+    {
+      heading: heroContent.heroHeading || "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.",
+      subheading: heroContent.heroSubheading || "We handle it all with expertise, reliability, and guaranteed quality.",
+    },
+    {
+      heading: "Everything Your Property Needs. One Trusted Engineering Team.",
+      subheading: "From renovations and reinstatement to electrical, plumbing, painting, roofing, steel fabrication, waterproofing, and maintenance - we handle every project with precision and professionalism.",
+    },
+    {
+      heading: "Fresh Paint. Lasting Protection. Stunning Results.",
+      subheading: "Interior and exterior painting services that enhance appearance, protect surfaces, and increase the value of your property.",
+    },
+    {
+      heading: "Roof Problems? We Fix Them Before They Cost You More.",
+      subheading: "Professional roof repairs, waterproofing, leak prevention, and complete roofing solutions to keep your property safe in every season.",
+    },
+    {
+      heading: "Safe, Reliable Electrical Solutions for Every Building",
+      subheading: "From new installations and rewiring to troubleshooting and upgrades, we deliver electrical work that keeps your property running safely.",
+    },
+    {
+      heading: "Professional Plumbing Services Without the Hassle",
+      subheading: "Leak repairs, pipe replacement, drainage solutions, sanitary installations, and preventive maintenance-all completed with quality workmanship.",
+    },
+    {
+      heading: "Custom Steel Fabrication Built for Strength & Precision",
+      subheading: "We design, fabricate, and install steel structures, staircases, platforms, railings, and custom metal works for commercial and industrial projects.",
+    },
+  ];
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -72,20 +77,13 @@ export default function Hero() {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
-  const heroContent = cmsData?.home?.content || {};
-  const heroImage = heroContent.heroImage || "/images/home/hero/hero-bg.png";
-  const heroImageAlt = heroContent.heroImageAlt || "Hero Background Banner";
-
   return (
     <div className="bg-white">
       <section className="relative overflow-hidden bg-white lg:min-h-[calc(100vh-132px)] flex items-center py-10 sm:py-16 lg:py-24">
-        <Image
-          src={heroImage}
+        <img
+          src={getImageUrl(heroImage)}
           alt={heroImageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-[#f4f8ff]/72" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-[#eef5ff]/45 to-white/80" />

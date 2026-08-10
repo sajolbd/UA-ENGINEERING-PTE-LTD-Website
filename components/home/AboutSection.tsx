@@ -11,6 +11,7 @@ import {
 
 import Container from "components/shared/Container";
 import cmsData from "../../data/cmsData.json";
+import { getImageUrl } from "../../lib/api";
 
 export default function AboutSection() {
     const homeContent = cmsData?.home?.content || {};
@@ -28,12 +29,10 @@ export default function AboutSection() {
                     <div className="relative">
                         {/* Main Image */}
                         <div className="relative overflow-hidden">
-                            <Image
-                                src={aboutImage}
+                            <img
+                                src={getImageUrl(aboutImage)}
                                 alt={aboutImageAlt}
-                                width={700}
-                                height={750}
-                                className="h-auto w-full object-cover"
+                                className="h-auto w-full max-h-[550px] object-cover rounded-2xl shadow-md"
                             />
                         </div>
 

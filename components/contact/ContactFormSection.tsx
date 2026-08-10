@@ -12,6 +12,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import Container from "../shared/Container";
+import cmsData from "../../data/cmsData.json";
 
 const servicesList = [
   "Full Renovation & Upgrading",
@@ -24,6 +25,13 @@ const servicesList = [
 ];
 
 export default function ContactFormSection() {
+  const contact = (cmsData as any)?.contact?.content || {};
+  const site = (cmsData as any)?.site?.content || {};
+  const address = contact.contactAddress || site.address || "10 Anson Road, Singapore 079903";
+  const phone = contact.contactPhone || site.phone || "+65 9841 1786";
+  const email = contact.contactEmail || site.email || "hello.uaengineering@gmail.com";
+  const hours = contact.contactHours || site.workingHours || "Mon - Sat: 9:00 AM - 6:00 PM (Emergency 24/7 Support)";
+
   const formRef = useRef<HTMLFormElement>(null);
 
   // Form State
@@ -139,10 +147,8 @@ export default function ContactFormSection() {
                 </div>
                 <div>
                   <h3 className="font-extrabold text-secondary text-base">Office Address</h3>
-                  <p className="mt-1.5 text-sm font-semibold text-slate-600 leading-relaxed">
-                    38C Sea Avenue, Marine Mansion
-                    <br />
-                    Singapore 424256
+                  <p className="mt-1.5 text-sm font-semibold text-slate-600 leading-relaxed whitespace-pre-line">
+                    {address}
                   </p>
                 </div>
               </div>
@@ -157,19 +163,19 @@ export default function ContactFormSection() {
                   <div className="mt-1.5 space-y-1 font-semibold text-sm text-slate-600">
                     <p>
                       Office Phone:{" "}
-                      <a href="tel:+6598411786" className="text-primary hover:underline font-bold">
-                        +65 9841 1786
+                      <a href={`tel:${phone.replace(/\s+/g, "")}`} className="text-primary hover:underline font-bold">
+                        {phone}
                       </a>
                     </p>
                     <p>
                       WhatsApp Support:{" "}
                       <a
-                        href="https://wa.me/6598411786"
+                        href={`https://wa.me/${phone.replace(/[^0-9]/g, "")}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline font-bold"
                       >
-                        +65 9841 1786 (Chat Live)
+                        {phone} (Chat Live)
                       </a>
                     </p>
                   </div>
@@ -185,29 +191,27 @@ export default function ContactFormSection() {
                   <h3 className="font-extrabold text-secondary text-base">Email Address</h3>
                   <p className="mt-1.5 text-sm font-semibold">
                     <a
-                      href="mailto:hello.uaengineering@gmail.com"
+                      href={`mailto:${email}`}
                       className="text-slate-600 hover:text-primary transition-colors font-bold break-all"
                     >
-                      hello.uaengineering@gmail.com
+                      {email}
                     </a>
                   </p>
                 </div>
               </div>
 
               {/* Business Hours Card */}
-              {/* <div className="flex gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-md hover:bg-slate-50/80">
+              <div className="flex gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-md hover:bg-slate-50/80">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Clock size={22} />
                 </div>
                 <div>
                   <h3 className="font-extrabold text-secondary text-base">Working Hours</h3>
                   <p className="mt-1.5 text-sm font-semibold text-slate-600 leading-relaxed">
-                    Monday – Saturday: 9:00 AM – 6:00 PM
-                    <br />
-                    Sunday & Public Holidays: By Appointment Only
+                    {hours}
                   </p>
                 </div>
-              </div> */}
+              </div>
 
             </div>
           </div>

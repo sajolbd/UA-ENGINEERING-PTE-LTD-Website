@@ -159,11 +159,11 @@ export default function SubServicePage({ params }: PageProps) {
 
   return (
     <div className="bg-slate-50/30 min-h-screen">
-      {/* Breadcrumb with category background image */}
+      {/* Dynamic Breadcrumb with subService or category background image */}
       <Breadcrumb
-        title={service.title}
+        title={service.breadcrumbTitle || service.title}
         description={service.description}
-        bgImage={category.bgImage}
+        bgImage={service.breadcrumbBg || category.bgImage}
       />
 
       <section className="py-2 lg:py-4">

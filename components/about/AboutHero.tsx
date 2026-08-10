@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import {
@@ -11,8 +9,16 @@ import {
   ThumbsUp,
 } from "lucide-react";
 import Container from "components/shared/Container";
+import cmsData from "../../data/cmsData.json";
+import { getImageUrl } from "../../lib/api";
 
 export default function AboutHero() {
+  const aboutContent = (cmsData as any)?.about?.content || {};
+  const overviewHeading = aboutContent.overviewHeading || "Why Choose UA Engineering For Renovation & Upgrading Services in Singapore";
+  const overviewText = aboutContent.overviewText || "Looking for a dependable renovation and upgrading contractor in Singapore? UA ENGINEERING PTE. LTD. provides renovation, construction, and engineering services for HDB, BTO, condos, landed homes, commercial, and industrial properties.";
+  const heroImage = aboutContent.heroImage || "/images/about/about-hero.png";
+  const heroImageAlt = aboutContent.heroImageAlt || "UA Engineering Renovation Specialist";
+
   const highlights = [
     { text: "15+ Years of Industry Experience", icon: Clock },
     { text: "Highly Skilled & Certified Workers", icon: Wrench },
@@ -36,13 +42,10 @@ export default function AboutHero() {
             
             {/* Main Image Wrapper */}
             <div className="relative overflow-hidden rounded-2xl bg-slate-100 shadow-xl aspect-[4/5] sm:aspect-square lg:aspect-[4/5]">
-              <Image
-                src="/images/about/about-hero.png"
-                alt="UA Engineering Renovation Specialist"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-                priority
+              <img
+                src={getImageUrl(heroImage)}
+                alt={heroImageAlt}
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
               
               {/* Floating Badge */}
@@ -70,16 +73,13 @@ export default function AboutHero() {
 
             {/* Main Title */}
             <h2 className="text-3xl font-bold leading-tight text-secondary mb-6">
-              Why Choose UA Engineering For Renovation & Upgrading Services in Singapore
+              {overviewHeading}
             </h2>
 
             {/* Description */}
             <div className="space-y-4 text-base sm:text-lg leading-relaxed text-slate-600 font-medium mb-8">
               <p>
-                Looking for a dependable renovation and upgrading contractor in Singapore? <strong className="text-secondary">UA ENGINEERING PTE. LTD.</strong> provides renovation, construction, and engineering services for HDB, BTO, condos, landed homes, commercial, and industrial properties.
-              </p>
-              <p className="text-base font-normal">
-                With 15+ years of experience, we deliver quality workmanship, transparent pricing, and reliable project management. From renovation and waterproofing to MEP, aluminium, and solar works, we complete every project safely, professionally, and on schedule.
+                {overviewText}
               </p>
             </div>
 
