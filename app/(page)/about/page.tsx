@@ -34,7 +34,7 @@ export default function AboutPage() {
       <Breadcrumb
         title={content.heroHeading || "About Us"}
         description={content.heroSubheading || ""}
-        bgImage={content.bgImage || "/images/layout/about-bg.png"}
+        bgImage={content.heroImage || "/images/layout/about-bg.png"}
       />
       <AboutHero />
       <OurProcess />
