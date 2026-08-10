@@ -26,8 +26,11 @@ export default function Navbar() {
   const site = (cmsData as any)?.site?.content || {};
   const phone = site.phone || "+65 9841 1786";
   const email = site.email || "hello.uaengineering@gmail.com";
-  const welcomeMsg = site.welcomeMessage || "Welcome to";
   const companyName = site.companyName || "UA ENGINEERING PTE. LTD.";
+  const welcomeMsgRaw = site.welcomeMessage || "Welcome to";
+  const welcomeMsg = companyName
+    ? welcomeMsgRaw.replace(new RegExp(companyName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "gi"), "").trim()
+    : welcomeMsgRaw;
   const logo = site.siteLogo || "/images/logo.png";
   const appointmentBtnText = site.appointmentButtonText || "Book An Appointment";
 
@@ -92,11 +95,14 @@ export default function Navbar() {
         <Container>
           <div className="relative flex h-20 items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex shrink-0 items-center z-10">
-              <img
+            <Link href="/" className="flex shrink-0 items-center z-10 py-1">
+              <Image
                 src={getImageUrl(logo)}
                 alt={companyName}
-                className="h-auto w-[180px] max-h-16 max-w-full object-contain sm:w-[240px]"
+
+                width={300}
+                height={80}
+                className="h-11 sm:h-13 md:h-14 lg:h-[56px] w-auto max-w-[220px] sm:max-w-[260px] md:max-w-[300px] object-contain transition-transform duration-200 hover:scale-[1.02]"
               />
             </Link>
 
@@ -185,11 +191,12 @@ export default function Navbar() {
               className="flex items-center"
             >
               <Image
-                src="/images/logo.png"
-                alt="UA ENGINEERING PTE. LTD."
-                width={240}
-                height={80}
-                className="h-auto w-[132px] object-contain"
+                src={getImageUrl(logo)}
+                alt={companyName}
+
+                width={300}
+                height={80} 
+                className="h-10 w-auto max-w-[180px] object-contain"
               />
             </Link>
             <button

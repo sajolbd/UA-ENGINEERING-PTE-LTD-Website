@@ -7,6 +7,7 @@ import Container from "../../../../components/shared/Container";
 import Breadcrumb from "../../../../components/layout/Breadcrumb";
 import { servicesData } from "../../../../data/servicesData";
 import WhyChoose from "components/home/WhyChoose";
+import CallBackSection from "components/home/CallBackSection";
 import PaintingFocus from "components/services/PaintingFocus";
 import ServicePlan from "components/services/ServicePlan";
 import ServiceAreas from "components/services/ServiceAreas";
@@ -296,40 +297,12 @@ export default function ServiceCategoryPage({ params }: PageProps) {
               </div>
             </div>
           )}
-
-          {/* Quote Banner */}
-          <div className="mt-8 sm:mt-12 rounded-3xl bg-secondary p-5 sm:p-6 lg:p-8 text-white relative overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/30 via-secondary to-secondary opacity-70" />
-
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-              <div className="lg:col-span-8">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
-                  Need a Professional Assessment?
-                </h3>
-                <p className="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
-                  Contact UA Engineering today. Our qualified construction engineers and specialists will assess your site requirements and provide an accurate, obligation-free quotation.
-                </p>
-              </div>
-              <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 justify-end">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:bg-white hover:text-secondary hover:translate-y-[-2px] text-center"
-                >
-                  <Calendar size={16} />
-                  <span>Request Site Visit</span>
-                </Link>
-                <a
-                  href="tel:+6588888888" // Replace with real company number or fallback
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-4 text-sm font-bold text-white transition-all duration-300 hover:bg-white/20 hover:translate-y-[-2px] text-center"
-                >
-                  <Phone size={16} />
-                  <span>Call Us Now</span>
-                </a>
-              </div>
-            </div>
-          </div>
         </Container>
       </section>
+
+      {/* Homepage CallBack CTA Section */}
+      <CallBackSection />
+
       <ServicePlan slug={category.slug} categoryTitle={category.title} />
       <PaintingFocus slug={category.slug} />
       <WhyChoose />
