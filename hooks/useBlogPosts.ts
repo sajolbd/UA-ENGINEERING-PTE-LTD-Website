@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { API_BASE } from "../lib/api";
+import { getApiBaseUrl } from "../lib/api";
 
 export interface BlogPost {
   id?: string;
@@ -26,7 +26,7 @@ export function useBlogPosts() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/blogs`)
+    fetch(`${getApiBaseUrl()}/api/blogs`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success && Array.isArray(data.data)) {

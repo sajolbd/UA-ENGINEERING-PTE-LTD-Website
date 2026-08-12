@@ -9,7 +9,7 @@ import Breadcrumb from "../../../../components/layout/Breadcrumb";
 import BlogSidebar from "../../../../components/blog/BlogSidebar";
 import InlineShare from "../../../../components/blog/InlineShare";
 import { BlogPost } from "../../../../hooks/useBlogPosts";
-import { API_BASE, getBlogImageUrl } from "../../../../lib/api";
+import { getApiBaseUrl, getBlogImageUrl } from "../../../../lib/api";
 
 // Allow dynamic rendering so new posts appear without a rebuild
 export const dynamic = "force-dynamic";
@@ -26,7 +26,7 @@ import { blogPosts as fallbackBlogs } from "../../../../data/blogData";
 
 async function getAllPosts(): Promise<BlogPost[]> {
   try {
-    const res = await fetch(`${API_BASE}/api/blogs`, { cache: "no-store" });
+    const res = await fetch(`${getApiBaseUrl()}/api/blogs`, { cache: "no-store" });
     const data = await res.json();
     if (data.success && Array.isArray(data.data) && data.data.length > 0) {
       return data.data;
@@ -111,10 +111,10 @@ export default async function BlogDetailPage({ params }: PageProps) {
     processedContent = processedContent.replace(target, replacement);
   });
 
-  // Replace any relative /images/uploads/ paths or localhost URLs with Railway production backend url
+  const apiBase = getApiBaseUrl();
   processedContent = processedContent
-    .replace(/src="http:\/\/localhost:5000\/images\/uploads\//g, `src="${API_BASE}/images/uploads/`)
-    .replace(/src="\/images\/uploads\//g, `src="${API_BASE}/images/uploads/`);
+    .replace(/src="http:\/\/localhost:5000\/images\/uploads\//g, `src="${apiBase}/images/uploads/`)
+    .replace(/src="\/images\/uploads\//g, `src="${apiBase}/images/uploads/`);
 
   return (
     <div className="bg-slate-50/50 min-h-screen">
