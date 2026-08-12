@@ -10,6 +10,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'bayshore.nyc3.digitaloceanspaces.com' },
       { protocol: 'https', hostname: 'dashboard-sabbir-nasir.vercel.app', port: '' },
       { protocol: 'https', hostname: 'backend-sabbir-nasir.vercel.app', port: '' },
+      { protocol: 'https', hostname: 'ua-engineering-pte-ltd-backend.vercel.app', port: '' },
       { protocol: 'https', hostname: 'ua-engineering-pte-ltd-backend-production.up.railway.app', port: '' },
     ],
   },
