@@ -27,7 +27,10 @@ const GoogleIcon = () => (
   </svg>
 );
 
-const googleReviews = [
+import { useCmsData } from "../../context/CmsContext";
+import { getImageUrl } from "../../lib/api";
+
+const initialGoogleReviews = [
   {
     name: "Majidul Islam Majidul",
     time: "1 year ago",
@@ -81,6 +84,23 @@ const googleReviews = [
 
 
 export default function Review() {
+  const { cmsData } = useCmsData();
+  const homeContent = (cmsData as any)?.home?.content || {};
+
+  const reviewBadge = homeContent.reviewBadge || "REVIEWS & FEEDBACK";
+  const reviewHeading = homeContent.reviewHeading || "5-Star Happy Customer Reviews";
+
+  const googleReviews = Array.isArray(homeContent.googleReviews) && homeContent.googleReviews.length > 0
+    ? homeContent.googleReviews.map((item: any, idx: number) => ({
+        id: item.id || idx + 1,
+        name: item.name || "Happy Client",
+        time: item.time || "Recently",
+        stars: Number(item.stars) || 5,
+        avatar: getImageUrl(item.avatar || "/images/home/reviews/google-majidul.png"),
+        text: item.text || "Great engineering service!",
+      }))
+    : initialGoogleReviews.map((item, idx) => ({ ...item, avatar: getImageUrl(item.avatar) }));
+
   const [activeDot, setActiveDot] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -126,11 +146,10 @@ export default function Review() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center mb-12 sm:mb-16">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary">
-            REVIEWS & FEEDBACK
+            {reviewBadge}
           </p>
-          <h2 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">
-            <span className="text-primary font-black">5-Star Happy </span>
-            <span className="text-secondary font-black">Customer Reviews</span>
+          <h2 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl text-secondary">
+            {reviewHeading}
           </h2>
           {/* Elementor dual color double underline */}
           <div className="flex flex-col items-center mt-4">
@@ -163,7 +182,7 @@ export default function Review() {
             onScroll={handleScroll}
             className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-6"
           >
-            {googleReviews.map((review, i) => (
+            {googleReviews.map((review: any, i: number) => (
               <div
                 key={i}
                 className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start bg-white rounded-3xl border border-slate-100 p-6 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
@@ -211,7 +230,7 @@ export default function Review() {
 
           {/* Dots navigation */}
           <div className="flex justify-center gap-2 mt-4 pb-12 border-b border-slate-200">
-            {googleReviews.map((_, i) => (
+            {googleReviews.map((_: any, i: number) => (
               <button
                 key={i}
                 onClick={() => {
