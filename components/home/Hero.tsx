@@ -26,39 +26,39 @@ const highlights = [
 
 export default function Hero() {
   const { cmsData } = useCmsData();
-  const heroContent = cmsData?.home?.content || {};
+  const heroContent = (cmsData?.home?.content || {}) as any;
   const heroImage = heroContent.heroImage || "/images/home/hero/hero-bg.png";
   const heroImageAlt = heroContent.heroImageAlt || "Hero Background Banner";
   const heroCtaText = heroContent.heroCtaText || "Book An Appointment";
 
   const slides = [
     {
-      heading: heroContent.heroHeading || "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.",
-      subheading: heroContent.heroSubheading || "We handle it all with expertise, reliability, and guaranteed quality.",
+      heading: heroContent.heroSlide1Heading || heroContent.heroHeading || "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.",
+      subheading: heroContent.heroSlide1Subheading || heroContent.heroSubheading || "We handle it all with expertise, reliability, and guaranteed quality.",
     },
     {
-      heading: "Everything Your Property Needs. One Trusted Engineering Team.",
-      subheading: "From renovations and reinstatement to electrical, plumbing, painting, roofing, steel fabrication, waterproofing, and maintenance - we handle every project with precision and professionalism.",
+      heading: heroContent.heroSlide2Heading || "Everything Your Property Needs. One Trusted Engineering Team.",
+      subheading: heroContent.heroSlide2Subheading || "From renovations and reinstatement to electrical, plumbing, painting, roofing, steel fabrication, waterproofing, and maintenance - we handle every project with precision and professionalism.",
     },
     {
-      heading: "Fresh Paint. Lasting Protection. Stunning Results.",
-      subheading: "Interior and exterior painting services that enhance appearance, protect surfaces, and increase the value of your property.",
+      heading: heroContent.heroSlide3Heading || "Fresh Paint. Lasting Protection. Stunning Results.",
+      subheading: heroContent.heroSlide3Subheading || "Interior and exterior painting services that enhance appearance, protect surfaces, and increase the value of your property.",
     },
     {
-      heading: "Roof Problems? We Fix Them Before They Cost You More.",
-      subheading: "Professional roof repairs, waterproofing, leak prevention, and complete roofing solutions to keep your property safe in every season.",
+      heading: heroContent.heroSlide4Heading || "Roof Problems? We Fix Them Before They Cost You More.",
+      subheading: heroContent.heroSlide4Subheading || "Professional roof repairs, waterproofing, leak prevention, and complete roofing solutions to keep your property safe in every season.",
     },
     {
-      heading: "Safe, Reliable Electrical Solutions for Every Building",
-      subheading: "From new installations and rewiring to troubleshooting and upgrades, we deliver electrical work that keeps your property running safely.",
+      heading: heroContent.heroSlide5Heading || "Safe, Reliable Electrical Solutions for Every Building",
+      subheading: heroContent.heroSlide5Subheading || "From new installations and rewiring to troubleshooting and upgrades, we deliver electrical work that keeps your property running safely.",
     },
     {
-      heading: "Professional Plumbing Services Without the Hassle",
-      subheading: "Leak repairs, pipe replacement, drainage solutions, sanitary installations, and preventive maintenance-all completed with quality workmanship.",
+      heading: heroContent.heroSlide6Heading || "Professional Plumbing Services Without the Hassle",
+      subheading: heroContent.heroSlide6Subheading || "Leak repairs, pipe replacement, drainage solutions, sanitary installations, and preventive maintenance-all completed with quality workmanship.",
     },
     {
-      heading: "Custom Steel Fabrication Built for Strength & Precision",
-      subheading: "We design, fabricate, and install steel structures, staircases, platforms, railings, and custom metal works for commercial and industrial projects.",
+      heading: heroContent.heroSlide7Heading || "Custom Steel Fabrication Built for Strength & Precision",
+      subheading: heroContent.heroSlide7Subheading || "We design, fabricate, and install steel structures, staircases, platforms, railings, and custom metal works for commercial and industrial projects.",
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(0);
