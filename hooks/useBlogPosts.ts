@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getApiBaseUrl } from "../lib/api";
+import { blogPosts as fallbackPosts } from "../data/blogData";
 
 export interface BlogPost {
   id?: string;
@@ -21,7 +22,7 @@ export interface BlogPost {
 }
 
 export function useBlogPosts() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [posts, setPosts] = useState<BlogPost[]>(fallbackPosts);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -29,13 +30,17 @@ export function useBlogPosts() {
     fetch(`${getApiBaseUrl()}/api/blogs`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.success && Array.isArray(data.data)) {
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
           setPosts(data.data);
         } else {
-          setError("Failed to load blog posts");
+          setError("Using static catalog fallback");
+          setPosts(fallbackPosts);
         }
       })
-      .catch(() => setError("Network error — could not reach API"))
+      .catch(() => {
+        setError("Network error — using static catalog fallback");
+        setPosts(fallbackPosts);
+      })
       .finally(() => setLoading(false));
   }, []);
 

@@ -7,14 +7,16 @@ import BigBlogCard from "components/blog/BigBlogCard";
 import BlogSidebar from "components/blog/BlogSidebar";
 import { useBlogPosts } from "hooks/useBlogPosts";
 
-const categories = [
-  "All",
+const DEFAULT_CATEGORIES = [
   "Renovation & Upgrading",
+  "Structural & Construction",
   "Structural & Exterior Works",
   "Painting & Waterproofing",
   "Aluminium & Glazing Works",
   "Electrical, Plumbing & Aircon",
   "Solar Panel Installation",
+  "Industrial Engineering",
+  "Commercial Fit-out",
   "Others",
 ];
 
@@ -22,12 +24,22 @@ export default function BlogGrid() {
   const { posts: blogPosts, loading } = useBlogPosts();
   const [activeCategory, setActiveCategory] = useState("All");
 
+  // Dynamically extract all unique categories from active blog posts
+  const postCategories = Array.from(
+    new Set(blogPosts.map((p) => p.category).filter(Boolean))
+  );
+
+  // Combine default categories with any dynamic post categories
+  const categoriesToDisplay = Array.from(
+    new Set([...DEFAULT_CATEGORIES, ...postCategories])
+  );
+
+  const categories = ["All", ...categoriesToDisplay];
+
   const filteredPosts =
     activeCategory === "All"
       ? blogPosts
       : blogPosts.filter((post) => post.category === activeCategory);
-
-  const categoriesToDisplay = categories.filter((c) => c !== "All");
 
   if (loading) {
     return (
