@@ -5,37 +5,47 @@ import Image from "next/image";
 import { Play, X, Star } from "lucide-react";
 import Container from "components/shared/Container";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Marcus Tan",
-    role: "Property Manager, CapitaLand",
-    project: "Commercial Waterproofing",
-    quote: "UA Engineering did an outstanding job waterproofing our commercial facade and basement. Excellent workmanship, clean execution, and no water leaks since completion!",
-    thumbnail: "/images/home/projects/project-waterproofing.png",
-    videoId: "A2y8jK-iGSw", // Active Waterproofing testimonial video
-  },
-  {
-    id: 2,
-    name: "Sarah Lim",
-    role: "Homeowner, Sentosa Cove",
-    project: "Premium Renovation & Fit-out",
-    quote: "Their attention to detail during our home renovation was exceptional. From hacking to false ceiling installation, they delivered premium quality on schedule.",
-    thumbnail: "/images/home/projects/project-drywall.png",
-    videoId: "G5-o475Xz1Y", // Active Renovation/Waterproofing testimonial video
-  },
-  {
-    id: 3,
-    name: "David Hendricks",
-    role: "Facilities Director, Jurong Hub",
-    project: "Industrial Electrical Upgrade",
-    quote: "Superb coordination and safety protocol adherence during our substation electrical works. The project was completed efficiently and complied with all regulations.",
-    thumbnail: "/images/home/projects/project-electrical.png",
-    videoId: "yY19i3889p4", // Active Construction/Waterproofing review
-  },
-];
+import { useCmsData } from "../../context/CmsContext";
+import { getImageUrl } from "../../lib/api";
 
 export default function Testimonial() {
+  const { cmsData } = useCmsData();
+  const homeContent = (cmsData as any)?.home?.content || {};
+  
+  const testimonialBadge = homeContent.testimonialBadge || "TESTIMONIALS";
+  const testimonialHeading = homeContent.testimonialHeading || "Hear out From our clients";
+  const testimonialSubheading = homeContent.testimonialSubheading || "See what our clients has to say about our services and experience.";
+
+  const testimonials = [
+    {
+      id: 1,
+      name: homeContent.testimonial1Name || "Marcus Tan",
+      role: homeContent.testimonial1Role || "Property Manager, CapitaLand",
+      project: homeContent.testimonial1Project || "Commercial Waterproofing",
+      quote: homeContent.testimonial1Quote || "UA Engineering did an outstanding job waterproofing our commercial facade and basement. Excellent workmanship, clean execution, and no water leaks since completion!",
+      thumbnail: getImageUrl(homeContent.testimonial1Thumbnail || "/images/home/projects/project-waterproofing.png"),
+      videoId: homeContent.testimonial1VideoId || "A2y8jK-iGSw",
+    },
+    {
+      id: 2,
+      name: homeContent.testimonial2Name || "Sarah Lim",
+      role: homeContent.testimonial2Role || "Homeowner, Sentosa Cove",
+      project: homeContent.testimonial2Project || "Premium Renovation & Fit-out",
+      quote: homeContent.testimonial2Quote || "Their attention to detail during our home renovation was exceptional. From hacking to false ceiling installation, they delivered premium quality on schedule.",
+      thumbnail: getImageUrl(homeContent.testimonial2Thumbnail || "/images/home/projects/project-drywall.png"),
+      videoId: homeContent.testimonial2VideoId || "G5-o475Xz1Y",
+    },
+    {
+      id: 3,
+      name: homeContent.testimonial3Name || "David Hendricks",
+      role: homeContent.testimonial3Role || "Facilities Director, Jurong Hub",
+      project: homeContent.testimonial3Project || "Industrial Electrical Upgrade",
+      quote: homeContent.testimonial3Quote || "Superb coordination and safety protocol adherence during our substation electrical works. The project was completed efficiently and complied with all regulations.",
+      thumbnail: getImageUrl(homeContent.testimonial3Thumbnail || "/images/home/projects/project-electrical.png"),
+      videoId: homeContent.testimonial3VideoId || "yY19i3889p4",
+    },
+  ];
+
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
 
   const handlePlay = (id: number) => {
@@ -52,14 +62,14 @@ export default function Testimonial() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center mb-16">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            TESTIMONIALS
+            {testimonialBadge}
           </p>
           <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-secondary sm:text-5xl">
-            Hear out From our clients
+            {testimonialHeading}
           </h2>
           <div className="mx-auto mt-4 h-1 w-20 rounded bg-primary" />
           <p className="mt-4 text-slate-500 text-sm leading-relaxed max-w-md mx-auto">
-            See what our clients has to say about our services and experience.
+            {testimonialSubheading}
           </p>
         </div>
 
