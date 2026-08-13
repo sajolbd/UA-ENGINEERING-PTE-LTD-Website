@@ -4,57 +4,49 @@ import { ThumbsUp, ThumbsDown } from "lucide-react";
 import Container from "components/shared/Container";
 import { useCmsData } from "../../context/CmsContext";
 
-const uaBenefits = [
-  {
-    title: "Complete Building Solutions",
-    description:
-      "From renovation and structural works to M&E, glazing, waterproofing, and solar, one trusted team handles every project.",
-  },
-  {
-    title: "Quality Workmanship",
-    description:
-      "Every project is completed with skilled workmanship, quality materials, and attention to detail for lasting performance.",
-  },
-  {
-    title: "Honest & Transparent Pricing",
-    description:
-      "Clear quotations, fair pricing, and no hidden costs, so you can plan your project with confidence.",
-  },
-  {
-    title: "Reliable Project Management",
-    description:
-      "We coordinate every stage efficiently, keeping projects organized, on schedule, and completed to high standards.",
-  },
-];
-
-const traditionalIssues = [
-  {
-    title: "Multiple Contractors to Manage",
-    description:
-      "Hiring separate contractors often leads to delays, communication gaps, and inconsistent workmanship across different stages of the project.",
-  },
-  {
-    title: "Poor Workmanship",
-    description:
-      "Low-quality materials and rushed installation can result in recurring repairs, higher maintenance costs, and reduced durability.",
-  },
-  {
-    title: "Unclear Pricing",
-    description:
-      "Unexpected charges and incomplete quotations can increase project costs and create unnecessary stress during construction.",
-  },
-  {
-    title: "Delays & Poor Communication",
-    description:
-      "Lack of planning and communication often causes missed deadlines, project disruptions, and uncertainty throughout the construction process.",
-  },
-];
-
 export default function WhyChoose() {
   const { cmsData } = useCmsData();
   const homeContent = (cmsData as any)?.home?.content || {};
   const whyChooseBadge = homeContent.whyChooseBadge || "UA ADVANTAGE";
   const whyChooseHeading = homeContent.whyChooseHeading || "Why Choose UA Engineering?";
+
+  const uaBenefits = [
+    {
+      title: homeContent.whyCard1Title || "Complete Building Solutions",
+      description: homeContent.whyCard1Desc || "From renovation and structural works to M&E, glazing, waterproofing, and solar, one trusted team handles every project.",
+    },
+    {
+      title: homeContent.whyCard2Title || "Quality Workmanship",
+      description: homeContent.whyCard2Desc || "Every project is completed with skilled workmanship, quality materials, and attention to detail for lasting performance.",
+    },
+    {
+      title: homeContent.whyCard3Title || "Honest & Transparent Pricing",
+      description: homeContent.whyCard3Desc || "Clear quotations, fair pricing, and no hidden costs, so you can plan your project with confidence.",
+    },
+    {
+      title: homeContent.whyCard4Title || "Reliable Project Management",
+      description: homeContent.whyCard4Desc || "We coordinate every stage efficiently, keeping projects organized, on schedule, and completed to high standards.",
+    },
+  ];
+
+  const traditionalIssues = [
+    {
+      title: homeContent.issue1Title || "Multiple Contractors to Manage",
+      description: homeContent.issue1Desc || "Hiring separate contractors often leads to delays, communication gaps, and inconsistent workmanship across different stages of the project.",
+    },
+    {
+      title: homeContent.issue2Title || "Poor Workmanship",
+      description: homeContent.issue2Desc || "Low-quality materials and rushed installation can result in recurring repairs, higher maintenance costs, and reduced durability.",
+    },
+    {
+      title: homeContent.issue3Title || "Unclear Pricing",
+      description: homeContent.issue3Desc || "Unexpected charges and incomplete quotations can increase project costs and create unnecessary stress during construction.",
+    },
+    {
+      title: homeContent.issue4Title || "Delays & Poor Communication",
+      description: homeContent.issue4Desc || "Lack of planning and communication often causes missed deadlines, project disruptions, and uncertainty throughout the construction process.",
+    },
+  ];
 
   return (
     <section className="bg-slate-50 py-8 lg:py-12">

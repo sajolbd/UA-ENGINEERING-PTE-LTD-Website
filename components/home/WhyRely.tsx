@@ -7,30 +7,6 @@ import Container from "components/shared/Container";
 import { useCmsData } from "../../context/CmsContext";
 import { getImageUrl } from "../../lib/api";
 
-const features = [
-  {
-    num: "01.",
-    title: "Honest & Transparent Pricing",
-    description:
-      "Receive clear, detailed quotations with fair pricing and no hidden costs, so you know exactly what to expect before work begins.",
-    icon: DollarSign,
-  },
-  {
-    num: "02.",
-    title: "Quality Work That Lasts",
-    description:
-      "We focus on quality materials, skilled workmanship, and proper installation to deliver durable solutions you can depend on for years.",
-    icon: ShieldCheck,
-  },
-  {
-    num: "03.",
-    title: "Reliable Service, Every Step",
-    description:
-      "From the first site visit to project handover, we keep you informed, stay on schedule, and ensure a smooth experience.",
-    icon: Clock3,
-  },
-];
-
 export default function WhyRely() {
   const { cmsData } = useCmsData();
   const homeContent = (cmsData as any)?.home?.content || {};
@@ -38,6 +14,27 @@ export default function WhyRely() {
   const relyHeading = homeContent.relyHeading || "Why Do You Rely On Us?";
   const relyImage = homeContent.relyImage || "/images/home/rely/rely-main.png";
   const relyButtonText = homeContent.relyButtonText || "Talk to an Expert";
+
+  const features = [
+    {
+      num: "01.",
+      title: homeContent.relyFeature1Title || "Honest & Transparent Pricing",
+      description: homeContent.relyFeature1Desc || "Receive clear, detailed quotations with fair pricing and no hidden costs, so you know exactly what to expect before work begins.",
+      icon: DollarSign,
+    },
+    {
+      num: "02.",
+      title: homeContent.relyFeature2Title || "Quality Work That Lasts",
+      description: homeContent.relyFeature2Desc || "We focus on quality materials, skilled workmanship, and proper installation to deliver durable solutions you can depend on for years.",
+      icon: ShieldCheck,
+    },
+    {
+      num: "03.",
+      title: homeContent.relyFeature3Title || "Reliable Service, Every Step",
+      description: homeContent.relyFeature3Desc || "From the first site visit to project handover, we keep you informed, stay on schedule, and ensure a smooth experience.",
+      icon: Clock3,
+    },
+  ];
 
   return (
     <section className="bg-white py-8 lg:py-12">
