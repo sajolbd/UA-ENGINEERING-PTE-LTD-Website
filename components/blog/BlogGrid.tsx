@@ -24,10 +24,12 @@ export default function BlogGrid() {
   const { posts: blogPosts, loading } = useBlogPosts();
   const [activeCategory, setActiveCategory] = useState("All");
 
+  const normalize = (str: string) => (str ? str.trim().toLowerCase() : "");
+
   // Dynamically extract all unique categories from active blog posts
   const postCategories = Array.from(
-    new Set(blogPosts.map((p) => p.category).filter(Boolean))
-  );
+    new Set(blogPosts.map((p) => p.category?.trim()).filter(Boolean))
+  ) as string[];
 
   // Combine default categories with any dynamic post categories
   const categoriesToDisplay = Array.from(
@@ -39,7 +41,13 @@ export default function BlogGrid() {
   const filteredPosts =
     activeCategory === "All"
       ? blogPosts
-      : blogPosts.filter((post) => post.category === activeCategory);
+      : blogPosts.filter((post) => {
+          if (!post.category) return false;
+          const pCat = normalize(post.category);
+          const aCat = normalize(activeCategory);
+          const aSlug = activeCategory.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+          return pCat === aCat || post.categorySlug === aSlug;
+        });
 
   if (loading) {
     return (
@@ -112,7 +120,10 @@ export default function BlogGrid() {
             {activeCategory === "All" ? (
               <div className="space-y-6">
                 {categoriesToDisplay.map((category) => {
-                  const postsInCat = blogPosts.filter((p) => p.category === category);
+                  const postsInCat = blogPosts.filter((p) => {
+                    if (!p.category) return false;
+                    return normalize(p.category) === normalize(category);
+                  });
                   if (postsInCat.length === 0) return null;
 
                   return (
@@ -126,12 +137,39 @@ export default function BlogGrid() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {postsInCat.map((post) => (
-                          <BlogCard key={post.slug} post={post} />
+                          <BlogCard key={post.slug || post.id || post._id} post={post} />
                         ))}
                       </div>
                     </div>
                   );
                 })}
+
+                {/* Fallback display for any published posts that didn't match standard category keys */}
+                {(() => {
+                  const matchedSlugs = new Set();
+                  categoriesToDisplay.forEach((cat) => {
+                    blogPosts.forEach((p) => {
+                      if (p.category && normalize(p.category) === normalize(cat)) {
+                        matchedSlugs.add(p.slug || p.id || p._id);
+                      }
+                    });
+                  });
+                  const remainingPosts = blogPosts.filter((p) => !matchedSlugs.has(p.slug || p.id || p._id));
+                  if (remainingPosts.length === 0) return null;
+
+                  return (
+                    <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                      <h3 className="text-[11px] font-black tracking-wider uppercase text-slate-800 border-b border-slate-100 pb-3 mb-4">
+                        All Published Articles
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {remainingPosts.map((post) => (
+                          <BlogCard key={post.slug || post.id || post._id} post={post} />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
             ) : (
               <div className="space-y-8">
@@ -144,14 +182,14 @@ export default function BlogGrid() {
                     <div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                         {filteredPosts.slice(0, 4).map((post) => (
-                          <BigBlogCard key={post.slug} post={post} />
+                          <BigBlogCard key={post.slug || post.id || post._id} post={post} />
                         ))}
                       </div>
 
                       {filteredPosts.length > 4 && (
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           {filteredPosts.slice(4).map((post) => (
-                            <BlogCard key={post.slug} post={post} />
+                            <BlogCard key={post.slug || post.id || post._id} post={post} />
                           ))}
                         </div>
                       )}
@@ -170,9 +208,12 @@ export default function BlogGrid() {
                     Other Categories
                   </h4>
                   {categoriesToDisplay
-                    .filter((c) => c !== activeCategory)
+                    .filter((c) => normalize(c) !== normalize(activeCategory))
                     .map((category) => {
-                      const postsInCat = blogPosts.filter((p) => p.category === category);
+                      const postsInCat = blogPosts.filter((p) => {
+                        if (!p.category) return false;
+                        return normalize(p.category) === normalize(category);
+                      });
                       if (postsInCat.length === 0) return null;
 
                       return (
@@ -186,7 +227,7 @@ export default function BlogGrid() {
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {postsInCat.map((post) => (
-                              <BlogCard key={post.slug} post={post} />
+                              <BlogCard key={post.slug || post.id || post._id} post={post} />
                             ))}
                           </div>
                         </div>

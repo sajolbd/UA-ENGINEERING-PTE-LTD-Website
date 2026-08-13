@@ -2,7 +2,6 @@
 
 import React from "react";
 import Breadcrumb from "components/layout/Breadcrumb";
-import FeaturedBlog from "components/blog/FeaturedBlog";
 import BlogGrid from "components/blog/BlogGrid";
 import { useCmsData } from "../../../context/CmsContext";
 
@@ -25,7 +24,6 @@ export default function BlogPage() {
         description={content.heroSubheading || "Stay updated with the latest construction insights, renovation guides, and engineering standards in Singapore."}
         bgImage={content.heroImage || "/images/layout/blog-bg.png"}
       />
-      <FeaturedBlog />
       <BlogGrid />
     </div>
   );
