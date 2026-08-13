@@ -14,6 +14,8 @@ import PaintingFocus from "components/services/PaintingFocus";
 import ServicePlan from "components/services/ServicePlan";
 import ServiceAreas from "components/services/ServiceAreas";
 
+import { getImageUrl } from "../../lib/api";
+
 interface Props {
   slug: string;
   fallbackCategory: ServiceCategory;
@@ -172,7 +174,7 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-2xl shadow-slate-200/50">
                 <Image
-                  src={category.featuredImage}
+                  src={getImageUrl(category.featuredImage)}
                   alt={category.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -238,7 +240,7 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
                         {/* Card Image */}
                         <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-50 border-b border-slate-100/50">
                           <Image
-                            src={service.image}
+                            src={getImageUrl(service.image)}
                             alt={service.title}
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"

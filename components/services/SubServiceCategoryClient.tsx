@@ -126,6 +126,8 @@ const VerificationIcon = () => (
   </svg>
 );
 
+import { getImageUrl } from "../../lib/api";
+
 interface Props {
   slug: string;
   subSlug: string;
@@ -204,7 +206,7 @@ export default function SubServiceCategoryClient({ slug, subSlug, fallbackCatego
               {/* Service Cover Image */}
               <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-xl shadow-slate-100/50 mb-4">
                 <Image
-                  src={service.image}
+                  src={getImageUrl(service.image)}
                   alt={service.title}
                   fill
                   priority

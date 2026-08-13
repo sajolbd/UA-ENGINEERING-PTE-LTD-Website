@@ -16,6 +16,7 @@ const CATEGORIES = [
 
 // Project list matching company capabilities and user request
 import { useCmsData } from "../../context/CmsContext";
+import { getImageUrl } from "../../lib/api";
 
 export default function ProjectsSection() {
   const { projectsData: PROJECTS } = useCmsData();
@@ -100,7 +101,7 @@ export default function ProjectsSection() {
               {/* Project Image */}
               <div className="absolute inset-0 w-full h-full">
                 <Image
-                  src={project.image}
+                  src={getImageUrl(project.image)}
                   alt={project.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -269,7 +270,7 @@ export default function ProjectsSection() {
             {/* Main Image Container */}
             <div className="relative w-full max-w-4xl h-[45vh] md:h-[60vh] flex items-center justify-center">
               <Image
-                src={selectedProject.gallery[currentImageIndex]}
+                src={getImageUrl(selectedProject.gallery[currentImageIndex])}
                 alt={`${selectedProject.title} detail ${currentImageIndex + 1}`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 1024px"
@@ -305,7 +306,7 @@ export default function ProjectsSection() {
                     }`}
                 >
                   <Image
-                    src={img}
+                    src={getImageUrl(img)}
                     alt={`thumbnail ${i + 1}`}
                     fill
                     className="object-cover"

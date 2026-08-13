@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { getImageUrl } from "../../lib/api";
 
 interface ServiceCategoryCardProps {
   title: string;
@@ -29,7 +30,7 @@ export default function ServiceCategoryCard({
           {/* Card Image */}
           <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-50 border-b border-slate-100/50">
             <Image
-              src={image}
+              src={getImageUrl(image)}
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Container from "components/shared/Container";
 
 import { useCmsData } from "../../context/CmsContext";
+import { getImageUrl } from "../../lib/api";
 
 export default function CompletedProjects() {
   const { projectsData } = useCmsData();
@@ -35,7 +36,7 @@ export default function CompletedProjects() {
               {/* Image Frame */}
               <div className="relative mb-4 h-[200px] w-full overflow-hidden rounded-xl bg-slate-50">
                 <Image
-                  src={project.image}
+                  src={getImageUrl(project.image)}
                   alt={project.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
