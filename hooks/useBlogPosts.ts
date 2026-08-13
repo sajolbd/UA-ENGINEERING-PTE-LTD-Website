@@ -27,19 +27,67 @@ export function useBlogPosts() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // 1. Read local storage cache if present
+    let localSaved: BlogPost[] = [];
+    try {
+      const stored = localStorage.getItem("ua_blog_posts_cache");
+      if (stored) {
+        localSaved = JSON.parse(stored);
+      }
+    } catch {
+      // ignore
+    }
+
     fetch(`${getApiBaseUrl()}/api/blogs`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
-          setPosts(data.data);
-        } else {
-          setError("Using static catalog fallback");
-          setPosts(fallbackPosts);
+        const apiPosts = (data.success && Array.isArray(data.data)) ? data.data : [];
+        
+        // Merge API posts, localSaved posts, and fallbackPosts (deduplicated)
+        const combined = [...apiPosts, ...localSaved];
+        fallbackPosts.forEach((fb) => {
+          const exists = combined.some(
+            (p) =>
+              (p.slug || "").toLowerCase() === (fb.slug || "").toLowerCase() ||
+              (p.id || p._id || "").toString() === (fb.id || "").toString()
+          );
+          if (!exists) {
+            combined.push(fb);
+          }
+        });
+
+        // Deduplicate combined by slug/id
+        const uniquePosts: BlogPost[] = [];
+        const seen = new Set();
+        combined.forEach((p) => {
+          const key = (p.slug || p.id || p._id || p.title || "").toLowerCase();
+          if (key && !seen.has(key)) {
+            seen.add(key);
+            uniquePosts.push(p);
+          }
+        });
+
+        setPosts(uniquePosts);
+        try {
+          localStorage.setItem("ua_blog_posts_cache", JSON.stringify(uniquePosts));
+        } catch {
+          // ignore
         }
       })
       .catch(() => {
-        setError("Network error — using static catalog fallback");
-        setPosts(fallbackPosts);
+        setError("Using static catalog fallback");
+        // Combine fallback and localSaved if API network fails
+        const combined = [...localSaved, ...fallbackPosts];
+        const uniquePosts: BlogPost[] = [];
+        const seen = new Set();
+        combined.forEach((p) => {
+          const key = (p.slug || p.id || p._id || p.title || "").toLowerCase();
+          if (key && !seen.has(key)) {
+            seen.add(key);
+            uniquePosts.push(p);
+          }
+        });
+        setPosts(uniquePosts);
       })
       .finally(() => setLoading(false));
   }, []);
