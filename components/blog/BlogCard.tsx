@@ -11,9 +11,11 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
+  const postLink = post.slug || post.id || post._id || post.title.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={`/blog/${postLink}`}
       className="group flex flex-row rounded-2xl border border-slate-100 bg-white p-3 sm:p-4 lg:p-3 xl:p-4 gap-3 sm:gap-4 lg:gap-3 xl:gap-4 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.05)] transition-all duration-300 min-h-[120px] sm:min-h-[140px]"
     >
       {/* Left Side: Thumbnail with Pastel Background */}

@@ -11,6 +11,8 @@ interface BigBlogCardProps {
 }
 
 export default function BigBlogCard({ post }: BigBlogCardProps) {
+  const postLink = post.slug || post.id || post._id || post.title.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
   // Generate a clean text excerpt from content
   const excerpt = post.content
     .replace(/<[^>]*>/g, "") // strip HTML tags
@@ -18,7 +20,7 @@ export default function BigBlogCard({ post }: BigBlogCardProps) {
 
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={`/blog/${postLink}`}
       className="group flex flex-col bg-white rounded-3xl border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.01)] hover:shadow-md transition-shadow duration-300 overflow-hidden h-full"
     >
       {/* Top: Large Feature Image */}

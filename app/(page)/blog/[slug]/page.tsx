@@ -37,14 +37,27 @@ async function getAllPosts(): Promise<BlogPost[]> {
   return fallbackBlogs;
 }
 
-async function getPost(slug: string): Promise<BlogPost | null> {
+const slugify = (str: string) =>
+  str ? str.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") : "";
+
+async function getPost(slugParam: string): Promise<BlogPost | null> {
   const posts = await getAllPosts();
-  const decoded = decodeURIComponent(slug).toLowerCase();
+  const target = decodeURIComponent(slugParam).toLowerCase().trim();
+  const targetSlugified = slugify(target);
+
   return (
     posts.find((p) => {
-      const pSlug = (p.slug || "").toLowerCase();
-      const pId = (p.id || p._id || "").toString().toLowerCase();
-      return pSlug === decoded || pId === decoded || pSlug === slug.toLowerCase() || pId === slug.toLowerCase();
+      const pSlug = (p.slug || "").toLowerCase().trim();
+      const pSlugified = slugify(p.slug || "");
+      const pId = (p.id || p._id || "").toString().toLowerCase().trim();
+      const pTitleSlugified = slugify(p.title || "");
+
+      return (
+        pSlug === target ||
+        pSlugified === targetSlugified ||
+        pId === target ||
+        pTitleSlugified === targetSlugified
+      );
     }) || null
   );
 }
