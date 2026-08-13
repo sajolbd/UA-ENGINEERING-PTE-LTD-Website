@@ -3,7 +3,7 @@
 import React from "react";
 import Breadcrumb from "components/layout/Breadcrumb";
 import ContactFormSection from "components/contact/ContactFormSection";
-import { useCmsData } from "../../context/CmsContext";
+import { useCmsData } from "../../../context/CmsContext";
 
 export default function ContactPage() {
   const { cmsData } = useCmsData();

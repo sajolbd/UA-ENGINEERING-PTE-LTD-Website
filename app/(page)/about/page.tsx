@@ -8,7 +8,7 @@ import ResidentialServices from "components/about/ResidentialServices";
 import ServiceAreas from "components/services/ServiceAreas";
 import ContactFormSection from "components/contact/ContactFormSection";
 import AboutFAQ from "components/about/AboutFAQ";
-import { useCmsData } from "../../context/CmsContext";
+import { useCmsData } from "../../../context/CmsContext";
 
 export default function AboutPage() {
   const { cmsData } = useCmsData();

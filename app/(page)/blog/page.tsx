@@ -4,7 +4,7 @@ import React from "react";
 import Breadcrumb from "components/layout/Breadcrumb";
 import FeaturedBlog from "components/blog/FeaturedBlog";
 import BlogGrid from "components/blog/BlogGrid";
-import { useCmsData } from "../../context/CmsContext";
+import { useCmsData } from "../../../context/CmsContext";
 
 export default function BlogPage() {
   const { cmsData } = useCmsData();

@@ -9,7 +9,7 @@ import ServiceProcess from "../../../components/services/ServiceProcess";
 import WhyChoose from "components/home/WhyChoose";
 import ServiceAreas from "../../../components/services/ServiceAreas";
 import Review from "components/home/Review";
-import { useCmsData } from "../../context/CmsContext";
+import { useCmsData } from "../../../context/CmsContext";
 
 export default function ServicesPage() {
   const { cmsData } = useCmsData();

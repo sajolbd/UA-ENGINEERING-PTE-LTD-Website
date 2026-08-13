@@ -5,7 +5,7 @@ import Breadcrumb from "components/layout/Breadcrumb";
 import ProjectsSection from "components/projects/ProjectsSection";
 import CallBackSection from "components/home/CallBackSection";
 import ProjectsFAQ from "components/projects/ProjectsFAQ";
-import { useCmsData } from "../../context/CmsContext";
+import { useCmsData } from "../../../context/CmsContext";
 
 export default function ProjectsPage() {
   const { cmsData } = useCmsData();
