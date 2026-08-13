@@ -16,7 +16,7 @@ export default function Testimonial() {
   const testimonialHeading = homeContent.testimonialHeading || "Hear out From our clients";
   const testimonialSubheading = homeContent.testimonialSubheading || "See what our clients has to say about our services and experience.";
 
-  const testimonials = [
+  const fallbackTestimonials = [
     {
       id: 1,
       name: homeContent.testimonial1Name || "Marcus Tan",
@@ -45,6 +45,18 @@ export default function Testimonial() {
       videoId: homeContent.testimonial3VideoId || "yY19i3889p4",
     },
   ];
+
+  const testimonials = Array.isArray(homeContent.testimonials) && homeContent.testimonials.length > 0
+    ? homeContent.testimonials.map((item: any, idx: number) => ({
+        id: item.id || idx + 1,
+        name: item.name || "Client",
+        role: item.role || "Customer",
+        project: item.project || "Engineering Services",
+        quote: item.quote || "Great service!",
+        thumbnail: getImageUrl(item.thumbnail || "/images/home/projects/project-waterproofing.png"),
+        videoId: item.videoId || "A2y8jK-iGSw",
+      }))
+    : fallbackTestimonials;
 
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
 
@@ -75,7 +87,7 @@ export default function Testimonial() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((t) => {
+          {testimonials.map((t: any) => {
             const isPlaying = activeVideoId === t.id;
 
             return (
