@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Container from "../shared/Container";
 import { ChevronDown, MessageSquare } from "lucide-react";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 
 interface FAQItem {
   question: string;
@@ -31,6 +31,7 @@ const FAQ_DATA: FAQItem[] = [
 
 export default function AboutFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0); // Open the first item by default
+  const { cmsData } = useCmsData();
   const aboutContent = (cmsData as any)?.about?.content || {};
   const faqHeading = aboutContent.faqHeading || "FAQ's: Looking for Answers?";
   const faqSubheading = aboutContent.faqSubheading || "Find expert answers to common questions about our renovation, construction, and handyman services in Singapore.";

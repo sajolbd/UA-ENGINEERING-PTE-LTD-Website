@@ -1,10 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { User, Phone, Briefcase, ChevronDown, Send } from "lucide-react";
 import Container from "components/shared/Container";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 import { getImageUrl } from "../../lib/api";
 
 export default function CallBackSection() {
+    const { cmsData } = useCmsData();
     const homeContent = (cmsData as any)?.home?.content || {};
     const callbackHeading = homeContent.callbackHeading || "Let Us Call You";
     const callbackSubheading = homeContent.callbackSubheading || "Need help now? Send a few details - we’ll call you shortly.";

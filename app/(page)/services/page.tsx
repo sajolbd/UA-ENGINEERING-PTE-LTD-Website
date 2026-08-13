@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Breadcrumb from "../../../components/layout/Breadcrumb";
 import ServiceList from "../../../components/services/ServiceList";
@@ -7,21 +9,12 @@ import ServiceProcess from "../../../components/services/ServiceProcess";
 import WhyChoose from "components/home/WhyChoose";
 import ServiceAreas from "../../../components/services/ServiceAreas";
 import Review from "components/home/Review";
-import { Metadata } from "next";
-import cmsData from "../../../data/cmsData.json";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const seo = cmsData?.services?.seo || {};
-  return {
-    title: seo.metaTitle || "Our Services | UA Engineering",
-    description: seo.metaDescription || "Explore our commercial and industrial renovation and engineering services in Singapore.",
-    keywords: seo.metaKeywords || "substation electrical works, plumbing Singapore",
-  };
-}
+import { useCmsData } from "../../context/CmsContext";
 
 export default function ServicesPage() {
-  const content = cmsData?.services?.content || {};
-  const schemaJson = cmsData?.services?.seo?.schemaJson || "";
+  const { cmsData } = useCmsData();
+  const content = (cmsData as any)?.services?.content || {};
+  const schemaJson = (cmsData as any)?.services?.seo?.schemaJson || "";
 
   return (
     <div className="bg-white min-h-screen">

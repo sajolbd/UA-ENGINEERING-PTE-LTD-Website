@@ -12,7 +12,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import Container from "../shared/Container";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 
 const servicesList = [
   "Full Renovation & Upgrading",
@@ -25,6 +25,7 @@ const servicesList = [
 ];
 
 export default function ContactFormSection() {
+  const { cmsData } = useCmsData();
   const contact = (cmsData as any)?.contact?.content || {};
   const site = (cmsData as any)?.site?.content || {};
   const address = contact.contactAddress || site.address || "10 Anson Road, Singapore 079903";

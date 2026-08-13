@@ -9,7 +9,7 @@ import {
   Check,
 } from "lucide-react";
 import Container from "components/shared/Container";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 
 const steps = [
   {
@@ -71,6 +71,7 @@ const steps = [
 ];
 
 export default function OurProcess() {
+  const { cmsData } = useCmsData();
   const aboutContent = (cmsData as any)?.about?.content || {};
   const processHeading = aboutContent.processHeading || "Our Process";
   const processSubheading = aboutContent.processSubheading || "Every successful renovation begins with proper planning and professional execution. At UA Engineering, we follow a proven project management process that ensures efficiency, quality, and complete customer confidence from the initial consultation through project completion.";

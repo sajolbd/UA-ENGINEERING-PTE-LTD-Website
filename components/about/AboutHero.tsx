@@ -11,10 +11,11 @@ import {
   ThumbsUp,
 } from "lucide-react";
 import Container from "components/shared/Container";
-import cmsData from "../../data/cmsData.json";
+import { useCmsData } from "../../context/CmsContext";
 import { getImageUrl } from "../../lib/api";
 
 export default function AboutHero() {
+  const { cmsData } = useCmsData();
   const aboutContent = (cmsData as any)?.about?.content || {};
   const overviewHeading = aboutContent.overviewHeading || "Why Choose UA Engineering For Renovation & Upgrading Services in Singapore";
   const overviewText = aboutContent.overviewText || "Looking for a dependable renovation and upgrading contractor in Singapore? UA ENGINEERING PTE. LTD. provides renovation, construction, and engineering services for HDB, BTO, condos, landed homes, commercial, and industrial properties.";
