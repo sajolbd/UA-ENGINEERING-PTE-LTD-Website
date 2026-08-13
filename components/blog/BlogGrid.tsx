@@ -22,9 +22,10 @@ export default function BlogGrid() {
   const { posts: blogPosts, loading } = useBlogPosts();
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredPosts = blogPosts.filter((post) => {
-    return post.category === activeCategory;
-  });
+  const filteredPosts =
+    activeCategory === "All"
+      ? blogPosts
+      : blogPosts.filter((post) => post.category === activeCategory);
 
   const categoriesToDisplay = categories.filter((c) => c !== "All");
 
