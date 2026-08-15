@@ -12,6 +12,8 @@ import Testimonial from "components/home/Testimonial";
 import Review from "components/home/Review";
 import { Metadata } from "next";
 import cmsData from "../data/cmsData.json";
+import ServiceAreas from "components/services/ServiceAreas";
+import AboutFAQ from "components/about/AboutFAQ";
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = cmsData?.home?.seo || {};
@@ -45,6 +47,8 @@ const page = () => {
       <WhyChoose />
       <Testimonial />
       <Review />
+      <ServiceAreas />
+      <AboutFAQ />
     </div>
   );
 };
