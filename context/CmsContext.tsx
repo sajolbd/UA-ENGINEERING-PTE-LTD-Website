@@ -23,14 +23,29 @@ const CmsContext = createContext<CmsContextType>({
   loading: false,
 });
 
-export function CmsProvider({ children }: { children: React.ReactNode }) {
-  const [cms, setCms] = useState(initialCmsData);
-  const [services, setServices] = useState<ServiceCategory[]>(initialServicesData);
-  const [projects, setProjects] = useState<ProjectItem[]>(initialProjectsData);
-  const [blogs, setBlogs] = useState<BlogPost[]>(initialBlogPosts);
-  const [loading, setLoading] = useState(true);
+interface CmsProviderProps {
+  children: React.ReactNode;
+  initialData?: {
+    cmsData: typeof initialCmsData;
+    servicesData: ServiceCategory[];
+    projectsData: ProjectItem[];
+    blogPosts: BlogPost[];
+  };
+}
+
+export function CmsProvider({ children, initialData }: CmsProviderProps) {
+  const [cms, setCms] = useState(initialData?.cmsData || initialCmsData);
+  const [services, setServices] = useState<ServiceCategory[]>(initialData?.servicesData || initialServicesData);
+  const [projects, setProjects] = useState<ProjectItem[]>(initialData?.projectsData || initialProjectsData);
+  const [blogs, setBlogs] = useState<BlogPost[]>(initialData?.blogPosts || initialBlogPosts);
+  const [loading, setLoading] = useState(!initialData);
 
   useEffect(() => {
+    if (initialData) {
+      setLoading(false);
+      return;
+    }
+
     const apiBase = getApiBaseUrl();
 
     // 1. Fetch live CMS pages content from Express API / MongoDB

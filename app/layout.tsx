@@ -12,6 +12,70 @@ import Navbar from "components/layout/Navbar";
 import Footer from "components/layout/Footer";
 import WhatsAppFloat from "components/shared/WhatsAppFloat";
 import { CmsProvider } from "../context/CmsContext";
+import { getApiBaseUrl } from "../lib/api";
+import initialCmsData from "../data/cmsData.json";
+import { servicesData as initialServicesData, ServiceCategory } from "../data/servicesData";
+import { projectsData as initialProjectsData, ProjectItem } from "../data/projectsData";
+import { blogPosts as initialBlogPosts, BlogPost } from "../data/blogData";
+
+async function getLiveCmsData() {
+  const apiBase = getApiBaseUrl();
+
+  // 1. Fetch CMS data
+  const cmsPromise = fetch(`${apiBase}/api/cms`, { cache: "no-store" })
+    .then((res) => res.json())
+    .catch(() => null);
+
+  // 2. Fetch services
+  const servicesPromise = fetch(`${apiBase}/api/services`, { cache: "no-store" })
+    .then((res) => res.json())
+    .catch(() => null);
+
+  // 3. Fetch projects
+  const projectsPromise = fetch(`${apiBase}/api/projects`, { cache: "no-store" })
+    .then((res) => res.json())
+    .catch(() => null);
+
+  // 4. Fetch blogs
+  const blogsPromise = fetch(`${apiBase}/api/blogs`, { cache: "no-store" })
+    .then((res) => res.json())
+    .catch(() => null);
+
+  const [cmsRes, servicesRes, projectsRes, blogsRes] = await Promise.all([
+    cmsPromise,
+    servicesPromise,
+    projectsPromise,
+    blogsPromise,
+  ]);
+
+  // Merge CMS content
+  const mergedCms = { ...initialCmsData };
+  if (cmsRes?.success && cmsRes?.data) {
+    Object.keys(cmsRes.data).forEach((pageKey) => {
+      if (cmsRes.data[pageKey]) {
+        const currentPage = mergedCms[pageKey as keyof typeof mergedCms] || {};
+        mergedCms[pageKey as keyof typeof mergedCms] = {
+          ...currentPage,
+          content: {
+            ...(currentPage as any).content,
+            ...(cmsRes.data[pageKey].content || {}),
+          },
+          seo: {
+            ...(currentPage as any).seo,
+            ...(cmsRes.data[pageKey].seo || {}),
+          },
+        } as any;
+      }
+    });
+  }
+
+  return {
+    cmsData: mergedCms,
+    servicesData: (servicesRes?.success && Array.isArray(servicesRes?.data) && servicesRes.data.length > 0) ? servicesRes.data : initialServicesData,
+    projectsData: (projectsRes?.success && Array.isArray(projectsRes?.data) && projectsRes.data.length > 0) ? projectsRes.data : initialProjectsData,
+    blogPosts: (blogsRes?.success && Array.isArray(blogsRes?.data)) ? blogsRes.data : initialBlogPosts,
+  };
+}
 
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
@@ -106,11 +170,13 @@ export const metadata: Metadata = {
 /*                                ROOT LAYOUT                                 */
 /* -------------------------------------------------------------------------- */
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const liveData = await getLiveCmsData();
+
   return (
     <html lang="en" suppressHydrationWarning className={josefinSans.variable}>
       <body className="bg-white text-black antialiased">
@@ -126,7 +192,7 @@ export default function RootLayout({
           </style>
         </noscript>
 
-        <CmsProvider>
+        <CmsProvider initialData={liveData}>
           <RootLayoutComponent>
             <Navbar />
             <main className="">
