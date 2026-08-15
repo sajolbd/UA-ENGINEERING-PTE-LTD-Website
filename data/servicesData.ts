@@ -19,6 +19,7 @@ export interface ServiceCategory {
   description: string;
   featuredImage: string;
   bgImage: string;
+  icon?: string;
   services: SubService[];
 }
 

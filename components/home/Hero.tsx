@@ -35,30 +35,37 @@ export default function Hero() {
     {
       heading: heroContent.heroSlide1Heading || heroContent.heroHeading || "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.",
       subheading: heroContent.heroSlide1Subheading || heroContent.heroSubheading || "We handle it all with expertise, reliability, and guaranteed quality.",
+      bgImage: heroContent.heroSlide1Bg || heroImage,
     },
     {
       heading: heroContent.heroSlide2Heading || "Everything Your Property Needs. One Trusted Engineering Team.",
       subheading: heroContent.heroSlide2Subheading || "From renovations and reinstatement to electrical, plumbing, painting, roofing, steel fabrication, waterproofing, and maintenance - we handle every project with precision and professionalism.",
+      bgImage: heroContent.heroSlide2Bg || heroImage,
     },
     {
       heading: heroContent.heroSlide3Heading || "Fresh Paint. Lasting Protection. Stunning Results.",
       subheading: heroContent.heroSlide3Subheading || "Interior and exterior painting services that enhance appearance, protect surfaces, and increase the value of your property.",
+      bgImage: heroContent.heroSlide3Bg || heroImage,
     },
     {
       heading: heroContent.heroSlide4Heading || "Roof Problems? We Fix Them Before They Cost You More.",
       subheading: heroContent.heroSlide4Subheading || "Professional roof repairs, waterproofing, leak prevention, and complete roofing solutions to keep your property safe in every season.",
+      bgImage: heroContent.heroSlide4Bg || heroImage,
     },
     {
       heading: heroContent.heroSlide5Heading || "Safe, Reliable Electrical Solutions for Every Building",
       subheading: heroContent.heroSlide5Subheading || "From new installations and rewiring to troubleshooting and upgrades, we deliver electrical work that keeps your property running safely.",
+      bgImage: heroContent.heroSlide5Bg || heroImage,
     },
     {
       heading: heroContent.heroSlide6Heading || "Professional Plumbing Services Without the Hassle",
       subheading: heroContent.heroSlide6Subheading || "Leak repairs, pipe replacement, drainage solutions, sanitary installations, and preventive maintenance-all completed with quality workmanship.",
+      bgImage: heroContent.heroSlide6Bg || heroImage,
     },
     {
       heading: heroContent.heroSlide7Heading || "Custom Steel Fabrication Built for Strength & Precision",
       subheading: heroContent.heroSlide7Subheading || "We design, fabricate, and install steel structures, staircases, platforms, railings, and custom metal works for commercial and industrial projects.",
+      bgImage: heroContent.heroSlide7Bg || heroImage,
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -81,11 +88,16 @@ export default function Hero() {
   return (
     <div className="bg-white">
       <section className="relative overflow-hidden bg-white lg:min-h-[calc(100vh-132px)] flex items-center py-10 sm:py-16 lg:py-24">
-        <img
-          src={getImageUrl(heroImage)}
-          alt={heroImageAlt}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {slides.map((slide, idx) => (
+          <img
+            key={`bg-${idx}`}
+            src={getImageUrl(slide.bgImage)}
+            alt={`Slide ${idx + 1} Background`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+              currentSlide === idx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
+            }`}
+          />
+        ))}
         <div className="absolute inset-0 bg-[#f4f8ff]/72" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-[#eef5ff]/45 to-white/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/35" />
