@@ -46,13 +46,13 @@ export default function Services() {
               href={`/services/${slug}`}
               className="group flex min-h-[180px] flex-col items-center justify-center rounded-2xl border border-slate-100 bg-white px-5 py-8 text-center shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-2 hover:bg-primary hover:shadow-[0_12px_30px_rgba(100,18,21,0.15)] sm:min-h-[200px]"
             >
-              <div className="relative mb-4 flex h-16 w-16 items-center justify-center p-1">
+              <div className="relative mb-4 flex h-20 w-20 items-center justify-center">
                 <Image
                   src={icon}
                   alt={title}
-                  width={64}
-                  height={64}
-                  className="h-14 w-14 object-contain transition-all duration-300 group-hover:scale-110"
+                  width={80}
+                  height={80}
+                  className="h-20 w-20 object-contain transition-all duration-300 group-hover:scale-110"
                 />
               </div>
 
