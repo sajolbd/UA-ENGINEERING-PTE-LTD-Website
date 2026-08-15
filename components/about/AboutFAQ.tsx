@@ -10,7 +10,7 @@ interface FAQItem {
   answer: string;
 }
 
-const FAQ_DATA: FAQItem[] = [
+const DEFAULT_FAQ_DATA: FAQItem[] = [
   {
     question: "How long has UA Engineering PTE. LTD. been serving Singapore?",
     answer: "UA Engineering PTE. LTD. has been a trusted contractor in Singapore's renovation and engineering industry for over 15 years. Over the years, we've built a strong reputation for delivering high-quality renovation, partition, waterproofing, and structural upgrades for residential, commercial, and industrial properties.",
@@ -36,6 +36,18 @@ export default function AboutFAQ() {
   const faqHeading = aboutContent.faqHeading || "FAQ's: Looking for Answers?";
   const faqSubheading = aboutContent.faqSubheading || "Find expert answers to common questions about our renovation, construction, and handyman services in Singapore.";
 
+  let faqList = DEFAULT_FAQ_DATA;
+  if (aboutContent.faqsJson) {
+    try {
+      const parsed = JSON.parse(aboutContent.faqsJson);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        faqList = parsed;
+      }
+    } catch (e) {
+      console.error("Failed to parse dynamic FAQs:", e);
+    }
+  }
+
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -59,7 +71,7 @@ export default function AboutFAQ() {
 
         {/* FAQ Accordion List */}
         <div className="mx-auto max-w-4xl">
-          {FAQ_DATA.map((faq, index) => {
+          {faqList.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div
