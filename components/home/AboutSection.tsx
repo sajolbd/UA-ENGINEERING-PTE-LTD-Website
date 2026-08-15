@@ -21,6 +21,12 @@ export default function AboutSection() {
     const aboutImage = homeContent.aboutImage || "/images/home/about/about-main.jpg";
     const aboutImageAlt = homeContent.aboutImageAlt || "UA Engineering Upgrading Worksite";
     const experienceYears = parseInt(homeContent.aboutExperience) || 15;
+    const card1Title = homeContent.aboutCard1Title || "BCA Certified Company";
+    const card1Desc = homeContent.aboutCard1Desc || "Meeting standards with quality workmanship, compliance, and professional practices.";
+    const card2Title = homeContent.aboutCard2Title || "Skilled & Certified Workforce";
+    const card2Desc = homeContent.aboutCard2Desc || "Experienced professionals delivering quality work with precision, reliability, and attention.";
+    const card3Title = homeContent.aboutCard3Title || "Competitive & Transparent Pricing";
+    const card3Desc = homeContent.aboutCard3Desc || "Fair, upfront pricing with detailed quotations and no hidden costs or unexpected charges.";
 
     return (
         <section className="overflow-hidden bg-white py-8 lg:py-12">
@@ -85,11 +91,11 @@ export default function AboutSection() {
                                 <ShieldCheck className="mb-3 h-10 w-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
 
                                 <h3 className="mb-2 text-lg font-semibold text-secondary transition-colors duration-300 group-hover:text-white">
-                                    BCA Certified Company
+                                    {card1Title}
                                 </h3>
 
                                 <p className="text-sm leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-white/80">
-                                    Meeting standards with quality workmanship, compliance, and professional practices.
+                                    {card1Desc}
                                 </p>
                             </div>
 
@@ -98,11 +104,11 @@ export default function AboutSection() {
                                 <HardHat className="mb-3 h-10 w-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
 
                                 <h3 className="mb-2 text-lg font-semibold text-secondary transition-colors duration-300 group-hover:text-white">
-                                    Skilled & Certified Workforce
+                                    {card2Title}
                                 </h3>
 
                                 <p className="text-sm leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-white/80">
-                                    Experienced professionals delivering quality work with precision, reliability, and attention.
+                                    {card2Desc}
                                 </p>
                             </div>
 
@@ -111,11 +117,11 @@ export default function AboutSection() {
                                 <MessagesSquare className="mb-3 h-10 w-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
 
                                 <h3 className="mb-2 text-lg font-semibold text-secondary transition-colors duration-300 group-hover:text-white">
-                                    Competitive & Transparent Pricing
+                                    {card3Title}
                                 </h3>
 
                                 <p className="text-sm leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-white/80">
-                                    Fair, upfront pricing with detailed quotations and no hidden costs or unexpected charges.
+                                    {card3Desc}
                                 </p>
                             </div>
                         </div>
