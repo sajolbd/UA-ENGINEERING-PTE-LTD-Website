@@ -60,7 +60,7 @@ h3 {
 
 html {
   scroll-behavior: smooth;
-  scrollbar-color: theme("colors.secondary") #050505;
+  scrollbar-color: theme("colors.primary") #050505;
   scrollbar-width: thin;
 }
 
@@ -73,13 +73,13 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: theme("colors.secondary");
+  background-color: theme("colors.primary");
   border: 2px solid #050505;
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: theme("colors.secondary");
+  background-color: theme("colors.primary");
 }
 
 img {
