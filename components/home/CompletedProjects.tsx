@@ -7,7 +7,12 @@ import { useCmsData } from "../../context/CmsContext";
 import { getImageUrl } from "../../lib/api";
 
 export default function CompletedProjects() {
-  const { projectsData } = useCmsData();
+  const { cmsData, projectsData } = useCmsData();
+  const content = (cmsData?.home?.content as unknown as Record<string, string>) || {};
+  const badge = content.completedProjectsBadge || content.projectsBadge || "LATEST PROJECTS";
+  const heading = content.completedProjectsHeading || content.projectsHeading || "Our Completed Projects";
+  const subheading = content.completedProjectsSubheading || content.projectsSubheading || "A showcase of our successfully delivered projects in Singapore, reflecting our commitment to structural precision, safety, and architectural elegance.";
+
   const projects = projectsData.slice(0, 8);
   return (
     <section id="projects" className="bg-white py-8 lg:py-12">
@@ -15,14 +20,14 @@ export default function CompletedProjects() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center mb-16">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            LATEST PROJECTS
+            {badge}
           </p>
           <h2 className="mt-3 text-4xl font-extrabold tracking-tight text-secondary sm:text-5xl">
-            Our Completed Projects
+            {heading}
           </h2>
           <div className="mx-auto mt-4 h-1 w-20 rounded bg-primary" />
           <p className="mt-6 text-base text-slate-600 lg:text-lg">
-            A showcase of our successfully delivered projects in Singapore, reflecting our commitment to structural precision, safety, and architectural elegance.
+            {subheading}
           </p>
         </div>
 
@@ -30,7 +35,7 @@ export default function CompletedProjects() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {projects.map((project) => (
             <div
-              key={project.title}
+              key={project.id || project.title}
               className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
             >
               {/* Image Frame */}
@@ -53,6 +58,11 @@ export default function CompletedProjects() {
                 <h3 className="text-base font-bold leading-snug tracking-tight text-secondary group-hover:text-primary transition-colors duration-300 flex-grow">
                   {project.title}
                 </h3>
+                {(project.subtitle || project.description) && (
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2 font-medium">
+                    {project.subtitle || project.description}
+                  </p>
+                )}
               </div>
 
               {/* Hover bottom border indicator */}
