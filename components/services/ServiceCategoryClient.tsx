@@ -69,7 +69,6 @@ const categorySpecifications: Record<string, string[]> = {
     "Inverter System Installation",
     "Mounting Structure Assembly",
     "Electrical System Integration",
-    "Safety & Performance Testing",
     "Final System Commissioning"
   ]
 };
@@ -77,7 +76,10 @@ const categorySpecifications: Record<string, string[]> = {
 export default function ServiceCategoryClient({ slug, fallbackCategory }: Props) {
   const { servicesData } = useCmsData();
   const category = servicesData.find((cat) => cat.slug === slug) || fallbackCategory;
-  const specs = category ? (categorySpecifications[category.slug] || []) : [];
+  const catAny = category as any;
+  const specs = (catAny?.features && catAny.features.length > 0)
+    ? catAny.features
+    : (category ? (categorySpecifications[category.slug] || []) : []);
 
   if (!category) return null;
 
@@ -125,7 +127,7 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
                   Key Specifications
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
-                  {specs.map((spec, i) => (
+                  {specs.map((spec: string, i: number) => (
                     <div key={i} className="flex items-start gap-2.5">
                       <CheckCircle2 size={16} className="text-primary shrink-0 mt-0.5" />
                       <span className="text-sm font-semibold text-slate-600 leading-relaxed">
