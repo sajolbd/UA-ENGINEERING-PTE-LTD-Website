@@ -185,7 +185,20 @@ const aluminiumAdvantages = [
   },
 ];
 
-export default function PaintingFocus({ slug }: PaintingFocusProps) {
+interface PaintingFocusProps {
+  slug?: string;
+  category?: any;
+}
+
+function getIconForSpaceTitle(title: string) {
+  const lower = title.toLowerCase();
+  if (lower.includes("flat") || lower.includes("home") || lower.includes("house") || lower.includes("resident")) return Home;
+  if (lower.includes("shop") || lower.includes("retail") || lower.includes("store")) return Store;
+  if (lower.includes("land") || lower.includes("facility") || lower.includes("industrial")) return Landmark;
+  return Building2;
+}
+
+export default function PaintingFocus({ slug, category }: PaintingFocusProps) {
   const isAluminium = slug === "aluminium-glazing-works";
   const isMEP = slug === "electrical-plumbing-aircon";
   const isSolar = slug === "solar-panel-installation";
@@ -198,17 +211,42 @@ export default function PaintingFocus({ slug }: PaintingFocusProps) {
     ? solarSpaces
     : targetSpaces;
 
-  const currentAdv = isSolar
-    ? solarAdvantages
-    : isMEP
-    ? mepAdvantages
-    : uaAdvantages;
+  const badgeText = category?.targetBadge || (
+    isAluminium
+      ? "Specialised Applications"
+      : isMEP
+      ? "Served Properties"
+      : isSolar
+      ? "Property Coverage"
+      : "Target Properties"
+  );
 
-  const currentShort = isSolar
-    ? solarShortcomings
-    : isMEP
-    ? mepShortcomings
-    : typicalShortcomings;
+  const headingText = category?.targetHeading || (
+    isAluminium
+      ? "Applications We Specialise In"
+      : isMEP
+      ? "Properties We Proudly Serve"
+      : isSolar
+      ? "Solar Solutions for Every Property"
+      : "Professional Solutions for Every Space"
+  );
+
+  const subheadingText = category?.targetSubheading || (
+    isAluminium
+      ? "Tailored aluminium and glazing solutions for a wide range of residential, commercial, and industrial environments."
+      : isMEP
+      ? "Delivering dependable electrical, plumbing, and air conditioning solutions for every type of property across Singapore."
+      : isSolar
+      ? "Professional rooftop solar panel installations tailored for residential and commercial properties seeking clean, efficient renewable energy across Singapore."
+      : "Enhancing and protecting homes, offices, retail spaces, and industrial facilities with expert workmanship."
+  );
+
+  const displaySpaces = (category?.targetSpaces && category.targetSpaces.length > 0)
+    ? category.targetSpaces.map((title: string) => ({
+        title,
+        icon: getIconForSpaceTitle(title)
+      }))
+    : currentSpaces;
 
   return (
     <div className="flex flex-col gap-12 lg:gap-16 py-12 lg:py-16 bg-slate-50/50 border-t border-slate-100">
@@ -217,42 +255,24 @@ export default function PaintingFocus({ slug }: PaintingFocusProps) {
         <Container>
           <div className="mx-auto max-w-3xl text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-primary-300 bg-white/10 px-3 py-1.5 rounded-full">
-              {isAluminium
-                ? "Specialised Applications"
-                : isMEP
-                ? "Served Properties"
-                : isSolar
-                ? "Property Coverage"
-                : "Target Properties"}
+              {badgeText}
             </span>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
-              {isAluminium
-                ? "Applications We Specialise In"
-                : isMEP
-                ? "Properties We Proudly Serve"
-                : isSolar
-                ? "Solar Solutions for Every Property"
-                : "Professional Solutions for Every Space"}
+              {headingText}
             </h2>
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-              {isAluminium
-                ? "Tailored aluminium and glazing solutions for a wide range of residential, commercial, and industrial environments."
-                : isMEP
-                ? "Delivering dependable electrical, plumbing, and air conditioning solutions for every type of property across Singapore."
-                : isSolar
-                ? "Professional rooftop solar panel installations tailored for residential and commercial properties seeking clean, efficient renewable energy across Singapore."
-                : "Enhancing and protecting homes, offices, retail spaces, and industrial facilities with expert workmanship."}
+              {subheadingText}
             </p>
           </div>
 
           <div
             className={`grid grid-cols-2 ${
-              isAluminium || isMEP || isSolar
+              displaySpaces.length <= 4
                 ? "sm:grid-cols-4 lg:grid-cols-4"
                 : "sm:grid-cols-3 lg:grid-cols-5"
             } gap-4 sm:gap-6 max-w-5xl mx-auto`}
           >
-            {currentSpaces.map((space) => {
+            {displaySpaces.map((space: { title: string; icon: any }) => {
               const Icon = space.icon;
               return (
                 <div

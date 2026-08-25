@@ -4,49 +4,60 @@ import { ThumbsUp, ThumbsDown } from "lucide-react";
 import Container from "components/shared/Container";
 import { useCmsData } from "../../context/CmsContext";
 
-export default function WhyChoose() {
+interface WhyChooseProps {
+  category?: any;
+}
+
+export default function WhyChoose({ category }: WhyChooseProps = {}) {
   const { cmsData } = useCmsData();
   const homeContent = (cmsData as any)?.home?.content || {};
-  const whyChooseBadge = homeContent.whyChooseBadge || "UA ADVANTAGE";
-  const whyChooseHeading = homeContent.whyChooseHeading || "Why Choose UA Engineering?";
 
-  const uaBenefits = [
-    {
-      title: homeContent.whyCard1Title || "Complete Building Solutions",
-      description: homeContent.whyCard1Desc || "From renovation and structural works to M&E, glazing, waterproofing, and solar, one trusted team handles every project.",
-    },
-    {
-      title: homeContent.whyCard2Title || "Quality Workmanship",
-      description: homeContent.whyCard2Desc || "Every project is completed with skilled workmanship, quality materials, and attention to detail for lasting performance.",
-    },
-    {
-      title: homeContent.whyCard3Title || "Honest & Transparent Pricing",
-      description: homeContent.whyCard3Desc || "Clear quotations, fair pricing, and no hidden costs, so you can plan your project with confidence.",
-    },
-    {
-      title: homeContent.whyCard4Title || "Reliable Project Management",
-      description: homeContent.whyCard4Desc || "We coordinate every stage efficiently, keeping projects organized, on schedule, and completed to high standards.",
-    },
-  ];
+  const whyChooseBadge = category?.whyChooseBadge || homeContent.whyChooseBadge || "UA ADVANTAGE";
+  const whyChooseHeading = category?.whyChooseHeading || homeContent.whyChooseHeading || "Why Choose UA Engineering?";
+  const leftTitle = category?.whyChooseLeftTitle || "UA ENGINEERING PTE. LTD.";
+  const rightTitle = category?.whyChooseRightTitle || "Common Contractor Challenges";
 
-  const traditionalIssues = [
-    {
-      title: homeContent.issue1Title || "Multiple Contractors to Manage",
-      description: homeContent.issue1Desc || "Hiring separate contractors often leads to delays, communication gaps, and inconsistent workmanship across different stages of the project.",
-    },
-    {
-      title: homeContent.issue2Title || "Poor Workmanship",
-      description: homeContent.issue2Desc || "Low-quality materials and rushed installation can result in recurring repairs, higher maintenance costs, and reduced durability.",
-    },
-    {
-      title: homeContent.issue3Title || "Unclear Pricing",
-      description: homeContent.issue3Desc || "Unexpected charges and incomplete quotations can increase project costs and create unnecessary stress during construction.",
-    },
-    {
-      title: homeContent.issue4Title || "Delays & Poor Communication",
-      description: homeContent.issue4Desc || "Lack of planning and communication often causes missed deadlines, project disruptions, and uncertainty throughout the construction process.",
-    },
-  ];
+  const uaBenefits = (category?.whyChooseAdvantages && category.whyChooseAdvantages.length > 0)
+    ? category.whyChooseAdvantages
+    : [
+        {
+          title: homeContent.whyCard1Title || "Complete Building Solutions",
+          description: homeContent.whyCard1Desc || "From renovation and structural works to M&E, glazing, waterproofing, and solar, one trusted team handles every project.",
+        },
+        {
+          title: homeContent.whyCard2Title || "Quality Workmanship",
+          description: homeContent.whyCard2Desc || "Every project is completed with skilled workmanship, quality materials, and attention to detail for lasting performance.",
+        },
+        {
+          title: homeContent.whyCard3Title || "Honest & Transparent Pricing",
+          description: homeContent.whyCard3Desc || "Clear quotations, fair pricing, and no hidden costs, so you can plan your project with confidence.",
+        },
+        {
+          title: homeContent.whyCard4Title || "Reliable Project Management",
+          description: homeContent.whyCard4Desc || "We coordinate every stage efficiently, keeping projects organized, on schedule, and completed to high standards.",
+        },
+      ];
+
+  const traditionalIssues = (category?.whyChooseChallenges && category.whyChooseChallenges.length > 0)
+    ? category.whyChooseChallenges
+    : [
+        {
+          title: homeContent.issue1Title || "Multiple Contractors to Manage",
+          description: homeContent.issue1Desc || "Hiring separate contractors often leads to delays, communication gaps, and inconsistent workmanship across different stages of the project.",
+        },
+        {
+          title: homeContent.issue2Title || "Poor Workmanship",
+          description: homeContent.issue2Desc || "Low-quality materials and rushed installation can result in recurring repairs, higher maintenance costs, and reduced durability.",
+        },
+        {
+          title: homeContent.issue3Title || "Unclear Pricing",
+          description: homeContent.issue3Desc || "Unexpected charges and incomplete quotations can increase project costs and create unnecessary stress during construction.",
+        },
+        {
+          title: homeContent.issue4Title || "Delays & Poor Communication",
+          description: homeContent.issue4Desc || "Lack of planning and communication often causes missed deadlines, project disruptions, and uncertainty throughout the construction process.",
+        },
+      ];
 
   return (
     <section className="bg-slate-50 py-8 lg:py-12">
@@ -68,11 +79,11 @@ export default function WhyChoose() {
           {/* Left Card - UA Engineering */}
           <div className="rounded-3xl border-2 border-secondary/10 bg-white p-6 shadow-sm transition-all duration-300 hover:border-secondary hover:shadow-xl sm:p-8">
             <h3 className="mb-10 text-center text-2xl font-black text-secondary leading-snug">
-              UA ENGINEERING PTE. LTD.
+              {leftTitle}
             </h3>
 
             <div className="space-y-8">
-              {uaBenefits.map((benefit) => (
+              {uaBenefits.map((benefit: any) => (
                 <div key={benefit.title} className="group flex gap-4 items-start">
                   {/* Circle Icon Badge */}
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-secondary/30 bg-secondary/5 text-secondary transition-all duration-300 group-hover:bg-secondary group-hover:text-white group-hover:scale-110">
@@ -96,7 +107,7 @@ export default function WhyChoose() {
           {/* Right Card - Common Contractor Challenges */}
           <div className="rounded-3xl border-2 border-primary/10 bg-white p-6 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-xl sm:p-8">
             <h3 className="mb-10 text-center text-2xl font-black text-secondary leading-snug">
-              Common Contractor Challenges
+              {rightTitle}
             </h3>
 
             <div className="space-y-8">

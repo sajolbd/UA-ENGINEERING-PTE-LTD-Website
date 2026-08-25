@@ -193,19 +193,27 @@ const stepColors = [
 interface ServicePlanProps {
   slug: string;
   categoryTitle: string;
+  category?: any;
 }
 
-export default function ServicePlan({ slug, categoryTitle }: ServicePlanProps) {
-  const steps = categoryPlans[slug as keyof typeof categoryPlans] || [];
-  const info = sidebarData[slug] || {
-    heading: `Expert Execution for ${categoryTitle}`,
-    text: `Our methodology is standard, transparent, and focused on safety and quality compliance.`
-  };
+export default function ServicePlan({ slug, categoryTitle, category }: ServicePlanProps) {
+  const dynamicSteps = category?.processSteps?.map((step: any, idx: number) => ({
+    number: idx + 1,
+    title: step.title,
+    description: step.description
+  }));
+
+  const steps = (dynamicSteps && dynamicSteps.length > 0)
+    ? dynamicSteps
+    : (categoryPlans[slug as keyof typeof categoryPlans] || []);
+
+  const headingText = category?.processHeading || sidebarData[slug]?.heading || `Expert Execution for ${categoryTitle}`;
+  const narrativeText = category?.processText || sidebarData[slug]?.text || `Our methodology is standard, transparent, and focused on safety and quality compliance.`;
 
   if (steps.length === 0) return null;
 
   // Split heading by commas to render with line breaks
-  const headingParts = info.heading.split(", ");
+  const headingParts = headingText.split(", ");
 
   return (
     <section id="service-plan" className="bg-white py-8 lg:py-12 border-t border-slate-50">
@@ -222,7 +230,7 @@ export default function ServicePlan({ slug, categoryTitle }: ServicePlanProps) {
           {/* Left Column: Descriptive Text & Bold Header */}
           <div className="lg:col-span-5 flex flex-col justify-center text-center lg:text-left max-w-xl mx-auto lg:mx-0 lg:pr-4">
             <p className="text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
-              {info.text}
+              {narrativeText}
             </p>
             <h2 className="mt-8 text-4xl sm:text-5xl font-black text-secondary leading-[1.15] tracking-tight">
               {headingParts.map((part, i) => (

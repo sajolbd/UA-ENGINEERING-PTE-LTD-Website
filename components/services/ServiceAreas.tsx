@@ -57,13 +57,25 @@ const defaultRegions = [
   },
 ];
 
-export default function ServiceAreas() {
+interface ServiceAreasProps {
+  category?: any;
+}
+
+export default function ServiceAreas({ category }: ServiceAreasProps = {}) {
   const { cmsData } = useCmsData();
   const homeContent = (cmsData as any)?.home?.content || {};
 
-  const areaBadge = homeContent.areaBadge || "Service Areas";
-  const areaHeading = homeContent.areaHeading || "Reliable Engineering & Renovation Solutions Near You!";
-  const areaSubheading = homeContent.areaSubheading || "At UA Engineering PTE. LTD, we proudly provide expert renovation, construction, and engineering services throughout Singapore with fast response times and professional support.";
+  const areaBadge = category?.serviceAreasBadge || homeContent.areaBadge || "Service Areas";
+  const areaHeading = category?.serviceAreasHeading || (
+    category?.title
+      ? `Reliable ${category.title} Solutions Near You!`
+      : homeContent.areaHeading || "Reliable Engineering & Renovation Solutions Near You!"
+  );
+  const areaSubheading = category?.serviceAreasSubheading || (
+    category?.title
+      ? `UA ENGINEERING proudly provides ${category.title.toLowerCase()} services across Singapore, covering all major residential and commercial areas.`
+      : homeContent.areaSubheading || "At UA Engineering PTE. LTD, we proudly provide expert renovation, construction, and engineering services throughout Singapore with fast response times and professional support."
+  );
 
   const regions = Array.isArray(homeContent.regions) && homeContent.regions.length > 0
     ? homeContent.regions.map((r: any) => ({

@@ -13,7 +13,7 @@ import Review from "components/home/Review";
 import { Metadata } from "next";
 import cmsData from "../data/cmsData.json";
 import ServiceAreas from "components/services/ServiceAreas";
-import AboutFAQ from "components/about/AboutFAQ";
+import HomeFAQ from "components/home/HomeFAQ";
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = cmsData?.home?.seo || {};
@@ -48,7 +48,7 @@ const page = () => {
       <Testimonial />
       <Review />
       <ServiceAreas />
-      <AboutFAQ />
+      <HomeFAQ />
     </div>
   );
 };

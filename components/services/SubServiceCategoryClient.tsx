@@ -271,67 +271,74 @@ export default function SubServiceCategoryClient({ slug, subSlug, fallbackCatego
               )}
 
               {/* Execution Process Timeline / Flow Chart */}
-              {service.process && service.process.length > 0 && (
+              {((service.processSteps && service.processSteps.length > 0) || (service.process && service.process.length > 0)) && (
                 <div className="bg-white border border-slate-100/80 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-[0_4px_25px_rgba(0,0,0,0.02)]">
                   <h3 className="text-lg font-extrabold text-secondary mb-6">
                     Our Work Process Flow
                   </h3>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 relative">
-                    {service.process.map((step, i) => {
-                      const defaultSteps = ["Assessment", "Design", "Approval", "Hacking", "Installation", "Verification"];
-                      let stepTitle = defaultSteps[i] || `Phase ${i + 1}`;
-                      let stepDesc = step;
+                    {(() => {
+                      const stepsToRender = (service.processSteps && service.processSteps.length > 0)
+                        ? service.processSteps
+                        : service.process.map((step, i) => {
+                            const defaultSteps = ["Assessment", "Design", "Approval", "Hacking", "Installation", "Verification"];
+                            let stepTitle = defaultSteps[i] || `Phase ${i + 1}`;
+                            let stepDesc = step;
 
-                      if (typeof step === "string" && (step.includes(":") || step.includes("–") || step.includes(" - "))) {
-                        const parts = step.split(/[:–]|\s-\s/);
-                        if (parts.length > 1) {
-                          stepTitle = parts[0].trim();
-                          stepDesc = parts.slice(1).join(":").trim();
-                        }
-                      }
+                            if (typeof step === "string" && (step.includes(":") || step.includes("–") || step.includes(" - "))) {
+                              const parts = step.split(/[:–]|\s-\s/);
+                              if (parts.length > 1) {
+                                stepTitle = parts[0].trim();
+                                stepDesc = parts.slice(1).join(":").trim();
+                              }
+                            }
+                            return { title: stepTitle, description: stepDesc };
+                          });
 
-                      const icons = [
-                        <AssessmentIcon key="assess" />,
-                        <DesignIcon key="design" />,
-                        <ApprovalIcon key="app" />,
-                        <HackingIcon key="hack" />,
-                        <InstallationIcon key="inst" />,
-                        <VerificationIcon key="ver" />
-                      ];
-                      const icon = icons[i] || <CheckCircle2 size={22} className="text-primary" />;
+                      return stepsToRender.map((stepObj, i) => {
+                        const icons = [
+                          <AssessmentIcon key="assess" />,
+                          <DesignIcon key="design" />,
+                          <ApprovalIcon key="app" />,
+                          <HackingIcon key="hack" />,
+                          <InstallationIcon key="inst" />,
+                          <VerificationIcon key="ver" />
+                        ];
+                        const icon = icons[i] || <CheckCircle2 size={22} className="text-primary" />;
 
-                      return (
-                        <div
-                          key={i}
-                          className="group relative flex flex-col justify-between bg-slate-50/50 border border-slate-100/80 rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-primary/20 min-h-[160px]"
-                        >
-                          {i < service.process.length - 1 && (
-                            <div className="hidden md:block absolute top-1/2 -right-2.5 -translate-y-1/2 z-10 opacity-60">
-                              <ArrowRight size={14} className="text-slate-300 group-hover:text-primary transition-all duration-300" />
+                        return (
+                          <div
+                            key={i}
+                            className="group relative flex flex-col justify-between bg-slate-50/50 border border-slate-100/80 rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-primary/20 min-h-[160px]"
+                          >
+                            {i < stepsToRender.length - 1 && (
+                              <div className="hidden md:block absolute top-1/2 -right-2.5 -translate-y-1/2 z-10 opacity-60">
+                                <ArrowRight size={14} className="text-slate-300 group-hover:text-primary transition-all duration-300" />
+                              </div>
+                            )}
+
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100/50 border border-slate-150 shadow-sm group-hover:bg-white group-hover:border-primary/20 transition-all duration-300">
+                                {icon}
+                              </div>
+                              <span className="text-[10px] font-extrabold text-slate-400 group-hover:text-primary transition-colors duration-300 uppercase tracking-widest">
+                                Step 0{i + 1}
+                              </span>
                             </div>
-                          )}
 
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100/50 border border-slate-150 shadow-sm group-hover:bg-white group-hover:border-primary/20 transition-all duration-300">
-                              {icon}
+                            <div>
+                              <h4 className="text-sm sm:text-base font-extrabold text-secondary mb-1">
+                                {stepObj.title}
+                              </h4>
+                              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                {stepObj.description}
+                              </p>
                             </div>
-                            <span className="text-[10px] font-extrabold text-slate-400 group-hover:text-primary transition-colors duration-300 uppercase tracking-widest">
-                              Step 0{i + 1}
-                            </span>
                           </div>
-
-                          <div>
-                            <h4 className="text-sm sm:text-base font-extrabold text-secondary mb-1">
-                              {stepTitle}
-                            </h4>
-                            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                              {stepDesc}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      });
+                    })()}
                   </div>
                 </div>
               )}

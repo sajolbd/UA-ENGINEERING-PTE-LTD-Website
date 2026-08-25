@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2, ArrowLeft, Calendar, ArrowRight, MessageCircle } from "lucide-react";
+import { CheckCircle2, ArrowLeft, Calendar, ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
 import Container from "../shared/Container";
 import Breadcrumb from "../layout/Breadcrumb";
 import { useCmsData } from "../../context/CmsContext";
@@ -73,7 +73,95 @@ const categorySpecifications: Record<string, string[]> = {
   ]
 };
 
+const categoryDefaultFaqs: Record<string, { question: string; answer: string }[]> = {
+  "renovation-upgrading": [
+    {
+      question: "What types of properties do you renovate in Singapore?",
+      answer: "We handle commercial offices, retail outlets, industrial facilities, HDB flats, condominiums, and landed property Addition & Alteration (A&A) works."
+    },
+    {
+      question: "Do you assist with BCA and HDB permit submissions?",
+      answer: "Yes, we handle all necessary statutory applications, BCA submissions, and HDB renovation permits on behalf of property owners."
+    },
+    {
+      question: "How do you manage renovation timelines to prevent delays?",
+      answer: "Our dedicated project managers create a detailed execution schedule, coordinate technicians directly, and conduct weekly site audits to guarantee on-time completion."
+    }
+  ],
+  "structural-exterior-works": [
+    {
+      question: "What structural steel and exterior fabrication works do you specialize in?",
+      answer: "We design and fabricate structural steel frames, steel staircases, mezzanine platforms, custom metal railings, balconies, roof extensions, and security gates."
+    },
+    {
+      question: "Are structural steel installations compliant with Singapore BCA regulations?",
+      answer: "All structural steel designs are endorsed by BCA-registered Professional Engineers (PE) and fabricated using certified structural grade steel to ensure safety and code compliance."
+    },
+    {
+      question: "Can you design custom steel structures according to architect drawings?",
+      answer: "Yes, our engineering team works closely with architects and building owners to produce precise shop drawings and custom steel fabrications."
+    }
+  ],
+  "painting-waterproofing": [
+    {
+      question: "What waterproofing methods do you use for persistent roof and wall leaks?",
+      answer: "We employ liquid-applied polyurethane membranes, torch-on bituminous membranes, pressure PU injection grouting, and nano-silane waterproofing sealers."
+    },
+    {
+      question: "What warranty do you offer on waterproofing and painting works?",
+      answer: "We provide up to 5 to 10 years of performance warranty depending on the waterproofing system and painting coating package selected."
+    },
+    {
+      question: "How do you detect hidden water leaks behind walls or concrete slabs?",
+      answer: "We utilize non-destructive thermal imaging cameras and moisture meters to pinpoint exact leakage sources without unnecessary hacking."
+    }
+  ],
+  "aluminium-glazing-works": [
+    {
+      question: "What aluminium window and glass door options do you provide?",
+      answer: "We supply and install heavy-duty aluminium sliding windows, casement windows, acoustic double-glazed glass panels, frameless glass partitions, and zip blinds."
+    },
+    {
+      question: "Are your aluminium windows compliant with BCA safety standards?",
+      answer: "Yes, all aluminium window installations strictly follow BCA window safety requirements and feature certified stainless steel rivets and friction stays."
+    },
+    {
+      question: "Do you install heat-reducing and UV-blocking glass skylights?",
+      answer: "Yes, we design laminated safety glass skylights with low-E heat reflection coatings to bring in natural light while minimizing solar heat gain."
+    }
+  ],
+  "electrical-plumbing-aircon": [
+    {
+      question: "Are your electrical works performed by licensed EMA electricians?",
+      answer: "Yes, all electrical rewiring, DB box upgrades, high-voltage testing, and power network setups are executed by EMA-licensed electricians."
+    },
+    {
+      question: "What plumbing services do you handle for commercial and residential buildings?",
+      answer: "We resolve pipe leaks, clear choke drains, install water booster pumps, upgrade sanitary fittings, and design complete incoming/outgoing pipe networks."
+    },
+    {
+      question: "Do you provide regular aircon maintenance and chemical wash services?",
+      answer: "Yes, we offer one-time and quarterly contractual maintenance, chemical flushing, refrigerant gas top-ups, and inverter compressor troubleshooting."
+    }
+  ],
+  "solar-panel-installation": [
+    {
+      question: "Is my roof suitable for solar panel installation in Singapore?",
+      answer: "We conduct structural roof load assessments and shading analysis for RC flat roofs, metal roofs, and tiled landed property roofs to verify solar feasibility."
+    },
+    {
+      question: "Can I sell excess solar energy back to the SP Group power grid?",
+      answer: "Yes, through grid-interconnected solar inverter systems, excess solar energy can be exported back to the SP Group grid under the Net Energy Metering scheme."
+    },
+    {
+      question: "What is the expected lifespan and warranty of your solar panels?",
+      answer: "Our Tier-1 solar panels come with a 25-year linear performance warranty and 10 to 12-year manufacturer product warranty."
+    }
+  ]
+};
+
 export default function ServiceCategoryClient({ slug, fallbackCategory }: Props) {
+  const [openFaqIndex, setOpenFaqIndex] = React.useState<number | null>(0);
   const { servicesData } = useCmsData();
   const category = servicesData.find((cat) => cat.slug === slug) || fallbackCategory;
   const catAny = category as any;
@@ -112,9 +200,11 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
                 UA Engineering Pte Ltd
               </span>
               <h2 className="mt-4 text-3xl font-extrabold text-secondary tracking-tight sm:text-4xl lg:text-5xl leading-tight">
-                {category.title.toLowerCase().startsWith("professional")
-                  ? category.title
-                  : `Professional ${category.title}`}
+                {category.detailTitle || (
+                  category.title.toLowerCase().startsWith("professional")
+                    ? category.title
+                    : `Professional ${category.title}`
+                )}
               </h2>
               <div className="mt-4 h-1 w-20 bg-primary rounded" />
               <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">
@@ -201,22 +291,26 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
             <div id="services-list" className="scroll-mt-24">
               <div className="text-center max-w-2xl mx-auto mb-6">
                 <h3 className="text-2xl font-extrabold text-secondary sm:text-3xl">
-                  {category.slug === "painting-waterproofing"
-                    ? "Our Painting & Waterproofing Services"
-                    : category.slug === "structural-exterior-works"
-                      ? "What We Offer Under Structural & Exterior Works"
-                      : category.slug === "electrical-plumbing-aircon"
-                        ? "What We Offer Under Electrical, Plumbing & Aircon"
-                        : `What We Offer Under ${category.title}`}
+                  {category.subServicesTitle || (
+                    category.slug === "painting-waterproofing"
+                      ? "Our Painting & Waterproofing Services"
+                      : category.slug === "structural-exterior-works"
+                        ? "What We Offer Under Structural & Exterior Works"
+                        : category.slug === "electrical-plumbing-aircon"
+                          ? "What We Offer Under Electrical, Plumbing & Aircon"
+                          : `What We Offer Under ${category.title}`
+                  )}
                 </h3>
                 <p className="mt-3 text-slate-500 text-sm sm:text-base">
-                  {category.slug === "painting-waterproofing"
-                    ? "Discover our comprehensive painting and waterproofing solutions designed to protect, enhance, and extend the lifespan of residential and commercial properties in Singapore."
-                    : category.slug === "structural-exterior-works"
-                      ? "Explore our expert structural and exterior work services, delivering durable, customised solutions for residential and commercial properties across Singapore."
-                      : category.slug === "electrical-plumbing-aircon"
-                        ? "Discover our comprehensive electrical, plumbing, and aircon solutions, professionally delivered for safe, reliable, and efficient property performance."
-                        : "Discover our specific range of professional contracting services designed to meet Singapore regulatory standards."}
+                  {category.subServicesSubheading || (
+                    category.slug === "painting-waterproofing"
+                      ? "Discover our comprehensive painting and waterproofing solutions designed to protect, enhance, and extend the lifespan of residential and commercial properties in Singapore."
+                      : category.slug === "structural-exterior-works"
+                        ? "Explore our expert structural and exterior work services, delivering durable, customised solutions for residential and commercial properties across Singapore."
+                        : category.slug === "electrical-plumbing-aircon"
+                          ? "Discover our comprehensive electrical, plumbing, and aircon solutions, professionally delivered for safe, reliable, and efficient property performance."
+                          : "Discover our specific range of professional contracting services designed to meet Singapore regulatory standards."
+                  )}
                 </p>
               </div>
 
@@ -300,10 +394,84 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
       {/* Homepage CallBack CTA Section */}
       <CallBackSection />
 
-      <ServicePlan slug={category.slug} categoryTitle={category.title} />
-      <PaintingFocus slug={category.slug} />
-      <WhyChoose />
-      <ServiceAreas />
+      <ServicePlan slug={category.slug} categoryTitle={category.title} category={category} />
+      <PaintingFocus slug={category.slug} category={category} />
+      <WhyChoose category={category} />
+
+      {/* Category FAQ Accordion Section */}
+      {(() => {
+        const catFaqList = (catAny?.faqs && catAny.faqs.length > 0)
+          ? catAny.faqs
+          : (categoryDefaultFaqs[category.slug] || []);
+
+        if (!catFaqList || catFaqList.length === 0) return null;
+
+        return (
+          <section className="py-12 md:py-16 bg-white border-t border-slate-100">
+            <Container>
+              <div className="mx-auto max-w-3xl text-center mb-12">
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-primary bg-primary/5 px-3.5 py-2 rounded-full">
+                  FAQS & HELPFUL ANSWERS
+                </span>
+                <h2 className="mt-4 text-3xl font-black tracking-tight text-secondary sm:text-4xl">
+                  {category.title} FAQs
+                </h2>
+                <div className="mx-auto mt-4 h-1.5 w-16 rounded-full bg-primary" />
+                <p className="mt-5 text-sm sm:text-base leading-relaxed text-slate-500 font-semibold max-w-2xl mx-auto">
+                  Find expert answers to common questions about our {category.title.toLowerCase()} services in Singapore.
+                </p>
+              </div>
+
+              <div className="mx-auto max-w-4xl">
+                {catFaqList.map((faq: { question: string; answer: string }, index: number) => {
+                  const isOpen = openFaqIndex === index;
+                  return (
+                    <div
+                      key={index}
+                      className={`mb-4 border rounded-2xl bg-white shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md ${
+                        isOpen ? "border-primary/20" : "border-slate-200/60"
+                      }`}
+                    >
+                      <button
+                        onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                        className={`w-full flex justify-between items-center px-6 py-5 text-left font-bold transition-all duration-300 focus:outline-none select-none ${
+                          isOpen
+                            ? "text-primary bg-primary/[0.01] border-l-4 border-primary"
+                            : "text-slate-850 hover:text-primary border-l-4 border-transparent"
+                        }`}
+                        aria-expanded={isOpen}
+                      >
+                        <span className="text-sm md:text-base pr-4 font-bold">{faq.question}</span>
+                        <span
+                          className={`shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 text-slate-600 transition-all duration-300 ${
+                            isOpen ? "rotate-180 bg-primary/10 text-primary" : ""
+                          }`}
+                        >
+                          <ChevronDown className="h-4.5 w-4.5" />
+                        </span>
+                      </button>
+
+                      <div
+                        className={`grid transition-all duration-300 ease-in-out ${
+                          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="px-6 pb-6 pt-3 text-xs md:text-sm leading-relaxed text-slate-600 font-semibold border-t border-slate-100/65 bg-slate-50/30">
+                            {faq.answer}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Container>
+          </section>
+        );
+      })()}
+
+      <ServiceAreas category={category} />
     </div>
   );
 }
