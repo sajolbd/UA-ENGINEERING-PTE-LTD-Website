@@ -233,7 +233,7 @@ export default function ServicePlan({ slug, categoryTitle, category }: ServicePl
               {narrativeText}
             </p>
             <h2 className="mt-8 text-4xl sm:text-5xl font-black text-secondary leading-[1.15] tracking-tight">
-              {headingParts.map((part, i) => (
+              {headingParts.map((part: any, i: number) => (
                 <React.Fragment key={i}>
                   {part}
                   {i < headingParts.length - 1 && <br />}
@@ -251,7 +251,7 @@ export default function ServicePlan({ slug, categoryTitle, category }: ServicePl
 
               {/* Steps Container */}
               <div className="space-y-10 sm:space-y-12 w-full relative z-10">
-                {steps.map((step, index) => {
+                {steps.map((step: any, index: number) => {
                   const isLast = step.number === 4;
                   const theme = stepColors[index] || stepColors[0];
 

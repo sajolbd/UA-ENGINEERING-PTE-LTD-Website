@@ -53,14 +53,18 @@ export default function ProjectsSection() {
     };
   }, [selectedProject, currentImageIndex]);
 
+  const gallery = (selectedProject?.gallery && selectedProject.gallery.length > 0)
+    ? selectedProject.gallery
+    : selectedProject ? [selectedProject.image] : [];
+
   const nextImage = () => {
-    if (!selectedProject) return;
-    setCurrentImageIndex((prev) => (prev + 1) % selectedProject.gallery.length);
+    if (!selectedProject || gallery.length === 0) return;
+    setCurrentImageIndex((prev) => (prev + 1) % gallery.length);
   };
 
   const prevImage = () => {
-    if (!selectedProject) return;
-    setCurrentImageIndex((prev) => (prev - 1 + selectedProject.gallery.length) % selectedProject.gallery.length);
+    if (!selectedProject || gallery.length === 0) return;
+    setCurrentImageIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
   };
 
   const closeModal = () => {
@@ -270,7 +274,7 @@ export default function ProjectsSection() {
             {/* Main Image Container */}
             <div className="relative w-full max-w-4xl h-[45vh] md:h-[60vh] flex items-center justify-center">
               <Image
-                src={getImageUrl(selectedProject.gallery[currentImageIndex])}
+                src={getImageUrl(gallery[currentImageIndex] || selectedProject.image)}
                 alt={`${selectedProject.title} detail ${currentImageIndex + 1}`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 1024px"
@@ -296,7 +300,7 @@ export default function ProjectsSection() {
 
             {/* Image Slider Thumbnails */}
             <div className="flex items-center gap-3 overflow-x-auto max-w-full py-1 px-2 no-scrollbar">
-              {selectedProject.gallery.map((img, i) => (
+              {gallery.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentImageIndex(i)}
@@ -318,7 +322,7 @@ export default function ProjectsSection() {
             {/* Slide Index Counter & Description */}
             <div className="text-center max-w-2xl px-4">
               <span className="text-xs md:text-sm font-semibold tracking-wider text-slate-400 block mb-1">
-                Image {currentImageIndex + 1} of {selectedProject.gallery.length}
+                Image {currentImageIndex + 1} of {gallery.length}
               </span>
               <p className="text-xs md:text-sm text-slate-300 line-clamp-2 md:line-clamp-none">
                 {selectedProject.description}

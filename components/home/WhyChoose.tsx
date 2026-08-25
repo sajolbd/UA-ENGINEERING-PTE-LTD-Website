@@ -111,7 +111,7 @@ export default function WhyChoose({ category }: WhyChooseProps = {}) {
             </h3>
 
             <div className="space-y-8">
-              {traditionalIssues.map((issue) => (
+              {traditionalIssues.map((issue: any) => (
                 <div key={issue.title} className="group flex gap-4 items-start">
                   {/* Circle Icon Badge */}
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-primary/30 bg-primary/5 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
