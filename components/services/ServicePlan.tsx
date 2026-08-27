@@ -232,14 +232,13 @@ export default function ServicePlan({ slug, categoryTitle, category }: ServicePl
             <p className="text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
               {narrativeText}
             </p>
-            <h2 className="mt-8 text-4xl sm:text-5xl font-black text-secondary leading-[1.15] tracking-tight">
+            <h3 className="mt-6 text-lg sm:text-xl lg:text-2xl font-extrabold text-secondary leading-snug tracking-tight">
               {headingParts.map((part: any, i: number) => (
-                <React.Fragment key={i}>
+                <span key={i} className="block whitespace-nowrap">
                   {part}
-                  {i < headingParts.length - 1 && <br />}
-                </React.Fragment>
+                </span>
               ))}
-            </h2>
+            </h3>
           </div>
 
           {/* Right Column: Timeline & Step Content */}
