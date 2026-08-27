@@ -719,12 +719,38 @@ export const servicesData: ServiceCategory[] = [
           "Adds significant eco-friendly value to your landed property"
         ],
         "process": [
-          "Site survey to analyze shadow casting and roof structural safety",
-          "PV layout design and estimation of monthly energy savings",
-          "Submitting drawings for BCA & SP Group grid approval",
-          "On-site mounting rail fabrication & solar panel installation",
-          "DC cabling, inverter installation, and safety checks",
-          "Installing SP Group bi-directional meter & turning on the system"
+          "Assessment: Site survey to analyze shadow casting and roof structural safety",
+          "Design: PV layout design and estimation of monthly energy savings",
+          "Approval: Submitting drawings for BCA & SP Group grid approval",
+          "Hacking: On-site mounting rail fabrication & solar panel installation",
+          "Installation: DC cabling, inverter installation, and safety checks",
+          "Verification: Installing SP Group bi-directional meter & turning on the system"
+        ],
+        "processSteps": [
+          {
+            "title": "Assessment",
+            "description": "Site survey to analyze shadow casting and roof structural safety"
+          },
+          {
+            "title": "Design",
+            "description": "PV layout design and estimation of monthly energy savings"
+          },
+          {
+            "title": "Approval",
+            "description": "Submitting drawings for BCA & SP Group grid approval"
+          },
+          {
+            "title": "Hacking",
+            "description": "On-site mounting rail fabrication & solar panel installation"
+          },
+          {
+            "title": "Installation",
+            "description": "DC cabling, inverter installation, and safety checks"
+          },
+          {
+            "title": "Verification",
+            "description": "Installing SP Group bi-directional meter & turning on the system"
+          }
         ]
       }
     ]
