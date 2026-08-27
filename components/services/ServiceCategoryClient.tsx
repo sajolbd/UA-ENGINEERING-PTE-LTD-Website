@@ -287,107 +287,105 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
           </div>
 
           {/* Sub-services Grid List */}
-          {category.slug !== "solar-panel-installation" && (
-            <div id="services-list" className="scroll-mt-24">
-              <div className="text-center max-w-2xl mx-auto mb-6">
-                <h3 className="text-2xl font-extrabold text-secondary sm:text-3xl">
-                  {category.subServicesTitle || (
-                    category.slug === "painting-waterproofing"
-                      ? "Our Painting & Waterproofing Services"
-                      : category.slug === "structural-exterior-works"
-                        ? "What We Offer Under Structural & Exterior Works"
-                        : category.slug === "electrical-plumbing-aircon"
-                          ? "What We Offer Under Electrical, Plumbing & Aircon"
-                          : `What We Offer Under ${category.title}`
-                  )}
-                </h3>
-                <p className="mt-3 text-slate-500 text-sm sm:text-base">
-                  {category.subServicesSubheading || (
-                    category.slug === "painting-waterproofing"
-                      ? "Discover our comprehensive painting and waterproofing solutions designed to protect, enhance, and extend the lifespan of residential and commercial properties in Singapore."
-                      : category.slug === "structural-exterior-works"
-                        ? "Explore our expert structural and exterior work services, delivering durable, customised solutions for residential and commercial properties across Singapore."
-                        : category.slug === "electrical-plumbing-aircon"
-                          ? "Discover our comprehensive electrical, plumbing, and aircon solutions, professionally delivered for safe, reliable, and efficient property performance."
-                          : "Discover our specific range of professional contracting services designed to meet Singapore regulatory standards."
-                  )}
-                </p>
-              </div>
+          <div id="services-list" className="scroll-mt-24">
+            <div className="text-center max-w-2xl mx-auto mb-6">
+              <h3 className="text-2xl font-extrabold text-secondary sm:text-3xl">
+                {category.subServicesTitle || (
+                  category.slug === "painting-waterproofing"
+                    ? "Our Painting & Waterproofing Services"
+                    : category.slug === "structural-exterior-works"
+                      ? "What We Offer Under Structural & Exterior Works"
+                      : category.slug === "electrical-plumbing-aircon"
+                        ? "What We Offer Under Electrical, Plumbing & Aircon"
+                        : `What We Offer Under ${category.title}`
+                )}
+              </h3>
+              <p className="mt-3 text-slate-500 text-sm sm:text-base">
+                {category.subServicesSubheading || (
+                  category.slug === "painting-waterproofing"
+                    ? "Discover our comprehensive painting and waterproofing solutions designed to protect, enhance, and extend the lifespan of residential and commercial properties in Singapore."
+                    : category.slug === "structural-exterior-works"
+                      ? "Explore our expert structural and exterior work services, delivering durable, customised solutions for residential and commercial properties across Singapore."
+                      : category.slug === "electrical-plumbing-aircon"
+                        ? "Discover our comprehensive electrical, plumbing, and aircon solutions, professionally delivered for safe, reliable, and efficient property performance."
+                        : "Discover our specific range of professional contracting services designed to meet Singapore regulatory standards."
+                )}
+              </p>
+            </div>
 
-              <div
-                className={`grid grid-cols-1 ${category.services.length === 1
-                    ? "max-w-md mx-auto"
-                    : category.services.length === 2
-                      ? "md:grid-cols-2 max-w-4xl mx-auto"
-                      : "md:grid-cols-2 lg:grid-cols-3"
-                  } gap-6 lg:gap-8 justify-center`}
-              >
-                {category.services.map((service, index) => (
-                  <Link
-                    key={service.title}
-                    href={`/services/${category.slug}/${service.slug}`}
-                    className="group relative flex flex-col transition-all duration-500 ease-in-out hover:-translate-y-2 filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] hover:drop-shadow-[0_25px_50px_rgba(100,18,21,0.24)]"
-                  >
-                    <div className="w-full h-full flex flex-col rounded-2xl overflow-hidden">
-                      <div
-                        className="w-full h-full flex flex-col bg-[#FDFDFD] group-hover:bg-primary transition-all duration-500 ease-in-out"
-                        style={{ clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%)" }}
-                      >
-                        {/* Card Image */}
-                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-50 border-b border-slate-100/50">
-                          <Image
-                            src={getImageUrl(service.image)}
-                            alt={service.title}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-350" />
-                          <div className="absolute top-4 left-4">
-                            <span className="inline-block rounded-md bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-secondary shadow-sm">
-                              Service {index + 1}
-                            </span>
-                          </div>
+            <div
+              className={`grid grid-cols-1 ${category.services.length === 1
+                  ? "max-w-md mx-auto"
+                  : category.services.length === 2
+                    ? "md:grid-cols-2 max-w-4xl mx-auto"
+                    : "md:grid-cols-2 lg:grid-cols-3"
+                } gap-6 lg:gap-8 justify-center`}
+            >
+              {category.services.map((service, index) => (
+                <Link
+                  key={service.title}
+                  href={`/services/${category.slug}/${service.slug}`}
+                  className="group relative flex flex-col transition-all duration-500 ease-in-out hover:-translate-y-2 filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] hover:drop-shadow-[0_25px_50px_rgba(100,18,21,0.24)]"
+                >
+                  <div className="w-full h-full flex flex-col rounded-2xl overflow-hidden">
+                    <div
+                      className="w-full h-full flex flex-col bg-[#FDFDFD] group-hover:bg-primary transition-all duration-500 ease-in-out"
+                      style={{ clipPath: "polygon(0 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%)" }}
+                    >
+                      {/* Card Image */}
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-50 border-b border-slate-100/50">
+                        <Image
+                          src={getImageUrl(service.image)}
+                          alt={service.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-350" />
+                        <div className="absolute top-4 left-4">
+                          <span className="inline-block rounded-md bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-secondary shadow-sm">
+                            Service {index + 1}
+                          </span>
                         </div>
+                      </div>
 
-                        {/* Content */}
-                        <div className="p-8 flex flex-col flex-grow">
-                          <h4 className="text-xl sm:text-2xl font-bold tracking-tight text-secondary transition-colors duration-500 group-hover:text-white mb-3">
-                            {service.title}
-                          </h4>
+                      {/* Content */}
+                      <div className="p-8 flex flex-col flex-grow">
+                        <h4 className="text-xl sm:text-2xl font-bold tracking-tight text-secondary transition-colors duration-500 group-hover:text-white mb-3">
+                          {service.title}
+                        </h4>
 
-                          <p className="text-sm leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/80 mb-4 flex-grow">
-                            {service.description}
-                          </p>
+                        <p className="text-sm leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/80 mb-4 flex-grow">
+                          {service.description}
+                        </p>
 
-                          {service.features && service.features.length > 0 && (
-                            <div className="mb-4">
-                              <h5 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 transition-colors duration-500 group-hover:text-white/60">
-                                Key Specifications:
-                              </h5>
-                              <ul className="grid grid-cols-1 gap-1.5">
-                                {service.features.slice(0, 3).map((feat) => (
-                                  <li key={feat} className="flex items-start gap-2 text-xs text-slate-600 font-semibold transition-colors duration-500 group-hover:text-white/90">
-                                    <CheckCircle2 size={14} className="text-primary shrink-0 mt-0.5 transition-colors duration-500 group-hover:text-white" />
-                                    <span>{feat}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          <div className="mt-auto pt-4 flex items-center gap-2 text-sm font-bold text-primary transition-colors duration-500 group-hover:text-white">
-                            <span>Learn More & Specifications</span>
-                            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
+                        {service.features && service.features.length > 0 && (
+                          <div className="mb-4">
+                            <h5 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 transition-colors duration-500 group-hover:text-white/60">
+                              Key Specifications:
+                            </h5>
+                            <ul className="grid grid-cols-1 gap-1.5">
+                              {service.features.slice(0, 3).map((feat) => (
+                                <li key={feat} className="flex items-start gap-2 text-xs text-slate-600 font-semibold transition-colors duration-500 group-hover:text-white/90">
+                                  <CheckCircle2 size={14} className="text-primary shrink-0 mt-0.5 transition-colors duration-500 group-hover:text-white" />
+                                  <span>{feat}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
+                        )}
+
+                        <div className="mt-auto pt-4 flex items-center gap-2 text-sm font-bold text-primary transition-colors duration-500 group-hover:text-white">
+                          <span>Learn More & Specifications</span>
+                          <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
                         </div>
                       </div>
                     </div>
-                  </Link>
-                ))}
-              </div>
+                  </div>
+                </Link>
+              ))}
             </div>
-          )}
+          </div>
         </Container>
       </section>
 
