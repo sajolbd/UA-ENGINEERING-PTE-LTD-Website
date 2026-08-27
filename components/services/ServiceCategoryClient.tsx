@@ -398,6 +398,8 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
       <PaintingFocus slug={category.slug} category={category} />
       <WhyChoose category={category} />
 
+      <ServiceAreas category={category} />
+
       {/* Category FAQ Accordion Section */}
       {(() => {
         const catFaqList = (catAny?.faqs && catAny.faqs.length > 0)
@@ -470,8 +472,6 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
           </section>
         );
       })()}
-
-      <ServiceAreas category={category} />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import ServiceProcess from "../../../components/services/ServiceProcess";
 import WhyChoose from "components/home/WhyChoose";
 import ServiceAreas from "../../../components/services/ServiceAreas";
 import Review from "components/home/Review";
+import HomeFAQ from "components/home/HomeFAQ";
 import { useCmsData } from "../../../context/CmsContext";
 
 export default function ServicesPage() {
@@ -37,6 +38,7 @@ export default function ServicesPage() {
       <WhyChoose />
       <ServiceAreas />
       <Review />
+      <HomeFAQ />
     </div>
   );
 }
