@@ -33,6 +33,7 @@ export default function AboutFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0); // Open the first item by default
   const { cmsData } = useCmsData();
   const aboutContent = (cmsData as any)?.about?.content || {};
+  const faqBadge = aboutContent.faqBadge || "FAQ'S";
   const faqHeading = aboutContent.faqHeading || "FAQ's: Looking for Answers?";
   const faqSubheading = aboutContent.faqSubheading || "Find expert answers to common questions about our renovation, construction, and handyman services in Singapore.";
 
@@ -58,7 +59,7 @@ export default function AboutFAQ() {
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center mb-12">
           <span className="text-xs font-black uppercase tracking-[0.2em] text-primary bg-primary/5 px-3.5 py-2 rounded-full">
-            FAQ&apos;S
+            {faqBadge}
           </span>
           <h2 className="mt-4 text-3xl font-black tracking-tight text-secondary sm:text-4xl">
             {faqHeading}

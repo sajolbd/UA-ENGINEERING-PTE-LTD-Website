@@ -29,6 +29,7 @@ export default function ResidentialServices() {
   const [activeCategory, setActiveCategory] = useState<number | null>(0);
   const { cmsData, servicesData } = useCmsData();
   const aboutContent = (cmsData as any)?.about?.content || {};
+  const residentialBadge = aboutContent.residentialBadge || "WHAT WE DO";
   const residentialHeading = aboutContent.residentialHeading || "Complete Renovation, Engineering & Property Improvement Services";
   const residentialSubheading = aboutContent.residentialSubheading || "UA Engineering provides complete renovation, structural, waterproofing, electrical, plumbing, aluminium, and solar panel solutions for residential, commercial, and industrial properties across Singapore.";
 
@@ -38,7 +39,7 @@ export default function ResidentialServices() {
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center mb-16">
           <span className="text-sm font-bold uppercase tracking-widest text-primary">
-            WHAT WE DO
+            {residentialBadge}
           </span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-secondary sm:text-4xl">
             {residentialHeading}
