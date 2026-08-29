@@ -14,7 +14,7 @@ import { getApiBaseUrl, getBlogImageUrl } from "../../../../lib/api";
 // Allow dynamic rendering so new posts appear without a rebuild
 export const dynamic = "force-dynamic";
 
-const siteUrl = "https://ua-engineering-pte.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.uaengineering.com.sg";
 
 interface PageProps {
   params: {
