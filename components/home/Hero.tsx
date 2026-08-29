@@ -33,9 +33,9 @@ export default function Hero() {
 
   const slides = [
     {
-      heading: heroContent.heroSlide1Heading || heroContent.heroHeading || "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.",
-      subheading: heroContent.heroSlide1Subheading || heroContent.heroSubheading || "We handle it all with expertise, reliability, and guaranteed quality.",
-      bgImage: heroContent.heroSlide1Bg || heroImage,
+      heading: heroContent.heroHeading || heroContent.heroSlide1Heading || "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.",
+      subheading: heroContent.heroSubheading || heroContent.heroSlide1Subheading || "We handle it all with expertise, reliability, and guaranteed quality.",
+      bgImage: heroContent.heroImage || heroContent.heroSlide1Bg || heroImage,
     },
     {
       heading: heroContent.heroSlide2Heading || "Everything Your Property Needs. One Trusted Engineering Team.",

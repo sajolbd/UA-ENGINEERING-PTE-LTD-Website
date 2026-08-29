@@ -41,11 +41,6 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
   const [loading, setLoading] = useState(!initialData);
 
   useEffect(() => {
-    if (initialData) {
-      setLoading(false);
-      return;
-    }
-
     const apiBase = getApiBaseUrl();
 
     // 1. Fetch live CMS pages content from Express API / MongoDB

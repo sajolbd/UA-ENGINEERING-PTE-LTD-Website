@@ -1,5 +1,8 @@
 // app/layout.tsx
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
 
