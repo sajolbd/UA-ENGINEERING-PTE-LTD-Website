@@ -124,14 +124,10 @@ const VerificationIcon = () => (
   </svg>
 );
 
-interface PageProps {
-  params: {
-    slug: string;
-    subSlug: string;
-  };
-}
-
 import SubServiceCategoryClient from "../../../../../components/services/SubServiceCategoryClient";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateStaticParams() {
   const params: { slug: string; subSlug: string }[] = [];
@@ -148,19 +144,40 @@ export async function generateStaticParams() {
   return params;
 }
 
+interface PageProps {
+  params: {
+    slug: string;
+    subSlug: string;
+  };
+}
+
 export default function SubServicePage({ params }: PageProps) {
   const category = servicesData.find((cat) => cat.slug === params.slug);
-  if (!category) notFound();
-
-  const service = category.services.find((s) => s.slug === params.subSlug);
-  if (!service) notFound();
+  const service = category?.services.find((s) => s.slug === params.subSlug);
 
   return (
     <SubServiceCategoryClient
       slug={params.slug}
       subSlug={params.subSlug}
-      fallbackCategory={category}
-      fallbackService={service}
+      fallbackCategory={category || {
+        slug: params.slug,
+        title: params.slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+        shortDescription: "",
+        description: "",
+        featuredImage: "/images/layout/breadcrumb-bg.png",
+        bgImage: "/images/layout/breadcrumb-bg.png",
+        services: []
+      }}
+      fallbackService={service || {
+        slug: params.subSlug,
+        title: params.subSlug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+        image: "/images/layout/breadcrumb-bg.png",
+        description: "",
+        longDescription: "",
+        features: [],
+        benefits: [],
+        process: []
+      }}
     />
   );
 }

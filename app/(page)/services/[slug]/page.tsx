@@ -73,6 +73,9 @@ const categorySpecifications: Record<string, string[]> = {
 
 import ServiceCategoryClient from "../../../../components/services/ServiceCategoryClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   return servicesData.map((category) => ({
     slug: category.slug,
@@ -82,9 +85,18 @@ export async function generateStaticParams() {
 export default function ServiceCategoryPage({ params }: PageProps) {
   const category = servicesData.find((cat) => cat.slug === params.slug);
 
-  if (!category) {
-    notFound();
-  }
-
-  return <ServiceCategoryClient slug={params.slug} fallbackCategory={category} />;
+  return (
+    <ServiceCategoryClient
+      slug={params.slug}
+      fallbackCategory={category || {
+        slug: params.slug,
+        title: params.slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+        shortDescription: "",
+        description: "",
+        featuredImage: "/images/layout/breadcrumb-bg.png",
+        bgImage: "/images/layout/breadcrumb-bg.png",
+        services: []
+      }}
+    />
+  );
 }
