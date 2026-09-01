@@ -24,16 +24,16 @@ export const API_BASE = getApiBaseUrl();
  * load correctly from the active backend API or database.
  */
 export const getImageUrl = (imagePath: string): string => {
-  if (!imagePath) return "/images/logo.png";
-  
+  if (!imagePath) return "/images/logo.webp";
+
   if (imagePath.startsWith("data:") || imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
     return imagePath;
   }
-  
+
   if (imagePath.startsWith("/images/uploads/")) {
     return `${getApiBaseUrl()}${imagePath}`;
   }
-  
+
   return imagePath; // Falls back to local static assets
 };
 

@@ -17,7 +17,7 @@ export default function WhatsAppFloat() {
       "
     >
       <a
-        href="tel:+6598411786"
+        href="tel:+6584593003"
         aria-label="Call UA Engineering"
         className="
           flex
@@ -40,7 +40,7 @@ export default function WhatsAppFloat() {
       </a>
 
       <a
-        href="https://wa.me/6598411786"
+        href="https://wa.me/6584593003"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp UA Engineering"

@@ -93,9 +93,8 @@ export default function Hero() {
             key={`bg-${idx}`}
             src={getImageUrl(slide.bgImage)}
             alt={`Slide ${idx + 1} Background`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-              currentSlide === idx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
-            }`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${currentSlide === idx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
+              }`}
           />
         ))}
         <div className="absolute inset-0 bg-[#f4f8ff]/72" />
@@ -153,11 +152,10 @@ export default function Hero() {
                 <button
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    currentSlide === idx
+                  className={`h-2.5 rounded-full transition-all duration-300 ${currentSlide === idx
                       ? "w-8 bg-primary shadow-sm"
                       : "w-2.5 bg-slate-300 hover:bg-slate-400"
-                  }`}
+                    }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               ))}
@@ -167,7 +165,7 @@ export default function Hero() {
           {/* Action Buttons pinned at fixed, clean positions */}
           <div className="mx-auto mt-6 flex flex-wrap w-full max-w-[1160px] justify-between items-center gap-4 sm:mt-8 lg:mt-10 px-4 sm:px-0">
             <a
-              href="https://wa.me/6598411786?text=Hello%20UA%20Engineering%2C%20I%20would%20like%20to%20discuss%20a%20project."
+              href="https://wa.me/6584593003?text=Hello%20UA%20Engineering%2C%20I%20would%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noopener noreferrer"
               className="group/whatsapp relative inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 overflow-hidden rounded-full bg-primary px-3 py-2 text-sm font-bold text-white shadow-sm transition-colors duration-300 sm:min-h-11 sm:min-w-[190px] sm:flex-none sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
@@ -184,7 +182,7 @@ export default function Hero() {
             >
               <span className="absolute inset-0 translate-x-[-101%] rounded-full bg-primary transition-transform duration-500 ease-in-out group-hover/learn:translate-x-0" />
               <span className="relative z-10 flex items-center gap-2 transition-colors duration-300">
-                Learn More
+                Site Visit Scheduling
                 <MoveRight size={18} />
               </span>
             </Link>

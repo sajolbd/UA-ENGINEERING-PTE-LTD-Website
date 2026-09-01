@@ -53,11 +53,11 @@ const services = [
 export default function Footer() {
   const { cmsData } = useCmsData();
   const site = (cmsData as any)?.site?.content || {};
-  const footerLogo = site.footerLogo || "/images/footer-logo.png";
+  const logo = site.siteLogo || "/images/logo.webp";
   const footerAbout = site.footerAboutText || "UA Engineering PTE. LTD. provides professional renovation, waterproofing, roofing, steel works, electrical, plumbing, aluminium glazing and maintenance services throughout Singapore.";
-  const address = site.address || "10 Anson Road, Singapore 079903";
-  const phone = site.phone || "+65 9841 1786";
-  const email = site.email || "hello.uaengineering@gmail.com";
+  const address = site.address || "38C Sea Avenue Marine Mansion Singapore 424256";
+  const phone = site.phone || "+65 8459 3003";
+  const email = site.email || "Info@uaengineering.com.sg";
 
   const socialLinks = [
     {
@@ -115,9 +115,12 @@ export default function Footer() {
           <div>
             <Link href="/" className="mb-5 inline-flex">
               <img
-                src={getImageUrl(footerLogo)}
+                src={getImageUrl(logo)}
                 alt="UA Engineering"
-                className="h-auto w-[160px] max-h-16 max-w-full object-contain sm:w-[210px]"
+                className="h-auto w-[180px] max-h-16 max-w-full object-contain sm:w-[220px]"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/images/logo.webp";
+                }}
               />
             </Link>
 

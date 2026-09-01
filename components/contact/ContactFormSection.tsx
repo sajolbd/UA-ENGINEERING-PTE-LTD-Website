@@ -28,9 +28,9 @@ export default function ContactFormSection() {
   const { cmsData } = useCmsData();
   const contact = (cmsData as any)?.contact?.content || {};
   const site = (cmsData as any)?.site?.content || {};
-  const address = contact.contactAddress || site.address || "10 Anson Road, Singapore 079903";
-  const phone = contact.contactPhone || site.phone || "+65 9841 1786";
-  const email = contact.contactEmail || site.email || "hello.uaengineering@gmail.com";
+  const address = contact.contactAddress || site.address || "38C Sea Avenue Marine Mansion Singapore 424256";
+  const phone = contact.contactPhone || site.phone || "+65 8459 3003";
+  const email = contact.contactEmail || site.email || "Info@uaengineering.com.sg";
   const hours = contact.contactHours || site.workingHours || "Mon - Sat: 9:00 AM - 6:00 PM (Emergency 24/7 Support)";
 
   const formRef = useRef<HTMLFormElement>(null);

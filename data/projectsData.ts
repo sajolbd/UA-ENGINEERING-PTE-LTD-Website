@@ -15,6 +15,9 @@ export interface ProjectItem {
 
 export const projectsData: ProjectItem[] = [
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e9",
     "title": "Suspended Cove Ceiling Grid System",
     "category": "Renovation & Tiling",
@@ -26,6 +29,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e8",
     "title": "Controlled Concrete Demolition",
     "category": "Structural & Steel",
@@ -37,6 +43,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e7",
     "title": "Luxury Condominium Lobby Tiling",
     "category": "Renovation & Tiling",
@@ -48,6 +57,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e6",
     "title": "Rooftop Solar Array Grid Integration",
     "category": "Solar Panel",
@@ -59,6 +71,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e5",
     "title": "Modern Office Drywall Fit-out",
     "category": "Renovation & Tiling",
@@ -70,6 +85,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e4",
     "title": "Foundation & Structural Waterproofing",
     "category": "Painting & Waterproofing",
@@ -81,6 +99,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e3",
     "title": "Industrial Substation Electrical Works",
     "category": "Electrical & Plumbing",
@@ -92,6 +113,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e2",
     "title": "Commercial Plumbing Installation",
     "category": "Electrical & Plumbing",
@@ -103,6 +127,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e1",
     "title": "Roof Waterproofing",
     "category": "Painting & Waterproofing",
@@ -114,6 +141,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76e0",
     "title": "External Painting",
     "category": "Painting & Waterproofing",
@@ -125,6 +155,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76df",
     "title": "Latest Roof Coating",
     "category": "Painting & Waterproofing",
@@ -136,6 +169,9 @@ export const projectsData: ProjectItem[] = [
     "__v": 0
   },
   {
+    "slug": "",
+    "subtitle": "",
+    "gallery": [],
     "_id": "6a84367006af49c1185b76de",
     "title": "SHAMIM",
     "category": "Painting & Waterproofing",

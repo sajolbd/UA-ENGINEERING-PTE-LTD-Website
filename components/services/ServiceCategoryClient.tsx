@@ -252,7 +252,7 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
                   <span>Get Free Quote</span>
                 </a>
                 <a
-                  href={`https://wa.me/6598411786?text=Hello%20UA%20Engineering%2C%20I%20would%20like%20to%20discuss%20about%20${encodeURIComponent(category.title)}.`}
+                  href={`https://wa.me/6584593003?text=Hello%20UA%20Engineering%2C%20I%20would%20like%20to%20discuss%20about%20${encodeURIComponent(category.title)}.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:bg-slate-50"

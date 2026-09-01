@@ -24,14 +24,14 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const site = (cmsData as any)?.site?.content || {};
-  const phone = site.phone || "+65 9841 1786";
-  const email = site.email || "hello.uaengineering@gmail.com";
+  const phone = site.phone || "+65 8459 3003";
+  const email = site.email || "Info@uaengineering.com.sg";
   const companyName = site.companyName || "UA ENGINEERING PTE. LTD.";
   const welcomeMsgRaw = site.welcomeMessage || "Welcome to";
   const welcomeMsg = companyName
     ? welcomeMsgRaw.replace(new RegExp(companyName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "gi"), "").trim()
     : welcomeMsgRaw;
-  const logo = site.siteLogo || "/images/logo.png";
+  const logo = site.siteLogo || "/images/logo.webp";
   const appointmentBtnText = site.appointmentButtonText || "Book An Appointment";
 
   const isActiveLink = (href: string) =>
