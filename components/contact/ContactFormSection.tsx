@@ -9,7 +9,6 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
-  MessageSquare,
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import Container from "../shared/Container";
@@ -45,6 +44,9 @@ export default function ContactFormSection() {
     message: "",
   });
 
+  // Per-field touched state for live validation
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
   // UI Status State
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
@@ -60,18 +62,61 @@ export default function ContactFormSection() {
     }));
   };
 
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name } = e.target;
+    setTouched((prev) => ({
+      ...prev,
+      [name]: true,
+    }));
+  };
+
+  // Field validation logic
+  const getFieldError = (fieldName: string) => {
+    if (!touched[fieldName]) return "";
+    const val = (formData as any)[fieldName]?.trim() || "";
+
+    if (fieldName === "name" && !val) return "Name is required";
+    if (fieldName === "mobile" && !val) return "Mobile number is required";
+    if (fieldName === "email") {
+      if (!val) return "Email address is required";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return "Please enter a valid email address";
+    }
+    if (fieldName === "message" && !val) return "Project description is required";
+
+    return "";
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Mark all required fields as touched to display red errors
+    setTouched({
+      name: true,
+      mobile: true,
+      email: true,
+      message: true,
+    });
+
+    // Check for errors
+    const nameErr = !formData.name.trim() ? "Name is required" : "";
+    const mobileErr = !formData.mobile.trim() ? "Mobile number is required" : "";
+    const emailErr = !formData.email.trim()
+      ? "Email address is required"
+      : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())
+      ? "Please enter a valid email address"
+      : "";
+    const msgErr = !formData.message.trim() ? "Project description is required" : "";
+
+    if (nameErr || mobileErr || emailErr || msgErr) {
+      setErrorMessage("Please complete all required fields correctly.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus("idle");
     setErrorMessage("");
-
-    // Simple Client-Side Validations
-    if (!formData.name.trim() || !formData.mobile.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setErrorMessage("Please fill in all required fields.");
-      setIsSubmitting(false);
-      return;
-    }
 
     try {
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
@@ -81,7 +126,7 @@ export default function ContactFormSection() {
       if (serviceId && templateId && publicKey && formRef.current) {
         await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
       } else {
-        // Fallback simulation delay if env variables not set yet
+        // Fallback simulation delay if env variables not set
         await new Promise((resolve) => setTimeout(resolve, 1500));
       }
 
@@ -94,6 +139,7 @@ export default function ContactFormSection() {
         service: "",
         message: "",
       });
+      setTouched({});
     } catch (error: any) {
       console.error("Submission error:", error);
       setSubmitStatus("error");
@@ -102,6 +148,11 @@ export default function ContactFormSection() {
       setIsSubmitting(false);
     }
   };
+
+  const nameError = getFieldError("name");
+  const mobileError = getFieldError("mobile");
+  const emailError = getFieldError("email");
+  const messageError = getFieldError("message");
 
   return (
     <section className="bg-white py-8 lg:py-12 border-t border-slate-100">
@@ -237,11 +288,11 @@ export default function ContactFormSection() {
                     </p>
                   </div>
 
-                  <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+                  <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-5">
 
-                    {/* Error Alerts */}
+                    {/* Error Alert */}
                     {errorMessage && (
-                      <div className="flex items-center gap-2.5 p-4 rounded-xl bg-red-50 border border-red-100 text-red-700 text-sm font-bold animate-pulse">
+                      <div className="flex items-center gap-2.5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-bold animate-shake">
                         <AlertCircle size={18} className="shrink-0" />
                         <span>{errorMessage}</span>
                       </div>
@@ -251,52 +302,82 @@ export default function ContactFormSection() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
                         <label htmlFor="name" className="text-xs font-black uppercase tracking-wider text-secondary">
-                          Your Name <span className="text-primary">*</span>
+                          Your Name <span className="text-red-600 font-bold">*</span>
                         </label>
                         <input
                           id="name"
                           type="text"
                           name="name"
-                          required
                           value={formData.name}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           placeholder="e.g. John Tan"
-                          className="w-full h-12 px-4 rounded-xl bg-white border border-slate-200/80 text-secondary placeholder:text-slate-400 font-semibold text-sm outline-none transition duration-200 focus:border-primary focus:ring-2 focus:ring-primary/10"
+                          className={`w-full h-12 px-4 rounded-xl bg-white border text-secondary placeholder:text-slate-400 font-semibold text-sm outline-none transition duration-200 ${
+                            nameError
+                              ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 bg-red-50/30 text-red-900"
+                              : "border-slate-200/80 focus:border-primary focus:ring-2 focus:ring-primary/10"
+                          }`}
                         />
+                        {nameError && (
+                          <p className="text-xs font-extrabold text-red-600 flex items-center gap-1 mt-1">
+                            <AlertCircle size={12} className="shrink-0" />
+                            <span>{nameError}</span>
+                          </p>
+                        )}
                       </div>
 
                       <div className="space-y-1.5">
                         <label htmlFor="mobile" className="text-xs font-black uppercase tracking-wider text-secondary">
-                          Mobile Number <span className="text-primary">*</span>
+                          Mobile Number <span className="text-red-600 font-bold">*</span>
                         </label>
                         <input
                           id="mobile"
                           type="tel"
                           name="mobile"
-                          required
                           value={formData.mobile}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           placeholder="e.g. +65 9123 4567"
-                          className="w-full h-12 px-4 rounded-xl bg-white border border-slate-200/80 text-secondary placeholder:text-slate-400 font-semibold text-sm outline-none transition duration-200 focus:border-primary focus:ring-2 focus:ring-primary/10"
+                          className={`w-full h-12 px-4 rounded-xl bg-white border text-secondary placeholder:text-slate-400 font-semibold text-sm outline-none transition duration-200 ${
+                            mobileError
+                              ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 bg-red-50/30 text-red-900"
+                              : "border-slate-200/80 focus:border-primary focus:ring-2 focus:ring-primary/10"
+                          }`}
                         />
+                        {mobileError && (
+                          <p className="text-xs font-extrabold text-red-600 flex items-center gap-1 mt-1">
+                            <AlertCircle size={12} className="shrink-0" />
+                            <span>{mobileError}</span>
+                          </p>
+                        )}
                       </div>
                     </div>
 
                     {/* Row 2: Email */}
                     <div className="space-y-1.5">
                       <label htmlFor="email" className="text-xs font-black uppercase tracking-wider text-secondary">
-                        Email Address <span className="text-primary">*</span>
+                        Email Address <span className="text-red-600 font-bold">*</span>
                       </label>
                       <input
                         id="email"
                         type="email"
                         name="email"
-                        required
                         value={formData.email}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         placeholder="e.g. john.tan@gmail.com"
-                        className="w-full h-12 px-4 rounded-xl bg-white border border-slate-200/80 text-secondary placeholder:text-slate-400 font-semibold text-sm outline-none transition duration-200 focus:border-primary focus:ring-2 focus:ring-primary/10"
+                        className={`w-full h-12 px-4 rounded-xl bg-white border text-secondary placeholder:text-slate-400 font-semibold text-sm outline-none transition duration-200 ${
+                          emailError
+                            ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 bg-red-50/30 text-red-900"
+                            : "border-slate-200/80 focus:border-primary focus:ring-2 focus:ring-primary/10"
+                        }`}
                       />
+                      {emailError && (
+                        <p className="text-xs font-extrabold text-red-600 flex items-center gap-1 mt-1">
+                          <AlertCircle size={12} className="shrink-0" />
+                          <span>{emailError}</span>
+                        </p>
+                      )}
                     </div>
 
                     {/* Row 3: Select Service Category */}
@@ -331,18 +412,28 @@ export default function ContactFormSection() {
                     {/* Row 4: Message */}
                     <div className="space-y-1.5">
                       <label htmlFor="message" className="text-xs font-black uppercase tracking-wider text-secondary">
-                        Describe Your Project <span className="text-primary">*</span>
+                        Describe Your Project <span className="text-red-600 font-bold">*</span>
                       </label>
                       <textarea
                         id="message"
                         name="message"
-                        required
                         rows={4}
                         value={formData.message}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         placeholder="Hi, can I get a quote / site survey for.."
-                        className="w-full p-4 rounded-xl bg-white border border-slate-200/80 text-secondary placeholder:text-slate-400 font-semibold text-sm outline-none transition duration-200 focus:border-primary focus:ring-2 focus:ring-primary/10 resize-none"
+                        className={`w-full p-4 rounded-xl bg-white border text-secondary placeholder:text-slate-400 font-semibold text-sm outline-none transition duration-200 resize-none ${
+                          messageError
+                            ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 bg-red-50/30 text-red-900"
+                            : "border-slate-200/80 focus:border-primary focus:ring-2 focus:ring-primary/10"
+                        }`}
                       />
+                      {messageError && (
+                        <p className="text-xs font-extrabold text-red-600 flex items-center gap-1 mt-1">
+                          <AlertCircle size={12} className="shrink-0" />
+                          <span>{messageError}</span>
+                        </p>
+                      )}
                     </div>
 
                     {/* Row 5: Submit Button */}
