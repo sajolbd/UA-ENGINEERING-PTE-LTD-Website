@@ -83,9 +83,9 @@ export default function CallBackSection() {
         setErrorMessage("");
 
         try {
-            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
-            const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
-            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
+            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_la3bt5f";
+            const templateId = process.env.NEXT_PUBLIC_EMAILJS_CALLBACK_TEMPLATE_ID || "template_1t1rkes";
+            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "LYaZqwFDUwnGTikxb";
 
             if (serviceId && templateId && publicKey && formRef.current) {
                 await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
