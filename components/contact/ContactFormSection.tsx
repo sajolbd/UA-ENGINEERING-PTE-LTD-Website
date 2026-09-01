@@ -11,6 +11,7 @@ import {
   AlertCircle,
   MessageSquare,
 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import Container from "../shared/Container";
 import { useCmsData } from "../../context/CmsContext";
 
@@ -73,32 +74,16 @@ export default function ContactFormSection() {
     }
 
     try {
-      // ==========================================
-      // INTEGRATION PLACEHOLDER: EmailJS & Backend
-      // ==========================================
-      // To connect EmailJS:
-      // 1. Install EmailJS: npm install @emailjs/browser
-      // 2. Import at top: import emailjs from '@emailjs/browser';
-      // 3. Replace the block below with:
-      //
-      // await emailjs.sendForm(
-      //   'YOUR_EMAILJS_SERVICE_ID',
-      //   'YOUR_EMAILJS_TEMPLATE_ID',
-      //   formRef.current!,
-      //   'YOUR_EMAILJS_PUBLIC_KEY'
-      // );
-      //
-      // To connect to a custom Backend / Dashboard database:
-      //
-      // await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
-      // ==========================================
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
 
-      // Simulating a network request delay (1.5 seconds)
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      if (serviceId && templateId && publicKey && formRef.current) {
+        await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+      } else {
+        // Fallback simulation delay if env variables not set yet
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+      }
 
       // Successfully Submitted
       setSubmitStatus("success");
