@@ -176,8 +176,10 @@ export default function Hero() {
                 WhatsApp Us
               </span>
             </a>
-            <Link
-              href="/#services"
+            <a
+              href="https://calendly.com/social-uaengineering"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group/learn relative inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 overflow-hidden rounded-full bg-secondary px-3 py-2 text-sm font-bold text-white shadow-sm transition-colors duration-300 sm:min-h-11 sm:min-w-[190px] sm:flex-none sm:gap-2 sm:px-6 sm:py-3 sm:text-base"
             >
               <span className="absolute inset-0 translate-x-[-101%] rounded-full bg-primary transition-transform duration-500 ease-in-out group-hover/learn:translate-x-0" />
@@ -185,7 +187,7 @@ export default function Hero() {
                 Site Visit Scheduling
                 <MoveRight size={18} />
               </span>
-            </Link>
+            </a>
           </div>
 
           <div className="relative mx-auto mt-8 sm:mt-12 lg:mt-16 grid w-full max-w-[1160px] grid-cols-2 gap-2 rounded-[22px] bg-white/88 p-2 shadow-[0_18px_55px_rgba(15,23,42,0.18)] backdrop-blur sm:gap-3 sm:rounded-[34px] sm:p-3 lg:grid-cols-4">

@@ -243,13 +243,13 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
 
               <div className="mt-6 flex flex-wrap gap-4 items-center">
                 <a
-                  href="https://calendly.com/uaengineering"
+                  href="https://calendly.com/social-uaengineering"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-secondary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:shadow-xl hover:shadow-primary/20"
                 >
                   <Calendar size={16} />
-                  <span>Get Free Quote</span>
+                  <span>Get Free Quote & Book Consultation</span>
                 </a>
                 <a
                   href={`https://wa.me/6584593003?text=Hello%20UA%20Engineering%2C%20I%20would%20like%20to%20discuss%20about%20${encodeURIComponent(category.title)}.`}

@@ -3,6 +3,7 @@
 import React from "react";
 import Breadcrumb from "components/layout/Breadcrumb";
 import ContactFormSection from "components/contact/ContactFormSection";
+import CalendlySection from "components/contact/CalendlySection";
 import { useCmsData } from "../../../context/CmsContext";
 
 export default function ContactPage() {
@@ -25,6 +26,7 @@ export default function ContactPage() {
         bgImage={content.heroImage || "/images/layout/contact-bg.png"}
       />
       <ContactFormSection />
+      <CalendlySection />
     </div>
   );
 }

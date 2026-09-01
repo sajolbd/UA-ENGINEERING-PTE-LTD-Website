@@ -9,7 +9,6 @@ export interface ProjectItem {
   description: string;
   location: string;
   gallery?: string[];
-  slug?: string;
   createdAt?: string;
   __v?: number;
 }

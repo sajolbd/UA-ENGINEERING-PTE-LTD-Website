@@ -77,15 +77,17 @@ export default function Navbar() {
           </a>
 
           <div className="hidden xl:flex pl-4">
-            <Link
-              href="/contact"
+            <a
+              href="https://calendly.com/social-uaengineering"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative inline-flex h-9 items-center justify-center overflow-hidden rounded-full bg-white px-4 text-xs font-semibold text-primary transition-colors duration-300"
             >
               <span className="absolute inset-0 translate-x-[-101%] rounded-full bg-secondary transition-transform duration-500 ease-in-out group-hover:translate-x-0" />
               <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
                 {appointmentBtnText}
               </span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -282,14 +284,16 @@ export default function Navbar() {
 
           {/* Bottom Button */}
           <div className="px-5 pt-4">
-            <Link
-              href="/contact"
+            <a
+              href="https://calendly.com/social-uaengineering"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="group relative flex w-full items-center justify-center overflow-hidden rounded-full bg-primary py-3 text-sm font-semibold text-white"
             >
               <span className="absolute inset-0 translate-x-[-101%] bg-secondary transition-transform duration-500 ease-in-out group-hover:translate-x-0" />
               <span className="relative z-10">Book An Appointment</span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
