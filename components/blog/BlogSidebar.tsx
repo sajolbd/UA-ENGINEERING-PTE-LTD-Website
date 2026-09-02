@@ -3,7 +3,15 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebookF, FaLinkedinIn, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaYoutube,
+  FaWhatsapp,
+  FaXTwitter,
+  FaTiktok,
+} from "react-icons/fa6";
 import { BlogPost } from "../../data/blogData";
 import { getBlogImageUrl } from "../../lib/api";
 
@@ -13,6 +21,39 @@ interface BlogSidebarProps {
   currentPostUrl?: string;
   currentPostTitle?: string;
 }
+
+const companySocials = [
+  {
+    name: "Facebook",
+    icon: FaFacebookF,
+    href: "https://www.facebook.com/UA.Engineering.PTE.LTD",
+  },
+  {
+    name: "Instagram",
+    icon: FaInstagram,
+    href: "https://www.instagram.com/ua_engineering_pte_ltd",
+  },
+  {
+    name: "LinkedIn",
+    icon: FaLinkedinIn,
+    href: "https://www.linkedin.com/company/ua-engineering-pte-ltd/",
+  },
+  {
+    name: "YouTube",
+    icon: FaYoutube,
+    href: "https://www.youtube.com/@ua_engineering_pte_ltd",
+  },
+  {
+    name: "X (Twitter)",
+    icon: FaXTwitter,
+    href: "https://x.com/UAEngineering1",
+  },
+  {
+    name: "TikTok",
+    icon: FaTiktok,
+    href: "https://www.tiktok.com/@ua.engineering3",
+  },
+];
 
 export default function BlogSidebar({
   mode,
@@ -49,9 +90,9 @@ export default function BlogSidebar({
       link: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fullUrl)}`,
     },
     {
-      name: "Twitter / X",
-      icon: FaTwitter,
-      link: `https://twitter.com/intent/tweet?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(currentPostTitle)}`,
+      name: "X (Twitter)",
+      icon: FaXTwitter,
+      link: `https://x.com/intent/post?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(currentPostTitle)}`,
     },
     {
       name: "LinkedIn",
@@ -69,30 +110,54 @@ export default function BlogSidebar({
     <div className="space-y-6">
       {/* Social Share Card (only on Detail Page) — pinned at top */}
       {mode === "detail" && (
-        <div className="bg-white border border-secondary/40  p-6 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] text-center">
-          <h4 className="text-xs font-black tracking-wider uppercase text-slate-800 mb-2">
-            Share this Article
-          </h4>
-          <p className="text-[11px] text-slate-400 font-bold mb-4">
-            Share this post with your network
-          </p>
+        <div className="bg-white border border-secondary/40 p-6 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] text-center space-y-4">
+          <div>
+            <h4 className="text-xs font-black tracking-wider uppercase text-slate-800 mb-1">
+              Share this Article
+            </h4>
+            <p className="text-[11px] text-slate-400 font-bold">
+              Share this post with your network
+            </p>
+            <div className="flex flex-wrap justify-center gap-2.5 mt-3">
+              {shareButtons.map((btn) => {
+                const Icon = btn.icon;
+                return (
+                  <a
+                    key={btn.name}
+                    href={btn.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Share on ${btn.name}`}
+                    className={`flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition-all duration-200 ${shareHover}`}
+                  >
+                    <Icon size={14} />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            {shareButtons.map((btn) => {
-              const Icon = btn.icon;
-              return (
-                <a
-                  key={btn.name}
-                  href={btn.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Share on ${btn.name}`}
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition-all duration-200 ${shareHover}`}
-                >
-                  <Icon size={16} />
-                </a>
-              );
-            })}
+          <div className="pt-3 border-t border-slate-100">
+            <h4 className="text-xs font-black tracking-wider uppercase text-slate-800 mb-1">
+              Follow Us
+            </h4>
+            <div className="flex flex-wrap justify-center gap-2 mt-2">
+              {companySocials.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Follow on ${item.name}`}
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-600 transition-all duration-200 hover:bg-primary hover:text-white hover:border-primary"
+                  >
+                    <Icon size={13} />
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}

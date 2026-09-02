@@ -52,6 +52,32 @@ const services = [
   },
 ];
 
+const isGenericUrl = (url?: string) => {
+  if (!url) return true;
+  const clean = url.trim().toLowerCase().replace(/\/$/, "");
+  return (
+    clean === "https://facebook.com" ||
+    clean === "https://www.facebook.com" ||
+    clean === "https://instagram.com" ||
+    clean === "https://www.instagram.com" ||
+    clean === "https://linkedin.com" ||
+    clean === "https://www.linkedin.com" ||
+    clean === "https://youtube.com" ||
+    clean === "https://www.youtube.com" ||
+    clean === "https://twitter.com" ||
+    clean === "https://x.com" ||
+    clean === "https://tiktok.com" ||
+    clean === "https://www.tiktok.com"
+  );
+};
+
+const getSocialUrl = (customUrl: string | undefined, fallbackUrl: string) => {
+  if (!customUrl || isGenericUrl(customUrl)) {
+    return fallbackUrl;
+  }
+  return customUrl;
+};
+
 export default function Footer() {
   const { cmsData } = useCmsData();
   const site = (cmsData as any)?.site?.content || {};
@@ -65,37 +91,37 @@ export default function Footer() {
     {
       name: "Facebook",
       icon: <FaFacebookF size={16} />,
-      href: site.facebook || "https://www.facebook.com/UA.Engineering.PTE.LTD",
+      href: getSocialUrl(site.facebook, "https://www.facebook.com/UA.Engineering.PTE.LTD"),
     },
     {
       name: "Instagram",
       icon: <FaInstagram size={16} />,
-      href: site.instagram || "https://www.instagram.com/ua_engineering_pte_ltd",
+      href: getSocialUrl(site.instagram, "https://www.instagram.com/ua_engineering_pte_ltd"),
     },
     {
       name: "LinkedIn",
       icon: <FaLinkedinIn size={16} />,
-      href: site.linkedin || "https://www.linkedin.com/company/ua-engineering-pte-ltd/",
+      href: getSocialUrl(site.linkedin, "https://www.linkedin.com/company/ua-engineering-pte-ltd/"),
     },
     {
       name: "YouTube",
       icon: <FaYoutube size={16} />,
-      href: site.youtube || "https://www.youtube.com/@ua_engineering_pte_ltd",
+      href: getSocialUrl(site.youtube, "https://www.youtube.com/@ua_engineering_pte_ltd"),
     },
     {
       name: "X (Twitter)",
       icon: <FaXTwitter size={16} />,
-      href: site.x || site.twitter || "https://x.com/UAEngineering1",
+      href: getSocialUrl(site.x || site.twitter, "https://x.com/UAEngineering1"),
     },
     {
       name: "TikTok",
       icon: <FaTiktok size={16} />,
-      href: site.tiktok || "https://www.tiktok.com/@ua.engineering3",
+      href: getSocialUrl(site.tiktok, "https://www.tiktok.com/@ua.engineering3"),
     },
     {
       name: "WhatsApp",
       icon: <FaWhatsapp size={16} />,
-      href: site.whatsapp || `https://wa.me/${phone.replace(/[^0-9]/g, "")}`,
+      href: getSocialUrl(site.whatsapp, `https://wa.me/${phone.replace(/[^0-9]/g, "")}`),
     },
   ];
 
