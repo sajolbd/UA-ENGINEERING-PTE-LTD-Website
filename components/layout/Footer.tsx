@@ -9,7 +9,9 @@ import {
   FaLinkedinIn,
   FaYoutube,
   FaWhatsapp,
-} from "react-icons/fa";
+  FaXTwitter,
+  FaTiktok,
+} from "react-icons/fa6";
 
 import Container from "components/shared/Container";
 import { useCmsData } from "../../context/CmsContext";
@@ -61,22 +63,37 @@ export default function Footer() {
 
   const socialLinks = [
     {
+      name: "Facebook",
       icon: <FaFacebookF size={16} />,
-      href: site.facebook || "https://facebook.com",
+      href: site.facebook || "https://www.facebook.com/UA.Engineering.PTE.LTD",
     },
     {
+      name: "Instagram",
       icon: <FaInstagram size={16} />,
-      href: site.instagram || "https://instagram.com",
+      href: site.instagram || "https://www.instagram.com/ua_engineering_pte_ltd",
     },
     {
+      name: "LinkedIn",
       icon: <FaLinkedinIn size={16} />,
-      href: site.linkedin || "https://linkedin.com",
+      href: site.linkedin || "https://www.linkedin.com/company/ua-engineering-pte-ltd/",
     },
     {
+      name: "YouTube",
       icon: <FaYoutube size={16} />,
-      href: site.youtube || "https://youtube.com",
+      href: site.youtube || "https://www.youtube.com/@ua_engineering_pte_ltd",
     },
     {
+      name: "X (Twitter)",
+      icon: <FaXTwitter size={16} />,
+      href: site.x || site.twitter || "https://x.com/UAEngineering1",
+    },
+    {
+      name: "TikTok",
+      icon: <FaTiktok size={16} />,
+      href: site.tiktok || "https://www.tiktok.com/@ua.engineering3",
+    },
+    {
+      name: "WhatsApp",
       icon: <FaWhatsapp size={16} />,
       href: site.whatsapp || `https://wa.me/${phone.replace(/[^0-9]/g, "")}`,
     },
@@ -204,13 +221,14 @@ export default function Footer() {
               <div>
                 <p className="mb-4 font-medium text-white">Follow Us</p>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   {socialLinks.map((item, index) => (
                     <Link
                       key={index}
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={item.name}
                       className="
                         flex
                         h-10
