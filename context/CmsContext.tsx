@@ -44,7 +44,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
     const apiBase = getApiBaseUrl();
 
     // 1. Fetch live CMS pages content from Express API / MongoDB
-    fetch(`${apiBase}/api/cms`)
+    fetch(`${apiBase}/api/cms`, { cache: "no-store" })
       .then((res) => res.json())
       .then((res) => {
         if (res.success && res.data && Object.keys(res.data).length > 0) {
@@ -73,7 +73,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       .catch((err) => console.error("CMS API fetch notice:", err));
 
     // 2. Fetch live Services catalog from Express API / MongoDB
-    fetch(`${apiBase}/api/services`)
+    fetch(`${apiBase}/api/services`, { cache: "no-store" })
       .then((res) => res.json())
       .then((res) => {
         if (res.success && Array.isArray(res.data) && res.data.length > 0) {
@@ -83,7 +83,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       .catch((err) => console.error("Services API fetch notice:", err));
 
     // 3. Fetch live Projects portfolio from Express API / MongoDB
-    fetch(`${apiBase}/api/projects`)
+    fetch(`${apiBase}/api/projects`, { cache: "no-store" })
       .then((res) => res.json())
       .then((res) => {
         if (res.success && Array.isArray(res.data) && res.data.length > 0) {
@@ -93,7 +93,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       .catch((err) => console.error("Projects API fetch notice:", err));
 
     // 4. Fetch live Blog articles from Express API / MongoDB
-    fetch(`${apiBase}/api/blogs`)
+    fetch(`${apiBase}/api/blogs`, { cache: "no-store" })
       .then((res) => res.json())
       .then((res) => {
         if (res.success && Array.isArray(res.data)) {

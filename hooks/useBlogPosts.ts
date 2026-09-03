@@ -38,13 +38,13 @@ export function useBlogPosts() {
       // ignore
     }
 
-    fetch(`${getApiBaseUrl()}/api/blogs`)
+    fetch(`${getApiBaseUrl()}/api/blogs`, { cache: "no-store" })
       .then((res) => res.json())
       .then((data) => {
         const apiPosts = (data.success && Array.isArray(data.data)) ? data.data : [];
         
-        // Merge API posts, localSaved posts, and fallbackPosts (deduplicated)
-        const combined = [...apiPosts, ...localSaved];
+        // Merge API posts and fallbackPosts (deduplicated)
+        const combined = [...apiPosts];
         fallbackPosts.forEach((fb) => {
           const exists = combined.some(
             (p) =>
