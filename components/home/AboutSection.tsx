@@ -20,7 +20,6 @@ export default function AboutSection() {
     const aboutSubheading = homeContent.aboutSubheading || "We provide home renovation, painting, waterproofing, main gate & grill works, balcony shelter installation, roof extensions, aluminium & glass installation, electrical, plumbing, aircon, and solar panel installation for homes and commercial properties across Singapore.";
     const aboutImage = homeContent.aboutImage || "/images/home/about/about-main.jpg";
     const aboutImageAlt = homeContent.aboutImageAlt || "UA Engineering Upgrading Worksite";
-    const experienceYears = parseInt(homeContent.aboutExperience) || 15;
     const card1Title = homeContent.aboutCard1Title || "BCA Certified Company";
     const card1Desc = homeContent.aboutCard1Desc || "Meeting standards with quality workmanship, compliance, and professional practices.";
     const card2Title = homeContent.aboutCard2Title || "Skilled & Certified Workforce";
@@ -42,22 +41,6 @@ export default function AboutSection() {
                                 className="h-auto w-full max-h-[550px] object-cover rounded-2xl shadow-md"
                             />
                         </div>
-
-                        {/* Experience Box */}
-                        <div className="absolute right-0 top-8 bg-white px-5 py-4 shadow-2xl lg:right-[-30px]">
-                            <div className="flex items-center gap-3">
-                                <span className="text-5xl font-bold text-primary">
-                                    {experienceYears}
-                                </span>
-
-                                <span className="text-lg font-semibold text-secondary">
-                                    Years
-                                    <br />
-                                    Experience
-                                </span>
-                            </div>
-                        </div>
-
 
                         {/* Decoration */}
                         <div className="absolute -bottom-12 -left-12 h-36 w-36 rounded-full border-[12px] border-primary/10" />

@@ -46,9 +46,6 @@ export default function AboutHero() {
   const heroImage = aboutContent.aboutImage || aboutContent.heroImage || "/images/home/about/about-main.jpg";
   const heroImageAlt = aboutContent.heroImageAlt || "UA Engineering Renovation Specialist";
 
-  const experienceYears = aboutContent.experienceYears || "15";
-  const experienceTitle = aboutContent.experienceTitle || "Years of Excellence";
-  const experienceSubtitle = aboutContent.experienceSubtitle || "Renovation & Upgrading Services";
   const trustHeading = aboutContent.trustHeading || "Why Property Owners Trust UA Engineering";
 
   let highlightsList = DEFAULT_HIGHLIGHTS;
@@ -83,17 +80,6 @@ export default function AboutHero() {
                 }}
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
-              
-              {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md px-6 py-4 rounded-xl shadow-lg border border-white/50 flex items-center gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-white font-bold text-xl">
-                  {experienceYears.includes("+") ? experienceYears : `${experienceYears}+`}
-                </div>
-                <div>
-                  <h4 className="font-bold text-secondary text-sm sm:text-base">{experienceTitle}</h4>
-                  <p className="text-xs text-slate-600 font-medium">{experienceSubtitle}</p>
-                </div>
-              </div>
             </div>
 
             {/* Circular Decorative Element */}
