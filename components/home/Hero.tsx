@@ -35,37 +35,37 @@ export default function Hero() {
     {
       heading: heroContent.heroHeading || heroContent.heroSlide1Heading || "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.",
       subheading: heroContent.heroSubheading || heroContent.heroSlide1Subheading || "We handle it all with expertise, reliability, and guaranteed quality.",
-      bgImage: heroContent.heroImage || heroContent.heroSlide1Bg || heroImage,
+      bgImage: heroContent.heroSlide1Bg || heroContent.heroImage || "/images/home/hero/hero-bg.png",
     },
     {
       heading: heroContent.heroSlide2Heading || "Everything Your Property Needs. One Trusted Engineering Team.",
       subheading: heroContent.heroSlide2Subheading || "From renovations and reinstatement to electrical, plumbing, painting, roofing, steel fabrication, waterproofing, and maintenance - we handle every project with precision and professionalism.",
-      bgImage: heroContent.heroSlide2Bg || heroImage,
+      bgImage: heroContent.heroSlide2Bg || "/images/services/renovation.png",
     },
     {
       heading: heroContent.heroSlide3Heading || "Fresh Paint. Lasting Protection. Stunning Results.",
       subheading: heroContent.heroSlide3Subheading || "Interior and exterior painting services that enhance appearance, protect surfaces, and increase the value of your property.",
-      bgImage: heroContent.heroSlide3Bg || heroImage,
+      bgImage: heroContent.heroSlide3Bg || "/images/services/painting.png",
     },
     {
       heading: heroContent.heroSlide4Heading || "Roof Problems? We Fix Them Before They Cost You More.",
       subheading: heroContent.heroSlide4Subheading || "Professional roof repairs, waterproofing, leak prevention, and complete roofing solutions to keep your property safe in every season.",
-      bgImage: heroContent.heroSlide4Bg || heroImage,
+      bgImage: heroContent.heroSlide4Bg || "/images/services/sub_roof_extension.png",
     },
     {
       heading: heroContent.heroSlide5Heading || "Safe, Reliable Electrical Solutions for Every Building",
       subheading: heroContent.heroSlide5Subheading || "From new installations and rewiring to troubleshooting and upgrades, we deliver electrical work that keeps your property running safely.",
-      bgImage: heroContent.heroSlide5Bg || heroImage,
+      bgImage: heroContent.heroSlide5Bg || "/images/services/sub_electrical.png",
     },
     {
       heading: heroContent.heroSlide6Heading || "Professional Plumbing Services Without the Hassle",
       subheading: heroContent.heroSlide6Subheading || "Leak repairs, pipe replacement, drainage solutions, sanitary installations, and preventive maintenance-all completed with quality workmanship.",
-      bgImage: heroContent.heroSlide6Bg || heroImage,
+      bgImage: heroContent.heroSlide6Bg || "/images/services/sub_plumbing.png",
     },
     {
       heading: heroContent.heroSlide7Heading || "Custom Steel Fabrication Built for Strength & Precision",
       subheading: heroContent.heroSlide7Subheading || "We design, fabricate, and install steel structures, staircases, platforms, railings, and custom metal works for commercial and industrial projects.",
-      bgImage: heroContent.heroSlide7Bg || heroImage,
+      bgImage: heroContent.heroSlide7Bg || "/images/services/sub_steel_work.png",
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(0);
