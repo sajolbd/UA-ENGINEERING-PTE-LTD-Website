@@ -13,6 +13,7 @@ export interface BlogPost {
   popular?: boolean;
   views?: number;
   content: string;
+  __v?: number;
 }
 
 export const blogPosts: BlogPost[] = [
