@@ -11,7 +11,6 @@ export interface SubService {
   process: string[];
   processSteps?: ProcessStep[];
 }
-
 export interface FAQItem {
   question: string;
   answer: string;
@@ -22,16 +21,35 @@ export interface ProcessStep {
   description: string;
 }
 
-export interface ServiceCategory {
+export interface SubService {
+  id?: string;
   slug: string;
   title: string;
+  description: string;
+  longDescription?: string;
+  image: string;
+  features?: string[];
+  benefits?: string[];
+  process?: string[];
+  processSteps?: ProcessStep[];
+  breadcrumbTitle?: string;
+  breadcrumbBg?: string;
+}
+
+export interface ServiceCategory {
+  id?: string;
+  slug: string;
+  title: string;
+  tagline?: string;
   breadcrumbTitle?: string;
   detailTitle?: string;
   subServicesTitle?: string;
   subServicesSubheading?: string;
-  shortDescription: string;
+  shortDescription?: string;
   description: string;
-  featuredImage: string;
+  heroImage?: string;
+  cardImage?: string;
+  featuredImage?: string;
   bgImage: string;
   icon?: string;
   services: SubService[];
@@ -1189,3 +1207,5 @@ export const servicesData: ServiceCategory[] = [
     "process": []
   }
 ];
+
+export const initialServicesData = servicesData;
