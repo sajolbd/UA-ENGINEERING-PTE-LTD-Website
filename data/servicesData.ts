@@ -1,24 +1,11 @@
-export interface SubService {
-  slug: string;
-  title: string;
-  image: string;
-  breadcrumbTitle?: string;
-  breadcrumbBg?: string;
-  description: string;
-  longDescription: string;
-  features: string[];
-  benefits: string[];
-  process: string[];
-  processSteps?: ProcessStep[];
-}
-export interface FAQItem {
-  question: string;
-  answer: string;
-}
-
 export interface ProcessStep {
   title: string;
   description: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
 }
 
 export interface SubService {
@@ -50,7 +37,7 @@ export interface ServiceCategory {
   heroImage?: string;
   cardImage?: string;
   featuredImage?: string;
-  bgImage: string;
+  bgImage?: string;
   icon?: string;
   services: SubService[];
   features?: string[];
@@ -74,6 +61,7 @@ export interface ServiceCategory {
   serviceAreasSubheading?: string;
   faqs?: FAQItem[];
 }
+
 
 export const servicesData: ServiceCategory[] = [
   {

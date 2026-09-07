@@ -266,7 +266,7 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-2xl shadow-slate-200/50">
                 <Image
-                  src={getImageUrl(category.featuredImage)}
+                  src={getImageUrl(category.featuredImage || "")}
                   alt={category.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"

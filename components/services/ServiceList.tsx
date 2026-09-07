@@ -30,9 +30,9 @@ export default function ServiceList() {
             <ServiceCategoryCard
               key={category.slug}
               title={category.title}
-              description={category.shortDescription}
+              description={category.shortDescription || category.description}
               slug={category.slug}
-              image={category.featuredImage}
+              image={category.featuredImage || "/images/services/renovation.png"}
             />
           ))}
         </div>
