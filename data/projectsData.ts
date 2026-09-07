@@ -1,7 +1,6 @@
 export interface ProjectItem {
   id?: string;
   _id?: string;
-  slug?: string;
   title: string;
   subtitle?: string;
   category: string;

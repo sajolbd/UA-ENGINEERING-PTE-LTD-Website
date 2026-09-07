@@ -281,10 +281,10 @@ export default function SubServiceCategoryClient({ slug, subSlug, fallbackCatego
                     {(() => {
                       const stepsToRender = (service.processSteps && service.processSteps.length > 0)
                         ? service.processSteps
-                        : service.process.map((step, i) => {
-                            const defaultSteps = ["Assessment", "Design", "Approval", "Hacking", "Installation", "Verification"];
-                            let stepTitle = defaultSteps[i] || `Phase ${i + 1}`;
-                            let stepDesc = step;
+                        : (service.process && service.process.length > 0)
+                        ? service.process.map((step, i) => {
+                            let stepTitle = `Step 0${i + 1}`;
+                            let stepDesc = typeof step === "string" ? step : JSON.stringify(step);
 
                             if (typeof step === "string" && (step.includes(":") || step.includes("–") || step.includes(" - "))) {
                               const parts = step.split(/[:–]|\s-\s/);
@@ -292,9 +292,13 @@ export default function SubServiceCategoryClient({ slug, subSlug, fallbackCatego
                                 stepTitle = parts[0].trim();
                                 stepDesc = parts.slice(1).join(":").trim();
                               }
+                            } else if (typeof step === "string" && step.length < 35) {
+                              stepTitle = step.trim();
+                              stepDesc = "";
                             }
                             return { title: stepTitle, description: stepDesc };
-                          });
+                          })
+                        : [];
 
                       return stepsToRender.map((stepObj, i) => {
                         const icons = [

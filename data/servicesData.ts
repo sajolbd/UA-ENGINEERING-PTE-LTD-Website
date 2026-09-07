@@ -87,36 +87,36 @@ export const servicesData: ServiceCategory[] = [
           "Professional renovations completed in accordance with Singapore renovation requirements."
         ],
         "process": [
-          "Assessment: Discuss renovation goals, budget, and project requirements.",
-          "Design: Measure the property and assess existing conditions.",
-          "Approval: Prepare layouts, material selections, and project schedule.",
-          "Hacking: Carry out demolition, installation, and finishing works.",
-          "Installation: Inspect workmanship and complete all necessary touch-ups.",
-          "Verification: Final walkthrough, site cleaning, and customer handover."
+          "Consultation: Discuss renovation goals, budget, and project requirements.",
+          "Site Survey: Measure the property and assess existing conditions.",
+          "Planning: Prepare layouts, material selections, and project schedule.",
+          "Renovation Works: Carry out demolition, installation, and finishing works.",
+          "Quality Inspection: Inspect workmanship and complete all necessary touch-ups.",
+          "Project Handover: Final walkthrough, site cleaning, and customer handover."
         ],
         "processSteps": [
           {
-            "title": "Assessment",
+            "title": "Consultation",
             "description": "Discuss renovation goals, budget, and project requirements."
           },
           {
-            "title": "Design",
+            "title": "Site Survey",
             "description": "Measure the property and assess existing conditions."
           },
           {
-            "title": "Approval",
+            "title": "Planning",
             "description": "Prepare layouts, material selections, and project schedule."
           },
           {
-            "title": "Hacking",
+            "title": "Renovation Works",
             "description": "Carry out demolition, installation, and finishing works."
           },
           {
-            "title": "Installation",
+            "title": "Quality Inspection",
             "description": "Inspect workmanship and complete all necessary touch-ups."
           },
           {
-            "title": "Verification",
+            "title": "Project Handover",
             "description": "Final walkthrough, site cleaning, and customer handover."
           }
         ]
@@ -142,12 +142,38 @@ export const servicesData: ServiceCategory[] = [
           "Tailored solutions for HDB, condo, and landed properties."
         ],
         "process": [
-          "Discuss kitchen layout, storage, and lifestyle requirements.",
-          "Measure the kitchen and assess renovation requirements.",
-          "Confirm layout, materials, and countertop selection.",
-          "Install cabinets, countertops, tiling, and plumbing fixtures.",
-          "Complete adjustments, detailing, and final fittings.",
-          "Inspect completed work and hand over your new kitchen."
+          "Consultation: Discuss kitchen layout, storage, and lifestyle requirements.",
+          "Site Measurement: Measure the kitchen and assess renovation requirements.",
+          "Design Planning: Confirm layout, materials, and countertop selection.",
+          "Renovation Works: Install cabinets, countertops, tiling, and plumbing fixtures.",
+          "Finishing: Complete adjustments, detailing, and final fittings.",
+          "Handover: Inspect completed work and hand over your new kitchen."
+        ],
+        "processSteps": [
+          {
+            "title": "Consultation",
+            "description": "Discuss kitchen layout, storage, and lifestyle requirements."
+          },
+          {
+            "title": "Site Measurement",
+            "description": "Measure the kitchen and assess renovation requirements."
+          },
+          {
+            "title": "Design Planning",
+            "description": "Confirm layout, materials, and countertop selection."
+          },
+          {
+            "title": "Renovation Works",
+            "description": "Install cabinets, countertops, tiling, and plumbing fixtures."
+          },
+          {
+            "title": "Finishing",
+            "description": "Complete adjustments, detailing, and final fittings."
+          },
+          {
+            "title": "Handover",
+            "description": "Inspect completed work and hand over your new kitchen."
+          }
         ]
       },
       {
@@ -171,12 +197,38 @@ export const servicesData: ServiceCategory[] = [
           "Efficient renovation with minimal disruption."
         ],
         "process": [
-          "Understand your design preferences and room requirements.",
-          "Evaluate room dimensions and existing conditions.",
-          "Confirm finishes, materials, and renovation scope.",
-          "Carry out enhancement works with precision.",
-          "Complete finishing touches and quality checks.",
-          "Clean the area and hand over the completed space."
+          "Consultation: Understand your design preferences and room requirements.",
+          "Site Assessment: Evaluate room dimensions and existing conditions.",
+          "Design Selection: Confirm finishes, materials, and renovation scope.",
+          "Installation: Carry out enhancement works with precision.",
+          "Final Detailing: Complete finishing touches and quality checks.",
+          "Project Completion: Clean the area and hand over the completed space."
+        ],
+        "processSteps": [
+          {
+            "title": "Consultation",
+            "description": "Understand your design preferences and room requirements."
+          },
+          {
+            "title": "Site Assessment",
+            "description": "Evaluate room dimensions and existing conditions."
+          },
+          {
+            "title": "Design Selection",
+            "description": "Confirm finishes, materials, and renovation scope."
+          },
+          {
+            "title": "Installation",
+            "description": "Carry out enhancement works with precision."
+          },
+          {
+            "title": "Final Detailing",
+            "description": "Complete finishing touches and quality checks."
+          },
+          {
+            "title": "Project Completion",
+            "description": "Clean the area and hand over the completed space."
+          }
         ]
       },
       {
@@ -200,12 +252,38 @@ export const servicesData: ServiceCategory[] = [
           "Neat execution with careful quality supervision."
         ],
         "process": [
-          "Assess structural conditions and project feasibility.",
-          "Prepare renovation scope and compliance requirements.",
-          "Coordinate necessary renovation approvals where required.",
-          "Carry out demolition and reconstruction safely.",
-          "Complete masonry finishing and clean the work area.",
-          "Inspect completed works before project handover."
+          "Site Inspection: Assess structural conditions and project feasibility.",
+          "Planning: Prepare renovation scope and compliance requirements.",
+          "Approval: Coordinate necessary renovation approvals where required.",
+          "Construction Works: Carry out demolition and reconstruction safely.",
+          "Site Restoration: Complete masonry finishing and clean the work area.",
+          "Final Inspection: Inspect completed works before project handover."
+        ],
+        "processSteps": [
+          {
+            "title": "Site Inspection",
+            "description": "Assess structural conditions and project feasibility."
+          },
+          {
+            "title": "Planning",
+            "description": "Prepare renovation scope and compliance requirements."
+          },
+          {
+            "title": "Approval",
+            "description": "Coordinate necessary renovation approvals where required."
+          },
+          {
+            "title": "Construction Works",
+            "description": "Carry out demolition and reconstruction safely."
+          },
+          {
+            "title": "Site Restoration",
+            "description": "Complete masonry finishing and clean the work area."
+          },
+          {
+            "title": "Final Inspection",
+            "description": "Inspect completed works before project handover."
+          }
         ]
       },
       {
@@ -229,12 +307,38 @@ export const servicesData: ServiceCategory[] = [
           "Reliable project scheduling and clean execution."
         ],
         "process": [
-          "Assess floor condition and identify repair requirements.",
-          "Remove damaged flooring and prepare the substrate.",
-          "Confirm flooring materials and finish options.",
-          "Install or restore flooring with precision.",
-          "Polish and protect completed floor surfaces.",
-          "Perform final inspection and site cleaning."
+          "Inspection: Assess floor condition and identify repair requirements.",
+          "Surface Preparation: Remove damaged flooring and prepare the substrate.",
+          "Material Selection: Confirm flooring materials and finish options.",
+          "Installation: Install or restore flooring with precision.",
+          "Polishing: Polish and protect completed floor surfaces.",
+          "Handover: Perform final inspection and site cleaning."
+        ],
+        "processSteps": [
+          {
+            "title": "Inspection",
+            "description": "Assess floor condition and identify repair requirements."
+          },
+          {
+            "title": "Surface Preparation",
+            "description": "Remove damaged flooring and prepare the substrate."
+          },
+          {
+            "title": "Material Selection",
+            "description": "Confirm flooring materials and finish options."
+          },
+          {
+            "title": "Installation",
+            "description": "Install or restore flooring with precision."
+          },
+          {
+            "title": "Polishing",
+            "description": "Polish and protect completed floor surfaces."
+          },
+          {
+            "title": "Handover",
+            "description": "Perform final inspection and site cleaning."
+          }
         ]
       },
       {
@@ -258,12 +362,38 @@ export const servicesData: ServiceCategory[] = [
           "Professional installation with precise workmanship."
         ],
         "process": [
-          "Review outdoor space and decking requirements.",
-          "Measure the installation area accurately.",
-          "Choose decking materials and finishing options.",
-          "Install decking framework and deck boards.",
-          "Complete trimming and final detailing.",
-          "Inspect the completed deck and hand over the project."
+          "Consultation: Review outdoor space and decking requirements.",
+          "Site Measurement: Measure the installation area accurately.",
+          "Material Selection: Choose decking materials and finishing options.",
+          "Installation: Install decking framework and deck boards.",
+          "Finishing: Complete trimming and final detailing.",
+          "Project Handover: Inspect the completed deck and hand over the project."
+        ],
+        "processSteps": [
+          {
+            "title": "Consultation",
+            "description": "Review outdoor space and decking requirements."
+          },
+          {
+            "title": "Site Measurement",
+            "description": "Measure the installation area accurately."
+          },
+          {
+            "title": "Material Selection",
+            "description": "Choose decking materials and finishing options."
+          },
+          {
+            "title": "Installation",
+            "description": "Install decking framework and deck boards."
+          },
+          {
+            "title": "Finishing",
+            "description": "Complete trimming and final detailing."
+          },
+          {
+            "title": "Project Handover",
+            "description": "Inspect the completed deck and hand over the project."
+          }
         ]
       }
     ],
@@ -320,12 +450,38 @@ export const servicesData: ServiceCategory[] = [
           "Clear coordination ensures organised projects from assessment through installation."
         ],
         "process": [
-          "Inspect site, measure areas, understand requirements.",
-          "Recommend solutions, materials, and provide quotation.",
-          "Cut, weld, assemble, and prepare steel components.",
-          "Apply protective coatings for durability and appearance.",
-          "Install and secure components with precise alignment.",
-          "Check quality, finishing, functionality before project handover."
+          "Site Assessment: Inspect site, measure areas, understand requirements.",
+          "Planning & Quotation: Recommend solutions, materials, and provide quotation.",
+          "Steel Fabrication: Cut, weld, assemble, and prepare steel components.",
+          "Surface Finishing: Apply protective coatings for durability and appearance.",
+          "Installation: Install and secure components with precise alignment.",
+          "Inspection & Handover: Check quality, finishing, functionality before project handover."
+        ],
+        "processSteps": [
+          {
+            "title": "Site Assessment",
+            "description": "Inspect site, measure areas, understand requirements."
+          },
+          {
+            "title": "Planning & Quotation",
+            "description": "Recommend solutions, materials, and provide quotation."
+          },
+          {
+            "title": "Steel Fabrication",
+            "description": "Cut, weld, assemble, and prepare steel components."
+          },
+          {
+            "title": "Surface Finishing",
+            "description": "Apply protective coatings for durability and appearance."
+          },
+          {
+            "title": "Installation",
+            "description": "Install and secure components with precise alignment."
+          },
+          {
+            "title": "Inspection & Handover",
+            "description": "Check quality, finishing, functionality before project handover."
+          }
         ]
       },
       {
@@ -349,12 +505,38 @@ export const servicesData: ServiceCategory[] = [
           "Professional installation ensures secure fixing and smooth operation."
         ],
         "process": [
-          "Inspect site, discuss preferences, take accurate measurements.",
-          "Recommend materials, styles, and provide clear quotation.",
-          "Fabricate gates and grills to approved specifications.",
-          "Apply protective finishes for durability and appearance.",
-          "Securely install, align, and test smooth operation.",
-          "Check alignment, locks, finishing, and complete handover."
+          "Site Measurement: Inspect site, discuss preferences, take accurate measurements.",
+          "Design & Quotation: Recommend materials, styles, and provide clear quotation.",
+          "Fabrication: Fabricate gates and grills to approved specifications.",
+          "Surface Finishing: Apply protective finishes for durability and appearance.",
+          "Installation: Securely install, align, and test smooth operation.",
+          "Final Inspection: Check alignment, locks, finishing, and complete handover."
+        ],
+        "processSteps": [
+          {
+            "title": "Site Measurement",
+            "description": "Inspect site, discuss preferences, take accurate measurements."
+          },
+          {
+            "title": "Design & Quotation",
+            "description": "Recommend materials, styles, and provide clear quotation."
+          },
+          {
+            "title": "Fabrication",
+            "description": "Fabricate gates and grills to approved specifications."
+          },
+          {
+            "title": "Surface Finishing",
+            "description": "Apply protective finishes for durability and appearance."
+          },
+          {
+            "title": "Installation",
+            "description": "Securely install, align, and test smooth operation."
+          },
+          {
+            "title": "Final Inspection",
+            "description": "Check alignment, locks, finishing, and complete handover."
+          }
         ]
       },
       {
@@ -378,12 +560,38 @@ export const servicesData: ServiceCategory[] = [
           "Balcony shelters create comfortable outdoor spaces for daily use."
         ],
         "process": [
-          "We inspect the balcony area and assess suitable shelter options.",
-          "Material options, colours, and structural requirements are discussed.",
-          "Support frames and shelter components are fabricated according to site measurements.",
-          "Roofing panels and structural components are prepared before installation.",
-          "The shelter is securely installed with careful alignment and finishing.",
-          "Completed works are checked before final project completion."
+          "Site Assessment: We inspect the balcony area and assess suitable shelter options.",
+          "Design Consultation: Material options, colours, and structural requirements are discussed.",
+          "Fabrication: Support frames and shelter components are fabricated according to site measurements.",
+          "Material Preparation: Roofing panels and structural components are prepared before installation.",
+          "Installation: The shelter is securely installed with careful alignment and finishing.",
+          "Inspection & Handover: Completed works are checked before final project completion."
+        ],
+        "processSteps": [
+          {
+            "title": "Site Assessment",
+            "description": "We inspect the balcony area and assess suitable shelter options."
+          },
+          {
+            "title": "Design Consultation",
+            "description": "Material options, colours, and structural requirements are discussed."
+          },
+          {
+            "title": "Fabrication",
+            "description": "Support frames and shelter components are fabricated according to site measurements."
+          },
+          {
+            "title": "Material Preparation",
+            "description": "Roofing panels and structural components are prepared before installation."
+          },
+          {
+            "title": "Installation",
+            "description": "The shelter is securely installed with careful alignment and finishing."
+          },
+          {
+            "title": "Inspection & Handover",
+            "description": "Completed works are checked before final project completion."
+          }
         ]
       },
       {
@@ -407,12 +615,38 @@ export const servicesData: ServiceCategory[] = [
           "Professional installation ensures organised workmanship and quality finishing."
         ],
         "process": [
-          "We assess your existing roof and discuss extension requirements.",
-          "Roof layout, materials, and structural details are finalised.",
-          "Roof support structures are fabricated according to approved dimensions.",
-          "Roofing sheets, flashings, and accessories are prepared.",
-          "Structural frames and roofing materials are professionally installed.",
-          "The completed roof extension is inspected before handover."
+          "Site Visit: We assess your existing roof and discuss extension requirements.",
+          "Design Proposal: Roof layout, materials, and structural details are finalised.",
+          "Fabrication: Roof support structures are fabricated according to approved dimensions.",
+          "Material Preparation: Roofing sheets, flashings, and accessories are prepared.",
+          "Installation: Structural frames and roofing materials are professionally installed.",
+          "Quality Inspection: The completed roof extension is inspected before handover."
+        ],
+        "processSteps": [
+          {
+            "title": "Site Visit",
+            "description": "We assess your existing roof and discuss extension requirements."
+          },
+          {
+            "title": "Design Proposal",
+            "description": "Roof layout, materials, and structural details are finalised."
+          },
+          {
+            "title": "Fabrication",
+            "description": "Roof support structures are fabricated according to approved dimensions."
+          },
+          {
+            "title": "Material Preparation",
+            "description": "Roofing sheets, flashings, and accessories are prepared."
+          },
+          {
+            "title": "Installation",
+            "description": "Structural frames and roofing materials are professionally installed."
+          },
+          {
+            "title": "Quality Inspection",
+            "description": "The completed roof extension is inspected before handover."
+          }
         ]
       },
       {
@@ -436,12 +670,38 @@ export const servicesData: ServiceCategory[] = [
           "We complete installations with careful alignment, neat workmanship, and attention to detail."
         ],
         "process": [
-          "We assess the installation area and discuss your shelter requirements.",
-          "Suitable awning materials, frame types, and colours are recommended.",
-          "The awning frame and roofing components are fabricated to the required dimensions.",
-          "Materials and fittings are prepared for efficient on-site installation.",
-          "We securely install, check alignment, fixing points, and structural stability.",
-          "We complete a final quality inspection and ensure the awning."
+          "Site Consultation: We assess the installation area and discuss your shelter requirements.",
+          "Material Selection: Suitable awning materials, frame types, and colours are recommended.",
+          "Custom Fabrication: The awning frame and roofing components are fabricated to the required dimensions.",
+          "Pre-Installation Preparation: Materials and fittings are prepared for efficient on-site installation.",
+          "Installation: We securely install, check alignment, fixing points, and structural stability.",
+          "Final Inspection & Handover: We complete a final quality inspection and ensure the awning."
+        ],
+        "processSteps": [
+          {
+            "title": "Site Consultation",
+            "description": "We assess the installation area and discuss your shelter requirements."
+          },
+          {
+            "title": "Material Selection",
+            "description": "Suitable awning materials, frame types, and colours are recommended."
+          },
+          {
+            "title": "Custom Fabrication",
+            "description": "The awning frame and roofing components are fabricated to the required dimensions."
+          },
+          {
+            "title": "Pre-Installation Preparation",
+            "description": "Materials and fittings are prepared for efficient on-site installation."
+          },
+          {
+            "title": "Installation",
+            "description": "We securely install, check alignment, fixing points, and structural stability."
+          },
+          {
+            "title": "Final Inspection & Handover",
+            "description": "We complete a final quality inspection and ensure the awning."
+          }
         ]
       }
     ],
@@ -479,12 +739,38 @@ export const servicesData: ServiceCategory[] = [
           "Experienced painters delivering reliable results with attention to every detail."
         ],
         "process": [
-          "Assess wall condition, cracks, moisture, and painting requirements.",
-          "Protect surrounding areas, repair cracks, sand surfaces, and apply primer.",
-          "Confirm paint colours, finishes, and project scope before application.",
-          "Apply premium paint systems using professional techniques for even coverage.",
-          "Inspect painted surfaces, complete touch-ups, and remove protective coverings.",
-          "Conduct final inspection, site cleaning, and customer handover."
+          "Site Inspection: Assess wall condition, cracks, moisture, and painting requirements.",
+          "Surface Preparation: Protect surrounding areas, repair cracks, sand surfaces, and apply primer.",
+          "Colour Confirmation: Confirm paint colours, finishes, and project scope before application.",
+          "Paint Application: Apply premium paint systems using professional techniques for even coverage.",
+          "Final Touch-Up: Inspect painted surfaces, complete touch-ups, and remove protective coverings.",
+          "Quality Handover: Conduct final inspection, site cleaning, and customer handover."
+        ],
+        "processSteps": [
+          {
+            "title": "Site Inspection",
+            "description": "Assess wall condition, cracks, moisture, and painting requirements."
+          },
+          {
+            "title": "Surface Preparation",
+            "description": "Protect surrounding areas, repair cracks, sand surfaces, and apply primer."
+          },
+          {
+            "title": "Colour Confirmation",
+            "description": "Confirm paint colours, finishes, and project scope before application."
+          },
+          {
+            "title": "Paint Application",
+            "description": "Apply premium paint systems using professional techniques for even coverage."
+          },
+          {
+            "title": "Final Touch-Up",
+            "description": "Inspect painted surfaces, complete touch-ups, and remove protective coverings."
+          },
+          {
+            "title": "Quality Handover",
+            "description": "Conduct final inspection, site cleaning, and customer handover."
+          }
         ]
       },
       {
@@ -508,12 +794,38 @@ export const servicesData: ServiceCategory[] = [
           "Skilled waterproofing specialists delivering dependable workmanship and lasting protection."
         ],
         "process": [
-          "Inspect leak sources, moisture levels, cracks, and affected surfaces.",
-          "Clean the area, remove damaged materials, and prepare surfaces for treatment.",
-          "Recommend the most suitable waterproofing method based on site conditions.",
-          "Apply membranes, PU injection, sealants, or waterproof coatings professionally.",
-          "Carry out water testing and verify complete waterproof protection.",
-          "Perform final quality checks, clean the site, and provide maintenance guidance."
+          "Site Assessment: Inspect leak sources, moisture levels, cracks, and affected surfaces.",
+          "Surface Preparation: Clean the area, remove damaged materials, and prepare surfaces for treatment.",
+          "System Selection: Recommend the most suitable waterproofing method based on site conditions.",
+          "Waterproofing Application: Apply membranes, PU injection, sealants, or waterproof coatings professionally.",
+          "Testing & Inspection: Carry out water testing and verify complete waterproof protection.",
+          "Project Handover: Perform final quality checks, clean the site, and provide maintenance guidance."
+        ],
+        "processSteps": [
+          {
+            "title": "Site Assessment",
+            "description": "Inspect leak sources, moisture levels, cracks, and affected surfaces."
+          },
+          {
+            "title": "Surface Preparation",
+            "description": "Clean the area, remove damaged materials, and prepare surfaces for treatment."
+          },
+          {
+            "title": "System Selection",
+            "description": "Recommend the most suitable waterproofing method based on site conditions."
+          },
+          {
+            "title": "Waterproofing Application",
+            "description": "Apply membranes, PU injection, sealants, or waterproof coatings professionally."
+          },
+          {
+            "title": "Testing & Inspection",
+            "description": "Carry out water testing and verify complete waterproof protection."
+          },
+          {
+            "title": "Project Handover",
+            "description": "Perform final quality checks, clean the site, and provide maintenance guidance."
+          }
         ]
       }
     ],
