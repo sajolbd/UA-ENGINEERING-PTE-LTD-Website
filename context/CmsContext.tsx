@@ -43,6 +43,35 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
   useEffect(() => {
     const apiBase = getApiBaseUrl();
 
+    // 0. Load cached updates from localStorage for instant client rendering
+    try {
+      if (typeof window !== "undefined") {
+        const cachedServices = localStorage.getItem("ua_services_categories_cache");
+        if (cachedServices) {
+          const parsed = JSON.parse(cachedServices);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setServices(parsed);
+          }
+        }
+        const cachedCms = localStorage.getItem("ua_cms_data_cache");
+        if (cachedCms) {
+          const parsedCms = JSON.parse(cachedCms);
+          if (parsedCms && Object.keys(parsedCms).length > 0) {
+            setCms(parsedCms);
+          }
+        }
+        const cachedProjects = localStorage.getItem("ua_projects_data_cache");
+        if (cachedProjects) {
+          const parsedProj = JSON.parse(cachedProjects);
+          if (Array.isArray(parsedProj) && parsedProj.length > 0) {
+            setProjects(parsedProj);
+          }
+        }
+      }
+    } catch (e) {
+      console.warn("Failed to parse website localStorage cache:", e);
+    }
+
     // 1. Fetch live CMS pages content from Express API / MongoDB
     fetch(`${apiBase}/api/cms`, { cache: "no-store" })
       .then((res) => res.json())
@@ -66,6 +95,11 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
                 };
               }
             });
+            try {
+              if (typeof window !== "undefined") {
+                localStorage.setItem("ua_cms_data_cache", JSON.stringify(merged));
+              }
+            } catch (e) {}
             return merged;
           });
         }
@@ -78,6 +112,11 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       .then((res) => {
         if (res.success && Array.isArray(res.data) && res.data.length > 0) {
           setServices(res.data);
+          try {
+            if (typeof window !== "undefined") {
+              localStorage.setItem("ua_services_categories_cache", JSON.stringify(res.data));
+            }
+          } catch (e) {}
         }
       })
       .catch((err) => console.error("Services API fetch notice:", err));
@@ -88,6 +127,11 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       .then((res) => {
         if (res.success && Array.isArray(res.data) && res.data.length > 0) {
           setProjects(res.data);
+          try {
+            if (typeof window !== "undefined") {
+              localStorage.setItem("ua_projects_data_cache", JSON.stringify(res.data));
+            }
+          } catch (e) {}
         }
       })
       .catch((err) => console.error("Projects API fetch notice:", err));
