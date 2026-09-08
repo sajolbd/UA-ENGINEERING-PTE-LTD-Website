@@ -7,52 +7,60 @@ import { useCmsData } from "../../context/CmsContext";
 
 const defaultRegions = [
   {
-    name: "Central",
+    name: "Central Region",
     areas: [
-      "Orchard Road",
-      "Marina Bay",
+      "Orchard",
       "Bugis",
+      "Marina Bay",
       "Raffles Place",
       "Tanjong Pagar",
-      "Clarke Quay",
+      "Bishan",
+      "Toa Payoh",
+      "Bukit Merah",
     ],
   },
   {
-    name: "East",
+    name: "East Region",
     areas: [
+      "Marine Parade",
+      "Katong",
+      "Joo Chiat",
       "Bedok",
       "Tampines",
       "Pasir Ris",
       "Changi",
-      "Marine Parade",
+      "Geylang",
     ],
   },
   {
-    name: "West",
+    name: "North Region",
+    areas: [
+      "Woodlands",
+      "Yishun",
+      "Sembawang",
+      "Mandai",
+      "Sungei Kadut",
+    ],
+  },
+  {
+    name: "North-East Region",
+    areas: [
+      "Hougang",
+      "Punggol",
+      "Sengkang",
+      "Serangoon",
+      "Ang Mo Kio",
+    ],
+  },
+  {
+    name: "West Region",
     areas: [
       "Jurong East",
       "Jurong West",
       "Bukit Batok",
       "Clementi",
       "Boon Lay",
-    ],
-  },
-  {
-    name: "North",
-    areas: [
-      "Woodlands",
-      "Yishun",
-      "Sembawang",
-      "Admiralty",
-    ],
-  },
-  {
-    name: "North-East",
-    areas: [
-      "Hougang",
-      "Punggol",
-      "Sengkang",
-      "Serangoon",
+      "Choa Chu Kang",
     ],
   },
 ];
@@ -68,21 +76,29 @@ export default function ServiceAreas({ category }: ServiceAreasProps = {}) {
   const areaBadge = category?.serviceAreasBadge || homeContent.areaBadge || "Service Areas";
   const areaHeading = category?.serviceAreasHeading || (
     category?.title
-      ? `Reliable ${category.title} Solutions Near You!`
-      : homeContent.areaHeading || "Reliable Engineering & Renovation Solutions Near You!"
+      ? `Reliable Engineering & Renovation Solutions Near You`
+      : homeContent.areaHeading || "Reliable Engineering & Renovation Solutions Near You"
   );
   const areaSubheading = category?.serviceAreasSubheading || (
     category?.title
-      ? `UA ENGINEERING proudly provides ${category.title.toLowerCase()} services across Singapore, covering all major residential and commercial areas.`
-      : homeContent.areaSubheading || "At UA Engineering PTE. LTD, we proudly provide expert renovation, construction, and engineering services throughout Singapore with fast response times and professional support."
+      ? `UA ENGINEERING proudly provides renovation and upgrading services across Singapore, covering all major residential and commercial areas.`
+      : homeContent.areaSubheading || "UA ENGINEERING proudly provides renovation and upgrading services across Singapore, covering all major residential and commercial areas."
   );
 
-  const regions = Array.isArray(homeContent.regions) && homeContent.regions.length > 0
-    ? homeContent.regions.map((r: any) => ({
-        name: r.name || "Region",
-        areas: Array.isArray(r.areas) ? r.areas : typeof r.areas === "string" ? r.areas.split(",").map((s: string) => s.trim()).filter(Boolean) : [],
-      }))
+  const rawRegions = (category?.serviceAreas && category.serviceAreas.length > 0)
+    ? category.serviceAreas
+    : Array.isArray(homeContent.regions) && homeContent.regions.length > 0
+    ? homeContent.regions
     : defaultRegions;
+
+  const regions = rawRegions.map((r: any) => ({
+    name: r.region || r.name || "Region",
+    areas: Array.isArray(r.areas)
+      ? r.areas
+      : typeof r.areas === "string"
+      ? r.areas.split(",").map((s: string) => s.trim()).filter(Boolean)
+      : [],
+  }));
 
   return (
     <section className="bg-slate-50/50 py-8 lg:py-12 border-t border-slate-100">
