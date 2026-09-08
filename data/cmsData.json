@@ -6,11 +6,11 @@
       "companyName": "UA ENGINEERING PTE. LTD.",
       "welcomeMessage": "Welcome to",
       "phone": "+65 8459 3003",
-      "email": "Info@uaengineering.com.sg",
-      "address": "38C Sea Avenue Marine Mansion Singapore 424256",
+      "email": "hello.uaengineering@gmail.com",
+      "address": "38C SEA AVENUE MARINE MANSION SINGAPORE 424256",
       "workingHours": "Mon - Sat: 9:00 AM - 6:00 PM (Emergency 24/7 Support)",
       "appointmentButtonText": "Book An Appointment",
-      "footerAboutText": "Professional engineering, renovation, waterproofing, and steel fabrication solutions in Singapore. Licensed, certified, and compliant with BCA standards.",
+      "footerAboutText": "A complete renovation partner for homes and commercial spaces in Singapore, handling everything from small repairs to full structural transformation.",
       "facebook": "https://facebook.com",
       "instagram": "https://instagram.com",
       "linkedin": "https://linkedin.com",
@@ -21,7 +21,7 @@
       "metaTitle": "UA Engineering PTE. LTD. | Singapore Engineering & Renovation",
       "metaDescription": "UA Engineering PTE. LTD. provides renovation, waterproofing, steel works, roofing, electrical, plumbing, aircon, aluminium glazing and maintenance services across Singapore.",
       "metaKeywords": "UA Engineering, Singapore Renovation, Waterproofing Singapore",
-      "schemaJson": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"LocalBusiness\",\n  \"name\": \"UA Engineering Pte Ltd\"\n}"
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering Pte Ltd\"}"
     }
   },
   "home": {
@@ -31,33 +31,34 @@
       "heroSlide1Heading": "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works.",
       "heroSlide1Subheading": "We handle it all with expertise, reliability, and guaranteed quality.",
       "heroSlide2Heading": "Everything Your Property Needs. One Trusted Engineering Team.",
-      "heroSlide2Subheading": "From renovations and reinstatement to electrical, plumbing, painting, roofing, steel fabrication, waterproofing, and maintenance - we handle every project with precision and professionalism.",
+      "heroSlide2Subheading": "From renovations to electrical, plumbing, painting, roofing, steel fabrication, waterproofing, and maintenance - We handle it all.",
       "heroSlide3Heading": "Fresh Paint. Lasting Protection. Stunning Results.",
       "heroSlide3Subheading": "Interior and exterior painting services that enhance appearance, protect surfaces, and increase the value of your property.",
       "heroSlide4Heading": "Roof Problems? We Fix Them Before They Cost You More.",
       "heroSlide4Subheading": "Professional roof repairs, waterproofing, leak prevention, and complete roofing solutions to keep your property safe in every season.",
-      "heroSlide5Heading": "Safe, Reliable Electrical Solutions for Every Building",
+      "heroSlide5Heading": "Safe, Reliable Electrical Solutions for Every Building.",
       "heroSlide5Subheading": "From new installations and rewiring to troubleshooting and upgrades, we deliver electrical work that keeps your property running safely.",
-      "heroSlide6Heading": "Professional Plumbing Services Without the Hassle",
-      "heroSlide6Subheading": "Leak repairs, pipe replacement, drainage solutions, sanitary installations, and preventive maintenance-all completed with quality workmanship.",
-      "heroSlide7Heading": "Custom Steel Fabrication Built for Strength & Precision",
-      "heroSlide7Subheading": "We design, fabricate, and install steel structures, staircases, platforms, railings, and custom metal works for commercial and industrial projects.",
+      "heroSlide6Heading": "Professional Plumbing Services Without the Hassle.",
+      "heroSlide6Subheading": "Leak repairs, pipe replacement, drainage solutions and sanitary installations all completed with quality workmanship.",
+      "heroSlide7Heading": "Custom Steel Fabrication Built for Strength & Precision.",
+      "heroSlide7Subheading": "We design, fabricate, and install steel structures, staircases, platforms, railings, and custom metal works.",
       "heroImage": "/images/home/hero/hero-bg.png",
       "heroImageAlt": "UA Engineering Renovation and Steel Fabrications Banner",
       "heroCtaText": "Book An Appointment",
-      "aboutHeading": "Your Trusted Partner for High Quality Renovation & Upgrading Services.",
-      "aboutSubheading": "At UA ENGINEERING PTE. LTD. we deliver reliable Renovation & Upgrading solutions grounded in integrity, expertise, and precision. Our team ensures every project meets high standards of safety, durability, and quality workmanship.",
+      "aboutHeading": "Your Trusted Partner for All Building Needs.",
+      "aboutSubheading": "We provide home renovation, painting, waterproofing, main gate & grill works, balcony shelter installation, roof extensions, aluminium & glass installation, electrical, plumbing, aircon, and solar panel installation for homes and commercial properties across Singapore.",
       "aboutImage": "/images/home/about/about-main.jpg",
-      "aboutImageAlt": "UA Engineering Upgrading Worksite Inspections Team",
+      "aboutImageAlt": "UA Engineering Upgrading Worksite Team",
       "aboutExperience": "15",
       "aboutCard1Title": "BCA Certified Company",
-      "aboutCard1Desc": "Meeting standards with quality workmanship, compliance, and professional practices.",
+      "aboutCard1Desc": "Meeting standards with high-quality workmanship, reliable service, compliance, consistent delivery, and professional practices.",
       "aboutCard2Title": "Skilled & Certified Workforce",
-      "aboutCard2Desc": "Experienced professionals delivering quality work with precision, reliability, and attention.",
+      "aboutCard2Desc": "Experienced professionals delivering quality work with precision, and attention.",
       "aboutCard3Title": "Competitive & Transparent Pricing",
-      "aboutCard3Desc": "Fair, upfront pricing with detailed quotations and no hidden costs or unexpected charges.",
+      "aboutCard3Desc": "Fair, upfront pricing with detailed quotations, competitive rates, and no hidden costs or charges.",
+      "servicesIntro": "Get professional renovation, painting, waterproofing, structural works, M&E services, and solar panel installation-all under one roof.",
       "whyChooseBadge": "UA ADVANTAGE",
-      "whyChooseHeading": "Why Choose UA Engineering?",
+      "whyChooseHeading": "Why Choose UA Engineering",
       "whyCard1Title": "Complete Building Solutions",
       "whyCard1Desc": "From renovation and structural works to M&E, glazing, waterproofing, and solar, one trusted team handles every project.",
       "whyCard2Title": "Quality Workmanship",
@@ -92,7 +93,7 @@
       "reviewsBadge": "CLIENT TESTIMONIALS",
       "reviewsHeading": "What Our Clients Say About UA Engineering",
       "processBadge": "HOW IT WORKS",
-      "processHeading": "Our Simple & Transparent Work Process",
+      "processHeading": "Our Simple & Transparent Working Process",
       "processSubheading": "From site inspection and quotation to professional installation and project handover, we ensure quality, transparency, and customer satisfaction at every stage.",
       "processStep1Title": "Free Consultation & Site Visit",
       "processStep1Desc": "We assess your requirements, inspect the site, discuss solutions, and understand your project goals.",
@@ -105,30 +106,34 @@
       "processStep3Image": "/images/home/process/execution.png",
       "processStep4Title": "Final Inspection & Handover",
       "processStep4Desc": "We conduct final quality checks, ensure everything meets expectations, and hand over your completed project with confidence.",
-      "processStep4Image": "/images/home/process/handover.png"
+      "processStep4Image": "/images/home/process/handover.png",
+      "serviceAreasTitle": "Reliable Home Renovation Solutions Near You",
+      "serviceAreasSubtitle": "UA ENGINEERING proudly provides home renovation services across Singapore, covering all major residential and commercial areas.",
+      "consultHeading": "Book a Free Consultation as Your Convenient Time",
+      "consultSubheading": "Would you like to discuss your project face-to-face with our expert? Do you need expert guidance for your project? Would you like our expert to visit your site or project? Then book a free-of-cost appointment at your convenience."
     },
     "seo": {
       "metaTitle": "UA Engineering PTE. LTD. | Singapore Engineering & Renovation",
       "metaDescription": "UA Engineering PTE. LTD. provides renovation, waterproofing, steel works, roofing, electrical, plumbing, aircon, aluminium glazing and maintenance services across Singapore.",
-      "metaKeywords": "UA Engineering, Singapore Renovation, Waterproofing Singapore, Roof Extension, Steel Works, Electrical Services, Plumbing Services, Aircon Repair, Aluminium Works, Engineering Company Singapore",
-      "schemaJson": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"LocalBusiness\",\n  \"name\": \"UA Engineering Pte Ltd\"\n}"
+      "metaKeywords": "UA Engineering, Singapore Renovation, Waterproofing Singapore",
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering Pte Ltd\"}"
     }
   },
   "about": {
     "content": {
       "heroHeading": "About UA Engineering",
-      "heroSubheading": "A dedicated team of licensed professional engineers and certified EHS compliance officers delivering high-quality construction works.",
+      "heroSubheading": "UA Engineering is a Singapore-based company providing renovation, structural, glazing, electrical, plumbing, aircon, waterproofing, and solar solutions.",
       "heroImage": "/images/layout/about-bg.png",
       "aboutImage": "/images/home/about/about-main.jpg",
       "heroImageAlt": "UA Engineering Commercial Facility Builders",
       "sectionTag": "About Our Company",
-      "overviewHeading": "Why Choose UA Engineering For Renovation & Upgrading Services in Singapore",
-      "overviewText": "Looking for a dependable renovation and upgrading contractor in Singapore? UA ENGINEERING PTE. LTD. provides renovation, construction, and engineering services for HDB, BTO, condos, landed homes, commercial, and industrial properties.",
+      "overviewHeading": "About Our Company",
+      "overviewText": "UA ENGINEERING PTE. LTD. is a trusted engineering and construction company. We deliver quality workmanship through highly skilled and certified professionals, BCA-compliant practices, and premium materials. With transparent pricing, a strong focus on safety, and reliable project management, we are committed to completing every project on time while exceeding our clients' expectations. Your satisfaction, safety, and trust are at the heart of everything we do.",
       "experienceYears": "15",
       "experienceTitle": "Years of Excellence",
-      "experienceSubtitle": "Renovation & Upgrading Services",
+      "experienceSubtitle": "15+ Years Skilled Personnel",
       "trustHeading": "Why Property Owners Trust UA Engineering",
-      "highlightsJson": "[{\"text\":\"15+ Years of Industry Experience\",\"icon\":\"Clock\"},{\"text\":\"Highly Skilled & Certified Workers\",\"icon\":\"Wrench\"},{\"text\":\"BCA & HDB Compliant Workmanship\",\"icon\":\"Award\"},{\"text\":\"Transparent & Competitive Pricing\",\"icon\":\"DollarSign\"},{\"text\":\"Premium Quality Materials\",\"icon\":\"ShieldCheck\"},{\"text\":\"Safety-First Construction Practices\",\"icon\":\"ShieldCheck\"},{\"text\":\"On-Time Project Completion\",\"icon\":\"Clock\"},{\"text\":\"100% Commitment to Client Satisfaction\",\"icon\":\"ThumbsUp\"}]",
+      "highlightsJson": "[{\"text\":\"15+ Years Skilled Personnel\",\"icon\":\"Clock\"},{\"text\":\"Highly Skilled & Certified Workers\",\"icon\":\"Wrench\"},{\"text\":\"BCA Compliant Workmanship\",\"icon\":\"Award\"},{\"text\":\"Transparent & Competitive Pricing\",\"icon\":\"DollarSign\"},{\"text\":\"Premium Quality Materials\",\"icon\":\"ShieldCheck\"},{\"text\":\"Safety-First Construction Practices\",\"icon\":\"ShieldCheck\"},{\"text\":\"On-Time Project Completion\",\"icon\":\"Clock\"},{\"text\":\"100% Commitment to Client Satisfaction\",\"icon\":\"ThumbsUp\"}]",
       "ehsHeading": "EHS Safety Policy & Environmental Compliance",
       "ehsText": "We maintain a Zero-Accident policy across all site operations. Our EHS compliance officers inspect structural rigs, high-voltage lines, and confined space setups daily to protect our workers and clients.",
       "ehsImage": "/images/home/about/about-main.jpg",
@@ -140,15 +145,15 @@
       "residentialHeading": "Complete Renovation, Engineering & Property Improvement Services",
       "residentialSubheading": "UA Engineering provides complete renovation, structural, waterproofing, electrical, plumbing, aluminium, and solar panel solutions for residential, commercial, and industrial properties across Singapore.",
       "faqBadge": "FAQ'S",
-      "faqHeading": "FAQ's: Looking for Answers?",
+      "faqHeading": "Frequently Asked Questions",
       "faqSubheading": "Find expert answers to common questions about our renovation, construction, and handyman services in Singapore.",
-      "faqsJson": "[{\"question\":\"How long has UA Engineering PTE. LTD. been serving Singapore?\",\"answer\":\"UA Engineering PTE. LTD. has been a trusted contractor in Singapore's renovation and engineering industry for over 15 years. Over the years, we've built a strong reputation for delivering high-quality renovation, partition, waterproofing, and structural upgrades for residential, commercial, and industrial properties.\"},{\"question\":\"What sets UA Engineering apart from other contractors in Singapore?\",\"answer\":\"What sets us apart is our professional specialization, certified engineering teams (such as EMA-certified electricians), transparency in quoting, and adherence to Singapore building safety guidelines (HDB/BCA).\"},{\"question\":\"Do you offer free site inspections and consultations?\",\"answer\":\"Yes, we believe in empowering our clients with the information they need to make informed decisions. We offer free, no-obligation site assessments and detailed consultations.\"},{\"question\":\"How do you ensure safety and quality control on site?\",\"answer\":\"Safety is our absolute priority and is non-negotiable. We strictly follow Workplace Safety and Health (WSH) guidelines on all project sites.\"}]"
+      "faqsJson": "[{\"question\":\"1. What services does UA Engineering provide?\",\"answer\":\"UA Engineering provides a comprehensive range of renovation and engineering services, including residential and commercial renovation, structural works, glazing, aluminium works, electrical, plumbing, air-conditioning, waterproofing, and solar panel solutions.\"},{\"question\":\"2. Does UA Engineering handle both residential and commercial projects?\",\"answer\":\"Yes. We undertake projects for residential, commercial, and industrial properties across Singapore. Our team can manage projects of different sizes and requirements, from individual renovation works to complete property improvement projects.\"},{\"question\":\"3. How does the renovation process work?\",\"answer\":\"Our process begins with a consultation and site assessment, followed by a detailed proposal and project planning. Once approved, our skilled team carries out the works under professional supervision and quality control. The project concludes with final inspection, handover, site cleaning, and after-sales support.\"},{\"question\":\"4. Do you provide a detailed quotation before starting work?\",\"answer\":\"Yes. We provide transparent, itemised quotations outlining the project scope, materials, pricing, and expected timeline. This helps clients understand the costs clearly and minimise unexpected charges during the project.\"},{\"question\":\"5. Are your workers skilled and certified?\",\"answer\":\"Yes. UA Engineering works with highly skilled and certified professionals who follow applicable industry requirements and established safety and quality practices. Experienced supervision is maintained throughout the project to ensure professional execution.\"},{\"question\":\"6. Do you provide waterproofing, plumbing, electrical and air-conditioning services?\",\"answer\":\"Yes. We provide a wide range of essential property services, including waterproofing, plumbing, electrical works, and air-conditioning solutions. These services can be carried out as individual works or integrated into a larger renovation or engineering project.\"},{\"question\":\"7. How does UA Engineering ensure quality and timely project completion?\",\"answer\":\"We use structured project planning, experienced supervision, quality inspections, premium materials, and professional workmanship throughout each stage. Our team focuses on safety, quality control, clear communication, and efficient scheduling to deliver projects reliably and on time.\"}]"
     },
     "seo": {
       "metaTitle": "About Us | UA Engineering PTE. LTD.",
       "metaDescription": "Learn more about UA Engineering's team, licensed professional engineers, safety track record, and commercial construction capability in Singapore.",
       "metaKeywords": "about UA engineering, site engineers Singapore, certified contractors Singapore",
-      "schemaJson": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"AboutPage\",\n  \"name\": \"About UA Engineering Pte Ltd\"\n}"
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"AboutPage\",\"name\":\"About UA Engineering Pte Ltd\"}"
     }
   },
   "services": {
@@ -164,7 +169,7 @@
       "metaTitle": "Our Services | Substation Electrical, Plumbing, Waterproofing",
       "metaDescription": "Explore our commercial and industrial services in Singapore.",
       "metaKeywords": "substation electrical works, commercial plumbing Singapore",
-      "schemaJson": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Service\"\n}"
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\"}"
     }
   },
   "projects": {
@@ -180,7 +185,7 @@
       "metaTitle": "Completed Projects | UA Engineering Portfolio",
       "metaDescription": "Review our portfolio of successfully delivered projects in Singapore.",
       "metaKeywords": "engineering portfolio Singapore, substation works Singapore",
-      "schemaJson": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CollectionPage\"\n}"
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\"}"
     }
   },
   "blog": {
@@ -196,7 +201,7 @@
       "metaTitle": "Blog & Engineering Resources | UA Engineering",
       "metaDescription": "Read the latest engineering articles, safety tips, BTO renovation rules, and electrical rewiring checklists.",
       "metaKeywords": "engineering blog, BTO renovation tips",
-      "schemaJson": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Blog\"\n}"
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Blog\"}"
     }
   },
   "contact": {
@@ -205,16 +210,16 @@
       "heroSubheading": "Get in touch for commercial quotations, structural surveys, emergency substation audits, or custom plumbing design layout consultations.",
       "heroImage": "/images/contact/contact-bg.jpg",
       "heroImageAlt": "UA Engineering Singapore Customer Support Center",
-      "contactAddress": "38C Sea Avenue Marine Mansion Singapore 424256",
+      "contactAddress": "38C SEA AVENUE MARINE MANSION SINGAPORE 424256",
       "contactPhone": "+65 8459 3003",
-      "contactEmail": "Info@uaengineering.com.sg",
+      "contactEmail": "hello.uaengineering@gmail.com",
       "contactHours": "Mon - Sat: 9:00 AM - 6:00 PM (Emergency 24/7 Support)"
     },
     "seo": {
       "metaTitle": "Contact Us | UA Engineering PTE. LTD.",
       "metaDescription": "Request a callback or quotation from UA Engineering Singapore.",
       "metaKeywords": "contact UA engineering, Singapore engineer inspection",
-      "schemaJson": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"ContactPage\"\n}"
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"ContactPage\"}"
     }
   }
 }
