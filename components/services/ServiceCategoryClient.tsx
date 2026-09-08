@@ -335,7 +335,7 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
                       {/* Card Image */}
                       <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-50 border-b border-slate-100/50">
                         <Image
-                          src={getImageUrl(service.image)}
+                          src={getImageUrl(service.image || "")}
                           alt={service.title}
                           fill
                           sizes="(max-width: 768px) 100vw, 33vw"

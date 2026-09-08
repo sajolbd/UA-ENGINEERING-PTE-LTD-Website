@@ -93,6 +93,8 @@ export default function ServiceCategoryPage({ params }: PageProps) {
         title: params.slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
         shortDescription: "",
         description: "",
+        image: "",
+        icon: "",
         featuredImage: "/images/layout/breadcrumb-bg.png",
         bgImage: "/images/layout/breadcrumb-bg.png",
         services: []
