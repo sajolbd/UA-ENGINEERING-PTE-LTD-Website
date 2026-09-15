@@ -113,74 +113,67 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       console.warn("Failed to parse website localStorage cache:", e);
     }
 
-    const fetchWithTimeout = async (url: string, options: RequestInit = {}, timeoutMs: number = 6000) => {
+    const safeFetchJson = async (url: string, timeoutMs: number = 6000) => {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
-        const response = await fetch(url, { ...options, signal: controller.signal });
-        return response;
+        const res = await fetch(url, { cache: "no-store", signal: controller.signal });
+        if (!res.ok) return null;
+        const contentType = res.headers.get("content-type") || "";
+        if (!contentType.includes("application/json")) return null;
+        return await res.json();
+      } catch {
+        return null;
       } finally {
         clearTimeout(timer);
       }
     };
 
     // 1. Fetch live CMS pages content from Express API / MongoDB
-    fetchWithTimeout(`${apiBase}/api/cms`, { cache: "no-store" })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.success && res.data && Object.keys(res.data).length > 0) {
-          setCms((prev: any) => {
-            const merged = mergeCmsData(prev, res.data);
-            try {
-              if (typeof window !== "undefined") {
-                localStorage.setItem("ua_cms_data_cache", JSON.stringify(merged));
-              }
-            } catch (e) {}
-            return merged;
-          });
-        }
-      })
-      .catch((err) => console.warn("CMS API fetch notice:", err));
+    safeFetchJson(`${apiBase}/api/cms`).then((res) => {
+      if (res && res.success && res.data && Object.keys(res.data).length > 0) {
+        setCms((prev: any) => {
+          const merged = mergeCmsData(prev, res.data);
+          try {
+            if (typeof window !== "undefined") {
+              localStorage.setItem("ua_cms_data_cache", JSON.stringify(merged));
+            }
+          } catch (e) {}
+          return merged;
+        });
+      }
+    });
 
     // 2. Fetch live Services catalog from Express API / MongoDB
-    fetchWithTimeout(`${apiBase}/api/services`, { cache: "no-store" })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
-          setServices(res.data);
-          try {
-            if (typeof window !== "undefined") {
-              localStorage.setItem("ua_services_categories_cache", JSON.stringify(res.data));
-            }
-          } catch (e) {}
-        }
-      })
-      .catch((err) => console.warn("Services API fetch notice:", err));
+    safeFetchJson(`${apiBase}/api/services`).then((res) => {
+      if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
+        setServices(res.data);
+        try {
+          if (typeof window !== "undefined") {
+            localStorage.setItem("ua_services_categories_cache", JSON.stringify(res.data));
+          }
+        } catch (e) {}
+      }
+    });
 
     // 3. Fetch live Projects portfolio from Express API / MongoDB
-    fetchWithTimeout(`${apiBase}/api/projects`, { cache: "no-store" })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
-          setProjects(res.data);
-          try {
-            if (typeof window !== "undefined") {
-              localStorage.setItem("ua_projects_data_cache", JSON.stringify(res.data));
-            }
-          } catch (e) {}
-        }
-      })
-      .catch((err) => console.warn("Projects API fetch notice:", err));
+    safeFetchJson(`${apiBase}/api/projects`).then((res) => {
+      if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
+        setProjects(res.data);
+        try {
+          if (typeof window !== "undefined") {
+            localStorage.setItem("ua_projects_data_cache", JSON.stringify(res.data));
+          }
+        } catch (e) {}
+      }
+    });
 
     // 4. Fetch live Blog articles from Express API / MongoDB
-    fetchWithTimeout(`${apiBase}/api/blogs`, { cache: "no-store" })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.success && Array.isArray(res.data)) {
-          setBlogs(res.data);
-        }
-      })
-      .catch((err) => console.warn("Blogs API fetch notice:", err));
+    safeFetchJson(`${apiBase}/api/blogs`).then((res) => {
+      if (res && res.success && Array.isArray(res.data)) {
+        setBlogs(res.data);
+      }
+    });
 
     setLoading(false);
   }, []);
