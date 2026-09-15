@@ -33,62 +33,75 @@ interface CmsProviderProps {
   };
 }
 
-function mergeCmsData(base: any, override: any) {
+function isNonEmptyString(val: any): boolean {
+  return typeof val === "string" && val.trim().length > 0;
+}
+
+function mergeCmsData(base: any, override: any): any {
   if (!override || typeof override !== "object") return base;
-  const result = { ...base };
-  Object.keys(base).forEach((pageKey) => {
-    const basePage = base[pageKey] || {};
-    const overridePage = override[pageKey] || {};
-    const baseContent = basePage.content || {};
-    const overrideContent = overridePage.content || {};
+  if (!base || typeof base !== "object") return override;
 
-    const mergedContent = { ...baseContent };
-    Object.keys(overrideContent).forEach((k) => {
-      const val = overrideContent[k];
-      if (val !== undefined && val !== null) {
-        if (typeof val === "string") {
-          if (val.trim().length > 0) {
-            mergedContent[k] = val.trim();
-          }
-        } else {
-          mergedContent[k] = val;
-        }
-      }
-    });
+  const result: any = Array.isArray(base) ? [...base] : { ...base };
 
-    const baseSeo = basePage.seo || {};
-    const overrideSeo = overridePage.seo || {};
-    const mergedSeo = { ...baseSeo };
-    Object.keys(overrideSeo).forEach((k) => {
-      const val = overrideSeo[k];
-      if (val !== undefined && val !== null) {
-        if (typeof val === "string") {
-          if (val.trim().length > 0) {
-            mergedSeo[k] = val.trim();
-          }
-        } else {
-          mergedSeo[k] = val;
-        }
-      }
-    });
+  Object.keys(base).forEach((key) => {
+    const baseVal = base[key];
+    const overrideVal = override[key];
 
-    result[pageKey] = {
-      ...basePage,
-      content: mergedContent,
-      seo: mergedSeo,
-    };
-  });
-  Object.keys(override).forEach((pageKey) => {
-    if (!result[pageKey]) {
-      result[pageKey] = override[pageKey];
+    if (overrideVal === undefined || overrideVal === null) {
+      result[key] = baseVal;
+    } else if (typeof baseVal === "string") {
+      result[key] = isNonEmptyString(overrideVal) ? overrideVal.trim() : baseVal;
+    } else if (Array.isArray(baseVal)) {
+      result[key] = Array.isArray(overrideVal) && overrideVal.length > 0 ? overrideVal : baseVal;
+    } else if (typeof baseVal === "object" && baseVal !== null) {
+      result[key] = mergeCmsData(baseVal, overrideVal);
+    } else {
+      result[key] = overrideVal;
     }
   });
+
+  Object.keys(override).forEach((key) => {
+    if (result[key] === undefined) {
+      const val = override[key];
+      if (typeof val === "string") {
+        if (isNonEmptyString(val)) result[key] = val.trim();
+      } else {
+        result[key] = val;
+      }
+    }
+  });
+
   return result;
 }
 
+function sanitizeServices(initialList: ServiceCategory[], overrideList: any): ServiceCategory[] {
+  if (!Array.isArray(overrideList) || overrideList.length === 0) return initialList;
+
+  return initialList.map((initialItem) => {
+    const match = overrideList.find((p: any) => p && p.slug === initialItem.slug);
+    if (!match) return initialItem;
+
+    return {
+      ...initialItem,
+      ...match,
+      title: isNonEmptyString(match.title) ? match.title.trim() : initialItem.title,
+      shortDescription: isNonEmptyString(match.shortDescription) ? match.shortDescription.trim() : initialItem.shortDescription,
+      description: isNonEmptyString(match.description) ? match.description.trim() : initialItem.description,
+      longDescription: isNonEmptyString(match.longDescription) ? match.longDescription.trim() : initialItem.longDescription,
+      icon: isNonEmptyString(match.icon) ? match.icon : initialItem.icon,
+      image: isNonEmptyString(match.image) ? match.image : initialItem.image,
+      services: Array.isArray(match.services) && match.services.length > 0 ? match.services : initialItem.services,
+    };
+  });
+}
+
 export function CmsProvider({ children, initialData }: CmsProviderProps) {
-  const [cms, setCms] = useState(initialData?.cmsData ? mergeCmsData(initialCmsData, initialData.cmsData) : initialCmsData);
-  const [services, setServices] = useState<ServiceCategory[]>(initialData?.servicesData || initialServicesData);
+  const [cms, setCms] = useState(
+    initialData?.cmsData ? mergeCmsData(initialCmsData, initialData.cmsData) : mergeCmsData(initialCmsData, {})
+  );
+  const [services, setServices] = useState<ServiceCategory[]>(
+    sanitizeServices(initialServicesData, initialData?.servicesData)
+  );
   const [projects, setProjects] = useState<ProjectItem[]>(initialData?.projectsData || initialProjectsData);
   const [blogs, setBlogs] = useState<BlogPost[]>(initialData?.blogPosts || initialBlogPosts);
   const [loading, setLoading] = useState(!initialData);
@@ -103,19 +116,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
         if (cachedServices) {
           const parsed = JSON.parse(cachedServices);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            const validServices = initialServicesData.map((initialItem) => {
-              const match = parsed.find((p: any) => p.slug === initialItem.slug);
-              if (!match) return initialItem;
-              return {
-                ...initialItem,
-                ...match,
-                title: match.title && match.title.trim() ? match.title.trim() : initialItem.title,
-                shortDescription: match.shortDescription && match.shortDescription.trim() ? match.shortDescription.trim() : initialItem.shortDescription,
-                description: match.description && match.description.trim() ? match.description.trim() : initialItem.description,
-                services: Array.isArray(match.services) && match.services.length > 0 ? match.services : initialItem.services,
-              };
-            });
-            setServices(validServices);
+            setServices(sanitizeServices(initialServicesData, parsed));
           }
         }
         const cachedCms = localStorage.getItem("ua_cms_data_cache");
@@ -171,18 +172,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
     // 2. Fetch live Services catalog from Express API / MongoDB
     safeFetchJson(`${apiBase}/api/services`).then((res) => {
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        const validServices = initialServicesData.map((initialItem) => {
-          const match = res.data.find((p: any) => p.slug === initialItem.slug);
-          if (!match) return initialItem;
-          return {
-            ...initialItem,
-            ...match,
-            title: match.title && match.title.trim() ? match.title.trim() : initialItem.title,
-            shortDescription: match.shortDescription && match.shortDescription.trim() ? match.shortDescription.trim() : initialItem.shortDescription,
-            description: match.description && match.description.trim() ? match.description.trim() : initialItem.description,
-            services: Array.isArray(match.services) && match.services.length > 0 ? match.services : initialItem.services,
-          };
-        });
+        const validServices = sanitizeServices(initialServicesData, res.data);
         setServices(validServices);
         try {
           if (typeof window !== "undefined") {
