@@ -138,7 +138,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       console.warn("Failed to parse website localStorage cache:", e);
     }
 
-    const safeFetchJson = async (url: string, timeoutMs: number = 6000) => {
+    const safeFetchJson = async (url: string, timeoutMs: number = 1500) => {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
@@ -154,11 +154,16 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       }
     };
 
-    // 1. Fetch live CMS pages content from Express API / MongoDB
-    safeFetchJson(`${apiBase}/api/cms`).then((res) => {
-      if (res && res.success && res.data && Object.keys(res.data).length > 0) {
+    // Parallel fetch for ultra-fast loading without blocking page render
+    Promise.all([
+      safeFetchJson(`${apiBase}/api/cms`),
+      safeFetchJson(`${apiBase}/api/services`),
+      safeFetchJson(`${apiBase}/api/projects`),
+      safeFetchJson(`${apiBase}/api/blogs`),
+    ]).then(([cmsRes, servicesRes, projectsRes, blogsRes]) => {
+      if (cmsRes && cmsRes.success && cmsRes.data && Object.keys(cmsRes.data).length > 0) {
         setCms((prev: any) => {
-          const merged = mergeCmsData(prev, res.data);
+          const merged = mergeCmsData(prev, cmsRes.data);
           try {
             if (typeof window !== "undefined") {
               localStorage.setItem("ua_cms_data_cache", JSON.stringify(merged));
@@ -167,12 +172,9 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
           return merged;
         });
       }
-    });
 
-    // 2. Fetch live Services catalog from Express API / MongoDB
-    safeFetchJson(`${apiBase}/api/services`).then((res) => {
-      if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        const validServices = sanitizeServices(initialServicesData, res.data);
+      if (servicesRes && servicesRes.success && Array.isArray(servicesRes.data) && servicesRes.data.length > 0) {
+        const validServices = sanitizeServices(initialServicesData, servicesRes.data);
         setServices(validServices);
         try {
           if (typeof window !== "undefined") {
@@ -180,28 +182,22 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
           }
         } catch (e) {}
       }
-    });
 
-    // 3. Fetch live Projects portfolio from Express API / MongoDB
-    safeFetchJson(`${apiBase}/api/projects`).then((res) => {
-      if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        setProjects(res.data);
+      if (projectsRes && projectsRes.success && Array.isArray(projectsRes.data) && projectsRes.data.length > 0) {
+        setProjects(projectsRes.data);
         try {
           if (typeof window !== "undefined") {
-            localStorage.setItem("ua_projects_data_cache", JSON.stringify(res.data));
+            localStorage.setItem("ua_projects_data_cache", JSON.stringify(projectsRes.data));
           }
         } catch (e) {}
       }
-    });
 
-    // 4. Fetch live Blog articles from Express API / MongoDB
-    safeFetchJson(`${apiBase}/api/blogs`).then((res) => {
-      if (res && res.success && Array.isArray(res.data)) {
-        setBlogs(res.data);
+      if (blogsRes && blogsRes.success && Array.isArray(blogsRes.data)) {
+        setBlogs(blogsRes.data);
       }
+    }).finally(() => {
+      setLoading(false);
     });
-
-    setLoading(false);
   }, []);
 
   return (
