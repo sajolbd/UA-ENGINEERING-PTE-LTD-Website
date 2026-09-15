@@ -72,8 +72,19 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       console.warn("Failed to parse website localStorage cache:", e);
     }
 
+    const fetchWithTimeout = async (url: string, options: RequestInit = {}, timeoutMs: number = 6000) => {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const response = await fetch(url, { ...options, signal: controller.signal });
+        return response;
+      } finally {
+        clearTimeout(timer);
+      }
+    };
+
     // 1. Fetch live CMS pages content from Express API / MongoDB
-    fetch(`${apiBase}/api/cms`, { cache: "no-store" })
+    fetchWithTimeout(`${apiBase}/api/cms`, { cache: "no-store" })
       .then((res) => res.json())
       .then((res) => {
         if (res.success && res.data && Object.keys(res.data).length > 0) {
@@ -104,10 +115,10 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
           });
         }
       })
-      .catch((err) => console.error("CMS API fetch notice:", err));
+      .catch((err) => console.warn("CMS API fetch notice:", err));
 
     // 2. Fetch live Services catalog from Express API / MongoDB
-    fetch(`${apiBase}/api/services`, { cache: "no-store" })
+    fetchWithTimeout(`${apiBase}/api/services`, { cache: "no-store" })
       .then((res) => res.json())
       .then((res) => {
         if (res.success && Array.isArray(res.data) && res.data.length > 0) {
@@ -119,10 +130,10 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
           } catch (e) {}
         }
       })
-      .catch((err) => console.error("Services API fetch notice:", err));
+      .catch((err) => console.warn("Services API fetch notice:", err));
 
     // 3. Fetch live Projects portfolio from Express API / MongoDB
-    fetch(`${apiBase}/api/projects`, { cache: "no-store" })
+    fetchWithTimeout(`${apiBase}/api/projects`, { cache: "no-store" })
       .then((res) => res.json())
       .then((res) => {
         if (res.success && Array.isArray(res.data) && res.data.length > 0) {
@@ -134,17 +145,17 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
           } catch (e) {}
         }
       })
-      .catch((err) => console.error("Projects API fetch notice:", err));
+      .catch((err) => console.warn("Projects API fetch notice:", err));
 
     // 4. Fetch live Blog articles from Express API / MongoDB
-    fetch(`${apiBase}/api/blogs`, { cache: "no-store" })
+    fetchWithTimeout(`${apiBase}/api/blogs`, { cache: "no-store" })
       .then((res) => res.json())
       .then((res) => {
         if (res.success && Array.isArray(res.data)) {
           setBlogs(res.data);
         }
       })
-      .catch((err) => console.error("Blogs API fetch notice:", err));
+      .catch((err) => console.warn("Blogs API fetch notice:", err));
 
     setLoading(false);
   }, []);
