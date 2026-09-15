@@ -39,16 +39,31 @@ function mergeCmsData(base: any, override: any) {
   Object.keys(base).forEach((pageKey) => {
     const basePage = base[pageKey] || {};
     const overridePage = override[pageKey] || {};
+    const baseContent = basePage.content || {};
+    const overrideContent = overridePage.content || {};
+
+    const mergedContent = { ...baseContent };
+    Object.keys(overrideContent).forEach((k) => {
+      const val = overrideContent[k];
+      if (val !== undefined && val !== null && val !== "") {
+        mergedContent[k] = val;
+      }
+    });
+
+    const baseSeo = basePage.seo || {};
+    const overrideSeo = overridePage.seo || {};
+    const mergedSeo = { ...baseSeo };
+    Object.keys(overrideSeo).forEach((k) => {
+      const val = overrideSeo[k];
+      if (val !== undefined && val !== null && val !== "") {
+        mergedSeo[k] = val;
+      }
+    });
+
     result[pageKey] = {
       ...basePage,
-      content: {
-        ...(basePage.content || {}),
-        ...(overridePage.content || {}),
-      },
-      seo: {
-        ...(basePage.seo || {}),
-        ...(overridePage.seo || {}),
-      },
+      content: mergedContent,
+      seo: mergedSeo,
     };
   });
   Object.keys(override).forEach((pageKey) => {
