@@ -78,7 +78,7 @@ export default function ResidentialServices() {
                     <div className="block lg:hidden p-5 bg-slate-50 border-t border-slate-100">
                       <p className="text-sm text-slate-500 font-semibold mb-4">{item.shortDescription}</p>
                       <ul className="space-y-3 mb-5">
-                        {item.services.map((service, sIdx) => (
+                        {((item as any)?.services || []).map((service: any, sIdx: number) => (
                           <li key={sIdx} className="flex items-start gap-2.5">
                             <CheckCircle2 className="h-4.5 w-4.5 text-primary shrink-0 mt-0.5" />
                             <span className="text-sm font-bold text-slate-700">{service.title}</span>
@@ -101,7 +101,7 @@ export default function ResidentialServices() {
 
           {/* Right: Desktop Detail Preview Box */}
           <div className="hidden lg:block lg:col-span-7 bg-slate-50 border border-slate-100 rounded-2xl p-8 shadow-sm">
-            {activeCategory !== null ? (
+            {activeCategory !== null && servicesData[activeCategory] ? (
               <div className="h-full flex flex-col justify-between">
                 <div>
                   <span className="text-xs font-black tracking-widest text-primary uppercase bg-primary/5 px-3 py-1.5 rounded-full">
@@ -113,7 +113,7 @@ export default function ResidentialServices() {
                   
                   {/* Grid of task links */}
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    {servicesData[activeCategory].services.map((service, sIdx) => (
+                    {((servicesData[activeCategory] as any)?.services || []).map((service: any, sIdx: number) => (
                       <li key={sIdx} className="flex items-start gap-3 group">
                         <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5 transition-transform duration-200 group-hover:scale-110" />
                         <span className="text-sm font-bold text-slate-700 group-hover:text-primary transition-colors duration-150">

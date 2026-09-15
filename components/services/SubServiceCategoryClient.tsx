@@ -181,7 +181,7 @@ export default function SubServiceCategoryClient({ slug, subSlug, fallbackCatego
                   More in {category.title}
                 </h3>
                 <nav className="flex flex-col gap-2.5">
-                  {category.services.map((s) => {
+                  {((category as any)?.services || []).map((s: any) => {
                     const isActive = s.slug === subSlug;
                     return (
                       <Link

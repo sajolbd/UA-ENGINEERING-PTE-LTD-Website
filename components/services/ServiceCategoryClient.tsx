@@ -228,10 +228,10 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
                 </div>
 
                 {/* Filled Learn More & Specifications button moved right below Key Specifications */}
-                {category.services.length === 1 && (
+              {((category as any)?.services || []).length === 1 && (
                   <div className="mt-6">
                     <Link
-                      href={`/services/${category.slug}/${category.services[0].slug}`}
+                      href={`/services/${category.slug}/${(category as any).services[0].slug}`}
                       className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary hover:shadow-xl hover:shadow-secondary/20"
                     >
                       <span>Learn More & Specifications</span>
@@ -314,14 +314,14 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
             </div>
 
             <div
-              className={`grid grid-cols-1 ${category.services.length === 1
+              className={`grid grid-cols-1 ${((category as any)?.services || []).length === 1
                   ? "max-w-md mx-auto"
-                  : category.services.length === 2
+                  : ((category as any)?.services || []).length === 2
                     ? "md:grid-cols-2 max-w-4xl mx-auto"
                     : "md:grid-cols-2 lg:grid-cols-3"
                 } gap-6 lg:gap-8 justify-center`}
             >
-              {category.services.map((service, index) => (
+              {((category as any)?.services || []).map((service: any, index: number) => (
                 <Link
                   key={service.title}
                   href={`/services/${category.slug}/${service.slug}`}
@@ -365,7 +365,7 @@ export default function ServiceCategoryClient({ slug, fallbackCategory }: Props)
                               Key Specifications:
                             </h5>
                             <ul className="grid grid-cols-1 gap-1.5">
-                              {service.features.slice(0, 3).map((feat) => (
+                              {service.features.slice(0, 3).map((feat: any) => (
                                 <li key={feat} className="flex items-start gap-2 text-xs text-slate-600 font-semibold transition-colors duration-500 group-hover:text-white/90">
                                   <CheckCircle2 size={14} className="text-primary shrink-0 mt-0.5 transition-colors duration-500 group-hover:text-white" />
                                   <span>{feat}</span>

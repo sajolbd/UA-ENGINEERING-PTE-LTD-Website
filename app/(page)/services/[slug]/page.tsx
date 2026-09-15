@@ -75,6 +75,7 @@ import ServiceCategoryClient from "../../../../components/services/ServiceCatego
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   return servicesData.map((category) => ({
