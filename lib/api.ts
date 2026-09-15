@@ -13,8 +13,8 @@ export const getApiBaseUrl = (): string => {
     if (hostname === "localhost" || hostname === "127.0.0.1") {
       return `${protocol}//${hostname}:5000`;
     }
-    // Dynamic production fallback (VPS domain/IP on port 5000)
-    return `${protocol}//${hostname}:5000`;
+    // Relative path for same-origin production deployment
+    return "";
   }
   return "http://127.0.0.1:5000";
 };

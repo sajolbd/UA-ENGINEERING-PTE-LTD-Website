@@ -7,6 +7,10 @@ import { servicesData as initialServicesData, ServiceCategory } from "../data/se
 import { projectsData as initialProjectsData, ProjectItem } from "../data/projectsData";
 import { blogPosts as initialBlogPosts, BlogPost } from "../data/blogData";
 
+const CMS_CACHE_KEY = "ua_cms_data_cache_v2";
+const SERVICES_CACHE_KEY = "ua_services_categories_cache_v2";
+const PROJECTS_CACHE_KEY = "ua_projects_data_cache_v2";
+
 interface CmsContextType {
   cmsData: typeof initialCmsData;
   servicesData: ServiceCategory[];
@@ -109,24 +113,28 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
   useEffect(() => {
     const apiBase = getApiBaseUrl();
 
-    // 0. Load cached updates from localStorage for instant client rendering
+    // 0. Clean legacy broken caches and load v2 cache
     try {
       if (typeof window !== "undefined") {
-        const cachedServices = localStorage.getItem("ua_services_categories_cache");
+        localStorage.removeItem("ua_cms_data_cache");
+        localStorage.removeItem("ua_services_categories_cache");
+        localStorage.removeItem("ua_projects_data_cache");
+
+        const cachedServices = localStorage.getItem(SERVICES_CACHE_KEY);
         if (cachedServices) {
           const parsed = JSON.parse(cachedServices);
           if (Array.isArray(parsed) && parsed.length > 0) {
             setServices(sanitizeServices(initialServicesData, parsed));
           }
         }
-        const cachedCms = localStorage.getItem("ua_cms_data_cache");
+        const cachedCms = localStorage.getItem(CMS_CACHE_KEY);
         if (cachedCms) {
           const parsedCms = JSON.parse(cachedCms);
           if (parsedCms && Object.keys(parsedCms).length > 0) {
-            setCms((prev: any) => mergeCmsData(prev, parsedCms));
+            setCms(mergeCmsData(initialCmsData, parsedCms));
           }
         }
-        const cachedProjects = localStorage.getItem("ua_projects_data_cache");
+        const cachedProjects = localStorage.getItem(PROJECTS_CACHE_KEY);
         if (cachedProjects) {
           const parsedProj = JSON.parse(cachedProjects);
           if (Array.isArray(parsedProj) && parsedProj.length > 0) {
@@ -138,7 +146,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       console.warn("Failed to parse website localStorage cache:", e);
     }
 
-    const safeFetchJson = async (url: string, timeoutMs: number = 1500) => {
+    const safeFetchJson = async (url: string, timeoutMs: number = 2000) => {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
@@ -154,7 +162,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       }
     };
 
-    // Parallel fetch for ultra-fast loading without blocking page render
+    // Parallel fetch for live data update
     Promise.all([
       safeFetchJson(`${apiBase}/api/cms`),
       safeFetchJson(`${apiBase}/api/services`),
@@ -162,15 +170,13 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       safeFetchJson(`${apiBase}/api/blogs`),
     ]).then(([cmsRes, servicesRes, projectsRes, blogsRes]) => {
       if (cmsRes && cmsRes.success && cmsRes.data && Object.keys(cmsRes.data).length > 0) {
-        setCms((prev: any) => {
-          const merged = mergeCmsData(prev, cmsRes.data);
-          try {
-            if (typeof window !== "undefined") {
-              localStorage.setItem("ua_cms_data_cache", JSON.stringify(merged));
-            }
-          } catch (e) {}
-          return merged;
-        });
+        const merged = mergeCmsData(initialCmsData, cmsRes.data);
+        setCms(merged);
+        try {
+          if (typeof window !== "undefined") {
+            localStorage.setItem(CMS_CACHE_KEY, JSON.stringify(merged));
+          }
+        } catch (e) {}
       }
 
       if (servicesRes && servicesRes.success && Array.isArray(servicesRes.data) && servicesRes.data.length > 0) {
@@ -178,7 +184,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
         setServices(validServices);
         try {
           if (typeof window !== "undefined") {
-            localStorage.setItem("ua_services_categories_cache", JSON.stringify(validServices));
+            localStorage.setItem(SERVICES_CACHE_KEY, JSON.stringify(validServices));
           }
         } catch (e) {}
       }
@@ -187,7 +193,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
         setProjects(projectsRes.data);
         try {
           if (typeof window !== "undefined") {
-            localStorage.setItem("ua_projects_data_cache", JSON.stringify(projectsRes.data));
+            localStorage.setItem(PROJECTS_CACHE_KEY, JSON.stringify(projectsRes.data));
           }
         } catch (e) {}
       }
