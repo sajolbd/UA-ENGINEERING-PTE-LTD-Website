@@ -15,6 +15,15 @@ const staticFallbackIcons: Record<string, string> = {
   "solar-panel-installation": "/images/home/service-card/Solar Panel Installation - UA Engineering.png",
 };
 
+const staticFallbackTitles: Record<string, string> = {
+  "renovation-upgrading": "Renovation & Upgrading",
+  "structural-exterior-works": "Structural & Exterior Works",
+  "painting-waterproofing": "Painting & Waterproofing",
+  "aluminium-glazing-works": "Aluminium & Glazing Works",
+  "electrical-plumbing-aircon": "Electrical, Plumbing & Aircon",
+  "solar-panel-installation": "Solar Panel Installation",
+};
+
 export default function Services() {
   const { servicesData } = useCmsData();
 
@@ -24,6 +33,10 @@ export default function Services() {
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-6">
           {servicesData.map((cat) => {
             const iconUrl = getImageUrl(cat.icon || staticFallbackIcons[cat.slug] || "/images/home/service-card/Renovation Upgrading - UA Engineering.png");
+            const title = (cat.title && cat.title.trim().length > 0)
+              ? cat.title.trim()
+              : (staticFallbackTitles[cat.slug] || "Engineering Service");
+
             return (
               <Link
                 key={cat.slug}
@@ -33,7 +46,7 @@ export default function Services() {
                 <div className="relative mb-4 flex h-20 w-20 items-center justify-center">
                   <Image
                     src={iconUrl}
-                    alt={cat.title}
+                    alt={title}
                     width={80}
                     height={80}
                     className="h-40 w-40 object-contain transition-all duration-300 group-hover:scale-110"
@@ -42,7 +55,7 @@ export default function Services() {
                 </div>
 
                 <h3 className="mt-2 text-base font-bold leading-snug text-slate-950 transition-colors duration-300 group-hover:text-white">
-                  {cat.title}
+                  {title}
                 </h3>
               </Link>
             );

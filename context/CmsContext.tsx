@@ -45,8 +45,14 @@ function mergeCmsData(base: any, override: any) {
     const mergedContent = { ...baseContent };
     Object.keys(overrideContent).forEach((k) => {
       const val = overrideContent[k];
-      if (val !== undefined && val !== null && val !== "") {
-        mergedContent[k] = val;
+      if (val !== undefined && val !== null) {
+        if (typeof val === "string") {
+          if (val.trim().length > 0) {
+            mergedContent[k] = val.trim();
+          }
+        } else {
+          mergedContent[k] = val;
+        }
       }
     });
 
@@ -55,8 +61,14 @@ function mergeCmsData(base: any, override: any) {
     const mergedSeo = { ...baseSeo };
     Object.keys(overrideSeo).forEach((k) => {
       const val = overrideSeo[k];
-      if (val !== undefined && val !== null && val !== "") {
-        mergedSeo[k] = val;
+      if (val !== undefined && val !== null) {
+        if (typeof val === "string") {
+          if (val.trim().length > 0) {
+            mergedSeo[k] = val.trim();
+          }
+        } else {
+          mergedSeo[k] = val;
+        }
       }
     });
 
@@ -91,7 +103,19 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
         if (cachedServices) {
           const parsed = JSON.parse(cachedServices);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            setServices(parsed);
+            const validServices = initialServicesData.map((initialItem) => {
+              const match = parsed.find((p: any) => p.slug === initialItem.slug);
+              if (!match) return initialItem;
+              return {
+                ...initialItem,
+                ...match,
+                title: match.title && match.title.trim() ? match.title.trim() : initialItem.title,
+                shortDescription: match.shortDescription && match.shortDescription.trim() ? match.shortDescription.trim() : initialItem.shortDescription,
+                description: match.description && match.description.trim() ? match.description.trim() : initialItem.description,
+                services: Array.isArray(match.services) && match.services.length > 0 ? match.services : initialItem.services,
+              };
+            });
+            setServices(validServices);
           }
         }
         const cachedCms = localStorage.getItem("ua_cms_data_cache");
@@ -147,10 +171,22 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
     // 2. Fetch live Services catalog from Express API / MongoDB
     safeFetchJson(`${apiBase}/api/services`).then((res) => {
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
-        setServices(res.data);
+        const validServices = initialServicesData.map((initialItem) => {
+          const match = res.data.find((p: any) => p.slug === initialItem.slug);
+          if (!match) return initialItem;
+          return {
+            ...initialItem,
+            ...match,
+            title: match.title && match.title.trim() ? match.title.trim() : initialItem.title,
+            shortDescription: match.shortDescription && match.shortDescription.trim() ? match.shortDescription.trim() : initialItem.shortDescription,
+            description: match.description && match.description.trim() ? match.description.trim() : initialItem.description,
+            services: Array.isArray(match.services) && match.services.length > 0 ? match.services : initialItem.services,
+          };
+        });
+        setServices(validServices);
         try {
           if (typeof window !== "undefined") {
-            localStorage.setItem("ua_services_categories_cache", JSON.stringify(res.data));
+            localStorage.setItem("ua_services_categories_cache", JSON.stringify(validServices));
           }
         } catch (e) {}
       }
