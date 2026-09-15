@@ -33,8 +33,34 @@ interface CmsProviderProps {
   };
 }
 
+function mergeCmsData(base: any, override: any) {
+  if (!override || typeof override !== "object") return base;
+  const result = { ...base };
+  Object.keys(base).forEach((pageKey) => {
+    const basePage = base[pageKey] || {};
+    const overridePage = override[pageKey] || {};
+    result[pageKey] = {
+      ...basePage,
+      content: {
+        ...(basePage.content || {}),
+        ...(overridePage.content || {}),
+      },
+      seo: {
+        ...(basePage.seo || {}),
+        ...(overridePage.seo || {}),
+      },
+    };
+  });
+  Object.keys(override).forEach((pageKey) => {
+    if (!result[pageKey]) {
+      result[pageKey] = override[pageKey];
+    }
+  });
+  return result;
+}
+
 export function CmsProvider({ children, initialData }: CmsProviderProps) {
-  const [cms, setCms] = useState(initialData?.cmsData || initialCmsData);
+  const [cms, setCms] = useState(initialData?.cmsData ? mergeCmsData(initialCmsData, initialData.cmsData) : initialCmsData);
   const [services, setServices] = useState<ServiceCategory[]>(initialData?.servicesData || initialServicesData);
   const [projects, setProjects] = useState<ProjectItem[]>(initialData?.projectsData || initialProjectsData);
   const [blogs, setBlogs] = useState<BlogPost[]>(initialData?.blogPosts || initialBlogPosts);
@@ -57,7 +83,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
         if (cachedCms) {
           const parsedCms = JSON.parse(cachedCms);
           if (parsedCms && Object.keys(parsedCms).length > 0) {
-            setCms(parsedCms);
+            setCms((prev: any) => mergeCmsData(prev, parsedCms));
           }
         }
         const cachedProjects = localStorage.getItem("ua_projects_data_cache");
@@ -88,24 +114,8 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       .then((res) => res.json())
       .then((res) => {
         if (res.success && res.data && Object.keys(res.data).length > 0) {
-          setCms((prev) => {
-            const merged = { ...prev };
-            Object.keys(res.data).forEach((pageKey) => {
-              if (res.data[pageKey]) {
-                const currentPage = merged[pageKey as keyof typeof merged] || {};
-                merged[pageKey as keyof typeof merged] = {
-                  ...currentPage,
-                  content: {
-                    ...(currentPage as any).content,
-                    ...(res.data[pageKey].content || {}),
-                  },
-                  seo: {
-                    ...(currentPage as any).seo,
-                    ...(res.data[pageKey].seo || {}),
-                  },
-                };
-              }
-            });
+          setCms((prev: any) => {
+            const merged = mergeCmsData(prev, res.data);
             try {
               if (typeof window !== "undefined") {
                 localStorage.setItem("ua_cms_data_cache", JSON.stringify(merged));
