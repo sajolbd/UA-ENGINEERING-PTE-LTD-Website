@@ -12,10 +12,6 @@ function isReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function isFillImage(image: HTMLImageElement) {
-  return image.style.position === "absolute";
-}
-
 export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
   useEffect(() => {
     const root = rootRef.current;
@@ -30,14 +26,17 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
     let safetyTimer: NodeJS.Timeout;
 
     const context = gsap.context(() => {
+      // 1. Animate top-level cards in section grids
       const cards = gsap.utils
         .toArray<HTMLElement>(
-          "article, section .grid > div[class*='rounded'], section .grid > a[class*='rounded']",
+          "section .grid > a, section .grid > div, article",
           root
         )
         .filter(
           (card) =>
-            !card.closest(".marquee-track") && !card.closest(".hero-slider")
+            !card.closest(".marquee-track") &&
+            !card.closest(".hero-slider") &&
+            !card.parentElement?.closest(".grid")
         );
 
       cards.forEach((card, index) => {
@@ -45,12 +44,11 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
         try {
           gsap.from(card, {
             autoAlpha: 0,
-            y: 36,
-            filter: "blur(10px)",
-            duration: 0.9,
-            delay: Math.min((index % 4) * 0.07, 0.21),
-            ease: "expo.out",
-            clearProps: "opacity,visibility,filter,transform",
+            y: 28,
+            duration: 0.75,
+            delay: Math.min((index % 3) * 0.07, 0.21),
+            ease: "power2.out",
+            clearProps: "all",
             scrollTrigger: {
               trigger: card,
               start: "top 92%",
@@ -58,134 +56,48 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
             },
           });
         } catch {
-          // Ignore animation init error gracefully if element unmounted
+          // Ignore animation error gracefully
         }
       });
 
-      const images = gsap.utils
-        .toArray<HTMLImageElement>("section img", root)
-        .filter(
-          (image) =>
-            !isFillImage(image) &&
-            !image.closest(".marquee-track") &&
-            !image.closest(".hero-slider") &&
-            !image.closest("button")
-        );
-
-      images.forEach((image) => {
-        if (!image || !(image instanceof Element) || !document.body.contains(image)) return;
-        const frame = image.parentElement;
-
-        if (frame) {
-          frame.classList.add("site-image-reveal");
-        }
-
-        try {
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: frame ?? image,
-                start: "top 92%",
-                once: true,
-              },
-            })
-            .fromTo(
-              frame ?? image,
-              { clipPath: "inset(0 100% 0 0)" },
-              {
-                clipPath: "inset(0 0% 0 0)",
-                duration: 1.05,
-                ease: "power4.out",
-                clearProps: "clipPath",
-              }
-            )
-            .from(
-              image,
-              {
-                scale: 1.12,
-                duration: 1.2,
-                ease: "power4.out",
-                clearProps: "transform",
-              },
-              0
-            );
-        } catch {
-          // Ignore animation init error gracefully
-        }
-      });
-
-      const contentBlocks = gsap.utils
+      // 2. Animate Section Main Titles and Subtitles (ONLY top-level section headers outside cards)
+      const sectionHeaders = gsap.utils
         .toArray<HTMLElement>(
-          "section h1, section h2, section h3, section p, section li, section a.btn-slide-primary",
+          "section > div > h1, section > div > h2, section > div > p",
           root
         )
         .filter(
-          (block) =>
-            !block.closest(".marquee-track") &&
-            !block.closest(".hero-slider") &&
-            !block.closest(".typing-title") &&
-            !block.closest("article")
+          (header) =>
+            !header.closest(".marquee-track") &&
+            !header.closest(".hero-slider") &&
+            !header.closest(".typing-title") &&
+            !header.closest("article") &&
+            !header.closest(".grid")
         );
 
-      contentBlocks.forEach((block, index) => {
-        if (!block || !(block instanceof Element) || !document.body.contains(block)) return;
+      sectionHeaders.forEach((header, index) => {
+        if (!header || !(header instanceof Element) || !document.body.contains(header)) return;
         try {
-          gsap.from(block, {
+          gsap.from(header, {
             autoAlpha: 0,
             y: 18,
-            duration: 0.75,
-            delay: Math.min((index % 5) * 0.035, 0.14),
-            ease: "power3.out",
-            clearProps: "opacity,visibility,transform",
+            duration: 0.65,
+            delay: Math.min((index % 4) * 0.04, 0.12),
+            ease: "power2.out",
+            clearProps: "all",
             scrollTrigger: {
-              trigger: block,
+              trigger: header,
               start: "top 92%",
               once: true,
             },
           });
         } catch {
-          // Ignore animation init error gracefully
-        }
-      });
-
-      const splitBlocks = gsap.utils.toArray<HTMLElement>(
-        "section .grid > div:not([class*='rounded'])",
-        root
-      );
-
-      splitBlocks.forEach((block, index) => {
-        if (
-          !block ||
-          !(block instanceof Element) ||
-          !document.body.contains(block) ||
-          block.closest(".marquee-track") ||
-          block.closest(".hero-slider") ||
-          block.querySelector("section")
-        ) {
-          return;
-        }
-
-        try {
-          gsap.from(block, {
-            autoAlpha: 0,
-            x: index % 2 === 0 ? -22 : 22,
-            filter: "blur(8px)",
-            duration: 0.9,
-            ease: "expo.out",
-            clearProps: "opacity,visibility,filter,transform",
-            scrollTrigger: {
-              trigger: block,
-              start: "top 92%",
-              once: true,
-            },
-          });
-        } catch {
-          // Ignore animation init error gracefully
+          // Ignore animation error gracefully
         }
       });
     }, root);
 
-    // Refresh ScrollTrigger to ensure correct scroll offsets on page load & refresh
+    // Refresh ScrollTrigger after DOM setup
     requestAnimationFrame(() => {
       try {
         ScrollTrigger.refresh();
@@ -198,18 +110,20 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
       } catch {}
     }, 250);
 
-    // SAFETY FALLSAFE: Restore opacity and visibility for any element left invisible after 1s
+    // PERMANENT SAFETY FALLBACK: Force visibility for any element left hidden
     safetyTimer = setTimeout(() => {
       if (root) {
         const hiddenEls = root.querySelectorAll<HTMLElement>(
-          "[style*='opacity: 0'], [style*='visibility: hidden']"
+          "[style*='opacity'], [style*='visibility']"
         );
         hiddenEls.forEach((el) => {
-          el.style.opacity = "1";
-          el.style.visibility = "visible";
+          if (el.style.opacity === "0" || el.style.visibility === "hidden") {
+            el.style.opacity = "1";
+            el.style.visibility = "visible";
+          }
         });
       }
-    }, 1000);
+    }, 600);
 
     return () => {
       clearTimeout(refreshTimer);
@@ -217,7 +131,7 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
       try {
         context.revert();
       } catch {
-        // Ignore cleanup error if already unmounted
+        // Ignore cleanup error
       }
     };
   }, [rootRef]);
