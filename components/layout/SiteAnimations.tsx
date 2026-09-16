@@ -12,6 +12,12 @@ function isReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+function isInViewport(element: HTMLElement) {
+  if (typeof window === "undefined" || !element) return false;
+  const rect = element.getBoundingClientRect();
+  return rect.top < (window.innerHeight || document.documentElement.clientHeight);
+}
+
 export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
   useEffect(() => {
     const root = rootRef.current;
@@ -41,6 +47,14 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
 
       cards.forEach((card, index) => {
         if (!card || !(card instanceof Element) || !document.body.contains(card)) return;
+
+        // CRITICAL FIX: If element is already in viewport on reload, keep it 100% visible!
+        if (isInViewport(card)) {
+          card.style.opacity = "1";
+          card.style.visibility = "visible";
+          return;
+        }
+
         try {
           gsap.from(card, {
             autoAlpha: 0,
@@ -77,6 +91,14 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
 
       sectionHeaders.forEach((header, index) => {
         if (!header || !(header instanceof Element) || !document.body.contains(header)) return;
+
+        // CRITICAL FIX: If header is already in viewport on reload, keep it 100% visible!
+        if (isInViewport(header)) {
+          header.style.opacity = "1";
+          header.style.visibility = "visible";
+          return;
+        }
+
         try {
           gsap.from(header, {
             autoAlpha: 0,
@@ -108,7 +130,7 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
       try {
         ScrollTrigger.refresh();
       } catch {}
-    }, 250);
+    }, 200);
 
     // PERMANENT SAFETY FALLBACK: Force visibility for any element left hidden
     safetyTimer = setTimeout(() => {
@@ -123,7 +145,7 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
           }
         });
       }
-    }, 600);
+    }, 400);
 
     return () => {
       clearTimeout(refreshTimer);

@@ -113,37 +113,15 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
   useEffect(() => {
     const apiBase = getApiBaseUrl();
 
-    // 0. Clean legacy broken caches and load v2 cache
+    // Clean legacy broken caches
     try {
       if (typeof window !== "undefined") {
         localStorage.removeItem("ua_cms_data_cache");
         localStorage.removeItem("ua_services_categories_cache");
         localStorage.removeItem("ua_projects_data_cache");
-
-        const cachedServices = localStorage.getItem(SERVICES_CACHE_KEY);
-        if (cachedServices) {
-          const parsed = JSON.parse(cachedServices);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            setServices(sanitizeServices(initialServicesData, parsed));
-          }
-        }
-        const cachedCms = localStorage.getItem(CMS_CACHE_KEY);
-        if (cachedCms) {
-          const parsedCms = JSON.parse(cachedCms);
-          if (parsedCms && Object.keys(parsedCms).length > 0) {
-            setCms(mergeCmsData(initialCmsData, parsedCms));
-          }
-        }
-        const cachedProjects = localStorage.getItem(PROJECTS_CACHE_KEY);
-        if (cachedProjects) {
-          const parsedProj = JSON.parse(cachedProjects);
-          if (Array.isArray(parsedProj) && parsedProj.length > 0) {
-            setProjects(parsedProj);
-          }
-        }
       }
     } catch (e) {
-      console.warn("Failed to parse website localStorage cache:", e);
+      console.warn("Failed to clean website localStorage cache:", e);
     }
 
     const safeFetchJson = async (url: string, timeoutMs: number = 2000) => {
