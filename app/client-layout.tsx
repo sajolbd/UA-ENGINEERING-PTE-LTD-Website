@@ -17,7 +17,7 @@ export default function ClientLayout({
 
     ScrollTrigger.config({
       ignoreMobileResize: true,
-      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load,resize",
     });
   }, []);
 
@@ -28,3 +28,4 @@ export default function ClientLayout({
     </main>
   );
 }
+

@@ -9,7 +9,7 @@ type SiteAnimationsProps = {
 };
 
 function isReducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
 function isFillImage(image: HTMLImageElement) {
@@ -25,6 +25,9 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
     }
 
     gsap.registerPlugin(ScrollTrigger);
+
+    let refreshTimer: NodeJS.Timeout;
+    let safetyTimer: NodeJS.Timeout;
 
     const context = gsap.context(() => {
       const cards = gsap.utils
@@ -47,10 +50,10 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
             duration: 0.9,
             delay: Math.min((index % 4) * 0.07, 0.21),
             ease: "expo.out",
-            clearProps: "filter,transform",
+            clearProps: "opacity,visibility,filter,transform",
             scrollTrigger: {
               trigger: card,
-              start: "top 88%",
+              start: "top 92%",
               once: true,
             },
           });
@@ -82,7 +85,7 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
             .timeline({
               scrollTrigger: {
                 trigger: frame ?? image,
-                start: "top 88%",
+                start: "top 92%",
                 once: true,
               },
             })
@@ -133,10 +136,10 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
             duration: 0.75,
             delay: Math.min((index % 5) * 0.035, 0.14),
             ease: "power3.out",
-            clearProps: "transform",
+            clearProps: "opacity,visibility,transform",
             scrollTrigger: {
               trigger: block,
-              start: "top 88%",
+              start: "top 92%",
               once: true,
             },
           });
@@ -169,10 +172,10 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
             filter: "blur(8px)",
             duration: 0.9,
             ease: "expo.out",
-            clearProps: "filter,transform",
+            clearProps: "opacity,visibility,filter,transform",
             scrollTrigger: {
               trigger: block,
-              start: "top 88%",
+              start: "top 92%",
               once: true,
             },
           });
@@ -182,7 +185,35 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
       });
     }, root);
 
+    // Refresh ScrollTrigger to ensure correct scroll offsets on page load & refresh
+    requestAnimationFrame(() => {
+      try {
+        ScrollTrigger.refresh();
+      } catch {}
+    });
+
+    refreshTimer = setTimeout(() => {
+      try {
+        ScrollTrigger.refresh();
+      } catch {}
+    }, 250);
+
+    // SAFETY FALLSAFE: Restore opacity and visibility for any element left invisible after 1s
+    safetyTimer = setTimeout(() => {
+      if (root) {
+        const hiddenEls = root.querySelectorAll<HTMLElement>(
+          "[style*='opacity: 0'], [style*='visibility: hidden']"
+        );
+        hiddenEls.forEach((el) => {
+          el.style.opacity = "1";
+          el.style.visibility = "visible";
+        });
+      }
+    }, 1000);
+
     return () => {
+      clearTimeout(refreshTimer);
+      clearTimeout(safetyTimer);
       try {
         context.revert();
       } catch {
