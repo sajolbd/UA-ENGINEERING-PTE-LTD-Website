@@ -234,13 +234,8 @@ textarea {
 .typing-title__content {
   display: inline-block;
   max-width: 100%;
-  overflow: hidden;
   vertical-align: top;
-  clip-path: inset(0 100% 0 0);
-}
-
-.typing-title.is-visible .typing-title__content {
-  animation: title-typing 1200ms steps(28, end) forwards;
+  clip-path: none !important;
 }
 
 @keyframes whatsapp-float-pulse {

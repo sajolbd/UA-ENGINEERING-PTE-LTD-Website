@@ -16,7 +16,7 @@ export default function TypingTitle({
   id,
 }: TypingTitleProps) {
   const ref = useRef<HTMLElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const node = ref.current;
