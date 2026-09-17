@@ -31,15 +31,19 @@ export default function Hero() {
   const heroImageAlt = heroContent.heroImageAlt || "Hero Background Banner";
   const heroCtaText = heroContent.heroCtaText || "Book An Appointment";
 
-  const getCleanText = (val: any, fallback: string) => {
-    if (typeof val === "string" && val.trim().length > 0) return val.trim();
-    return fallback;
+  const getCleanText = (...candidates: any[]) => {
+    for (const val of candidates) {
+      if (typeof val === "string" && val.trim().length > 0) {
+        return val.trim();
+      }
+    }
+    return "";
   };
 
   const slides = [
     {
-      heading: getCleanText(heroContent.heroHeading || heroContent.heroSlide1Heading, "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works."),
-      subheading: getCleanText(heroContent.heroSubheading || heroContent.heroSlide1Subheading, "We handle it all with expertise, reliability, and guaranteed quality."),
+      heading: getCleanText(heroContent.heroHeading, heroContent.heroSlide1Heading, "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works."),
+      subheading: getCleanText(heroContent.heroSubheading, heroContent.heroSlide1Subheading, "We handle it all with expertise, reliability, and guaranteed quality."),
       bgImage: heroContent.heroSlide1Bg || heroContent.heroImage || "/images/home/hero/hero-bg.png",
     },
     {
@@ -106,7 +110,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-[#eef5ff]/45 to-white/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/35" />
 
-        <Container className="relative flex flex-col justify-center gap-6 lg:gap-8 w-full h-full">
+        <Container className="relative z-10 flex flex-col justify-center gap-6 lg:gap-8 w-full h-full">
           {/* Slider Outer Wrapper */}
           <div className="relative mx-auto w-full max-w-[1320px] pt-4 text-center sm:pt-6 lg:pt-12 xl:pt-16">
             {/* Prev Arrow */}

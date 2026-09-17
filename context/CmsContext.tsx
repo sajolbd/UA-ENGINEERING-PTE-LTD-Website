@@ -93,9 +93,9 @@ export function sanitizeServices(initialList: ServiceCategory[], overrideList: a
       detailTitle: isNonEmptyString(match?.detailTitle) ? match.detailTitle.trim() : initialItem.detailTitle,
       shortDescription: isNonEmptyString(match?.shortDescription) ? match.shortDescription.trim() : initialItem.shortDescription,
       description: isNonEmptyString(match?.description) ? match.description.trim() : initialItem.description,
-      longDescription: isNonEmptyString(match?.longDescription) ? match.longDescription.trim() : initialItem.longDescription,
+      longDescription: isNonEmptyString(match?.longDescription) ? match.longDescription.trim() : (initialItem as any).longDescription,
       icon: isNonEmptyString(match?.icon) ? match.icon : initialItem.icon,
-      image: isNonEmptyString(match?.image) ? match.image : initialItem.image,
+      image: isNonEmptyString(match?.image) ? match.image : (initialItem as any).image,
       featuredImage: isNonEmptyString(match?.featuredImage) ? match.featuredImage : initialItem.featuredImage,
       bgImage: isNonEmptyString(match?.bgImage) ? match.bgImage : initialItem.bgImage,
       services: Array.isArray(match?.services) && match.services.length > 0 ? match.services : initialItem.services,
@@ -105,7 +105,7 @@ export function sanitizeServices(initialList: ServiceCategory[], overrideList: a
       targetSpaces: Array.isArray(match?.targetSpaces) && match.targetSpaces.length > 0 ? match.targetSpaces : initialItem.targetSpaces,
       whyChooseAdvantages: Array.isArray(match?.whyChooseAdvantages) && match.whyChooseAdvantages.length > 0 ? match.whyChooseAdvantages : initialItem.whyChooseAdvantages,
       whyChooseChallenges: Array.isArray(match?.whyChooseChallenges) && match.whyChooseChallenges.length > 0 ? match.whyChooseChallenges : initialItem.whyChooseChallenges,
-      serviceAreas: Array.isArray(match?.serviceAreas) && match.serviceAreas.length > 0 ? match.serviceAreas : initialItem.serviceAreas,
+      serviceAreas: Array.isArray(match?.serviceAreas) && match.serviceAreas.length > 0 ? match.serviceAreas : (initialItem as any).serviceAreas,
       faqs: Array.isArray(match?.faqs) && match.faqs.length > 0 ? match.faqs : initialItem.faqs,
     };
   });
