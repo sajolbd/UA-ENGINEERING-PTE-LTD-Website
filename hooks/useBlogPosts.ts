@@ -38,8 +38,16 @@ export function useBlogPosts() {
       // ignore
     }
 
-    fetch(`${getApiBaseUrl()}/api/blogs`, { cache: "no-store" })
-      .then((res) => res.json())
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 1500);
+
+    fetch(`${getApiBaseUrl()}/api/blogs`, { cache: "no-store", signal: controller.signal })
+      .then((res) => {
+        if (!res.ok) throw new Error("API error");
+        const contentType = res.headers.get("content-type") || "";
+        if (!contentType.includes("application/json")) throw new Error("Not JSON");
+        return res.json();
+      })
       .then((data) => {
         const apiPosts = (data.success && Array.isArray(data.data)) ? data.data : [];
         
@@ -89,7 +97,10 @@ export function useBlogPosts() {
         });
         setPosts(uniquePosts);
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        clearTimeout(timer);
+        setLoading(false);
+      });
   }, []);
 
   return { posts, loading, error };

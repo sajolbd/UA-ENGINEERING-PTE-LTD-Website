@@ -25,31 +25,27 @@ import { blogPosts as initialBlogPosts, BlogPost } from "../data/blogData";
 async function getLiveCmsData() {
   const apiBase = getApiBaseUrl();
 
-  // 1. Fetch CMS data
-  const cmsPromise = fetch(`${apiBase}/api/cms`, { cache: "no-store" })
-    .then((res) => res.json())
-    .catch(() => null);
-
-  // 2. Fetch services
-  const servicesPromise = fetch(`${apiBase}/api/services`, { cache: "no-store" })
-    .then((res) => res.json())
-    .catch(() => null);
-
-  // 3. Fetch projects
-  const projectsPromise = fetch(`${apiBase}/api/projects`, { cache: "no-store" })
-    .then((res) => res.json())
-    .catch(() => null);
-
-  // 4. Fetch blogs
-  const blogsPromise = fetch(`${apiBase}/api/blogs`, { cache: "no-store" })
-    .then((res) => res.json())
-    .catch(() => null);
+  const fetchWithTimeout = async (url: string, timeoutMs: number = 1500) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, { cache: "no-store", signal: controller.signal });
+      if (!res.ok) return null;
+      const contentType = res.headers.get("content-type") || "";
+      if (!contentType.includes("application/json")) return null;
+      return await res.json();
+    } catch {
+      return null;
+    } finally {
+      clearTimeout(timer);
+    }
+  };
 
   const [cmsRes, servicesRes, projectsRes, blogsRes] = await Promise.all([
-    cmsPromise,
-    servicesPromise,
-    projectsPromise,
-    blogsPromise,
+    fetchWithTimeout(`${apiBase}/api/cms`),
+    fetchWithTimeout(`${apiBase}/api/services`),
+    fetchWithTimeout(`${apiBase}/api/projects`),
+    fetchWithTimeout(`${apiBase}/api/blogs`),
   ]);
 
   // Merge CMS content
