@@ -123,6 +123,15 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
   const [loading, setLoading] = useState(!initialData);
 
   useEffect(() => {
+    if (initialData) {
+      if (initialData.cmsData) setCms(mergeCmsData(initialCmsData, initialData.cmsData));
+      if (initialData.servicesData) setServices(sanitizeServices(initialServicesData, initialData.servicesData));
+      if (initialData.projectsData) setProjects(initialData.projectsData || initialProjectsData);
+      if (initialData.blogPosts) setBlogs(initialData.blogPosts || initialBlogPosts);
+    }
+  }, [initialData]);
+
+  useEffect(() => {
     const apiBase = getApiBaseUrl();
 
     // Clean legacy broken caches
