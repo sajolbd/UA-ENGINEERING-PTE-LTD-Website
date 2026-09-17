@@ -191,7 +191,8 @@ textarea {
 }
 
 .site-animated-content section {
-  will-change: transform, opacity;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .site-image-reveal {
