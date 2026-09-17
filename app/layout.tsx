@@ -1,8 +1,5 @@
 // app/layout.tsx
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Josefin_Sans } from "next/font/google";
@@ -25,7 +22,17 @@ import { blogPosts as initialBlogPosts, BlogPost } from "../data/blogData";
 async function getLiveCmsData() {
   const apiBase = getApiBaseUrl();
 
-  const fetchWithTimeout = async (url: string, timeoutMs: number = 1500) => {
+  // If no external API URL is explicitly configured in environment, return rich static data instantly
+  if (!process.env.NEXT_PUBLIC_API_URL) {
+    return {
+      cmsData: initialCmsData,
+      servicesData: initialServicesData,
+      projectsData: initialProjectsData,
+      blogPosts: initialBlogPosts,
+    };
+  }
+
+  const fetchWithTimeout = async (url: string, timeoutMs: number = 1000) => {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
