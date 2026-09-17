@@ -16,6 +16,24 @@ const staticFallbackImages: Record<string, string> = {
   "solar-panel-installation": "/images/services/solar.png",
 };
 
+const staticFallbackTitles: Record<string, string> = {
+  "renovation-upgrading": "Renovation & Upgrading",
+  "structural-exterior-works": "Structural & Exterior Works",
+  "painting-waterproofing": "Painting & Waterproofing",
+  "aluminium-glazing-works": "Aluminium & Glazing Works",
+  "electrical-plumbing-aircon": "Electrical, Plumbing & Aircon",
+  "solar-panel-installation": "Solar Panel Installation",
+};
+
+const staticFallbackDescriptions: Record<string, string> = {
+  "renovation-upgrading": "Transform homes, offices, and commercial spaces with tailored renovations, interior upgrades, quality finishes, and expert project execution.",
+  "structural-exterior-works": "Strengthen and protect your property with structural repairs, roofing, steel works, gate, grill, masonry, and durable exterior improvement solutions.",
+  "painting-waterproofing": "Long-lasting internal and external painting and high-grade waterproofing solutions for residential, commercial, and industrial buildings across Singapore.",
+  "aluminium-glazing-works": "Custom aluminium frames, glass windows, doors, and architectural glazing solutions crafted for modern Singapore properties.",
+  "electrical-plumbing-aircon": "Complete mechanical & electrical engineering services including power installation, pipe repairs, sanitary works, and aircon maintenance.",
+  "solar-panel-installation": "Clean energy solar panel systems designed to cut electricity costs and increase building energy efficiency across Singapore properties.",
+};
+
 export default function Service() {
   const { servicesData } = useCmsData();
 
@@ -40,10 +58,20 @@ export default function Service() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {servicesData.map((cat) => {
             const cardImage = getImageUrl(cat.featuredImage || staticFallbackImages[cat.slug] || "/images/services/renovation.png");
+            const title = (cat.title && cat.title.trim().length > 0)
+              ? cat.title.trim()
+              : (staticFallbackTitles[cat.slug] || "Engineering Service");
+
+            const description = (cat.shortDescription && cat.shortDescription.trim().length > 0)
+              ? cat.shortDescription.trim()
+              : (cat.description && cat.description.trim().length > 0)
+              ? cat.description.trim()
+              : (staticFallbackDescriptions[cat.slug] || "Professional engineering and renovation solutions across Singapore.");
+
             return (
               <Link
-                key={cat.slug}
-                href={`/services/${cat.slug}`}
+                key={cat.slug || title}
+                href={`/services/${cat.slug || "renovation-upgrading"}`}
                 className="group relative flex flex-col transition-all duration-500 ease-in-out hover:-translate-y-2 filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.08)] hover:drop-shadow-[0_25px_50px_rgba(100,18,21,0.2)]"
               >
                 <div className="w-full h-full flex flex-col rounded-2xl overflow-hidden">
@@ -55,7 +83,7 @@ export default function Service() {
                     <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-50 border-b border-slate-100/50">
                       <Image
                         src={cardImage}
-                        alt={cat.title}
+                        alt={title}
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -67,10 +95,10 @@ export default function Service() {
                     {/* Content */}
                     <div className="p-8 flex flex-col flex-grow">
                       <h3 className="text-xl font-bold tracking-tight text-secondary transition-colors duration-500 group-hover:text-white">
-                        {cat.title}
+                        {title}
                       </h3>
                       <p className="mt-3 text-sm leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/80 flex-grow mb-6">
-                        {cat.shortDescription || cat.description}
+                        {description}
                       </p>
 
                       {/* Read More Link */}

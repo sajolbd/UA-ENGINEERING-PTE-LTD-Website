@@ -15,7 +15,7 @@ import RootLayoutComponent from "components/layout/RootLayout";
 import Navbar from "components/layout/Navbar";
 import Footer from "components/layout/Footer";
 import WhatsAppFloat from "components/shared/WhatsAppFloat";
-import { CmsProvider } from "../context/CmsContext";
+import { CmsProvider, sanitizeServices } from "../context/CmsContext";
 import { getApiBaseUrl } from "../lib/api";
 import initialCmsData from "../data/cmsData.json";
 import { servicesData as initialServicesData, ServiceCategory } from "../data/servicesData";
@@ -75,7 +75,7 @@ async function getLiveCmsData() {
 
   return {
     cmsData: mergedCms,
-    servicesData: (servicesRes?.success && Array.isArray(servicesRes?.data) && servicesRes.data.length > 0) ? servicesRes.data : initialServicesData,
+    servicesData: (servicesRes?.success && Array.isArray(servicesRes?.data) && servicesRes.data.length > 0) ? sanitizeServices(initialServicesData, servicesRes.data) : initialServicesData,
     projectsData: (projectsRes?.success && Array.isArray(projectsRes?.data) && projectsRes.data.length > 0) ? projectsRes.data : initialProjectsData,
     blogPosts: (blogsRes?.success && Array.isArray(blogsRes?.data)) ? blogsRes.data : initialBlogPosts,
   };

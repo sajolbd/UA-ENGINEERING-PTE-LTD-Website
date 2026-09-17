@@ -17,6 +17,11 @@ export default function ServiceCategoryCard({
   slug,
   image,
 }: ServiceCategoryCardProps) {
+  const displayTitle = (title && title.trim().length > 0) ? title.trim() : "Engineering Service";
+  const displayDescription = (description && description.trim().length > 0)
+    ? description.trim()
+    : "Professional engineering and renovation solutions across Singapore.";
+
   return (
     <Link
       href={`/services/${slug}`}
@@ -31,7 +36,7 @@ export default function ServiceCategoryCard({
           <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-50 border-b border-slate-100/50">
             <Image
               src={getImageUrl(image)}
-              alt={title}
+              alt={displayTitle}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -47,11 +52,11 @@ export default function ServiceCategoryCard({
           {/* Content */}
           <div className="p-8 flex flex-col flex-grow">
             <h3 className="text-xl font-bold tracking-tight text-secondary transition-colors duration-500 group-hover:text-white sm:text-2xl mb-3">
-              {title}
+              {displayTitle}
             </h3>
             
             <p className="text-sm leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/80 flex-grow mb-4">
-              {description}
+              {displayDescription}
             </p>
 
             {/* Action Link */}

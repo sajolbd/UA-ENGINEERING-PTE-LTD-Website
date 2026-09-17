@@ -68,7 +68,7 @@ export default function ResidentialServices() {
                   >
                     <div className="flex items-center gap-4">
                       <Icon className="h-5.5 w-5.5" />
-                      <span className="font-bold text-base sm:text-lg">{item.title}</span>
+                      <span className="font-bold text-base sm:text-lg">{item.title || "Engineering Service"}</span>
                     </div>
                     <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${isActive ? "rotate-180" : ""}`} />
                   </button>
@@ -76,7 +76,7 @@ export default function ResidentialServices() {
                   {/* Mobile Dropdown View */}
                   {isActive && (
                     <div className="block lg:hidden p-5 bg-slate-50 border-t border-slate-100">
-                      <p className="text-sm text-slate-500 font-semibold mb-4">{item.shortDescription}</p>
+                      <p className="text-sm text-slate-500 font-semibold mb-4">{item.shortDescription || item.description || "Tailored engineering & renovation solutions."}</p>
                       <ul className="space-y-3 mb-5">
                         {((item as any)?.services || []).map((service: any, sIdx: number) => (
                           <li key={sIdx} className="flex items-start gap-2.5">
@@ -105,10 +105,10 @@ export default function ResidentialServices() {
               <div className="h-full flex flex-col justify-between">
                 <div>
                   <span className="text-xs font-black tracking-widest text-primary uppercase bg-primary/5 px-3 py-1.5 rounded-full">
-                    {servicesData[activeCategory].title}
+                    {servicesData[activeCategory].title || "Engineering Service"}
                   </span>
                   <p className="mt-4 text-slate-500 font-semibold text-base leading-relaxed">
-                    {servicesData[activeCategory].shortDescription}
+                    {servicesData[activeCategory].shortDescription || servicesData[activeCategory].description || "Tailored engineering & renovation solutions."}
                   </p>
                   
                   {/* Grid of task links */}

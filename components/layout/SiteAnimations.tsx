@@ -25,8 +25,14 @@ export default function SiteAnimations({ rootRef }: SiteAnimationsProps) {
     };
 
     clearHiddenStyles();
-    const timer = setTimeout(clearHiddenStyles, 100);
-    return () => clearTimeout(timer);
+    const t1 = setTimeout(clearHiddenStyles, 100);
+    const t2 = setTimeout(clearHiddenStyles, 300);
+    const t3 = setTimeout(clearHiddenStyles, 800);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
   }, [rootRef]);
 
   return null;
