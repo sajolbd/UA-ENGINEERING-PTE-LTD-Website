@@ -4,7 +4,7 @@
  * - Otherwise default to http://localhost:5000 for local dev & backend server.
  */
 export const getApiBaseUrl = (): string => {
-  if (process.env.NEXT_PUBLIC_API_URL) {
+  if (process.env.NEXT_PUBLIC_API_URL && process.env.NEXT_PUBLIC_API_URL.trim().length > 0) {
     return process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/?$/, "").replace(/\/$/, "");
   }
   if (typeof window !== "undefined") {
@@ -16,7 +16,7 @@ export const getApiBaseUrl = (): string => {
     // Relative path for same-origin production deployment
     return "";
   }
-  return "http://127.0.0.1:5000";
+  return "";
 };
 
 export const API_BASE = getApiBaseUrl();
