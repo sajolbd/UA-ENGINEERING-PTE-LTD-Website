@@ -112,24 +112,15 @@ export function sanitizeServices(initialList: ServiceCategory[], overrideList: a
 }
 
 export function CmsProvider({ children, initialData }: CmsProviderProps) {
-  const [cms, setCms] = useState(
+  const [cms, setCms] = useState(() =>
     initialData?.cmsData ? mergeCmsData(initialCmsData, initialData.cmsData) : mergeCmsData(initialCmsData, {})
   );
-  const [services, setServices] = useState<ServiceCategory[]>(
+  const [services, setServices] = useState<ServiceCategory[]>(() =>
     sanitizeServices(initialServicesData, initialData?.servicesData)
   );
-  const [projects, setProjects] = useState<ProjectItem[]>(initialData?.projectsData || initialProjectsData);
-  const [blogs, setBlogs] = useState<BlogPost[]>(initialData?.blogPosts || initialBlogPosts);
-  const [loading, setLoading] = useState(!initialData);
-
-  useEffect(() => {
-    if (initialData) {
-      if (initialData.cmsData) setCms(mergeCmsData(initialCmsData, initialData.cmsData));
-      if (initialData.servicesData) setServices(sanitizeServices(initialServicesData, initialData.servicesData));
-      if (initialData.projectsData) setProjects(initialData.projectsData || initialProjectsData);
-      if (initialData.blogPosts) setBlogs(initialData.blogPosts || initialBlogPosts);
-    }
-  }, [initialData]);
+  const [projects, setProjects] = useState<ProjectItem[]>(() => initialData?.projectsData || initialProjectsData);
+  const [blogs, setBlogs] = useState<BlogPost[]>(() => initialData?.blogPosts || initialBlogPosts);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const apiBase = getApiBaseUrl();
