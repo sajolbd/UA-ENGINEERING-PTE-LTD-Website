@@ -19,10 +19,13 @@ import { servicesData as initialServicesData, ServiceCategory } from "../data/se
 import { projectsData as initialProjectsData, ProjectItem } from "../data/projectsData";
 import { blogPosts as initialBlogPosts, BlogPost } from "../data/blogData";
 
-async function getLiveCmsData() {
-  const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:5000";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-  const fetchWithTimeout = async (url: string, timeoutMs: number = 1500) => {
+async function getLiveCmsData() {
+  const apiBase = getApiBaseUrl();
+
+  const fetchWithTimeout = async (url: string, timeoutMs: number = 8000) => {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {

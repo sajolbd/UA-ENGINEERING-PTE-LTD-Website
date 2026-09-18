@@ -81,7 +81,7 @@ function mergeCmsData(base: any, override: any): any {
 export function sanitizeServices(initialList: ServiceCategory[], overrideList: any): ServiceCategory[] {
   if (!Array.isArray(overrideList) || overrideList.length === 0) return initialList;
 
-  return initialList.map((initialItem) => {
+  const updatedInitial = initialList.map((initialItem) => {
     const match = overrideList.find((p: any) => p && p.slug === initialItem.slug);
     if (!match) return initialItem;
 
@@ -109,6 +109,12 @@ export function sanitizeServices(initialList: ServiceCategory[], overrideList: a
       faqs: Array.isArray(match?.faqs) && match.faqs.length > 0 ? match.faqs : initialItem.faqs,
     };
   });
+
+  const additionalItems = overrideList.filter(
+    (item: any) => item && item.slug && !initialList.some((init) => init.slug === item.slug)
+  );
+
+  return [...updatedInitial, ...additionalItems];
 }
 
 export function CmsProvider({ children, initialData }: CmsProviderProps) {
@@ -136,7 +142,7 @@ export function CmsProvider({ children, initialData }: CmsProviderProps) {
       console.warn("Failed to clean website localStorage cache:", e);
     }
 
-    const safeFetchJson = async (url: string, timeoutMs: number = 2000) => {
+    const safeFetchJson = async (url: string, timeoutMs: number = 10000) => {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {

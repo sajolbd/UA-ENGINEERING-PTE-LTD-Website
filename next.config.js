@@ -8,6 +8,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'lh3.googleusercontent.com', port: '' },
       { protocol: 'https', hostname: 'res.cloudinary.com', port: '' },
       { protocol: 'https', hostname: 'bayshore.nyc3.digitaloceanspaces.com' },
+      { protocol: 'https', hostname: 'api.uaengineering.com.sg', port: '' },
       { protocol: 'https', hostname: 'www.uaengineering.com.sg', port: '' },
       { protocol: 'https', hostname: 'uaengineering.com.sg', port: '' },
       { protocol: 'https', hostname: 'dashboard.uaengineering.com.sg', port: '' },
