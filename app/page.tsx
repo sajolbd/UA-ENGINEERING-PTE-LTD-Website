@@ -15,6 +15,9 @@ import cmsData from "../data/cmsData.json";
 import ServiceAreas from "components/services/ServiceAreas";
 import HomeFAQ from "components/home/HomeFAQ";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata(): Promise<Metadata> {
   const seo = cmsData?.home?.seo || {};
   return {

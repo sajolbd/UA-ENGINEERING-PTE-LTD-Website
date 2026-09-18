@@ -46,7 +46,8 @@ export default function Testimonial() {
     },
   ];
 
-  const testimonials = Array.isArray(homeContent.testimonials) && homeContent.testimonials.length > 0
+  const hasCustomTestimonials = Array.isArray(homeContent.testimonials);
+  const testimonials = hasCustomTestimonials && homeContent.testimonials.length > 0
     ? homeContent.testimonials.map((item: any, idx: number) => ({
         id: item.id || idx + 1,
         name: item.name || "Client",
@@ -56,7 +57,11 @@ export default function Testimonial() {
         thumbnail: getImageUrl(item.thumbnail || "/images/home/projects/project-waterproofing.png"),
         videoId: item.videoId || "A2y8jK-iGSw",
       }))
+    : hasCustomTestimonials && homeContent.testimonials.length === 0
+    ? []
     : fallbackTestimonials;
+
+  if (testimonials.length === 0) return null;
 
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
 

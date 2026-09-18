@@ -42,8 +42,8 @@ export default function Hero() {
 
   const slides = [
     {
-      heading: getCleanText(heroContent.heroHeading, heroContent.heroSlide1Heading, "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works."),
-      subheading: getCleanText(heroContent.heroSubheading, heroContent.heroSlide1Subheading, "We handle it all with expertise, reliability, and guaranteed quality."),
+      heading: getCleanText(heroContent.heroSlide1Heading, heroContent.heroHeading, "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works."),
+      subheading: getCleanText(heroContent.heroSlide1Subheading, heroContent.heroSubheading, "We handle it all with expertise, reliability, and guaranteed quality."),
       bgImage: heroContent.heroSlide1Bg || heroContent.heroImage || "/images/home/hero/hero-bg.png",
     },
     {

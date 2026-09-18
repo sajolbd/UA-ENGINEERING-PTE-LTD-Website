@@ -90,7 +90,8 @@ export default function Review() {
   const reviewBadge = homeContent.reviewBadge || "REVIEWS & FEEDBACK";
   const reviewHeading = homeContent.reviewHeading || "5-Star Happy Customer Reviews";
 
-  const googleReviews = Array.isArray(homeContent.googleReviews) && homeContent.googleReviews.length > 0
+  const hasCustomReviews = Array.isArray(homeContent.googleReviews);
+  const googleReviews = hasCustomReviews && homeContent.googleReviews.length > 0
     ? homeContent.googleReviews.map((item: any, idx: number) => ({
         id: item.id || idx + 1,
         name: item.name || "Happy Client",
@@ -99,7 +100,11 @@ export default function Review() {
         avatar: getImageUrl(item.avatar || "/images/home/reviews/google-majidul.png"),
         text: item.text || "Great engineering service!",
       }))
+    : hasCustomReviews && homeContent.googleReviews.length === 0
+    ? []
     : initialGoogleReviews.map((item, idx) => ({ ...item, avatar: getImageUrl(item.avatar) }));
+
+  if (googleReviews.length === 0) return null;
 
   const [activeDot, setActiveDot] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
