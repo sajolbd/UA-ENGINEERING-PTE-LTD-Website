@@ -37,16 +37,22 @@ export default function AboutFAQ() {
   const faqHeading = aboutContent.faqHeading || "FAQ's: Looking for Answers?";
   const faqSubheading = aboutContent.faqSubheading || "Find expert answers to common questions about our renovation, construction, and handyman services in Singapore.";
 
-  let faqList = DEFAULT_FAQ_DATA;
-  if (aboutContent.faqsJson) {
+  let faqList: FAQItem[] = DEFAULT_FAQ_DATA;
+  if (aboutContent.faqsJson !== undefined) {
     try {
-      const parsed = JSON.parse(aboutContent.faqsJson);
-      if (Array.isArray(parsed) && parsed.length > 0) {
+      const parsed = typeof aboutContent.faqsJson === "string" ? JSON.parse(aboutContent.faqsJson || "[]") : aboutContent.faqsJson;
+      if (Array.isArray(parsed)) {
         faqList = parsed;
       }
     } catch (e) {
       console.error("Failed to parse dynamic FAQs:", e);
+      faqList = [];
     }
+  }
+
+  // If user removed all FAQs or list is empty, remove the FAQ section completely
+  if (!faqList || faqList.length === 0) {
+    return null;
   }
 
   const toggleFAQ = (index: number) => {

@@ -51,13 +51,16 @@ function mergeCmsData(base: any, override: any): any {
     const baseVal = base[key];
     const overrideVal = override[key];
 
-    if (overrideVal === undefined || overrideVal === null) {
+    if (overrideVal === undefined) {
       result[key] = baseVal;
-    } else if (typeof baseVal === "string") {
-      result[key] = isNonEmptyString(overrideVal) ? overrideVal.trim() : baseVal;
-    } else if (Array.isArray(baseVal)) {
-      result[key] = Array.isArray(overrideVal) && overrideVal.length > 0 ? overrideVal : baseVal;
-    } else if (typeof baseVal === "object" && baseVal !== null) {
+    } else if (
+      typeof baseVal === "object" &&
+      baseVal !== null &&
+      !Array.isArray(baseVal) &&
+      typeof overrideVal === "object" &&
+      overrideVal !== null &&
+      !Array.isArray(overrideVal)
+    ) {
       result[key] = mergeCmsData(baseVal, overrideVal);
     } else {
       result[key] = overrideVal;
@@ -66,12 +69,7 @@ function mergeCmsData(base: any, override: any): any {
 
   Object.keys(override).forEach((key) => {
     if (result[key] === undefined) {
-      const val = override[key];
-      if (typeof val === "string") {
-        if (isNonEmptyString(val)) result[key] = val.trim();
-      } else {
-        result[key] = val;
-      }
+      result[key] = override[key];
     }
   });
 
