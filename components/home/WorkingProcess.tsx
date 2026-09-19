@@ -19,28 +19,28 @@ export default function WorkingProcess() {
       title: homeContent.processStep1Title || "Free Consultation & Site Visit",
       description: homeContent.processStep1Desc || "We assess your requirements, inspect the site, discuss solutions, and understand your project goals.",
       icon: MessagesSquare,
-      image: getImageUrl(homeContent.processStep1Image || "/images/home/process/assessment.png"),
+      image: homeContent.processStep1Image && homeContent.processStep1Image.trim() !== "" ? getImageUrl(homeContent.processStep1Image) : "",
     },
     {
       step: "02",
       title: homeContent.processStep2Title || "Quotation & Project Planning",
       description: homeContent.processStep2Desc || "Provide a detailed quotation, project scope, material recommendations, timeline, and execution plan with transparent pricing.",
       icon: ClipboardList,
-      image: getImageUrl(homeContent.processStep2Image || "/images/home/process/planning.png"),
+      image: homeContent.processStep2Image && homeContent.processStep2Image.trim() !== "" ? getImageUrl(homeContent.processStep2Image) : "",
     },
     {
       step: "03",
       title: homeContent.processStep3Title || "Professional Execution",
       description: homeContent.processStep3Desc || "Our skilled team completes every project using quality materials, safe practices, and strict workmanship standards.",
       icon: HardHat,
-      image: getImageUrl(homeContent.processStep3Image || "/images/home/process/execution.png"),
+      image: homeContent.processStep3Image && homeContent.processStep3Image.trim() !== "" ? getImageUrl(homeContent.processStep3Image) : "",
     },
     {
       step: "04",
       title: homeContent.processStep4Title || "Final Inspection & Handover",
       description: homeContent.processStep4Desc || "We conduct final quality checks, ensure everything meets expectations, and hand over your completed project with confidence.",
       icon: FileCheck,
-      image: getImageUrl(homeContent.processStep4Image || "/images/home/process/handover.png"),
+      image: homeContent.processStep4Image && homeContent.processStep4Image.trim() !== "" ? getImageUrl(homeContent.processStep4Image) : "",
     },
   ];
 
@@ -79,20 +79,28 @@ export default function WorkingProcess() {
                   <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/60 animate-[spin_30s_linear_infinite]" />
 
                   {/* Static Inner Image Box */}
-                  <div className="relative h-[180px] w-[180px] rounded-full overflow-hidden border-4 border-white bg-slate-50 shadow-md z-10">
-                    <Image
-                      src={step.image}
-                      alt={step.title}
-                      fill
-                      sizes="180px"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                  <div className="relative h-[180px] w-[180px] rounded-full overflow-hidden border-4 border-white bg-slate-50 shadow-md z-10 flex items-center justify-center">
+                    {step.image ? (
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        fill
+                        sizes="180px"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-white to-primary/10 flex items-center justify-center">
+                        <Icon size={56} className="text-primary transition-transform duration-500 group-hover:scale-110" />
+                      </div>
+                    )}
                   </div>
 
-                  {/* Floating Badge (Icon) */}
-                  <div className="absolute top-2 left-2 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white border border-slate-100 shadow-lg text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
-                    <Icon size={22} className="transition-transform duration-500 group-hover:animate-bounce" />
-                  </div>
+                  {/* Floating Badge (Icon) - only when image exists */}
+                  {step.image && (
+                    <div className="absolute top-2 left-2 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white border border-slate-100 shadow-lg text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
+                      <Icon size={22} className="transition-transform duration-500 group-hover:animate-bounce" />
+                    </div>
+                  )}
                 </div>
 
                 {/* Horizontal Connector Arrow (Only lg screens, hide on last) */}

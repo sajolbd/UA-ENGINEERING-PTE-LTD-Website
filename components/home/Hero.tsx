@@ -45,8 +45,8 @@ export default function Hero() {
     2: "/images/services/renovation.png",
     3: "/images/services/painting.png",
     4: "/images/services/sub_roof_extension.png",
-    5: "/images/services/sub_electrical.png",
-    6: "/images/services/sub_plumbing.png",
+    5: "/images/home/hero/hero-bg.png",
+    6: "/images/home/hero/hero-bg.png",
     7: "/images/services/sub_steel_work.png",
   };
 
