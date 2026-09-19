@@ -30,6 +30,7 @@ export default function Hero() {
   const heroImage = heroContent.heroImage || "/images/home/hero/hero-bg.png";
   const heroImageAlt = heroContent.heroImageAlt || "Hero Background Banner";
   const heroCtaText = heroContent.heroCtaText || "Book An Appointment";
+  const heroContentVersion = heroContent._updatedAt || heroContent.updatedAt || "";
 
   const getCleanText = (...candidates: any[]) => {
     for (const val of candidates) {
@@ -41,13 +42,13 @@ export default function Hero() {
   };
 
   const DEFAULT_HERO_SLIDE_BGS: Record<number, string> = {
-    1: "/images/home/hero/hero-bg.png",
-    2: "/images/services/renovation.png",
-    3: "/images/services/painting.png",
-    4: "/images/services/sub_roof_extension.png",
-    5: "/images/home/hero/hero-bg.png",
-    6: "/images/home/hero/hero-bg.png",
-    7: "/images/services/sub_steel_work.png",
+    1: "/images/home/hero/slider/1.jpg",
+    2: "/images/home/hero/slider/2.jpg",
+    3: "/images/home/hero/slider/3.jpg",
+    4: "/images/home/hero/slider/4.jpg",
+    5: "/images/home/hero/slider/5.jpg",
+    6: "/images/home/hero/slider/6.jpg",
+    7: "/images/home/hero/slider/7.webp",
   };
 
   const getSlideBg = (slideNum: number, defaultBg: string) => {
@@ -121,7 +122,7 @@ export default function Hero() {
         {slides.map((slide, idx) => (
           <img
             key={`slide-bg-${idx}`}
-            src={getImageUrl(slide.bgImage, DEFAULT_HERO_SLIDE_BGS[idx + 1])}
+            src={getImageUrl(slide.bgImage, DEFAULT_HERO_SLIDE_BGS[idx + 1], heroContentVersion || slide.bgImage)}
             alt={`Slide ${idx + 1} Background`}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
@@ -130,7 +131,7 @@ export default function Hero() {
                 target.src = slide.bgImage;
                 return;
               }
-              target.src = DEFAULT_HERO_SLIDE_BGS[idx + 1] || "/images/home/hero/hero-bg.png";
+              target.src = DEFAULT_HERO_SLIDE_BGS[idx + 1] || "/images/home/hero/slider/1.jpg";
             }}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${currentSlide === idx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
               }`}

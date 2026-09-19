@@ -18,25 +18,31 @@ export const API_BASE = getApiBaseUrl();
  * Normalizes image paths so uploaded images (Base64 data URLs, uploaded server files, or local assets)
  * load correctly from the active backend API or database.
  */
-export const getImageUrl = (imagePath?: string, fallback: string = "/images/logo.webp"): string => {
+export const getImageUrl = (imagePath?: string, fallback: string = "/images/logo.webp", cacheKey?: string | number): string => {
   if (!imagePath || typeof imagePath !== "string") return fallback;
 
   const trimmed = imagePath.trim();
   if (!trimmed) return fallback;
 
+  const withCacheKey = (url: string) => {
+    if (!cacheKey || url.startsWith("data:")) return url;
+    const separator = url.includes("?") ? "&" : "?";
+    return `${url}${separator}v=${encodeURIComponent(String(cacheKey))}`;
+  };
+
   if (trimmed.startsWith("data:") || trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
-    return trimmed;
+    return withCacheKey(trimmed);
   }
 
   if (trimmed.startsWith("/images/uploads/")) {
-    return `${getApiBaseUrl()}${trimmed}`;
+    return withCacheKey(`${getApiBaseUrl()}${trimmed}`);
   }
 
   if (trimmed.startsWith("images/uploads/")) {
-    return `${getApiBaseUrl()}/${trimmed}`;
+    return withCacheKey(`${getApiBaseUrl()}/${trimmed}`);
   }
 
-  return trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+  return withCacheKey(trimmed.startsWith("/") ? trimmed : `/${trimmed}`);
 };
 
 export const getBlogImageUrl = getImageUrl;
