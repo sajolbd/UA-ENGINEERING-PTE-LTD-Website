@@ -40,41 +40,62 @@ export default function Hero() {
     return "";
   };
 
+  const DEFAULT_HERO_SLIDE_BGS: Record<number, string> = {
+    1: "/images/home/hero/hero-bg.png",
+    2: "/images/services/renovation.png",
+    3: "/images/services/painting.png",
+    4: "/images/services/sub_roof_extension.png",
+    5: "/images/services/sub_electrical.png",
+    6: "/images/services/sub_plumbing.png",
+    7: "/images/services/sub_steel_work.png",
+  };
+
+  const getSlideBg = (slideNum: number, defaultBg: string) => {
+    const customBg = heroContent[`heroSlide${slideNum}Bg`];
+    if (typeof customBg === "string" && customBg.trim().length > 0) {
+      return customBg.trim();
+    }
+    if (slideNum === 1 && typeof heroContent.heroImage === "string" && heroContent.heroImage.trim().length > 0) {
+      return heroContent.heroImage.trim();
+    }
+    return defaultBg;
+  };
+
   const slides = [
     {
       heading: getCleanText(heroContent.heroSlide1Heading, heroContent.heroHeading, "From Renovation to Painting, Roofing, Electrical, Plumbing and Steel Works."),
       subheading: getCleanText(heroContent.heroSlide1Subheading, heroContent.heroSubheading, "We handle it all with expertise, reliability, and guaranteed quality."),
-      bgImage: heroContent.heroSlide1Bg || heroContent.heroImage || "/images/home/hero/hero-bg.png",
+      bgImage: getSlideBg(1, DEFAULT_HERO_SLIDE_BGS[1]),
     },
     {
       heading: getCleanText(heroContent.heroSlide2Heading, "Everything Your Property Needs. One Trusted Engineering Team."),
       subheading: getCleanText(heroContent.heroSlide2Subheading, "From renovations and reinstatement to electrical, plumbing, painting, roofing, steel fabrication, waterproofing, and maintenance - we handle every project with precision and professionalism."),
-      bgImage: heroContent.heroSlide2Bg || "/images/services/renovation.png",
+      bgImage: getSlideBg(2, DEFAULT_HERO_SLIDE_BGS[2]),
     },
     {
       heading: getCleanText(heroContent.heroSlide3Heading, "Fresh Paint. Lasting Protection. Stunning Results."),
       subheading: getCleanText(heroContent.heroSlide3Subheading, "Interior and exterior painting services that enhance appearance, protect surfaces, and increase the value of your property."),
-      bgImage: heroContent.heroSlide3Bg || "/images/services/painting.png",
+      bgImage: getSlideBg(3, DEFAULT_HERO_SLIDE_BGS[3]),
     },
     {
       heading: getCleanText(heroContent.heroSlide4Heading, "Roof Problems? We Fix Them Before They Cost You More."),
       subheading: getCleanText(heroContent.heroSlide4Subheading, "Professional roof repairs, waterproofing, leak prevention, and complete roofing solutions to keep your property safe in every season."),
-      bgImage: heroContent.heroSlide4Bg || "/images/services/sub_roof_extension.png",
+      bgImage: getSlideBg(4, DEFAULT_HERO_SLIDE_BGS[4]),
     },
     {
       heading: getCleanText(heroContent.heroSlide5Heading, "Safe, Reliable Electrical Solutions for Every Building"),
       subheading: getCleanText(heroContent.heroSlide5Subheading, "From new installations and rewiring to troubleshooting and upgrades, we deliver electrical work that keeps your property running safely."),
-      bgImage: heroContent.heroSlide5Bg || "/images/services/sub_electrical.png",
+      bgImage: getSlideBg(5, DEFAULT_HERO_SLIDE_BGS[5]),
     },
     {
       heading: getCleanText(heroContent.heroSlide6Heading, "Professional Plumbing Services Without the Hassle"),
       subheading: getCleanText(heroContent.heroSlide6Subheading, "Leak repairs, pipe replacement, drainage solutions, sanitary installations, and preventive maintenance-all completed with quality workmanship."),
-      bgImage: heroContent.heroSlide6Bg || "/images/services/sub_plumbing.png",
+      bgImage: getSlideBg(6, DEFAULT_HERO_SLIDE_BGS[6]),
     },
     {
       heading: getCleanText(heroContent.heroSlide7Heading, "Custom Steel Fabrication Built for Strength & Precision"),
       subheading: getCleanText(heroContent.heroSlide7Subheading, "We design, fabricate, and install steel structures, staircases, platforms, railings, and custom metal works for commercial and industrial projects."),
-      bgImage: heroContent.heroSlide7Bg || "/images/services/sub_steel_work.png",
+      bgImage: getSlideBg(7, DEFAULT_HERO_SLIDE_BGS[7]),
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -84,7 +105,7 @@ export default function Hero() {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -99,16 +120,22 @@ export default function Hero() {
       <section className="relative overflow-hidden bg-white lg:min-h-[calc(100vh-132px)] flex items-center py-10 sm:py-16 lg:py-24">
         {slides.map((slide, idx) => (
           <img
-            key={`bg-${idx}`}
-            src={getImageUrl(slide.bgImage)}
+            key={`slide-bg-${idx}`}
+            src={getImageUrl(slide.bgImage, DEFAULT_HERO_SLIDE_BGS[idx + 1])}
             alt={`Slide ${idx + 1} Background`}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.onerror = null;
+              target.src = DEFAULT_HERO_SLIDE_BGS[idx + 1] || "/images/home/hero/hero-bg.png";
+            }}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${currentSlide === idx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
               }`}
           />
         ))}
-        <div className="absolute inset-0 bg-[#f4f8ff]/72" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-[#eef5ff]/45 to-white/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/35" />
+        {/* Soft elegant backdrop overlay so hero image is clearly visible while keeping dark text 100% readable */}
+        <div className="absolute inset-0 bg-white/45" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-white/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/40" />
 
         <Container className="relative z-10 flex flex-col justify-center gap-6 lg:gap-8 w-full h-full">
           {/* Slider Outer Wrapper */}
@@ -162,8 +189,8 @@ export default function Hero() {
                   key={idx}
                   onClick={() => setCurrentSlide(idx)}
                   className={`h-2.5 rounded-full transition-all duration-300 ${currentSlide === idx
-                      ? "w-8 bg-primary shadow-sm"
-                      : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                    ? "w-8 bg-primary shadow-sm"
+                    : "w-2.5 bg-slate-300 hover:bg-slate-400"
                     }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />

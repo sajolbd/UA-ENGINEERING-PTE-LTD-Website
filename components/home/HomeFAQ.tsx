@@ -40,12 +40,12 @@ export default function HomeFAQ() {
   if (homeContent.faqsJson !== undefined) {
     try {
       const parsed = typeof homeContent.faqsJson === "string" ? JSON.parse(homeContent.faqsJson || "[]") : homeContent.faqsJson;
-      if (Array.isArray(parsed)) {
+      if (Array.isArray(parsed) && parsed.length > 0) {
         faqList = parsed;
       }
     } catch (e) {
       console.error("Failed to parse dynamic Home FAQs:", e);
-      faqList = [];
+      faqList = DEFAULT_HOME_FAQS;
     }
   }
 

@@ -8,6 +8,7 @@ import Container from "../../../../components/shared/Container";
 import Breadcrumb from "../../../../components/layout/Breadcrumb";
 import BlogSidebar from "../../../../components/blog/BlogSidebar";
 import InlineShare from "../../../../components/blog/InlineShare";
+import TableOfContents, { HeadingItem } from "../../../../components/blog/TableOfContents";
 import { BlogPost } from "../../../../hooks/useBlogPosts";
 import { getApiBaseUrl, getBlogImageUrl } from "../../../../lib/api";
 
@@ -106,23 +107,72 @@ export default async function BlogDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Extract h3 headings for Table of Contents
-  const headings = post.content.match(/<h3>(.*?)<\/h3>/g)?.map((h) => {
-    const text = h.replace(/<\/?h3>/g, "");
-    const id = text
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
-    return { text, id };
-  }) || [];
+  // Extract all headings (h1, h2, h3, h4) for Table of Contents and inject IDs
+  const headings: HeadingItem[] = [];
+  const usedIds = new Set<string>();
 
-  // Inject IDs into h3 tags in the article content
-  let processedContent = post.content;
-  headings.forEach((heading) => {
-    const target = `<h3>${heading.text}</h3>`;
-    const replacement = `<h3 id="${heading.id}">${heading.text}</h3>`;
-    processedContent = processedContent.replace(target, replacement);
-  });
+  let processedContent = post.content.replace(
+    /<h([1-4])([^>]*)>([\s\S]*?)<\/h\1>/gi,
+    (fullMatch, levelStr, attrs, innerHtml) => {
+      const level = parseInt(levelStr, 10);
+      const cleanText = innerHtml
+        .replace(/<[^>]+>/g, "")
+        .replace(/&nbsp;/g, " ")
+        .replace(/&amp;/g, "&")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .trim();
+
+      if (!cleanText) return fullMatch;
+
+      // Extract existing id if present, or generate clean semantic id
+      const existingIdMatch = attrs.match(/id=["']([^"']+)["']/i);
+      let id = existingIdMatch ? existingIdMatch[1] : "";
+
+      if (!id) {
+        let baseId = cleanText
+          .toLowerCase()
+          .replace(/['"“”‘’]/g, "")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "");
+
+        if (!baseId) baseId = `section-${headings.length + 1}`;
+
+        id = baseId;
+        let counter = 1;
+        while (usedIds.has(id)) {
+          id = `${baseId}-${counter}`;
+          counter++;
+        }
+      }
+      usedIds.add(id);
+
+      headings.push({
+        id,
+        text: cleanText,
+        level,
+      });
+
+      // Inject or replace id and ensure scroll-mt-28 is present
+      let newAttrs = attrs;
+      if (existingIdMatch) {
+        newAttrs = newAttrs.replace(/id=["'][^"']+["']/i, `id="${id}"`);
+      } else {
+        newAttrs = ` id="${id}"${newAttrs}`;
+      }
+
+      if (/class=["']/i.test(newAttrs)) {
+        newAttrs = newAttrs.replace(
+          /class=["']([^"']*)["']/i,
+          (m: string, cls: string) => `class="${cls} scroll-mt-28"`
+        );
+      } else {
+        newAttrs = ` class="scroll-mt-28"${newAttrs}`;
+      }
+
+      return `<h${level}${newAttrs}>${innerHtml}</h${level}>`;
+    }
+  );
 
   const apiBase = getApiBaseUrl();
   processedContent = processedContent
@@ -152,29 +202,12 @@ export default async function BlogDetailPage({ params }: PageProps) {
 
           <div className="flex flex-col lg:flex-row gap-8 items-start">
 
-            {/* Left Column: Table of Contents (Desktop only) */}
-            <div className="lg:w-[240px] shrink-0 sticky top-24 self-start lg:block hidden">
-              <div className="bg-slate-50/60 border border-slate-100 p-6 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
-                <h4 className="text-xs font-black tracking-wider uppercase text-slate-800 mb-4 pb-2 border-b border-slate-200/50">
-                  Table of Contents
-                </h4>
-                {headings.length > 0 ? (
-                  <div className="flex flex-col gap-2.5">
-                    {headings.map((heading) => (
-                      <a
-                        key={heading.id}
-                        href={`#${heading.id}`}
-                        className="text-[11px] font-bold text-slate-500 hover:text-secondary transition-colors duration-200 leading-normal"
-                      >
-                        {heading.text}
-                      </a>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-[10px] text-slate-400 font-bold">No sub-sections available.</p>
-                )}
+            {/* Left Column: Table of Contents (Desktop sticky) */}
+            {headings.length > 0 && (
+              <div className="lg:w-[260px] shrink-0 sticky top-28 self-start lg:block hidden">
+                <TableOfContents headings={headings} />
               </div>
-            </div>
+            )}
 
             {/* Middle Column: Article content */}
             <div className="flex-1 min-w-0 w-full">
@@ -206,9 +239,16 @@ export default async function BlogDetailPage({ params }: PageProps) {
                   />
                 </div>
 
+                {/* Mobile Table of Contents (Collapsible accordion) */}
+                {headings.length > 0 && (
+                  <div className="lg:hidden mb-8">
+                    <TableOfContents headings={headings} isMobile={true} />
+                  </div>
+                )}
+
                 {/* Article content */}
                 <div
-                  className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-h3:text-base sm:prose-h3:text-lg prose-p:leading-relaxed prose-p:text-slate-600 prose-p:font-medium prose-a:text-indigo-600 hover:prose-a:underline"
+                  className="prose prose-slate max-w-none prose-headings:text-slate-900 prose-headings:font-bold prose-h1:text-xl sm:prose-h1:text-2xl prose-h2:text-lg sm:prose-h2:text-xl prose-h3:text-base sm:prose-h3:text-lg prose-p:leading-relaxed prose-p:text-slate-600 prose-p:font-medium prose-a:text-indigo-600 hover:prose-a:underline"
                   dangerouslySetInnerHTML={{ __html: processedContent }}
                 />
 

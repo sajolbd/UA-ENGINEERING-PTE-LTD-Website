@@ -9,14 +9,6 @@ export const getApiBaseUrl = (): string => {
   if (process.env.NEXT_PUBLIC_API_URL && process.env.NEXT_PUBLIC_API_URL.trim().length > 0) {
     return process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/?$/, "").replace(/\/$/, "");
   }
-  if (typeof window !== "undefined") {
-    const hostname = window.location.hostname;
-    const protocol = window.location.protocol;
-    if (hostname === "localhost" || hostname === "127.0.0.1") {
-      return `${protocol}//${hostname}:5000`;
-    }
-    return LIVE_API_FALLBACK;
-  }
   return LIVE_API_FALLBACK;
 };
 
@@ -26,18 +18,25 @@ export const API_BASE = getApiBaseUrl();
  * Normalizes image paths so uploaded images (Base64 data URLs, uploaded server files, or local assets)
  * load correctly from the active backend API or database.
  */
-export const getImageUrl = (imagePath: string): string => {
-  if (!imagePath) return "/images/logo.webp";
+export const getImageUrl = (imagePath?: string, fallback: string = "/images/logo.webp"): string => {
+  if (!imagePath || typeof imagePath !== "string") return fallback;
 
-  if (imagePath.startsWith("data:") || imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
-    return imagePath;
+  const trimmed = imagePath.trim();
+  if (!trimmed) return fallback;
+
+  if (trimmed.startsWith("data:") || trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return trimmed;
   }
 
-  if (imagePath.startsWith("/images/uploads/")) {
-    return `${getApiBaseUrl()}${imagePath}`;
+  if (trimmed.startsWith("/images/uploads/")) {
+    return `${getApiBaseUrl()}${trimmed}`;
   }
 
-  return imagePath; // Falls back to local static assets
+  if (trimmed.startsWith("images/uploads/")) {
+    return `${getApiBaseUrl()}/${trimmed}`;
+  }
+
+  return trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
 };
 
 export const getBlogImageUrl = getImageUrl;
