@@ -9,9 +9,18 @@ import { getImageUrl } from "../../lib/api";
 export default function WorkingProcess() {
   const { cmsData } = useCmsData();
   const homeContent = (cmsData as any)?.home?.content || {};
-  const processBadge = homeContent.processBadge || "HOW IT WORKS";
-  const processHeading = homeContent.processHeading || "Our Simple & Transparent Work Process";
-  const processSubheading = homeContent.processSubheading || "From site inspection and quotation to professional installation and project handover, we ensure quality, transparency, and customer satisfaction at every stage.";
+  const aboutContent = (cmsData as any)?.about?.content || {};
+  const processBadge = homeContent.processBadge || aboutContent.processBadge || "HOW IT WORKS";
+  const processHeading = homeContent.processHeading || aboutContent.processHeading || "Our Simple & Transparent Work Process";
+  const processSubheading = homeContent.processSubheading || aboutContent.processSubheading || "From site inspection and quotation to professional installation and project handover, we ensure quality, transparency, and customer satisfaction at every stage.";
+
+  const getStepImage = (num: number) => {
+    const raw = homeContent[`processStep${num}Image`] || aboutContent[`processStep${num}Image`];
+    if (typeof raw === "string" && raw.trim().length > 0) {
+      return getImageUrl(raw.trim());
+    }
+    return "";
+  };
 
   const steps = [
     {
@@ -19,28 +28,28 @@ export default function WorkingProcess() {
       title: homeContent.processStep1Title || "Free Consultation & Site Visit",
       description: homeContent.processStep1Desc || "We assess your requirements, inspect the site, discuss solutions, and understand your project goals.",
       icon: MessagesSquare,
-      image: homeContent.processStep1Image && homeContent.processStep1Image.trim() !== "" ? getImageUrl(homeContent.processStep1Image) : "",
+      image: getStepImage(1),
     },
     {
       step: "02",
       title: homeContent.processStep2Title || "Quotation & Project Planning",
       description: homeContent.processStep2Desc || "Provide a detailed quotation, project scope, material recommendations, timeline, and execution plan with transparent pricing.",
       icon: ClipboardList,
-      image: homeContent.processStep2Image && homeContent.processStep2Image.trim() !== "" ? getImageUrl(homeContent.processStep2Image) : "",
+      image: getStepImage(2),
     },
     {
       step: "03",
       title: homeContent.processStep3Title || "Professional Execution",
       description: homeContent.processStep3Desc || "Our skilled team completes every project using quality materials, safe practices, and strict workmanship standards.",
       icon: HardHat,
-      image: homeContent.processStep3Image && homeContent.processStep3Image.trim() !== "" ? getImageUrl(homeContent.processStep3Image) : "",
+      image: getStepImage(3),
     },
     {
       step: "04",
       title: homeContent.processStep4Title || "Final Inspection & Handover",
       description: homeContent.processStep4Desc || "We conduct final quality checks, ensure everything meets expectations, and hand over your completed project with confidence.",
       icon: FileCheck,
-      image: homeContent.processStep4Image && homeContent.processStep4Image.trim() !== "" ? getImageUrl(homeContent.processStep4Image) : "",
+      image: getStepImage(4),
     },
   ];
 
