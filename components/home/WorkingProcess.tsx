@@ -14,12 +14,19 @@ export default function WorkingProcess() {
   const processHeading = homeContent.processHeading || aboutContent.processHeading || "Our Simple & Transparent Work Process";
   const processSubheading = homeContent.processSubheading || aboutContent.processSubheading || "From site inspection and quotation to professional installation and project handover, we ensure quality, transparency, and customer satisfaction at every stage.";
 
+  const DEFAULT_PROCESS_IMAGES: Record<number, string> = {
+    1: "/images/home/process/assessment.webp",
+    2: "/images/home/process/planning.webp",
+    3: "/images/home/process/execution.webp",
+    4: "/images/home/process/handover.webp",
+  };
+
   const getStepImage = (num: number) => {
     const raw = homeContent[`processStep${num}Image`] || aboutContent[`processStep${num}Image`];
     if (typeof raw === "string" && raw.trim().length > 0) {
       return getImageUrl(raw.trim());
     }
-    return "";
+    return DEFAULT_PROCESS_IMAGES[num] || "";
   };
 
   const steps = [
