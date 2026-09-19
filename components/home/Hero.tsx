@@ -126,6 +126,10 @@ export default function Hero() {
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.onerror = null;
+              if (slide.bgImage && slide.bgImage.startsWith("/images/") && !target.src.endsWith(slide.bgImage)) {
+                target.src = slide.bgImage;
+                return;
+              }
               target.src = DEFAULT_HERO_SLIDE_BGS[idx + 1] || "/images/home/hero/hero-bg.png";
             }}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${currentSlide === idx ? "opacity-100 z-0" : "opacity-0 pointer-events-none"
