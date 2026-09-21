@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next";
 import { blogPosts } from "../data/blogData";
-import { servicesData } from "../data/servicesData";
+import { getLiveServices } from "../lib/servicesUtils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.uaengineering.com.sg";
+  const liveServices = await getLiveServices();
 
   // Static routes
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -51,13 +52,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Service Category routes
-  const serviceRoutes: MetadataRoute.Sitemap = servicesData.map((category) => ({
-    url: `${baseUrl}/services/${category.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.85,
-  }));
+  // Service Category & Sub-Service routes
+  const serviceRoutes: MetadataRoute.Sitemap = [];
+  liveServices.forEach((category) => {
+    serviceRoutes.push({
+      url: `${baseUrl}/services/${category.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
+    });
+
+    if (Array.isArray(category.services)) {
+      category.services.forEach((subService) => {
+        serviceRoutes.push({
+          url: `${baseUrl}/services/${category.slug}/${subService.slug}`,
+          lastModified: new Date(),
+          changeFrequency: "weekly",
+          priority: 0.80,
+        });
+      });
+    }
+  });
 
   // Blog Post routes
   const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
@@ -69,3 +84,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
 }
+

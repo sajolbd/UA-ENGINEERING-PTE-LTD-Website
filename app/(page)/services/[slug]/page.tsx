@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
-import { servicesData } from "../../../../data/servicesData";
+import { servicesData as fallbackServicesData } from "../../../../data/servicesData";
+import { getLiveServices } from "../../../../lib/servicesUtils";
 import ServiceCategoryClient from "../../../../components/services/ServiceCategoryClient";
 
 interface PageProps {
@@ -16,13 +17,15 @@ export const revalidate = 0;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return servicesData.map((category) => ({
+  const liveServices = await getLiveServices();
+  return liveServices.map((category) => ({
     slug: category.slug,
   }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const category = servicesData.find((cat) => cat.slug === params.slug);
+  const liveServices = await getLiveServices();
+  const category = liveServices.find((cat) => cat.slug === params.slug);
 
   if (!category) {
     return {
@@ -77,8 +80,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function ServiceCategoryPage({ params }: PageProps) {
-  const category = servicesData.find((cat) => cat.slug === params.slug);
+export default async function ServiceCategoryPage({ params }: PageProps) {
+  const liveServices = await getLiveServices();
+  const category = liveServices.find((cat) => cat.slug === params.slug);
 
   const categoryTitle = category?.title || params.slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const pageUrl = `${SITE_URL}/services/${params.slug}`;
@@ -195,3 +199,4 @@ export default function ServiceCategoryPage({ params }: PageProps) {
     </>
   );
 }
+

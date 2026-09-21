@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
-import { servicesData } from "../../../../../data/servicesData";
+import { servicesData as fallbackServicesData } from "../../../../../data/servicesData";
+import { getLiveServices } from "../../../../../lib/servicesUtils";
 import SubServiceCategoryClient from "../../../../../components/services/SubServiceCategoryClient";
 
 interface PageProps {
@@ -17,9 +18,10 @@ export const revalidate = 0;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
+  const liveServices = await getLiveServices();
   const params: { slug: string; subSlug: string }[] = [];
 
-  servicesData.forEach((category) => {
+  liveServices.forEach((category) => {
     category.services.forEach((subService) => {
       params.push({
         slug: category.slug,
@@ -32,7 +34,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const category = servicesData.find((cat) => cat.slug === params.slug);
+  const liveServices = await getLiveServices();
+  const category = liveServices.find((cat) => cat.slug === params.slug);
   const service = category?.services.find((s) => s.slug === params.subSlug);
 
   if (!service) {
@@ -89,8 +92,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function SubServicePage({ params }: PageProps) {
-  const category = servicesData.find((cat) => cat.slug === params.slug);
+export default async function SubServicePage({ params }: PageProps) {
+  const liveServices = await getLiveServices();
+  const category = liveServices.find((cat) => cat.slug === params.slug);
   const service = category?.services.find((s) => s.slug === params.subSlug);
 
   const categoryTitle = category?.title || params.slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
@@ -199,3 +203,4 @@ export default function SubServicePage({ params }: PageProps) {
     </>
   );
 }
+

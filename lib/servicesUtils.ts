@@ -1,4 +1,5 @@
-import { ServiceCategory } from "../data/servicesData";
+import { servicesData as initialServicesData, ServiceCategory } from "../data/servicesData";
+import { getApiBaseUrl } from "./api";
 
 function isNonEmptyString(val: any): boolean {
   return typeof val === "string" && val.trim().length > 0;
@@ -10,6 +11,16 @@ export function sanitizeServices(initialList: ServiceCategory[], overrideList: a
   const updatedInitial = initialList.map((initialItem) => {
     const match = overrideList.find((p: any) => p && p.slug === initialItem.slug);
     if (!match) return initialItem;
+
+    const mergedSeo = match?.seo ? { ...initialItem.seo, ...match.seo } : initialItem.seo;
+
+    let mergedServices = initialItem.services;
+    if (Array.isArray(match?.services) && match.services.length > 0) {
+      mergedServices = match.services.map((subItem: any) => {
+        const initSub = initialItem.services?.find((s) => s.slug === subItem.slug);
+        return initSub ? { ...initSub, ...subItem, seo: subItem.seo ? { ...initSub.seo, ...subItem.seo } : initSub.seo } : subItem;
+      });
+    }
 
     return {
       ...initialItem,
@@ -24,7 +35,7 @@ export function sanitizeServices(initialList: ServiceCategory[], overrideList: a
       image: isNonEmptyString(match?.image) ? match.image : (initialItem as any).image,
       featuredImage: isNonEmptyString(match?.featuredImage) ? match.featuredImage : initialItem.featuredImage,
       bgImage: isNonEmptyString(match?.bgImage) ? match.bgImage : initialItem.bgImage,
-      services: Array.isArray(match?.services) && match.services.length > 0 ? match.services : initialItem.services,
+      services: mergedServices,
       features: Array.isArray(match?.features) && match.features.length > 0 ? match.features : initialItem.features,
       benefits: Array.isArray(match?.benefits) && match.benefits.length > 0 ? match.benefits : initialItem.benefits,
       processSteps: Array.isArray(match?.processSteps) && match.processSteps.length > 0 ? match.processSteps : initialItem.processSteps,
@@ -33,6 +44,7 @@ export function sanitizeServices(initialList: ServiceCategory[], overrideList: a
       whyChooseChallenges: Array.isArray(match?.whyChooseChallenges) && match.whyChooseChallenges.length > 0 ? match.whyChooseChallenges : initialItem.whyChooseChallenges,
       serviceAreas: Array.isArray(match?.serviceAreas) && match.serviceAreas.length > 0 ? match.serviceAreas : (initialItem as any).serviceAreas,
       faqs: Array.isArray(match?.faqs) && match.faqs.length > 0 ? match.faqs : initialItem.faqs,
+      seo: mergedSeo,
     };
   });
 
@@ -42,3 +54,27 @@ export function sanitizeServices(initialList: ServiceCategory[], overrideList: a
 
   return [...updatedInitial, ...additionalItems];
 }
+
+export async function getLiveServices(): Promise<ServiceCategory[]> {
+  const apiBase = getApiBaseUrl();
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch(`${apiBase}/api/services`, { cache: "no-store", signal: controller.signal });
+    if (res.ok) {
+      const contentType = res.headers.get("content-type") || "";
+      if (contentType.includes("application/json")) {
+        const json = await res.json();
+        if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
+          return sanitizeServices(initialServicesData, json.data);
+        }
+      }
+    }
+  } catch (err) {
+    // Fallback to initial static data if API is offline
+  } finally {
+    clearTimeout(timer);
+  }
+  return initialServicesData;
+}
+
