@@ -137,8 +137,10 @@ interface Props {
 
 export default function SubServiceCategoryClient({ slug, subSlug, fallbackCategory, fallbackService }: Props) {
   const { servicesData } = useCmsData();
-  const category = servicesData.find((cat) => cat.slug === slug) || fallbackCategory;
-  const service = category?.services.find((s) => s.slug === subSlug) || fallbackService;
+  const category = (Array.isArray(servicesData) ? servicesData.find((cat) => cat && cat.slug === slug) : null) || fallbackCategory;
+  const service = (category?.services && Array.isArray(category.services))
+    ? (category.services.find((s) => s && s.slug === subSlug) || fallbackService)
+    : fallbackService;
 
   if (!category || !service) return null;
 

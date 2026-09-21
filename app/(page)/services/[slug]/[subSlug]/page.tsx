@@ -35,8 +35,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const liveServices = await getLiveServices();
-  const category = liveServices.find((cat) => cat.slug === params.slug);
-  const service = category?.services?.find((s) => s?.slug === params.subSlug);
+  const category = Array.isArray(liveServices) ? liveServices.find((cat) => cat && cat.slug === params.slug) : undefined;
+  const service = (category?.services && Array.isArray(category.services)) ? category.services.find((s) => s && s.slug === params.subSlug) : undefined;
 
   if (!service) {
     return {
@@ -95,8 +95,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function SubServicePage({ params }: PageProps) {
   const liveServices = await getLiveServices();
-  const category = liveServices.find((cat) => cat.slug === params.slug);
-  const service = category?.services?.find((s) => s?.slug === params.subSlug);
+  const category = Array.isArray(liveServices) ? liveServices.find((cat) => cat && cat.slug === params.slug) : undefined;
+  const service = (category?.services && Array.isArray(category.services)) ? category.services.find((s) => s && s.slug === params.subSlug) : undefined;
 
   const categoryTitle = category?.title || params.slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const subServiceTitle = service?.title || params.subSlug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
