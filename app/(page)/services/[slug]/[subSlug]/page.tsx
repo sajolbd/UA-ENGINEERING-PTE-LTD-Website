@@ -36,7 +36,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const liveServices = await getLiveServices();
   const category = liveServices.find((cat) => cat.slug === params.slug);
-  const service = category?.services.find((s) => s.slug === params.subSlug);
+  const service = category?.services?.find((s) => s?.slug === params.subSlug);
 
   if (!service) {
     return {
@@ -46,17 +46,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const categoryTitle = category?.title || params.slug;
-  const title = service.seo?.metaTitle || `${service.title} - ${categoryTitle} | UA Engineering PTE LTD`;
+  const subTitle = service?.title || params.subSlug;
+  const title = service?.seo?.metaTitle || `${subTitle} - ${categoryTitle} | UA Engineering PTE LTD`;
   const description =
-    service.seo?.metaDescription ||
-    service.description ||
-    service.longDescription ||
-    `Professional ${service.title} under ${categoryTitle} by UA Engineering PTE LTD in Singapore.`;
+    service?.seo?.metaDescription ||
+    service?.description ||
+    service?.longDescription ||
+    `Professional ${subTitle} under ${categoryTitle} by UA Engineering PTE LTD in Singapore.`;
   const keywords =
-    service.seo?.metaKeywords ||
-    `${service.title}, ${categoryTitle}, Singapore engineering, UA Engineering`;
+    service?.seo?.metaKeywords ||
+    `${subTitle}, ${categoryTitle}, Singapore engineering, UA Engineering`;
   const pageUrl = `${SITE_URL}/services/${params.slug}/${params.subSlug}`;
-  const imageUrl = service.image?.startsWith("http") || service.image?.startsWith("/")
+  const imageUrl = (service?.image?.startsWith("http") || service?.image?.startsWith("/"))
     ? (service.image.startsWith("/") ? `${SITE_URL}${service.image}` : service.image)
     : (category?.featuredImage?.startsWith("/") ? `${SITE_URL}${category.featuredImage}` : `${SITE_URL}/images/layout/breadcrumb-bg.png`);
 
@@ -77,7 +78,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: service.title,
+          alt: subTitle,
         },
       ],
       locale: "en_SG",
@@ -95,7 +96,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function SubServicePage({ params }: PageProps) {
   const liveServices = await getLiveServices();
   const category = liveServices.find((cat) => cat.slug === params.slug);
-  const service = category?.services.find((s) => s.slug === params.subSlug);
+  const service = category?.services?.find((s) => s?.slug === params.subSlug);
 
   const categoryTitle = category?.title || params.slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const subServiceTitle = service?.title || params.subSlug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
