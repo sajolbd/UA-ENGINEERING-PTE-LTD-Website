@@ -34,14 +34,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = category.seo?.metaTitle || `${category.title} | UA Engineering PTE LTD`;
+  const categoryAny = category as any;
+  const title = categoryAny?.seo?.metaTitle || `${category.title} | UA Engineering PTE LTD`;
   const description =
-    category.seo?.metaDescription ||
+    categoryAny?.seo?.metaDescription ||
     category.shortDescription ||
     category.description ||
     `Professional ${category.title} services by UA Engineering PTE LTD in Singapore.`;
   const keywords =
-    category.seo?.metaKeywords ||
+    categoryAny?.seo?.metaKeywords ||
     `${category.title}, Singapore engineering, construction services, renovation, UA Engineering`;
   const pageUrl = `${SITE_URL}/services/${category.slug}`;
   const imageUrl = category.featuredImage?.startsWith("http") || category.featuredImage?.startsWith("/")
@@ -82,7 +83,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ServiceCategoryPage({ params }: PageProps) {
   const liveServices = await getLiveServices();
-  const category = liveServices.find((cat) => cat.slug === params.slug);
+  const category = Array.isArray(liveServices) ? liveServices.find((cat) => cat && cat.slug === params.slug) : undefined;
 
   const categoryTitle = category?.title || params.slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const pageUrl = `${SITE_URL}/services/${params.slug}`;
@@ -165,9 +166,10 @@ export default async function ServiceCategoryPage({ params }: PageProps) {
   } : null;
 
   let customSchemaObj = null;
-  if (category?.seo?.schemaJson) {
+  const pageCategoryAny = category as any;
+  if (pageCategoryAny?.seo?.schemaJson) {
     try {
-      customSchemaObj = JSON.parse(category.seo.schemaJson);
+      customSchemaObj = JSON.parse(pageCategoryAny.seo.schemaJson);
     } catch (err) {
       console.error("Invalid custom schemaJson in category:", err);
     }

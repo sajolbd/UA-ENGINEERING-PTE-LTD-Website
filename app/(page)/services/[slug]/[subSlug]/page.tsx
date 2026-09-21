@@ -47,14 +47,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const categoryTitle = category?.title || params.slug;
   const subTitle = service?.title || params.subSlug;
-  const title = service?.seo?.metaTitle || `${subTitle} - ${categoryTitle} | UA Engineering PTE LTD`;
+  const serviceAny = service as any;
+  const title = serviceAny?.seo?.metaTitle || `${subTitle} - ${categoryTitle} | UA Engineering PTE LTD`;
   const description =
-    service?.seo?.metaDescription ||
+    serviceAny?.seo?.metaDescription ||
     service?.description ||
     service?.longDescription ||
     `Professional ${subTitle} under ${categoryTitle} by UA Engineering PTE LTD in Singapore.`;
   const keywords =
-    service?.seo?.metaKeywords ||
+    serviceAny?.seo?.metaKeywords ||
     `${subTitle}, ${categoryTitle}, Singapore engineering, UA Engineering`;
   const pageUrl = `${SITE_URL}/services/${params.slug}/${params.subSlug}`;
   const imageUrl = (service?.image?.startsWith("http") || service?.image?.startsWith("/"))
@@ -160,9 +161,10 @@ export default async function SubServicePage({ params }: PageProps) {
   };
 
   let customSchemaObj = null;
-  if (service?.seo?.schemaJson) {
+  const serviceAny = service as any;
+  if (serviceAny?.seo?.schemaJson) {
     try {
-      customSchemaObj = JSON.parse(service.seo.schemaJson);
+      customSchemaObj = JSON.parse(serviceAny.seo.schemaJson);
     } catch (err) {
       console.error("Invalid custom schemaJson in sub-service:", err);
     }
