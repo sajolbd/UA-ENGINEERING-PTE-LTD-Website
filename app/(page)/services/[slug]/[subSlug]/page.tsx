@@ -11,7 +11,7 @@ interface PageProps {
   };
 }
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.uaengineering.com.sg";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://uaengineering.com.sg";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

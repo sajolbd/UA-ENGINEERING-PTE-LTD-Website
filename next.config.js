@@ -24,6 +24,13 @@ const nextConfig = {
           { key: 'Content-Disposition', value: 'attachment; filename="Sabbir-Nasir-Transformation-Framework.pdf"' },
         ],
       },
+      {
+        source: '/llms.txt',
+        headers: [
+          { key: 'Content-Type', value: 'text/plain; charset=UTF-8' },
+          { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=86400' },
+        ],
+      },
     ];
   },
   eslint: {

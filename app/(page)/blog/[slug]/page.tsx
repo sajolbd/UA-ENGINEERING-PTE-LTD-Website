@@ -15,7 +15,7 @@ import { getApiBaseUrl, getBlogImageUrl } from "../../../../lib/api";
 // Allow dynamic rendering so new posts appear without a rebuild
 export const dynamic = "force-dynamic";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.uaengineering.com.sg";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://uaengineering.com.sg";
 
 interface PageProps {
   params: {
