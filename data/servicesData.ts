@@ -253,7 +253,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Project Handover",
             "description": "Final walkthrough, site cleaning, and customer handover."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Home Renovation Singapore | HDB, Condo & Landed | UA Engineering",
+          "metaDescription": "Professional home renovation in Singapore for HDB flats, condos and landed homes, with space planning, hacking, carpentry and quality finishes.",
+          "metaKeywords": "Home Renovation Singapore, home renovation Singapore, HDB renovation Singapore, condo renovation Singapore, landed house renovation Singapore, residential renovation Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Home Renovation\",\"serviceType\":\"Home Renovation under Renovation & Upgrading\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional home renovation in Singapore for HDB flats, condos and landed homes, with space planning, hacking, carpentry and quality finishes.\"}"
+        }
       },
       {
         "slug": "kitchen-renovation",
@@ -309,7 +315,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Handover",
             "description": "Inspect completed work and hand over your new kitchen."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Kitchen Renovation Singapore | HDB, Condo & Landed | UA Engineering",
+          "metaDescription": "Professional kitchen renovation in Singapore for HDB, condos and landed homes, with smart layouts, custom cabinetry, countertops, tiling and plumbing.",
+          "metaKeywords": "kitchen renovation Singapore, kitchen renovation services Singapore, HDB kitchen renovation Singapore, condo kitchen renovation Singapore, landed house kitchen renovation",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Kitchen Renovation\",\"serviceType\":\"Kitchen Renovation under Renovation & Upgrading\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional kitchen renovation in Singapore for HDB, condos and landed homes, with smart layouts, custom cabinetry, countertops, tiling and plumbing.\"}"
+        }
       },
       {
         "slug": "room-beautification",
@@ -365,7 +377,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Project Completion",
             "description": "Clean the area and hand over the completed space."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Room Beautification Singapore | Interior Upgrades | UA Engineering",
+          "metaDescription": "Professional room beautification in Singapore for bedrooms, living rooms and study spaces, with interior upgrades, feature walls, storage and finishes.",
+          "metaKeywords": "Room Beautification Singapore, room beautification Singapore, room renovation Singapore, room makeover Singapore, bedroom renovation Singapore, living room renovation Singapore, study room renovation Singapore, interior upgrades Singapore, interior renovation Singapore, bedroom makeover Singapore, living room makeover Singapore, study room design Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Room Beautification\",\"serviceType\":\"Room Beautification under Renovation & Upgrading\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional room beautification in Singapore for bedrooms, living rooms and study spaces, with interior upgrades, feature walls, storage and finishes.\"}"
+        }
       },
       {
         "slug": "create-open-plan-spaces",
@@ -421,7 +439,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Final Inspection",
             "description": "Inspect completed works before project handover."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Open Plan Renovation Singapore | C&R Works | UA Engineering",
+          "metaDescription": "Create open-plan spaces in Singapore with professional C&R works, wall removal, space reconfiguration, masonry and compliance-focused renovation.",
+          "metaKeywords": "Open Plan Renovation Singapore, open plan renovation Singapore, open plan spaces Singapore, C&R works Singapore, construction and reconstruction Singapore, C&R renovation Singapore, wall removal Singapore, wall hacking Singapore, space reconfiguration Singapore, open concept renovation Singapore, open concept home Singapore, masonry works Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Create Open Plan Spaces (C&R Works)\",\"serviceType\":\"Create Open Plan Spaces (C&R Works) under Renovation & Upgrading\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Create open-plan spaces in Singapore with professional C&R works, wall removal, space reconfiguration, masonry and compliance-focused renovation.\"}"
+        }
       },
       {
         "slug": "floor-renovation-polishing",
@@ -477,7 +501,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Handover",
             "description": "Perform final inspection and site cleaning."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Floor Renovation & Polishing Singapore | UA Engineering",
+          "metaDescription": "Professional floor renovation and polishing in Singapore, including tile repairs, vinyl flooring, marble polishing, floor levelling and protective finishes.",
+          "metaKeywords": "Floor Renovation & Polishing Singapore, Floor renovation Singapore, Floor polishing Singapore, Flooring services Singapore, Floor repair Singapore, Tile repair Singapore, Tile replacement Singapore, Vinyl flooring instal",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Floor Renovation & Polishing\",\"serviceType\":\"Floor Renovation & Polishing under Renovation & Upgrading\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional floor renovation and polishing in Singapore, including tile repairs, vinyl flooring, marble polishing, floor levelling and protective finishes.\"}"
+        }
       },
       {
         "slug": "decking-work",
@@ -533,7 +563,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Project Handover",
             "description": "Inspect the completed deck and hand over the project."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Decking Work Singapore | Timber & Composite Decking | UA Engineering",
+          "metaDescription": "Professional decking work in Singapore for balconies, patios, gardens and outdoor spaces, including timber, composite, anti-slip decking and repairs.",
+          "metaKeywords": "Decking services Singapore, Timber decking Singapore, Composite decking Singapore, Balcony decking Singapore, Outdoor decking Singapore, Garden decking Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Decking Work\",\"serviceType\":\"Decking Work under Renovation & Upgrading\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional decking work in Singapore for balconies, patios, gardens and outdoor spaces, including timber, composite, anti-slip decking and repairs.\"}"
+        }
       },
       {
         "slug": "decorative-wall-panels",
@@ -589,7 +625,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Handover",
             "description": "Inspect completed work and hand over the finished feature wall."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Decorative Wall Panels Singapore | Installation Services | UA Engineering",
+          "metaDescription": "Professional decorative wall panel installation in Singapore for homes, offices and commercial interiors, including PVC, fluted, WPC and feature wall panels.",
+          "metaKeywords": "Decorative Wall Panels Singapore, Decorative wall panels installation, Feature wall panels Singapore, PVC wall panels Singapore, Fluted wall panels Singapore, WPC wall panels Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Installation of Decorative Wall Panels\",\"serviceType\":\"Installation of Decorative Wall Panels under Renovation & Upgrading\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional decorative wall panel installation in Singapore for homes, offices and commercial interiors, including PVC, fluted, WPC and feature wall panels.\"}"
+        }
       }
     ],
     "serviceAreas": [
@@ -652,7 +694,13 @@ export const servicesData: ServiceCategory[] = [
       }
     ],
     "icon": "",
-    "process": []
+    "process": [],
+    "seo": {
+      "metaTitle": "Renovation & Upgrading Service Singapore | UA Engineering",
+      "metaDescription": "Professional renovation and upgrading services in Singapore for HDB, condos, landed homes, offices and commercial spaces.",
+      "metaKeywords": "renovation services Singapore, home renovation Singapore, renovation contractor Singapore, HDB renovation Singapore, condo renovation Singapore, landed property renovation Singapore",
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Renovation & Upgrading\",\"serviceType\":\"Renovation & Upgrading\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional renovation and upgrading services in Singapore for HDB, condos, landed homes, offices and commercial spaces.\"}"
+    }
   },
   {
     "slug": "structural-exterior-works",
@@ -836,7 +884,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Inspection & Handover",
             "description": "Check quality, finishing, functionality before project handover."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Steel Work Singapore | Fabrication & Installation | UA Engineering",
+          "metaDescription": "Professional steel work in Singapore, including custom steel fabrication, structural frames, welding, railings, anti-rust finishes, repairs and modifications.",
+          "metaKeywords": "Steel fabrication Singapore, Steel installation Singapore, Custom steel fabrication Singapore, Steel contractor Singapore, Steel welding Singapore, Steel brackets Singapore, Steel railings Singapore, Steel repair Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"All Kinds of Steel Work\",\"serviceType\":\"All Kinds of Steel Work under Structural & Exterior Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional steel work in Singapore, including custom steel fabrication, structural frames, welding, railings, anti-rust finishes, repairs and modifications.\"}"
+        }
       },
       {
         "slug": "main-gate-grill-work",
@@ -892,7 +946,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Final Inspection",
             "description": "Check alignment, locks, finishing, and complete handover."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Main Gate & Grill Work Singapore | Custom Gates | UA Engineering",
+          "metaDescription": "Custom main gates and grill work in Singapore for HDB, condos, landed homes and commercial properties, including steel gates, grills, fencing and installation.",
+          "metaKeywords": "Main Gate & Grill Work Singapore, Custom gate Singapore, Custom metal gates Singapore, Steel gate Singapore, Gate fabrication Singapore, Gate contractor Singapore, Grill work Singapore, Window grill Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Main Gate & Grill Work\",\"serviceType\":\"Main Gate & Grill Work under Structural & Exterior Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Custom main gates and grill work in Singapore for HDB, condos, landed homes and commercial properties, including steel gates, grills, fencing and installation.\"}"
+        }
       },
       {
         "slug": "balcony-shelter-work",
@@ -948,7 +1008,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Inspection & Handover",
             "description": "Completed works are checked before final project completion."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Balcony Shelter Work Singapore | Canopy Installation | UA Engineering",
+          "metaDescription": "Professional balcony shelter work in Singapore, including polycarbonate shelters, aluminium structures, canopies, UV-resistant roofing and rain protection.",
+          "metaKeywords": "Balcony Shelter Work Singapore, Balcony canopy Singapore, Balcony canopy installation Singapore, Polycarbonate balcony shelter Singapore, Aluminium balcony shelter Singapore, Balcony roofing Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Balcony Shelter Work\",\"serviceType\":\"Balcony Shelter Work under Structural & Exterior Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional balcony shelter work in Singapore, including polycarbonate shelters, aluminium structures, canopies, UV-resistant roofing and rain protection.\"}"
+        }
       },
       {
         "slug": "roof-extension-solutions",
@@ -1004,7 +1070,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Quality Inspection",
             "description": "The completed roof extension is inspected before handover."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Roof Extension Singapore | Custom Roof Solutions | UA Engineering",
+          "metaDescription": "Professional roof extension services in Singapore for landed homes and commercial properties, including car porch, walkway, backyard and polycarbonate roofing.",
+          "metaKeywords": "Roof Extension Singapore, Car porch roof extension Singapore, Side walkway roof Singapore, Walkway roof cover Singapore, Backyard roof extension Singapore, Metal roof structures Singapore, Polycarbonate roofing Singapore, Aluminium roofing Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Roof Extension & Solutions\",\"serviceType\":\"Roof Extension & Solutions under Structural & Exterior Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional roof extension services in Singapore for landed homes and commercial properties, including car porch, walkway, backyard and polycarbonate roofing.\"}"
+        }
       },
       {
         "slug": "awning-shelter-fabrication",
@@ -1060,7 +1132,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Final Inspection & Handover",
             "description": "We complete a final quality inspection and ensure the awning."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Awning Installation Singapore | Custom Awning Shelters | UA Engineering",
+          "metaDescription": "Professional awning fabrication and installation in Singapore for homes, shopfronts, windows, patios and outdoor areas, providing shade and weather protection.",
+          "metaKeywords": "Awning Installation Singapore, Awning shelter Singapore, Awning fabrication Singapore, Shopfront awning Singapore, Window awning Singapore, Patio awning Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Awning Shelter Fabrication & Installation\",\"serviceType\":\"Awning Shelter Fabrication & Installation under Structural & Exterior Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional awning fabrication and installation in Singapore for homes, shopfronts, windows, patios and outdoor areas, providing shade and weather protection.\"}"
+        }
       }
     ],
     "serviceAreas": [
@@ -1123,7 +1201,13 @@ export const servicesData: ServiceCategory[] = [
       }
     ],
     "icon": "",
-    "process": []
+    "process": [],
+    "seo": {
+      "metaTitle": "Structural & Exterior Works in Singapore | UA Engineering",
+      "metaDescription": "Professional structural and exterior works in Singapore, including steel fabrication, gates, grills, roof extensions, shelters and awnings.",
+      "metaKeywords": "structural works Singapore, exterior works Singapore, structural contractor Singapore, steel works Singapore, main gate Singapore, metal gates Singapore, security grills Singapore, balcony shelter Singapore",
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Structural & Exterior Works\",\"serviceType\":\"Structural & Exterior Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional structural and exterior works in Singapore, including steel fabrication, gates, grills, roof extensions, shelters and awnings.\"}"
+    }
   },
   {
     "slug": "painting-waterproofing",
@@ -1308,7 +1392,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Quality Handover",
             "description": "Conduct final inspection, site cleaning, and customer handover."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Painting Services Singapore | Interior & Exterior Painting | UA Engineering",
+          "metaDescription": "Professional interior and exterior painting services in Singapore for HDB, condos, landed homes, offices and commercial properties, with durable finishes.",
+          "metaKeywords": "Painting Services Singapore, House painting Singapore, Interior painting Singapore, Exterior painting Singapore, Wall painting Singapore, Ceiling painting Singapore, Repainting services Singapore, Door painting Singapore, Railing painting Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Painting Services\",\"serviceType\":\"Painting Services under Painting & Waterproofing\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional interior and exterior painting services in Singapore for HDB, condos, landed homes, offices and commercial properties, with durable finishes.\"}"
+        }
       },
       {
         "slug": "waterproofing-solutions",
@@ -1364,7 +1454,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Project Handover",
             "description": "Perform final quality checks, clean the site, and provide maintenance guidance."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Waterproofing Services Singapore | Leak & Seepage Repair | UA Engineering",
+          "metaDescription": "Professional waterproofing services in Singapore for roofs, bathrooms, balconies, walls and concrete surfaces, including leak repair, PU injection and water testing.",
+          "metaKeywords": "Waterproofing Services Singapore, Roof waterproofing Singapore, Roof leak repair Singapore, Bathroom waterproofing Singapore, Toilet waterproofing Singapore, Balcony waterproofing Singapore, Terrace waterproofing Singapore, Ceiling leak repair Singapore, Water seepage repair Singapore, Damp wall repair Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Waterproofing Solutions\",\"serviceType\":\"Waterproofing Solutions under Painting & Waterproofing\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional waterproofing services in Singapore for roofs, bathrooms, balconies, walls and concrete surfaces, including leak repair, PU injection and water testing.\"}"
+        }
       }
     ],
     "serviceAreas": [
@@ -1427,7 +1523,13 @@ export const servicesData: ServiceCategory[] = [
       }
     ],
     "icon": "",
-    "process": []
+    "process": [],
+    "seo": {
+      "metaTitle": "Painting & Waterproofing Singapore | UA Engineering",
+      "metaDescription": "Professional painting and waterproofing services in Singapore for homes, offices and commercial properties, with durable finishes and leak protection.",
+      "metaKeywords": "painting services Singapore, painting contractor Singapore, house painting Singapore, interior painting Singapore, exterior painting Singapore, waterproofing Singapore, waterproofing services Singapore",
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Painting & Waterproofing\",\"serviceType\":\"Painting & Waterproofing\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional painting and waterproofing services in Singapore for homes, offices and commercial properties, with durable finishes and leak protection.\"}"
+    }
   },
   {
     "slug": "aluminium-glazing-works",
@@ -1611,7 +1713,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Final Inspection",
             "description": "Conduct operational testing and quality assurance checks."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Aluminium & Glass Installation Singapore | Repair Services",
+          "metaDescription": "Professional aluminium and glass installation and repair services in Singapore for windows, doors, partitions, shopfronts and glazing systems.",
+          "metaKeywords": "Aluminium glass installation Singapore, Aluminium window installation Singapore, Aluminium door installation Singapore, Glass installation Singapore, Glass repair Singapore, Glass replacement Singapore, Aluminium window repair Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Aluminium & Glass Installation & Repair\",\"serviceType\":\"Aluminium & Glass Installation & Repair under Aluminium & Glazing Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional aluminium and glass installation and repair services in Singapore for windows, doors, partitions, shopfronts and glazing systems.\"}"
+        }
       },
       {
         "slug": "skylight-installation",
@@ -1667,7 +1775,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Quality Inspection",
             "description": "Verify waterproofing, alignment, and overall finish."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Skylight Installation Singapore | Roof Skylight Services",
+          "metaDescription": "Professional skylight installation in Singapore for residential, commercial and industrial properties, including fixed, ventilated and polycarbonate skylights.",
+          "metaKeywords": "Skylight Installation Singapore, Skylight installation Singapore, Skylight contractor Singapore, Skylight services Singapore, Roof skylight Singapore, Skylight replacement Singapore, Skylight repair Singapore, Fixed skylight Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Skylight Installation\",\"serviceType\":\"Skylight Installation under Aluminium & Glazing Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional skylight installation in Singapore for residential, commercial and industrial properties, including fixed, ventilated and polycarbonate skylights.\"}"
+        }
       },
       {
         "slug": "mosquito-net-installation",
@@ -1723,7 +1837,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Final Inspection",
             "description": "Verify fitting quality and smooth daily use."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Mosquito Net Installation Singapore | Custom Insect Screens",
+          "metaDescription": "Professional mosquito net installation in Singapore for windows, doors and balconies, with custom mesh, retractable, magnetic and fixed-frame screens.",
+          "metaKeywords": "Mosquito Net Installation Singapore, mosquito mesh installation Singapore, window mosquito net Singapore, retractable mosquito net Singapore, magnetic mosquito screen Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Mosquito Net Installation\",\"serviceType\":\"Mosquito Net Installation under Aluminium & Glazing Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional mosquito net installation in Singapore for windows, doors and balconies, with custom mesh, retractable, magnetic and fixed-frame screens.\"}"
+        }
       },
       {
         "slug": "glass-protection-films",
@@ -1781,7 +1901,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Final Inspection",
             "description": "Inspect the completed installation and verify overall finish, adhesion, and appearance."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Glass Protection Film Singapore | UV, Privacy & Solar Films",
+          "metaDescription": "Professional glass protection film installation in Singapore for UV protection, solar heat reduction, privacy, safety and decorative glass applications.",
+          "metaKeywords": "Glass Protection Film Singapore, window film installation Singapore, UV protection film Singapore, heat reduction window film Singapore, privacy window film Singapore, frosted glass film Singapore, security window film Singapore, decorative glass film Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Glass Protection Films\",\"serviceType\":\"Glass Protection Films under Aluminium & Glazing Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional glass protection film installation in Singapore for UV protection, solar heat reduction, privacy, safety and decorative glass applications.\"}"
+        }
       },
       {
         "slug": "zip-blind-fabrication",
@@ -1837,7 +1963,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Final Handover",
             "description": "Inspect operation, demonstrate usage, and complete project handover."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Zip Blinds & Blind Installation Singapore | Custom Blinds",
+          "metaDescription": "Custom zip blinds and blind installation in Singapore, including roller, Venetian, Roman, zebra, blackout and motorised blinds for indoor and outdoor spaces.",
+          "metaKeywords": "zip blind installation Singapore, zip blind fabrication Singapore, custom blinds Singapore, roller blinds Singapore, Venetian blinds Singapore, zebra blinds Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Zip Blind & All Types of Blind Fabrication & Installation\",\"serviceType\":\"Zip Blind & All Types of Blind Fabrication & Installation under Aluminium & Glazing Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Custom zip blinds and blind installation in Singapore, including roller, Venetian, Roman, zebra, blackout and motorised blinds for indoor and outdoor spaces.\"}"
+        }
       }
     ],
     "serviceAreas": [
@@ -1900,7 +2032,13 @@ export const servicesData: ServiceCategory[] = [
       }
     ],
     "icon": "",
-    "process": []
+    "process": [],
+    "seo": {
+      "metaTitle": "Aluminium & Glazing Works in Singapore | UA Engineering",
+      "metaDescription": "Professional aluminium and glazing works in Singapore, including windows, doors, glass partitions, skylights, shopfronts, films and blinds.",
+      "metaKeywords": "aluminium glazing Singapore, aluminium works Singapore, aluminium windows Singapore, aluminium doors Singapore, glass installation Singapore, glass partitions Singapore",
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Aluminium & Glazing Works\",\"serviceType\":\"Aluminium & Glazing Works\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional aluminium and glazing works in Singapore, including windows, doors, glass partitions, skylights, shopfronts, films and blinds.\"}"
+    }
   },
   {
     "slug": "electrical-plumbing-aircon",
@@ -2084,7 +2222,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Project Handover",
             "description": "Confirm system performance and complete final inspection with the client."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Electrical Services Singapore | Wiring & Lighting Work",
+          "metaDescription": "Professional electrical services in Singapore for wiring, lighting, ceiling fans, switches, sockets, fault diagnosis, repairs and electrical maintenance.",
+          "metaKeywords": "Electrical Services Singapore, electrical wiring Singapore, electrical rewiring Singapore, electrical repair Singapore, electrical fault diagnosis Singapore, ceiling fan installation Singapore, switch replacement Singapore, socket replacement Singapore, power point installation Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Electrical & Lighting Work\",\"serviceType\":\"Electrical & Lighting Work under Electrical, Plumbing & Aircon\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional electrical services in Singapore for wiring, lighting, ceiling fans, switches, sockets, fault diagnosis, repairs and electrical maintenance.\"}"
+        }
       },
       {
         "slug": "plumbing-services",
@@ -2140,7 +2284,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Final Handover",
             "description": "Verify proper operation and ensure the work area is clean before completion."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Plumbing Services Singapore | Pipe Installation & Repairs",
+          "metaDescription": "Professional plumbing services in Singapore for water pipes, leak detection, sanitary fittings, taps, drainage repairs and plumbing maintenance.",
+          "metaKeywords": "Plumbing Services Singapore, plumbing repair Singapore, water pipe installation Singapore, water pipe repair Singapore, toilet installation Singapore, basin installation Singapore, tap replacement Singapore, mixer tap replacement Singapore, drainage pipe repair Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Plumbing Services\",\"serviceType\":\"Plumbing Services under Electrical, Plumbing & Aircon\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional plumbing services in Singapore for water pipes, leak detection, sanitary fittings, taps, drainage repairs and plumbing maintenance.\"}"
+        }
       },
       {
         "slug": "aircon-repair",
@@ -2196,7 +2346,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Step 06 – Final Verification",
             "description": "Complete functional checks and confirm satisfactory system performance before handover."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Aircon Repair Singapore | Air Conditioning Repair Services",
+          "metaDescription": "Professional aircon repair services in Singapore for cooling faults, water leaks, refrigerant top-ups, drain cleaning, filter cleaning and component repairs.",
+          "metaKeywords": "Aircon Repair Singapore, aircon servicing Singapore, aircon technician Singapore, aircon troubleshooting Singapore, aircon water leakage repair Singapore, refrigerant gas top up Singapore, aircon gas top up Singapore, aircon drain pipe cleaning Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Aircon Repair\",\"serviceType\":\"Aircon Repair under Electrical, Plumbing & Aircon\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional aircon repair services in Singapore for cooling faults, water leaks, refrigerant top-ups, drain cleaning, filter cleaning and component repairs.\"}"
+        }
       }
     ],
     "serviceAreas": [
@@ -2259,7 +2415,13 @@ export const servicesData: ServiceCategory[] = [
       }
     ],
     "icon": "",
-    "process": []
+    "process": [],
+    "seo": {
+      "metaTitle": "Electrical, Plumbing & Aircon Services Singapore | UA Engineering",
+      "metaDescription": "Professional electrical, plumbing and aircon services in Singapore for HDB, homes, offices and commercial properties, including installation, repairs and maintenance.",
+      "metaKeywords": "electrical services Singapore, electrical contractor Singapore, electrical installation Singapore, electrical wiring Singapore, rewiring Singapore, lighting installation Singapore, ceiling fan installation Singapore, plumbing services Singapore",
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Electrical, Plumbing & Aircon\",\"serviceType\":\"Electrical, Plumbing & Aircon\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional electrical, plumbing and aircon services in Singapore for HDB, homes, offices and commercial properties, including installation, repairs and maintenance.\"}"
+    }
   },
   {
     "slug": "solar-panel-installation",
@@ -2418,7 +2580,13 @@ export const servicesData: ServiceCategory[] = [
             "title": "Testing & Handover",
             "description": "Conduct comprehensive system testing, verify operational performance, perform safety inspections, and complete the final client handover."
           }
-        ]
+        ],
+        "seo": {
+          "metaTitle": "Solar Panel Installation Singapore | Rooftop Solar Solutions",
+          "metaDescription": "Professional solar panel installation in Singapore for residential and commercial properties, with rooftop assessment, custom layouts, system integration and commissioning.",
+          "metaKeywords": "Solar Panel Installation Singapore, rooftop solar Singapore, solar panel installer Singapore, residential solar panel installation Singapore, rooftop solar installation Singapore, solar inverter installation Singapore",
+          "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Solar Panel Installation\",\"serviceType\":\"Solar Panel Installation under Solar Panel Installation\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional solar panel installation in Singapore for residential and commercial properties, with rooftop assessment, custom layouts, system integration and commissioning.\"}"
+        }
       }
     ],
     "serviceAreasHeading": "Reliable Engineering & Renovation Solutions Near You",
@@ -2484,6 +2652,12 @@ export const servicesData: ServiceCategory[] = [
     ],
     "icon": "",
     "process": [],
-    "faqs": []
+    "faqs": [],
+    "seo": {
+      "metaTitle": "Solar Panel Installation Singapore | UA Engineering",
+      "metaDescription": "Professional solar panel installation in Singapore for homes and commercial properties, with customised rooftop solutions and reliable system integration.",
+      "metaKeywords": "Solar Panel Installation Singapore, solar panel installation Singapore, rooftop solar installation Singapore, solar PV installation Singapore, residential solar panel installation Singapore",
+      "schemaJson": "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Solar Panel Installation\",\"serviceType\":\"Solar Panel Installation\",\"provider\":{\"@type\":\"LocalBusiness\",\"name\":\"UA Engineering PTE. LTD.\",\"image\":\"https://uaengineering.com.sg/images/logo.webp\",\"telephone\":\"+65 8459 3003\",\"email\":\"hello.uaengineering@gmail.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"38C Sea Avenue Marine Mansion\",\"addressLocality\":\"Singapore\",\"postalCode\":\"424256\",\"addressCountry\":\"SG\"},\"areaServed\":{\"@type\":\"AdministrativeArea\",\"name\":\"Singapore\"}},\"areaServed\":\"Singapore\",\"description\":\"Professional solar panel installation in Singapore for homes and commercial properties, with customised rooftop solutions and reliable system integration.\"}"
+    }
   }
 ];

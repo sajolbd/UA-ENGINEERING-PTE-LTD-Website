@@ -18,12 +18,17 @@ import HomeFAQ from "components/home/HomeFAQ";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://uaengineering.com.sg";
+
 export async function generateMetadata(): Promise<Metadata> {
   const seo = cmsData?.home?.seo || {};
   return {
     title: seo.metaTitle || "UA Engineering PTE. LTD.",
     description: seo.metaDescription || "UA Engineering PTE. LTD. provides renovation, waterproofing, steel works, roofing, electrical, plumbing, aircon, aluminium glazing and maintenance services across Singapore.",
     keywords: seo.metaKeywords || "UA Engineering, Singapore Renovation, Waterproofing Singapore",
+    alternates: {
+      canonical: SITE_URL,
+    },
   };
 }
 

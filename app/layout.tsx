@@ -94,25 +94,26 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "UA Engineering PTE. LTD.",
-    template: "%s | UA Engineering",
+    default: "Renovation & Building Services Singapore | UA Engineering",
+    template: "%s",
   },
 
   description:
-    "UA Engineering PTE. LTD. provides renovation, waterproofing, steel works, roofing, electrical, plumbing, aircon, aluminium glazing and maintenance services across Singapore.",
+    "UA Engineering provides renovation, structural, painting, waterproofing, electrical, plumbing, glazing, aircon and solar services in Singapore.",
 
   keywords: [
-    "UA Engineering",
-    "Singapore Renovation",
-    "Waterproofing Singapore",
-    "Roof Extension",
-    "Steel Works",
-    "Electrical Services",
-    "Plumbing Services",
-    "Aircon Repair",
-    "Aluminium Works",
-    "Engineering Company Singapore",
+    "Renovation & Upgrading Singapore",
+    "renovation Singapore",
+    "renovation contractor Singapore",
+    "home renovation Singapore",
+    "HDB renovation Singapore",
+    "condo renovation Singapore",
+    "landed property renovation Singapore",
   ],
+
+  alternates: {
+    canonical: siteUrl,
+  },
 
   icons: {
     icon: [
